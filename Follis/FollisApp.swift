@@ -6,12 +6,25 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct FollisApp: App {
+
+    init(){
+        FirebaseApp.configure()
+    }
+
+    @StateObject var viewModel = AuthViewModel()
+    @ObservedObject var appState = AppState()
+
+
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            WelcomeView()
+                .environmentObject(viewModel)
+                .environmentObject(appState)
         }
     }
 }
