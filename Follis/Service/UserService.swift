@@ -23,4 +23,34 @@ struct UserService {
         }
     } //: FETCH USER DATA
 
+    func checkIfExistingUser(userEmail: String, completion: @escaping (User2) -> Void) {
+
+
+        Firestore.firestore().collection("merchants").getDocuments { (snapshot, error) -> Void in
+             guard let snapshot = snapshot, error == nil else {
+                 // Handle error
+                 print ("An error occured while trying to verify your account.")
+                 return
+            }
+
+            snapshot.documents.forEach({ (documentSnapshot) in
+              let documentData = documentSnapshot.data()
+              let email = documentData["email"] as? String
+
+                if userEmail == email {
+
+                    let docID = documentSnapshot.documentID
+
+                    let user = User2(id: docID, email: email ?? "")
+
+                    completion(user)
+
+                }
+
+            })
+          }
+
+
+    }
+
 }

@@ -121,7 +121,7 @@ struct SignUpViewFour: View {
                                 .frame(width: 295, height: 50, alignment: .center)
 
                         })
-                        .padding(.bottom, 10)
+                        .padding(.bottom, 25)
 
 
                     }

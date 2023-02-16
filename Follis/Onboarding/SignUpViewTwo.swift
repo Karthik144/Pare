@@ -44,6 +44,8 @@ struct SignUpViewTwo: View {
                             .foregroundColor(Color.white)
                             .fontWeight(.heavy)
                             .padding(.bottom, 10)
+                            .multilineTextAlignment(.center)
+
 
                         Spacer()
 

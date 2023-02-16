@@ -26,6 +26,7 @@
 		7C45EC5D299B32B200F3B439 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC5C299B32B100F3B439 /* UserService.swift */; };
 		7C45EC60299B341400F3B439 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC5F299B341400F3B439 /* User.swift */; };
 		7C45EC62299B354A00F3B439 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC61299B354A00F3B439 /* AppState.swift */; };
+		7CA914BF299DB9790006ED5B /* User2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA914BE299DB9790006ED5B /* User2.swift */; };
 		7CF74DC7299C620C002B2BB9 /* GetStartedButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF74DC6299C620B002B2BB9 /* GetStartedButtonModifier.swift */; };
 		7CF74DC9299C638F002B2BB9 /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF74DC8299C638F002B2BB9 /* EmailView.swift */; };
 		7CF74DCD299C65A4002B2BB9 /* NextButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF74DCC299C65A4002B2BB9 /* NextButtonModifier.swift */; };
@@ -51,6 +52,7 @@
 		7C45EC5C299B32B100F3B439 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		7C45EC5F299B341400F3B439 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7C45EC61299B354A00F3B439 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		7CA914BE299DB9790006ED5B /* User2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User2.swift; sourceTree = "<group>"; };
 		7CF74DC6299C620B002B2BB9 /* GetStartedButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedButtonModifier.swift; sourceTree = "<group>"; };
 		7CF74DC8299C638F002B2BB9 /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
 		7CF74DCC299C65A4002B2BB9 /* NextButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButtonModifier.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				7C45EC5F299B341400F3B439 /* User.swift */,
+				7CA914BE299DB9790006ED5B /* User2.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				7CF74DD3299C76F2002B2BB9 /* UserTypeButtonModifier.swift in Sources */,
 				7C45EC60299B341400F3B439 /* User.swift in Sources */,
 				7CF74DD1299C738D002B2BB9 /* SignUpViewFour.swift in Sources */,
+				7CA914BF299DB9790006ED5B /* User2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

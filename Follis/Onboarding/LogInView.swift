@@ -10,36 +10,66 @@ import SwiftUI
 struct LogInView: View {
 
     // MARK: - PROPERTIES
-    @State private var email = ""
     @State private var password = ""
 
     // MARK: - BODY
     var body: some View {
-        VStack{
 
-            // Text fields for user inputs
-//            CustomInputTextField(fieldTitle: "Email", isSecureField: false, text: $email)
-//
-//            CustomInputTextField(fieldTitle: "Password", isSecureField: true, text: $password)
+        ZStack{
 
-            Spacer()
+            Color(red: 0.167, green: 0.29, blue: 0.933).ignoresSafeArea()
 
-            // Done button
-            Button(action: {
-                // Verify info
+            VStack{
 
-            }, label: {
-                Text("Done")
-                    .fontWeight(.bold)
-                    .modifier(ButtonModifier())
-                    .frame(width:300, height: 50)
-            })
+                Spacer()
 
-            Spacer()
+                VStack(){
 
-        } //: VSTACK
-        .navigationTitle("Log In")
-        .navigationBarTitleDisplayMode(.inline)
+
+                    HStack{
+
+                        Spacer()
+
+                        Text("Enter your password.")
+                            .font(.largeTitle)
+                            .foregroundColor(Color.white)
+                            .fontWeight(.heavy)
+                            .padding(.bottom, 10)
+                            .multilineTextAlignment(.center)
+
+                        Spacer()
+
+                    } //: HSTACK
+
+
+                    CustomInputTextField(isSecureField: true, placeholderText: "Something secure...", text: $password)
+                        .padding(.bottom, 30)
+
+                    // Next button
+                    Button(action: {
+
+
+
+                    }, label: {
+
+                        Text("Next")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .modifier(NextButtonModifier())
+                    })
+
+                } //: VSTACK
+
+
+                Spacer(minLength: 325)
+
+            } //: VSTACK
+            .navigationTitle("Sign Up")
+            .foregroundColor(Color.white)
+            .navigationBarTitleDisplayMode(.inline)
+            .accentColor(Color.white)
+
+        } //: ZSTACK
     }
 
 

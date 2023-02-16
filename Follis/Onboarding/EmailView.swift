@@ -10,6 +10,8 @@ import SwiftUI
 struct EmailView: View {
 
     // MARK: - PROPERTIES
+    @EnvironmentObject var viewModel: AuthViewModel
+    @State private var isExistingUser = false
     @State private var email = ""
 
     // MARK: - BODY
@@ -32,17 +34,27 @@ struct EmailView: View {
                     CustomInputTextField(isSecureField: false, placeholderText: "We promise to not spam you...", text: $email)
                         .padding(.bottom, 30)
 
-                    // Next button
+//                    NavigationLink(destination: SignUpViewFour(firstName: "", lastName: "", email: "", password: ""),
+//                                   isActive: $isExistingUser) {
+//                            Button(action: { isExistingUser = viewModel.checkIfExistingUser(email: email) }) {
+//                            Text("Next")
+//                        }
+////                        .buttonStyle(MyButtonStyle))
+//                    }
+
                     NavigationLink(destination: {
                         SignUpViewOne(email: email)
 
                     }, label: {
-
                         Text("Next")
                             .font(.title3)
                             .fontWeight(.bold)
                             .modifier(NextButtonModifier())
                     })
+
+
+
+
                 } //: VSTACK
 
                 Spacer(minLength: 325)

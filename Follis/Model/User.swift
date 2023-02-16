@@ -13,5 +13,4 @@ struct User: Identifiable, Decodable {
     @DocumentID var id: String?
     var email: String
     var name: String
-    var pay_pal_link: String
 }

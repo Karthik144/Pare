@@ -22,7 +22,7 @@ struct WelcomeView: View {
             if viewModel.userSession == nil {
                 mainWelcomeView
             } else {
-
+                ContentView()
             }
         } //: GROUP
 
@@ -44,7 +44,7 @@ extension WelcomeView {
                         .fontWeight(.heavy)
                         .offset(y:-50)
                     Text("Unlock the power of web3 in the real-world.")
-                        .font(.subheadline)
+                        .font(.body)
                         .offset(y:-50)
 
                     // Get started button with custom modifier
