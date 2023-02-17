@@ -10,6 +10,7 @@ import SwiftUI
 struct TransactionView: View {
 
     // MARK: - PROPERTIES
+    @EnvironmentObject var router: Router
     @State private var showPopup = false
     @State private var itemName = ""
     @State private var numberOfItems: Int?
@@ -58,7 +59,7 @@ struct TransactionView: View {
                 List{
 
                     ForEach(transactions) { transaction in
-                        OrderItemView(itemName: itemName, itemPrice: String(itemPrice ?? 0.0), itemQuantity: String(numberOfItems ?? 0))
+                        OrderItemView(itemName: transaction.itemName, itemPrice: String(transaction.itemPrice), itemQuantity: String(transaction.itemQuantity))
                     }
 
                 }
@@ -113,6 +114,21 @@ struct TransactionView: View {
                                 .padding(.trailing, 20)
 
                         }
+
+                        Button {
+                            Router.shared.selectedTab = 3
+                        } label: {
+                            Text("Done")
+                        }
+                        .frame(width: 210, height: 50)
+                        .padding()
+                        .foregroundColor(Color.white)
+                        .background(
+                            RoundedRectangle(cornerRadius: 25)
+                                .fill(Color(red: 0.167, green: 0.29, blue: 0.933))
+                                .frame(width:210, height: 50)
+                        )
+
                     } //: VSTACK
                     .padding(.bottom, 25)
 
@@ -130,10 +146,10 @@ struct TransactionView: View {
         .popupNavigationView(horizontalPadding: 30, show: $showPopup) {
 
             // Popup content
-            VStack{
+            VStack(spacing: 0){
 
                 Form {
-                    Section{
+                    Section(){
                         TextField("Item name", text: $itemName)
                             .textFieldStyle(.roundedBorder)
                             .listRowSeparator(.hidden)
@@ -153,12 +169,12 @@ struct TransactionView: View {
 
 
                     } //: SECTION
-                    .padding(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                    .padding([.top], -15)
                     .listRowSeparator(.hidden)
 
 
                 } //: FORM
-                .padding(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                .padding([.top], -15)
                 .listRowSeparator(.hidden)
 
 
@@ -170,14 +186,28 @@ struct TransactionView: View {
                 }, label: {
                     Text("Done")
                 })
+                .frame(width: 90, height: 35)
                 .padding()
+                .foregroundColor(Color.white)
+                .background(
+                    RoundedRectangle(cornerRadius: 50)
+                        .fill(Color(red: 0.167, green: 0.29, blue: 0.933))
+                        .frame(width:90, height: 35)
+                )
             } //: VSTACK
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Close"){
                         withAnimation{showPopup.toggle()}
-
                     }
+                    .padding()
+//                    .frame(width: 75, height: 30)
+//                    .foregroundColor(Color.white)
+//                    .background(
+//                        RoundedRectangle(cornerRadius: 50)
+//                            .fill(Color.red)
+//                            .frame(width:70, height: 30)
+//                    )
                 }
             }
         } // POP UP NAV VIEW

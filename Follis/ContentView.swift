@@ -11,14 +11,14 @@ struct ContentView: View {
 
     // MARK: - PROPERTIES
     @EnvironmentObject var viewModel: AuthViewModel
-    @State private var selection = 2
+    @EnvironmentObject var router: Router
+//    @State private var selection = 2
 
 
     // MARK: - BODY
     var body: some View {
 
-        TabView(selection: $selection) {
-
+        TabView(selection: $router.selectedTab) {
             SettingsView().tabItem({
                 Image(systemName: "gearshape")
                 Text("Settings")
@@ -33,23 +33,19 @@ struct ContentView: View {
 
             FundsView().tabItem({
                 Image(systemName: "dollarsign.circle")
-                Text("Share")
+                Text("Funds")
             })
             .tag(3)
-
         }
-
-
-
 
     }
 }
 
 
 // MARK: - PREVIEW
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}
 
