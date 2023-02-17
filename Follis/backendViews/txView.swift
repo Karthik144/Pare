@@ -1,20 +1,20 @@
 //
-//  FundsView.swift
+//  txView.swift
 //  Follis
 //
-//  Created by Karthik  Ramu on 2/15/23.
+//  Created by Akhil Maheepathi on 2/17/23.
 //
 
 import SwiftUI
 
-struct FundsView: View {
+struct txView: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
-struct FundsView_Previews: PreviewProvider {
+struct txView_Previews: PreviewProvider {
     static var previews: some View {
-        FundsView()
+        txView()
     }
 }

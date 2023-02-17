@@ -40,6 +40,10 @@
 		7CF74DCF299C72DF002B2BB9 /* SignUpViewThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF74DCE299C72DF002B2BB9 /* SignUpViewThree.swift */; };
 		7CF74DD1299C738D002B2BB9 /* SignUpViewFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF74DD0299C738D002B2BB9 /* SignUpViewFour.swift */; };
 		7CF74DD3299C76F2002B2BB9 /* UserTypeButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF74DD2299C76F2002B2BB9 /* UserTypeButtonModifier.swift */; };
+		E9A1AF8E29A0115C00ED580E /* decodeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A1AF8D29A0115B00ED580E /* decodeJSON.swift */; };
+		E9A1AF9029A0141000ED580E /* getJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A1AF8F29A0141000ED580E /* getJSON.swift */; };
+		E9A1AF9429A01F7300ED580E /* FundsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A1AF9329A01F7300ED580E /* FundsService.swift */; };
+		E9A1AF9729A021AD00ED580E /* txView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A1AF9629A021AD00ED580E /* txView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +77,10 @@
 		7CF74DCE299C72DF002B2BB9 /* SignUpViewThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewThree.swift; sourceTree = "<group>"; };
 		7CF74DD0299C738D002B2BB9 /* SignUpViewFour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewFour.swift; sourceTree = "<group>"; };
 		7CF74DD2299C76F2002B2BB9 /* UserTypeButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeButtonModifier.swift; sourceTree = "<group>"; };
+		E9A1AF8D29A0115B00ED580E /* decodeJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = decodeJSON.swift; sourceTree = "<group>"; };
+		E9A1AF8F29A0141000ED580E /* getJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getJSON.swift; sourceTree = "<group>"; };
+		E9A1AF9329A01F7300ED580E /* FundsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundsService.swift; sourceTree = "<group>"; };
+		E9A1AF9629A021AD00ED580E /* txView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = txView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +117,7 @@
 		7C45EC1E299B26B300F3B439 /* Follis */ = {
 			isa = PBXGroup;
 			children = (
+				E9A1AF8C29A0111D00ED580E /* solAPI */,
 				7C45EC5E299B33C900F3B439 /* ViewModel */,
 				7C45EC5B299B327500F3B439 /* Service */,
 				7C45EC42299B2D2100F3B439 /* Model */,
@@ -125,10 +134,10 @@
 				7CF74DD2299C76F2002B2BB9 /* UserTypeButtonModifier.swift */,
 				7CF74DCC299C65A4002B2BB9 /* NextButtonModifier.swift */,
 				7CD78BF6299DEE47002E01E1 /* SettingsView.swift */,
-				7CD78BFA299DEF7E002E01E1 /* FundsView.swift */,
 				7CD78BFE299DF684002E01E1 /* TransactionView.swift */,
 				7C1A2BD9299F0F6D00C0253D /* PopUpModifier.swift */,
 				7CF441DC299F3F1100A4C660 /* OrderItemView.swift */,
+				E9A1AF9529A0216300ED580E /* backendViews */,
 			);
 			path = Follis;
 			sourceTree = "<group>";
@@ -170,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				7C45EC5C299B32B100F3B439 /* UserService.swift */,
+				E9A1AF9329A01F7300ED580E /* FundsService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -180,6 +190,24 @@
 				7C45EC3F299B2D0100F3B439 /* AuthViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E9A1AF8C29A0111D00ED580E /* solAPI */ = {
+			isa = PBXGroup;
+			children = (
+				E9A1AF8D29A0115B00ED580E /* decodeJSON.swift */,
+				E9A1AF8F29A0141000ED580E /* getJSON.swift */,
+			);
+			path = solAPI;
+			sourceTree = "<group>";
+		};
+		E9A1AF9529A0216300ED580E /* backendViews */ = {
+			isa = PBXGroup;
+			children = (
+				7CD78BFA299DEF7E002E01E1 /* FundsView.swift */,
+				E9A1AF9629A021AD00ED580E /* txView.swift */,
+			);
+			path = backendViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +292,7 @@
 			files = (
 				7CD78BF7299DEE47002E01E1 /* SettingsView.swift in Sources */,
 				7C45EC32299B293200F3B439 /* LogInView.swift in Sources */,
+				E9A1AF9029A0141000ED580E /* getJSON.swift in Sources */,
 				7C45EC44299B2D5200F3B439 /* SignUpViewOne.swift in Sources */,
 				7C45EC3E299B2CF700F3B439 /* WelcomeView.swift in Sources */,
 				7CF441DD299F3F1100A4C660 /* OrderItemView.swift in Sources */,
@@ -282,9 +311,12 @@
 				7C45EC20299B26B300F3B439 /* FollisApp.swift in Sources */,
 				7C45EC38299B2AC700F3B439 /* ButtonModifier.swift in Sources */,
 				7CD78BFF299DF684002E01E1 /* TransactionView.swift in Sources */,
+				E9A1AF9429A01F7300ED580E /* FundsService.swift in Sources */,
+				E9A1AF9729A021AD00ED580E /* txView.swift in Sources */,
 				7CF74DCD299C65A4002B2BB9 /* NextButtonModifier.swift in Sources */,
 				7CD78BF5299DE8C8002E01E1 /* PasswordView.swift in Sources */,
 				7CF74DD3299C76F2002B2BB9 /* UserTypeButtonModifier.swift in Sources */,
+				E9A1AF8E29A0115C00ED580E /* decodeJSON.swift in Sources */,
 				7C45EC60299B341400F3B439 /* User.swift in Sources */,
 				7CF74DD1299C738D002B2BB9 /* SignUpViewFour.swift in Sources */,
 				7CA914BF299DB9790006ED5B /* User2.swift in Sources */,
@@ -416,7 +448,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Follis/Preview Content\"";
-				DEVELOPMENT_TEAM = Z2GRP6MX8V;
+				DEVELOPMENT_TEAM = QB35PAHTN8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -445,7 +477,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Follis/Preview Content\"";
-				DEVELOPMENT_TEAM = Z2GRP6MX8V;
+				DEVELOPMENT_TEAM = QB35PAHTN8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

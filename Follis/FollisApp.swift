@@ -28,3 +28,4 @@ struct FollisApp: App {
         }
     }
 }
+
