@@ -29,6 +29,7 @@
 		7C45EC60299B341400F3B439 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC5F299B341400F3B439 /* User.swift */; };
 		7C45EC62299B354A00F3B439 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC61299B354A00F3B439 /* AppState.swift */; };
 		7CA914BF299DB9790006ED5B /* User2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA914BE299DB9790006ED5B /* User2.swift */; };
+		7CB24FE329A0106A00BC8B36 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB24FE229A0106A00BC8B36 /* Router.swift */; };
 		7CD78BF5299DE8C8002E01E1 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD78BF4299DE8C8002E01E1 /* PasswordView.swift */; };
 		7CD78BF7299DEE47002E01E1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD78BF6299DEE47002E01E1 /* SettingsView.swift */; };
 		7CD78BFB299DEF7E002E01E1 /* FundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD78BFA299DEF7E002E01E1 /* FundsView.swift */; };
@@ -62,6 +63,7 @@
 		7C45EC5F299B341400F3B439 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7C45EC61299B354A00F3B439 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		7CA914BE299DB9790006ED5B /* User2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User2.swift; sourceTree = "<group>"; };
+		7CB24FE229A0106A00BC8B36 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		7CD78BF4299DE8C8002E01E1 /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
 		7CD78BF6299DEE47002E01E1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		7CD78BFA299DEF7E002E01E1 /* FundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundsView.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				7C45EC5C299B32B100F3B439 /* UserService.swift */,
+				7CB24FE229A0106A00BC8B36 /* Router.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				7C45EC32299B293200F3B439 /* LogInView.swift in Sources */,
 				7C45EC44299B2D5200F3B439 /* SignUpViewOne.swift in Sources */,
 				7C45EC3E299B2CF700F3B439 /* WelcomeView.swift in Sources */,
+				7CB24FE329A0106A00BC8B36 /* Router.swift in Sources */,
 				7CF441DD299F3F1100A4C660 /* OrderItemView.swift in Sources */,
 				7CF74DC9299C638F002B2BB9 /* EmailView.swift in Sources */,
 				7C45EC62299B354A00F3B439 /* AppState.swift in Sources */,

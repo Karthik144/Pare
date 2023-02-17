@@ -19,6 +19,7 @@ extension View {
 
                     GeometryReader{proxy in
 
+
                         Color.primary
                             .opacity(0.15)
                             .ignoresSafeArea()
@@ -29,6 +30,8 @@ extension View {
                             content()
                         }
                         .frame(width: size.width - horizontalPadding, height: size.height/2.4, alignment: .center)
+
+                        // frame 2.0 looks good
 
                         .cornerRadius(15)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
