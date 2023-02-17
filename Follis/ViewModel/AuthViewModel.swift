@@ -68,15 +68,20 @@ class AuthViewModel: ObservableObject{
     func checkIfExistingUser(email: String) -> Bool{
 
         var isExisting = false
+        print(email)
         service.checkIfExistingUser(userEmail: email) { user in
             self.User2 = user
 //            print(self.User2?.email)
             self.checkIfExistingUser(email: user.email)
         }
 
-        if (User2?.email == email){
+        print(User2?.email)
+
+        if (User2?.email.lowercased() == email.lowercased()){
+            print("Entered false")
             isExisting = false
         } else {
+            print("Entered true")
             isExisting = true
         }
 

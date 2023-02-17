@@ -11,18 +11,36 @@ struct ContentView: View {
 
     // MARK: - PROPERTIES
     @EnvironmentObject var viewModel: AuthViewModel
+    @State private var selection = 2
+
 
     // MARK: - BODY
     var body: some View {
 
+        TabView(selection: $selection) {
 
-        Button(action: {
-            // Sign user out
-            viewModel.signOut()
-        }, label: {
-            Label("Sign Out", systemImage: "person.crop.circle.fill.badge.minus")
-                .foregroundColor(.red)
-        })
+            SettingsView().tabItem({
+                Image(systemName: "gearshape")
+                Text("Settings")
+            })
+            .tag(1)
+
+            TransactionView().tabItem({
+                Image(systemName: "cart.circle")
+                Text("Order")
+            })
+            .tag(2)
+
+            FundsView().tabItem({
+                Image(systemName: "dollarsign.circle")
+                Text("Share")
+            })
+            .tag(3)
+
+        }
+
+
+
 
     }
 }
@@ -34,3 +52,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+

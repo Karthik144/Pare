@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C1A2BDA299F0F6E00C0253D /* PopUpModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1A2BD9299F0F6D00C0253D /* PopUpModifier.swift */; };
+		7C1A2BDC299F23EA00C0253D /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1A2BDB299F23EA00C0253D /* Order.swift */; };
 		7C45EC20299B26B300F3B439 /* FollisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC1F299B26B300F3B439 /* FollisApp.swift */; };
 		7C45EC22299B26B300F3B439 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC21299B26B300F3B439 /* ContentView.swift */; };
 		7C45EC24299B26B900F3B439 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C45EC23299B26B900F3B439 /* Assets.xcassets */; };
@@ -27,6 +29,11 @@
 		7C45EC60299B341400F3B439 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC5F299B341400F3B439 /* User.swift */; };
 		7C45EC62299B354A00F3B439 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC61299B354A00F3B439 /* AppState.swift */; };
 		7CA914BF299DB9790006ED5B /* User2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA914BE299DB9790006ED5B /* User2.swift */; };
+		7CD78BF5299DE8C8002E01E1 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD78BF4299DE8C8002E01E1 /* PasswordView.swift */; };
+		7CD78BF7299DEE47002E01E1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD78BF6299DEE47002E01E1 /* SettingsView.swift */; };
+		7CD78BFB299DEF7E002E01E1 /* FundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD78BFA299DEF7E002E01E1 /* FundsView.swift */; };
+		7CD78BFF299DF684002E01E1 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD78BFE299DF684002E01E1 /* TransactionView.swift */; };
+		7CF441DD299F3F1100A4C660 /* OrderItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF441DC299F3F1100A4C660 /* OrderItemView.swift */; };
 		7CF74DC7299C620C002B2BB9 /* GetStartedButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF74DC6299C620B002B2BB9 /* GetStartedButtonModifier.swift */; };
 		7CF74DC9299C638F002B2BB9 /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF74DC8299C638F002B2BB9 /* EmailView.swift */; };
 		7CF74DCD299C65A4002B2BB9 /* NextButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF74DCC299C65A4002B2BB9 /* NextButtonModifier.swift */; };
@@ -36,6 +43,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C1A2BD9299F0F6D00C0253D /* PopUpModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpModifier.swift; sourceTree = "<group>"; };
+		7C1A2BDB299F23EA00C0253D /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		7C45EC1C299B26B300F3B439 /* Follis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Follis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C45EC1F299B26B300F3B439 /* FollisApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollisApp.swift; sourceTree = "<group>"; };
 		7C45EC21299B26B300F3B439 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +62,11 @@
 		7C45EC5F299B341400F3B439 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7C45EC61299B354A00F3B439 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		7CA914BE299DB9790006ED5B /* User2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User2.swift; sourceTree = "<group>"; };
+		7CD78BF4299DE8C8002E01E1 /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
+		7CD78BF6299DEE47002E01E1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		7CD78BFA299DEF7E002E01E1 /* FundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundsView.swift; sourceTree = "<group>"; };
+		7CD78BFE299DF684002E01E1 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
+		7CF441DC299F3F1100A4C660 /* OrderItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemView.swift; sourceTree = "<group>"; };
 		7CF74DC6299C620B002B2BB9 /* GetStartedButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedButtonModifier.swift; sourceTree = "<group>"; };
 		7CF74DC8299C638F002B2BB9 /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
 		7CF74DCC299C65A4002B2BB9 /* NextButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButtonModifier.swift; sourceTree = "<group>"; };
@@ -110,6 +124,11 @@
 				7CF74DC6299C620B002B2BB9 /* GetStartedButtonModifier.swift */,
 				7CF74DD2299C76F2002B2BB9 /* UserTypeButtonModifier.swift */,
 				7CF74DCC299C65A4002B2BB9 /* NextButtonModifier.swift */,
+				7CD78BF6299DEE47002E01E1 /* SettingsView.swift */,
+				7CD78BFA299DEF7E002E01E1 /* FundsView.swift */,
+				7CD78BFE299DF684002E01E1 /* TransactionView.swift */,
+				7C1A2BD9299F0F6D00C0253D /* PopUpModifier.swift */,
+				7CF441DC299F3F1100A4C660 /* OrderItemView.swift */,
 			);
 			path = Follis;
 			sourceTree = "<group>";
@@ -132,6 +151,7 @@
 				7C45EC45299B2D5F00F3B439 /* SignUpViewTwo.swift */,
 				7CF74DCE299C72DF002B2BB9 /* SignUpViewThree.swift */,
 				7CF74DD0299C738D002B2BB9 /* SignUpViewFour.swift */,
+				7CD78BF4299DE8C8002E01E1 /* PasswordView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -141,6 +161,7 @@
 			children = (
 				7C45EC5F299B341400F3B439 /* User.swift */,
 				7CA914BE299DB9790006ED5B /* User2.swift */,
+				7C1A2BDB299F23EA00C0253D /* Order.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -241,21 +262,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CD78BF7299DEE47002E01E1 /* SettingsView.swift in Sources */,
 				7C45EC32299B293200F3B439 /* LogInView.swift in Sources */,
 				7C45EC44299B2D5200F3B439 /* SignUpViewOne.swift in Sources */,
 				7C45EC3E299B2CF700F3B439 /* WelcomeView.swift in Sources */,
+				7CF441DD299F3F1100A4C660 /* OrderItemView.swift in Sources */,
 				7CF74DC9299C638F002B2BB9 /* EmailView.swift in Sources */,
 				7C45EC62299B354A00F3B439 /* AppState.swift in Sources */,
 				7C45EC34299B298800F3B439 /* CustomInputTextField.swift in Sources */,
 				7C45EC40299B2D0100F3B439 /* AuthViewModel.swift in Sources */,
 				7C45EC22299B26B300F3B439 /* ContentView.swift in Sources */,
+				7CD78BFB299DEF7E002E01E1 /* FundsView.swift in Sources */,
+				7C1A2BDA299F0F6E00C0253D /* PopUpModifier.swift in Sources */,
 				7CF74DC7299C620C002B2BB9 /* GetStartedButtonModifier.swift in Sources */,
+				7C1A2BDC299F23EA00C0253D /* Order.swift in Sources */,
 				7CF74DCF299C72DF002B2BB9 /* SignUpViewThree.swift in Sources */,
 				7C45EC5D299B32B200F3B439 /* UserService.swift in Sources */,
 				7C45EC46299B2D5F00F3B439 /* SignUpViewTwo.swift in Sources */,
 				7C45EC20299B26B300F3B439 /* FollisApp.swift in Sources */,
 				7C45EC38299B2AC700F3B439 /* ButtonModifier.swift in Sources */,
+				7CD78BFF299DF684002E01E1 /* TransactionView.swift in Sources */,
 				7CF74DCD299C65A4002B2BB9 /* NextButtonModifier.swift in Sources */,
+				7CD78BF5299DE8C8002E01E1 /* PasswordView.swift in Sources */,
 				7CF74DD3299C76F2002B2BB9 /* UserTypeButtonModifier.swift in Sources */,
 				7C45EC60299B341400F3B439 /* User.swift in Sources */,
 				7CF74DD1299C738D002B2BB9 /* SignUpViewFour.swift in Sources */,
