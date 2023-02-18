@@ -21,8 +21,6 @@ struct FollisApp: App {
     @ObservedObject var appState = AppState()
     
 
-
-
     var body: some Scene {
         WindowGroup {
             WelcomeView()
@@ -31,6 +29,7 @@ struct FollisApp: App {
                 .environmentObject(Router.shared)
                 .environmentObject(FundsViewModel)
         }
+
     }
 }
 

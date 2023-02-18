@@ -17,6 +17,7 @@ class AuthViewModel: ObservableObject{
     @Published var didAuthenticateUser = false
     @Published var currentUser: User?
     @Published var User2: User2?
+    @Published var isExistingUser: Bool?
     private let service = UserService()
 
     init(){
@@ -65,27 +66,19 @@ class AuthViewModel: ObservableObject{
 
     } // FETCH USER
 
-    func checkIfExistingUser(email: String) -> Bool{
+    func checkIfExistingUser(userEmail: String){
 
-        var isExisting = false
-        print(email)
-        service.checkIfExistingUser(userEmail: email) { user in
-            self.User2 = user
-//            print(self.User2?.email)
-            self.checkIfExistingUser(email: user.email)
+        service.checkIfExistingUser(userEmail: userEmail) { User2 in
+            if User2.email == userEmail{
+                self.isExistingUser = true
+
+            } else {
+                self.isExistingUser = false
+            }
         }
 
-        print(User2?.email)
 
-        if (User2?.email.lowercased() == email.lowercased()){
-            print("Entered false")
-            isExisting = false
-        } else {
-            print("Entered true")
-            isExisting = true
-        }
 
-        return isExisting
     }
 
 

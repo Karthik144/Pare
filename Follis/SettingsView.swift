@@ -11,6 +11,7 @@ struct SettingsView: View {
 
     // MARK: - PROPERTIES
     @EnvironmentObject var viewModel: AuthViewModel
+    @State private var showingAlert = false 
 
     // MARK: - BODY
     var body: some View {
@@ -36,6 +37,38 @@ struct SettingsView: View {
 
             } //: FORM
             .navigationTitle("Settings")
+            .toolbar{
+
+                Menu {
+
+                    // Button 1
+                    Button(action: {
+                        // Sign user out
+                        viewModel.signOut()
+                    }, label: {
+                        Label("Sign Out", systemImage: "person.crop.circle.fill.badge.minus")
+                            .foregroundColor(.red)
+                    })
+
+                    // Button 2
+                    Button(action: {
+                        showingAlert.toggle()
+                    }, label: {
+                        Label("Delete Account", systemImage: "trash.circle")
+                            .foregroundColor(.red)
+                    })
+                    .alert(isPresented: $showingAlert) {
+                        Alert(title: Text("Are you sure you want to delete your account?"), message: Text("You cannot undo this."), primaryButton: .destructive(Text("Delete"), action: {
+                            viewModel.deleteUser()
+                        }), secondaryButton: .cancel())
+                    } //: END OF ALERT
+                } label: {
+                    Label("More", systemImage: "ellipsis.circle")
+                }
+
+
+            } //: TOOLBAR
+
         } //: NAV VIEW
 
 

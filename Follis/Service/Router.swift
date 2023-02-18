@@ -11,5 +11,5 @@ class Router: ObservableObject {
 
     static let shared = Router()
 
-    @Published var selectedTab = 1
+    @Published var selectedTab = 2
 }

@@ -47,17 +47,46 @@ extension WelcomeView {
                         .font(.body)
                         .offset(y:-50)
 
-                    // Get started button with custom modifier
-                    NavigationLink(destination: {
+                    HStack{
 
-                        EmailView()
+                        Spacer()
 
-                    }, label: {
-                        Text("Get Started 🔥")
-                            .font(.title3)
-                            .fontWeight(.bold)
-                            .modifier(GetStartedButtonModifier())
-                    })
+                        // Log in button
+                        NavigationLink(destination: {
+                            EmailView(login: true)
+                        }, label: {
+                            Text("Login")
+                                .font(.title3)
+                                .fontWeight(.bold)
+                                .modifier(StartButtonModifier())
+                        })
+
+                        Spacer()
+
+                        // Sign up button 
+                        NavigationLink(destination: {
+                            EmailView(login: false)
+                        }, label: {
+                            Text("Sign Up")
+                                .font(.title3)
+                                .fontWeight(.bold)
+                                .modifier(StartButtonModifier())
+                        })
+
+                        Spacer()
+
+                    }
+//                    // Get started button with custom modifier
+//                    NavigationLink(destination: {
+//
+//                        EmailView()
+//
+//                    }, label: {
+//                        Text("Get Started 🔥")
+//                            .font(.title3)
+//                            .fontWeight(.bold)
+//                            .modifier(GetStartedButtonModifier())
+//                    })
 
                 } //: VSTACK
 

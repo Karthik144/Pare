@@ -107,7 +107,7 @@ struct TransactionView: View {
 
                             Spacer()
 
-                            Text(String(round(total * 100)/100.0) + " " + "USD")
+                            Text(String(round(total * 100)/100.0) + " " + "USDC")
                                 .font(.title3)
                                 .fontWeight(.semibold)
                                 .foregroundColor(Color(red: 0.167, green: 0.29, blue: 0.933))
