@@ -13,6 +13,20 @@ struct SignUpViewOne: View {
     let email: String
     @State private var firstName = ""
 
+    init(email: String) {
+        self.email = email
+        let appearance = UINavigationBarAppearance()
+
+        appearance.configureWithOpaqueBackground() // configure
+
+
+        let backItemAppearance = UIBarButtonItemAppearance()
+        backItemAppearance.normal.titleTextAttributes = [.foregroundColor : UIColor.white] // fix text color
+        appearance.backButtonAppearance = backItemAppearance
+        UINavigationBar.appearance().tintColor = .white
+    }
+
+
     // MARK: - BODY
     var body: some View {
 
@@ -70,11 +84,18 @@ struct SignUpViewOne: View {
 
             } //: VSTACK
             .navigationTitle("Sign Up")
-            .foregroundColor(Color.white)
+            .foregroundColor(.white)
             .navigationBarTitleDisplayMode(.inline)
             .accentColor(Color.white)
+            .accentColor(Color.white)
+
 
         } //: ZSTACK
+        .navigationTitle("Sign Up")
+        .foregroundColor(.white)
+        .navigationBarTitleDisplayMode(.inline)
+        .accentColor(Color.white)
+        .accentColor(Color.white)
 
     }
 }
