@@ -35,7 +35,9 @@ struct EmailView: View {
                     CustomInputTextField(isSecureField: false, placeholderText: "We promise to not spam you...", text: $email)
                         .padding(.bottom, 30)
                         .onSubmit({
-                            self.isExistingUser = viewModel.checkIfExistingUser(email: email)
+
+                            viewModel.checkIfExistingUser(userEmail: email)
+                            self.isExistingUser = viewModel.isExistingUser
                             self.textFieldSubmitted.toggle()
                         })
 
