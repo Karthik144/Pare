@@ -17,7 +17,7 @@ class AuthViewModel: ObservableObject{
     @Published var didAuthenticateUser = false
     @Published var currentUser: User?
     @Published var User2: User2?
-    @Published var isExistingUser = false
+    @Published var isExistingUser: Bool?
     private let service = UserService()
 
     init(){
@@ -68,29 +68,16 @@ class AuthViewModel: ObservableObject{
 
     func checkIfExistingUser(userEmail: String){
 
-        Firestore.firestore().collection("merchants").getDocuments { (snapshot, error) -> Void in
-             guard let snapshot = snapshot, error == nil else {
-                 // Handle error
-                 print ("An error occured while trying to verify your account.")
-                 return
+        service.checkIfExistingUser(userEmail: userEmail) { User2 in
+            if User2.email == userEmail{
+                self.isExistingUser = true
+
+            } else {
+                self.isExistingUser = false
             }
+        }
 
-            snapshot.documents.forEach({ (documentSnapshot) in
-              let documentData = documentSnapshot.data()
-              let email = documentData["email"] as? String
 
-                if userEmail == email {
-
-                    let docID = documentSnapshot.documentID
-
-                    self.isExistingUser = true
-
-//                    let user = User2(id: docID, email: email ?? "")
-
-                }
-
-            })
-          }
 
     }
 

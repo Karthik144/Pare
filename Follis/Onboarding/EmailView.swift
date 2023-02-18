@@ -37,7 +37,9 @@ struct EmailView: View {
                         .onSubmit({
 
                             viewModel.checkIfExistingUser(userEmail: email)
-                            self.isExistingUser = viewModel.isExistingUser
+                            self.isExistingUser = viewModel.isExistingUser ?? false
+                            print("ON SUBMIT")
+                            print(self.isExistingUser)
                             self.textFieldSubmitted.toggle()
                         })
 

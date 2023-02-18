@@ -18,8 +18,6 @@ struct FollisApp: App {
     @StateObject var viewModel = AuthViewModel()
     @ObservedObject var appState = AppState()
 
-
-
     var body: some Scene {
         WindowGroup {
             WelcomeView()
@@ -27,5 +25,6 @@ struct FollisApp: App {
                 .environmentObject(appState)
                 .environmentObject(Router.shared)
         }
+
     }
 }
