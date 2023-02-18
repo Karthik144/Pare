@@ -12,6 +12,8 @@ struct SignUpViewOne: View {
     // MARK: - PROPERTIES
     let email: String
     @State private var firstName = ""
+    @ObservedObject var keyboardResponder = KeyboardResponder()
+
 
     // MARK: - BODY
     var body: some View {
@@ -27,10 +29,12 @@ struct SignUpViewOne: View {
                 VStack(){
 
                     // Progress View
+                   
                     Text("Step 1/4")
                         .font(.subheadline)
                         .foregroundColor(Color.white)
                         .padding(.bottom, 15)
+                
 
                     HStack{
 
@@ -65,14 +69,17 @@ struct SignUpViewOne: View {
 
                 } //: VSTACK
 
-
-                Spacer(minLength: 325)
+                .padding()
+                Spacer(minLength: 200)
 
             } //: VSTACK
             .navigationTitle("Sign Up")
             .foregroundColor(Color.white)
             .navigationBarTitleDisplayMode(.inline)
             .accentColor(Color.white)
+            .offset(y: -keyboardResponder.currentHeight * 0.1)
+            
+
 
         } //: ZSTACK
 

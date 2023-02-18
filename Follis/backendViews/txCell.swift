@@ -23,8 +23,7 @@ struct txCell: View {
             VStack(alignment:.leading){
                 // Order place
                 Text("\(from)")
-                    .font(.title2)
-                    .fontWeight(.semibold)
+                    .font(.system(size: 7,design: .rounded).weight(.semibold))
                     .foregroundColor(.black)
                 // Order type
                 Text( "-$" + String(round(fee * 100) / 100))

@@ -37,10 +37,30 @@ class JSONViewModel : ObservableObject{
                             self.reqOrderNum = theData.total
                             self.txAmt = theData.data[0].changeAmount / 1000000
                             self.fee = (theData.data[0].fee / 1000000000) * 0.26
+                            self.signature = theData.data[0].signature[0]
+                            print(self.signature)
                         }
         }
         .resume()
     }
+    
+    
+    func getSender(){
+        guard let url = URL(string: "https://public-api.solscan.io/transaction/\(self.signature)") else {return}
+        
+        let request = URLRequest(url: url)
+
+
+        URLSession.shared.dataTask(with: request){ (data,response,error) in
+            guard error == nil else {print(error!.localizedDescription); return }
+            let theData = try! JSONDecoder().decode(fromPA.self, from: data!)
+                        DispatchQueue.main.async {
+                            self.from = theData.signer[0]
+                        }
+        }
+        .resume()
+    }
+    
     
     
     func getSummary(){
@@ -62,8 +82,9 @@ class JSONViewModel : ObservableObject{
     }
     
     func addTransaction(){
+        //getSender()
         let uid = UUID()
-        Firestore.firestore().collection("Funds").document("rbS7KAdOMhyFqslKiNlC").collection("Transactions").document("\(uid)").setData(["From": "Akhil", "fee": self.fee, "txAmt": self.txAmt]){ _ in
+        Firestore.firestore().collection("Funds").document("rbS7KAdOMhyFqslKiNlC").collection("Transactions").document("\(uid)").setData(["From": self.signature, "fee": self.fee, "txAmt": self.txAmt]){ _ in
             print("User data successfully uploaded.")
         }
         

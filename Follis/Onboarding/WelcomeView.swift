@@ -12,6 +12,8 @@ struct WelcomeView: View {
     // MARK: - PROPERTEIS
     @EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject var appState: AppState
+    @ObservedObject var keyboardResponder = KeyboardResponder()
+
 
     // MARK: - BODY
     var body: some View {
@@ -30,7 +32,6 @@ struct WelcomeView: View {
 }
 
 extension WelcomeView {
-
     var mainWelcomeView: some View {
         NavigationView {
             VStack(alignment: .center) {
@@ -96,9 +97,18 @@ extension WelcomeView {
 
             } //: VSTACK
         } //: NAVVIEW
-
+        .navigationViewStyle(.stack)
+        .onTapGesture {
+            self.hideKeyboard()
+        }
     }
 
+}
+
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
 }
 
 struct WelcomeView_Previews: PreviewProvider {
@@ -107,3 +117,4 @@ struct WelcomeView_Previews: PreviewProvider {
             .environmentObject(AuthViewModel())
     }
 }
+

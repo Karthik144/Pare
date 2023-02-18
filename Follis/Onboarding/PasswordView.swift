@@ -13,6 +13,8 @@ struct PasswordView: View {
     let email: String
     @State private var password = ""
     @EnvironmentObject var viewModel: AuthViewModel
+    @ObservedObject var keyboardResponder = KeyboardResponder()
+
 
     // MARK: - BODY
     var body: some View {
@@ -61,13 +63,15 @@ struct PasswordView: View {
                 } //: VSTACK
 
 
-                Spacer(minLength: 325)
-
+                .padding()
+                Spacer(minLength: 200)
             } //: VSTACK
             .navigationTitle("Log In")
             .foregroundColor(Color.white)
             .navigationBarTitleDisplayMode(.inline)
             .accentColor(Color.white)
+            .offset(y: -keyboardResponder.currentHeight * 0.1)
+
 
         } //: ZSTACK
     }

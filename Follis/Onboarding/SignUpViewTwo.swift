@@ -11,6 +11,8 @@ struct SignUpViewTwo: View {
 
     // MARK: - PROPERTIES
     @EnvironmentObject var viewModel: AuthViewModel
+    @ObservedObject var keyboardResponder = KeyboardResponder()
+
     @State private var lastName = ""
 
     let firstName: String
@@ -30,10 +32,15 @@ struct SignUpViewTwo: View {
                 VStack(){
 
                     // Progress View
-                    Text("Step 2/4")
-                        .font(.subheadline)
-                        .foregroundColor(Color.white)
-                        .padding(.bottom, 15)
+                    HStack{
+                        Text("Step 2/4")
+                            .font(.subheadline)
+                            .foregroundColor(Color.white)
+                            .padding(.bottom, 15)
+                            .offset(y:keyboardResponder.currentHeight)
+                        
+                    }
+                    .offset(y:-keyboardResponder.currentHeight)
 
                     HStack{
 
@@ -70,13 +77,15 @@ struct SignUpViewTwo: View {
                 } //: VSTACK
 
 
-                Spacer(minLength: 325)
-
+                .padding()
+                Spacer(minLength: 200)
             } //: VSTACK
             .navigationTitle("Sign Up")
             .foregroundColor(Color.white)
             .navigationBarTitleDisplayMode(.inline)
             .accentColor(Color.white)
+            .offset(y: -keyboardResponder.currentHeight * 0.1)
+
 
         } //: ZSTACK
     }

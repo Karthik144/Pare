@@ -40,12 +40,13 @@
 		7CF74DCF299C72DF002B2BB9 /* SignUpViewThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF74DCE299C72DF002B2BB9 /* SignUpViewThree.swift */; };
 		7CF74DD1299C738D002B2BB9 /* SignUpViewFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF74DD0299C738D002B2BB9 /* SignUpViewFour.swift */; };
 		7CF74DD3299C76F2002B2BB9 /* UserTypeButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF74DD2299C76F2002B2BB9 /* UserTypeButtonModifier.swift */; };
+		7CFE305B29A05EB600283B21 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CFE305A29A05EB600283B21 /* Launch Screen.storyboard */; };
+		E943114929A179B700E26EBE /* KeyboardResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E943114829A179B700E26EBE /* KeyboardResponder.swift */; };
 		E94ABC0A29A0438D004DEC26 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94ABC0929A0438D004DEC26 /* Router.swift */; };
 		E94ABC0E29A05FF4004DEC26 /* txCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94ABC0D29A05FF4004DEC26 /* txCell.swift */; };
 		E94ABC1029A07D76004DEC26 /* transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94ABC0F29A07D76004DEC26 /* transaction.swift */; };
 		E9A1AF8E29A0115C00ED580E /* decodeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A1AF8D29A0115B00ED580E /* decodeJSON.swift */; };
 		E9A1AF9029A0141000ED580E /* JSONViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A1AF8F29A0141000ED580E /* JSONViewModel.swift */; };
-		7CFE305B29A05EB600283B21 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CFE305A29A05EB600283B21 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,13 +80,14 @@
 		7CF74DCE299C72DF002B2BB9 /* SignUpViewThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewThree.swift; sourceTree = "<group>"; };
 		7CF74DD0299C738D002B2BB9 /* SignUpViewFour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewFour.swift; sourceTree = "<group>"; };
 		7CF74DD2299C76F2002B2BB9 /* UserTypeButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeButtonModifier.swift; sourceTree = "<group>"; };
+		7CFE305729A05CC100283B21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7CFE305A29A05EB600283B21 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		E943114829A179B700E26EBE /* KeyboardResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
 		E94ABC0929A0438D004DEC26 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		E94ABC0D29A05FF4004DEC26 /* txCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = txCell.swift; sourceTree = "<group>"; };
 		E94ABC0F29A07D76004DEC26 /* transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transaction.swift; sourceTree = "<group>"; };
 		E9A1AF8D29A0115B00ED580E /* decodeJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = decodeJSON.swift; sourceTree = "<group>"; };
 		E9A1AF8F29A0141000ED580E /* JSONViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONViewModel.swift; sourceTree = "<group>"; };
-		7CFE305729A05CC100283B21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		7CFE305A29A05EB600283B21 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 			children = (
 				7C45EC5C299B32B100F3B439 /* UserService.swift */,
 				E94ABC0929A0438D004DEC26 /* Router.swift */,
+				E943114829A179B700E26EBE /* KeyboardResponder.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -301,7 +304,6 @@
 			files = (
 				E94ABC1029A07D76004DEC26 /* transaction.swift in Sources */,
 				7CD78BF7299DEE47002E01E1 /* SettingsView.swift in Sources */,
-				7C45EC32299B293200F3B439 /* LogInView.swift in Sources */,
 				E9A1AF9029A0141000ED580E /* JSONViewModel.swift in Sources */,
 				7C45EC44299B2D5200F3B439 /* SignUpViewOne.swift in Sources */,
 				7C45EC3E299B2CF700F3B439 /* WelcomeView.swift in Sources */,
@@ -321,6 +323,7 @@
 				7C45EC5D299B32B200F3B439 /* UserService.swift in Sources */,
 				7C45EC46299B2D5F00F3B439 /* SignUpViewTwo.swift in Sources */,
 				7C45EC20299B26B300F3B439 /* FollisApp.swift in Sources */,
+				E943114929A179B700E26EBE /* KeyboardResponder.swift in Sources */,
 				7C45EC38299B2AC700F3B439 /* ButtonModifier.swift in Sources */,
 				7CD78BFF299DF684002E01E1 /* TransactionView.swift in Sources */,
 				7C8BBD0729A15AD300414DF0 /* StartButtonModifier.swift in Sources */,
