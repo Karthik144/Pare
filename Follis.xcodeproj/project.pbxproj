@@ -13,7 +13,6 @@
 		7C45EC22299B26B300F3B439 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC21299B26B300F3B439 /* ContentView.swift */; };
 		7C45EC24299B26B900F3B439 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C45EC23299B26B900F3B439 /* Assets.xcassets */; };
 		7C45EC27299B26B900F3B439 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C45EC26299B26B900F3B439 /* Preview Assets.xcassets */; };
-		7C45EC32299B293200F3B439 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC31299B293200F3B439 /* LogInView.swift */; };
 		7C45EC34299B298800F3B439 /* CustomInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC33299B298800F3B439 /* CustomInputTextField.swift */; };
 		7C45EC38299B2AC700F3B439 /* ButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC37299B2AC700F3B439 /* ButtonModifier.swift */; };
 		7C45EC3E299B2CF700F3B439 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC3D299B2CF700F3B439 /* WelcomeView.swift */; };
@@ -28,6 +27,7 @@
 		7C45EC5D299B32B200F3B439 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC5C299B32B100F3B439 /* UserService.swift */; };
 		7C45EC60299B341400F3B439 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC5F299B341400F3B439 /* User.swift */; };
 		7C45EC62299B354A00F3B439 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC61299B354A00F3B439 /* AppState.swift */; };
+		7C8BBD0729A15AD300414DF0 /* StartButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BBD0629A15AD300414DF0 /* StartButtonModifier.swift */; };
 		7CA914BF299DB9790006ED5B /* User2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA914BE299DB9790006ED5B /* User2.swift */; };
 		7CB24FE329A0106A00BC8B36 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB24FE229A0106A00BC8B36 /* Router.swift */; };
 		7CD78BF5299DE8C8002E01E1 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD78BF4299DE8C8002E01E1 /* PasswordView.swift */; };
@@ -52,7 +52,6 @@
 		7C45EC21299B26B300F3B439 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7C45EC23299B26B900F3B439 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C45EC26299B26B900F3B439 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		7C45EC31299B293200F3B439 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		7C45EC33299B298800F3B439 /* CustomInputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputTextField.swift; sourceTree = "<group>"; };
 		7C45EC37299B2AC700F3B439 /* ButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifier.swift; sourceTree = "<group>"; };
 		7C45EC3D299B2CF700F3B439 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -63,6 +62,7 @@
 		7C45EC5C299B32B100F3B439 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		7C45EC5F299B341400F3B439 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7C45EC61299B354A00F3B439 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		7C8BBD0629A15AD300414DF0 /* StartButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButtonModifier.swift; sourceTree = "<group>"; };
 		7CA914BE299DB9790006ED5B /* User2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User2.swift; sourceTree = "<group>"; };
 		7CB24FE229A0106A00BC8B36 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		7CD78BF4299DE8C8002E01E1 /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
@@ -136,6 +136,7 @@
 				7CD78BFE299DF684002E01E1 /* TransactionView.swift */,
 				7C1A2BD9299F0F6D00C0253D /* PopUpModifier.swift */,
 				7CF441DC299F3F1100A4C660 /* OrderItemView.swift */,
+				7C8BBD0629A15AD300414DF0 /* StartButtonModifier.swift */,
 			);
 			path = Follis;
 			sourceTree = "<group>";
@@ -153,7 +154,6 @@
 			children = (
 				7C45EC3D299B2CF700F3B439 /* WelcomeView.swift */,
 				7CF74DC8299C638F002B2BB9 /* EmailView.swift */,
-				7C45EC31299B293200F3B439 /* LogInView.swift */,
 				7C45EC43299B2D5200F3B439 /* SignUpViewOne.swift */,
 				7C45EC45299B2D5F00F3B439 /* SignUpViewTwo.swift */,
 				7CF74DCE299C72DF002B2BB9 /* SignUpViewThree.swift */,
@@ -272,7 +272,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CD78BF7299DEE47002E01E1 /* SettingsView.swift in Sources */,
-				7C45EC32299B293200F3B439 /* LogInView.swift in Sources */,
 				7C45EC44299B2D5200F3B439 /* SignUpViewOne.swift in Sources */,
 				7C45EC3E299B2CF700F3B439 /* WelcomeView.swift in Sources */,
 				7CB24FE329A0106A00BC8B36 /* Router.swift in Sources */,
@@ -292,6 +291,7 @@
 				7C45EC20299B26B300F3B439 /* FollisApp.swift in Sources */,
 				7C45EC38299B2AC700F3B439 /* ButtonModifier.swift in Sources */,
 				7CD78BFF299DF684002E01E1 /* TransactionView.swift in Sources */,
+				7C8BBD0729A15AD300414DF0 /* StartButtonModifier.swift in Sources */,
 				7CF74DCD299C65A4002B2BB9 /* NextButtonModifier.swift in Sources */,
 				7CD78BF5299DE8C8002E01E1 /* PasswordView.swift in Sources */,
 				7CF74DD3299C76F2002B2BB9 /* UserTypeButtonModifier.swift in Sources */,
