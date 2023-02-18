@@ -20,11 +20,12 @@ struct TokenAmount: Decodable{
 //Struct Types for Signature,Amount, Fee
 struct lastTransaction: Decodable{
     let data: [transactionData]
+    let total : Int
 }
 
 struct transactionData: Decodable{
-    let changeAmount: Int
-    let fee: Int
+    let changeAmount: Double
+    let fee: Double
     let signature: [String]
 }
 
