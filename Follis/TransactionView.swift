@@ -198,10 +198,11 @@ struct TransactionView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Close"){
+                        print("Button pressed - close")
                         withAnimation{showPopup.toggle()}
                     }
                     .padding()
-//                    .frame(width: 75, height: 30)
+                    .frame(width: 75, height: 75)
 //                    .foregroundColor(Color.white)
 //                    .background(
 //                        RoundedRectangle(cornerRadius: 50)

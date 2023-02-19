@@ -1,42 +1,39 @@
-//
-//  SettingsView.swift
-//  Follis
-//
-//  Created by Karthik  Ramu on 2/15/23.
-//
-
 import SwiftUI
 
 struct SettingsView: View {
 
     // MARK: - PROPERTIES
     @EnvironmentObject var viewModel: AuthViewModel
-    @State private var showingAlert = false 
+    @State private var showingAlert = false
 
     // MARK: - BODY
     var body: some View {
 
         NavigationView {
 
-            Form {
+            VStack{
 
-                Section(header: Text("Profile"), content: {
+                Form {
 
-                    Text(viewModel.currentUser?.first_name ?? "Error")
-                    Text(viewModel.currentUser?.last_name ?? "Error")
-                    Text(viewModel.currentUser?.email ?? "Error")
-                })
+                    Section(header: Text("Profile"), content: {
 
-                Section(header: Text("Contact Us"), content: {
+                        Text(viewModel.currentUser?.first_name ?? "Error")
+                        Text(viewModel.currentUser?.last_name ?? "Error")
+                        Text(viewModel.currentUser?.email ?? "Error")
+                    })
 
-                    Label("wvv6xa@virginia.edu", systemImage: "envelope")
-                    Label("571-635-3433", systemImage: "phone")
+                    Section(header: Text("Contact Us"), content: {
 
-                })
+                        Label("wvv6xa@virginia.edu", systemImage: "envelope")
+                        Label("571-635-3433", systemImage: "phone")
+
+                    })
 
 
-            } //: FORM
-            .navigationTitle("Settings")
+                } //: FORM
+                .navigationTitle("Settings")
+
+            }
             .toolbar{
 
                 Menu {
@@ -65,9 +62,11 @@ struct SettingsView: View {
                 } label: {
                     Label("More", systemImage: "ellipsis.circle")
                 }
+                .frame(width: 100, height: 50, alignment: .trailing)
 
 
             } //: TOOLBAR
+
 
         } //: NAV VIEW
 

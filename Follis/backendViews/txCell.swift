@@ -20,18 +20,30 @@ struct txCell: View {
     var body: some View {
         HStack{
             Spacer()
-            VStack(alignment:.leading){
-                // Order place
-                Text("\(from)")
-                    .font(.system(size: 7,design: .rounded).weight(.semibold))
-                    .foregroundColor(.black)
-                // Order type
-                Text( "-$" + String(round(fee * 100) / 100))
-                    .foregroundColor(.red)
-                    .font(.system(size: 10,design: .rounded).weight(.light))
+//            VStack(alignment:.leading){
+//                // Order place
+//                Text("\(from)")
+//                    .font(.system(size: 7,design: .rounded).weight(.semibold))
+//                    .foregroundColor(.black)
+//                // Order type
+//                Text( "-$" + String(round(fee * 100) / 100))
+//                    .foregroundColor(.red)
+//                    .font(.system(size: 10,design: .rounded).weight(.light))
+//
+//
+//            } //: VSTACK
 
-                
-            } //: VSTACK
+            VStack(alignment: .leading){
+
+                Text("Customer ID")
+                    .fontWeight(.semibold)
+
+                Text("\(from)")
+                    .font(.system(size: 15,design: .rounded))
+                    .lineLimit(1)
+            }
+
+
             Spacer(minLength: 120)
             VStack{
                 Text("+$" + String(round(txAmt * 100) / 100))
@@ -52,8 +64,8 @@ struct txCell: View {
     }
 }
 
-struct OrderCell_Previews: PreviewProvider {
-    static var previews: some View {
-        txCell(from: "Akhil", txAmt: 12, fee: 0)
-    }
-}
+//struct OrderCell_Previews: PreviewProvider {
+//    static var previews: some View {
+//        txCell(from: "Akhil", txAmt: 12, fee: 0)
+//    }
+//}

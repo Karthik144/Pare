@@ -23,7 +23,9 @@ struct FundsView: View {
                     Text("$" + String(round(viewModel.balance * 100) / 100.0))
                         .font(.system(size: 80,design: .rounded).weight(.bold))
                         .foregroundColor(Color(red: 0.167, green: 0.29, blue: 0.933))
-                    Text("Fees: $" + String(round(viewModel.feeSum * 100) / 100.0))
+//                    Text("Fees: $" + String(round(viewModel.feeSum * 100) / 100.0))
+                    Text("Total Fees: $" + String(viewModel.balance * 0.01))
+
                 }
                 .offset(y:50)
                 .onAppear{
