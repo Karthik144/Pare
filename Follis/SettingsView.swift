@@ -29,46 +29,39 @@ struct SettingsView: View {
 
                     })
 
+                    Button {
+                        viewModel.signOut()
+                    } label: {
+                        Text("Sign Out")
+                    }
+
+                    Button {
+                        showingAlert.toggle()
+                    } label: {
+                        Text("Delete account")
+                    }
+                    .foregroundColor(Color.red)
+                    .alert("Are you sure you want to delete your account?", isPresented: $showingAlert){
+
+                        Button("Cancel", role: .cancel){}
+
+                        Button("Delete", role: .destructive){
+                            viewModel.deleteUser()
+                        }
+
+                    } //: ALERT
+
 
                 } //: FORM
                 .navigationTitle("Settings")
 
             }
-            .toolbar{
 
-                Menu {
-
-                    // Button 1
-                    Button(action: {
-                        // Sign user out
-                        viewModel.signOut()
-                    }, label: {
-                        Label("Sign Out", systemImage: "person.crop.circle.fill.badge.minus")
-                            .foregroundColor(.red)
-                    })
-
-                    // Button 2
-                    Button(action: {
-                        showingAlert.toggle()
-                    }, label: {
-                        Label("Delete Account", systemImage: "trash.circle")
-                            .foregroundColor(.red)
-                    })
-                    .alert(isPresented: $showingAlert) {
-                        Alert(title: Text("Are you sure you want to delete your account?"), message: Text("You cannot undo this."), primaryButton: .destructive(Text("Delete"), action: {
-                            viewModel.deleteUser()
-                        }), secondaryButton: .cancel())
-                    } //: END OF ALERT
-                } label: {
-                    Label("More", systemImage: "ellipsis.circle")
-                }
-                .frame(width: 100, height: 50, alignment: .trailing)
-
-
-            } //: TOOLBAR
 
 
         } //: NAV VIEW
+
+
 
 
     }

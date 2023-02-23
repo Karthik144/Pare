@@ -179,38 +179,51 @@ struct TransactionView: View {
 
 
 
-                Button(action: {
+                HStack{
 
-                    addOrder(name: itemName, quantity: numberOfItems ?? 0, price: itemPrice ?? 0)
-                    showPopup.toggle()
-                }, label: {
-                    Text("Done")
-                })
-                .frame(width: 90, height: 35)
-                .padding()
-                .foregroundColor(Color.white)
-                .background(
-                    RoundedRectangle(cornerRadius: 50)
-                        .fill(Color(red: 0.167, green: 0.29, blue: 0.933))
-                        .frame(width:90, height: 35)
-                )
-            } //: VSTACK
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                    Spacer()
+
+                    // Button 1 - Close
                     Button("Close"){
-                        print("Button pressed - close")
                         withAnimation{showPopup.toggle()}
                     }
+                    .frame(width: 90, height: 35)
                     .padding()
-                    .frame(width: 75, height: 75)
-//                    .foregroundColor(Color.white)
-//                    .background(
-//                        RoundedRectangle(cornerRadius: 50)
-//                            .fill(Color.red)
-//                            .frame(width:70, height: 30)
-//                    )
-                }
-            }
+                    .frame(width: 90, height: 35)
+                    .padding()
+                    .foregroundColor(Color.white)
+                    .background(
+                        RoundedRectangle(cornerRadius: 50)
+                            .fill(Color.red)
+                            .frame(width:90, height: 35)
+                    )
+
+
+                    Spacer()
+
+                    // Button 2 - Done
+                    Button(action: {
+
+                        addOrder(name: itemName, quantity: numberOfItems ?? 0, price: itemPrice ?? 0)
+                        showPopup.toggle()
+                    }, label: {
+                        Text("Done")
+                    })
+                    .frame(width: 90, height: 35)
+                    .padding()
+                    .foregroundColor(Color.white)
+                    .background(
+                        RoundedRectangle(cornerRadius: 50)
+                            .fill(Color(red: 0.167, green: 0.29, blue: 0.933))
+                            .frame(width:90, height: 35)
+                    )
+
+                    Spacer()
+
+                } //: HSTACK
+
+            } //: VSTACK
+
         } // POP UP NAV VIEW
 
 
