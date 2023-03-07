@@ -66,8 +66,9 @@ struct SignUpViewOne: View {
                     } //: HSTACK
 
 
-                    CustomInputTextField(isSecureField: false, placeholderText: "What your friends call you...", text: $firstName)
+                    CustomInputTextField(isSecureField: false, placeholderText: "What your friends call you...", title: "", bottomMessage: "", text: $firstName)
                         .padding(.bottom, 30)
+
 
                     // Next button
                     NavigationLink(destination: {
@@ -88,12 +89,14 @@ struct SignUpViewOne: View {
 
             } //: VSTACK
             .navigationTitle("Sign Up")
+            .tint(Color.white)
             .foregroundColor(.white)
             .navigationBarTitleDisplayMode(.inline)
             .accentColor(Color.white)
             .offset(y: -keyboardResponder.currentHeight * 0.1)
         } //: ZSTACK
         .navigationTitle("Sign Up")
+        .tint(Color.white)
         .foregroundColor(.white)
         .navigationBarTitleDisplayMode(.inline)
         .accentColor(Color.white)

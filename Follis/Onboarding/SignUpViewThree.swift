@@ -38,6 +38,7 @@ struct SignUpViewThree: View {
                             .padding(.bottom, 15)
                     }
                     .offset(y:-keyboardResponder.currentHeight)
+
                     HStack{
 
                         Spacer()
@@ -54,9 +55,18 @@ struct SignUpViewThree: View {
 
                     } //: HSTACK
 
+                    CustomInputTextField(isSecureField: true, placeholderText: "", title: "New Password" , bottomMessage: "Password Strength: Strong", text: $password)
 
-                    CustomInputTextField(isSecureField: true, placeholderText: "Something secure...", text: $password)
+                    VStack{
+
+
+
+                    } //: VSTACK
+
+
+                    CustomInputTextField(isSecureField: true, placeholderText: "", title: "Confirm Password" , bottomMessage: "Password matches", text: $password)
                         .padding(.bottom, 30)
+
 
                     // Next button
                     NavigationLink(destination: {

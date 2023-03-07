@@ -59,7 +59,7 @@ struct SignUpViewTwo: View {
                     } //: HSTACK
 
 
-                    CustomInputTextField(isSecureField: false, placeholderText: "What your Navy sergeant would call you...", text: $lastName)
+                    CustomInputTextField(isSecureField: false, placeholderText: "What your Navy sergeant would call you...", title: "", bottomMessage: "", text: $lastName)
                         .padding(.bottom, 30)
 
                     // Next button

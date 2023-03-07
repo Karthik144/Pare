@@ -13,6 +13,8 @@ struct CustomInputTextField: View {
     // MARK: - PROPERTIES
     let isSecureField: Bool?
     let placeholderText: String
+    let title: String
+    let bottomMessage: String
     @Binding var text: String
     
     // MARK: - BODY
@@ -21,6 +23,9 @@ struct CustomInputTextField: View {
         VStack(alignment: .leading){
             
             if isSecureField ?? false {
+                Text(title)
+                    .font(.callout)
+                    .bold()
                 SecureField(placeholderText, text: $text)
                     .background(
                         RoundedRectangle(cornerRadius: 25, style: .continuous)
@@ -29,6 +34,8 @@ struct CustomInputTextField: View {
                     )
                     .frame(width: 310, height: 65, alignment: .center)
                     .foregroundColor(Color.white)
+                Text(bottomMessage)
+                    .font(.caption2)
 
             } else {
                 TextField(placeholderText, text: $text)
@@ -48,8 +55,8 @@ struct CustomInputTextField: View {
     
 }
 
-struct CustomInputTextField_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomInputTextField(isSecureField: false, placeholderText: "Testing this...", text: .constant(""))
-    }
-}
+//struct CustomInputTextField_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CustomInputTextField(isSecureField: false, placeholderText: "Testing this...", text: .constant(""))
+//    }
+//}

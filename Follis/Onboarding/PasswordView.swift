@@ -46,8 +46,8 @@ struct PasswordView: View {
                     } //: HSTACK
 
 
-                    CustomInputTextField(isSecureField: true, placeholderText: "", text: $password)
-                        .padding(.bottom, 30)
+                    CustomInputTextField(isSecureField: true, placeholderText: "Something secure...", title: "New Password" , bottomMessage: "Password Strength: Strong", text: $password)
+
 
                     // Next button
                     Button(action: {
