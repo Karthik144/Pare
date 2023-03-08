@@ -10,7 +10,7 @@ import SwiftUI
 struct AddItemCell: View {
 
     // MARK: - PROPERTIES
-    @Binding var didTap: Bool
+    @State var didTap = false 
     let addMoreType: Bool
     let price: String
 
@@ -20,9 +20,17 @@ struct AddItemCell: View {
         if addMoreType == false{
 
             HStack{
-                Image(systemName: didTap ? "circle.fill" : "circle")
-                    .foregroundColor(.accentColor)
-                    .padding(.trailing, 5)
+
+                Button {
+                    didTap.toggle()
+                    // Append to array
+                } label: {
+                    Image(systemName: didTap ? "circle.fill" : "circle")
+                        .foregroundColor(.accentColor)
+                        .padding(.trailing, 5)
+                }
+
+
                 Text("Chicken (Regular)")
                     .foregroundColor(Color.black)
             } //: HSTACK
@@ -30,9 +38,16 @@ struct AddItemCell: View {
         } else {
 
             HStack{
-                Image(systemName: didTap ? "circle.fill" : "circle")
-                    .foregroundColor(.accentColor)
-                    .padding(.trailing, 5)
+
+                Button {
+                    didTap.toggle()
+                    // Append to array
+                } label: {
+                    Image(systemName: didTap ? "circle.fill" : "circle")
+                        .foregroundColor(.accentColor)
+                        .padding(.trailing, 5)
+                }
+                
                 Text("Chicken (Regular)")
                     .foregroundColor(Color.black)
 

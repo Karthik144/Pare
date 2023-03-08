@@ -2,38 +2,74 @@
 //  ProfileView.swift
 //  Follis
 //
-//  Created by Karthik  Ramu on 3/7/23.
+//  Created by Karthik  Ramu on 3/8/23.
 //
 
 import SwiftUI
 
 struct ProfileView: View {
+
     // MARK: - PROPERTIES
     @EnvironmentObject var viewModel: AuthViewModel
     @State private var showingAlert = false
 
+    let imageList = ["person", "calendar.badge.clock", "questionmark.circle"]
+    let textList = ["Personal", "Past Orders", "Help"]
+
+
+
+
     // MARK: - BODY
     var body: some View {
 
-        NavigationView {
+
+        NavigationView{
 
             VStack{
 
-                Form {
+                Spacer()
 
-                    Section(header: Text("Profile"), content: {
+                VStack(spacing: 5){
 
-                        Text(viewModel.currentUser?.first_name ?? "Error")
-                        Text(viewModel.currentUser?.last_name ?? "Error")
-                        Text(viewModel.currentUser?.email ?? "Error")
-                    })
+                    Circle()
+                        .frame(width: 70, height: 70)
+                        .foregroundColor(Color.gray)
 
-                    Section(header: Text("Contact Us"), content: {
+                    Text("Karthik Ramu")
+                        .font(.title)
+                        .foregroundColor(Color.black)
 
-                        Label("wvv6xa@virginia.edu", systemImage: "envelope")
-                        Label("571-635-3433", systemImage: "phone")
+                    HStack{
+                        Image("GlowingStar")
+                            .resizable()
+                            .frame(width: 15, height: 15)
+                            .scaledToFit()
 
-                    })
+                        Text("220 Points")
+                            .font(.callout)
+                            .foregroundColor(Color.black)
+                    } //: HSTACK
+                    .padding(.leading, 5)
+
+                } //: VSTACK
+
+                Spacer()
+
+
+                ForEach((0..<imageList.count), id: \.self) { i in
+
+
+                    NavigationLink(destination: CheckoutView()) {
+                        ProfileItemCell(imageName: imageList[i], cellText: textList[i])
+                            .padding(.leading, 20)
+                            .padding(.trailing, 20)
+                    }
+
+                } //: FOR EACH
+
+                Spacer()
+
+                VStack(spacing: 10){
 
                     Button {
                         viewModel.signOut()
@@ -57,19 +93,24 @@ struct ProfileView: View {
 
                     } //: ALERT
 
+                } //: VSTACK
 
-                } //: FORM
-                .navigationTitle("Settings")
 
-            }
+                Spacer()
+
+
+
+
+            } //: VSTACK
+
+
 
 
         } //: NAV VIEW
-
-
     }
 }
 
+// MARK: - PREVIEW
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()

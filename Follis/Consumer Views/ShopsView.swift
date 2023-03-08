@@ -26,15 +26,17 @@ struct ShopsView: View {
 
                     RoundedRectangle(cornerRadius: 7, style: .continuous)
                         .fill(Color.accentColor)
-                        .frame(width: 340, height: 70)
+                        .frame(width: 340, height: 75)
 
                     HStack{
 
                         Spacer()
+
                         VStack(alignment: .leading, spacing: 0){
 
                             Text("Ordered Scheduled")
                                 .foregroundColor(Color.white)
+                                .font(.title2)
                                 .fontWeight(.bold)
 
                             HStack{
@@ -59,8 +61,10 @@ struct ShopsView: View {
 
 
                         Image(systemName: "clock.badge.checkmark")
+                            .font(.title)
                             .foregroundColor(Color.white)
                             .frame(width: 30, height: 30)
+
 
                         Spacer()
 

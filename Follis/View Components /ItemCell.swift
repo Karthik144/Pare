@@ -29,6 +29,7 @@ struct ItemCell: View {
                 Text("Istanbowl")
                     .font(.title3)
                     .fontWeight(.bold)
+                    .foregroundColor(Color.black)
 
                 Text("Try our delicious bowl with white rice, mixed greens...")
                     .multilineTextAlignment(.leading)

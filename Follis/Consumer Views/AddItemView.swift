@@ -34,7 +34,7 @@ struct AddItemView: View {
                         .fontWeight(.bold)
 
                     Text("Try our delicious bowl with white rice, mixed greens, beet salad, red cabbage salad, pickles, and Tzatzki")
-                        .font(.body)
+                        .font(.caption)
                         .foregroundColor(Color.gray)
                         .lineLimit(2)
 
@@ -58,75 +58,82 @@ struct AddItemView: View {
             } //: HSTACK
             .padding()
 
+            ScrollView{
+
+                LazyVStack(alignment: .leading){
+
+                    Text("Meat")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .padding(.leading, 20)
+                    Text("Choose 1")
+                        .font(.subheadline)
+                        .fontWeight(.light)
+                        .padding(.leading, 20)
+
+                    VStack{
+
+                        ForEach((0...1), id: \.self) {_ in
+
+                            Button {
+                                didTap.toggle()
+                            } label: {
+                                AddItemCell(addMoreType: false, price: "")
+                            }
+                            .padding(.leading, 20)
+                            .padding(5)
+
+                        } //: FOR EACH
+
+                    } //: VSTACK
 
 
-            Text("Meat")
-                .font(.title3)
-                .fontWeight(.bold)
-                .padding(.leading, 20)
-            Text("Choose 1")
-                .font(.subheadline)
-                .fontWeight(.light)
-                .padding(.leading, 20)
+                    Text("Modifications")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .padding(.leading, 20)
 
-            VStack{
+                    VStack(alignment: .leading){
 
-                ForEach((0...1), id: \.self) {_ in
+                        ForEach((0...4), id: \.self) {_ in
 
-                    Button {
-                        didTap.toggle()
-                    } label: {
-                        AddItemCell(didTap: $didTap, addMoreType: false, price: "")
-                    }
-                    .padding(.leading, 20)
-                    .padding(5)
+                            Button {
+                                didTap.toggle()
+                            } label: {
+                                AddItemCell(addMoreType: false, price: "")
+                            }
+                            .padding(.leading, 20)
+                            .padding(5)
 
-                } //: FOR EACH
+                        } //: FOR EACH
 
-            } //: VSTACK
+                    } //: VSTACK
+
+                    Text("Add More")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .padding(.leading, 20)
+
+                    VStack(alignment: .leading){
+
+                        ForEach((0...3), id: \.self) {_ in
+
+                            Button {
+                                didTap.toggle()
+                            } label: {
+                                AddItemCell(addMoreType: true, price: "0.50")
+                            }
+                            .padding(.leading, 20)
+                            .padding(5)
+
+                        } //: FOR EACH
+
+                    } //: VSTACK
+
+                } //: LAZYVSTACK
 
 
-            Text("Modifications")
-                .font(.title3)
-                .fontWeight(.bold)
-                .padding(.leading, 20)
-
-            VStack{
-
-                ForEach((0...4), id: \.self) {_ in
-
-                    Button {
-                        didTap.toggle()
-                    } label: {
-                        AddItemCell(didTap: $didTap, addMoreType: false, price: "")
-                    }
-                    .padding(.leading, 20)
-                    .padding(5)
-
-                } //: FOR EACH
-
-            } //: VSTACK
-
-            Text("Add More")
-                .font(.title3)
-                .fontWeight(.bold)
-                .padding(.leading, 20)
-
-            VStack{
-
-                ForEach((0...3), id: \.self) {_ in
-
-                    Button {
-                        didTap.toggle()
-                    } label: {
-                        AddItemCell(didTap: $didTap, addMoreType: true, price: "0.50")
-                    }
-                    .padding(.leading, 20)
-                    .padding(5)
-
-                } //: FOR EACH
-
-            } //: VSTACK
+            } //: SCROLL VIEW
 
 
             HStack{
@@ -168,6 +175,7 @@ struct AddItemView: View {
 
 
             } //: HSTACK
+            .padding()
 
 
 
