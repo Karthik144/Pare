@@ -14,7 +14,6 @@ struct WelcomeView: View {
     @EnvironmentObject var appState: AppState
     @ObservedObject var keyboardResponder = KeyboardResponder()
 
-
     // MARK: - BODY
     var body: some View {
 
@@ -27,6 +26,7 @@ struct WelcomeView: View {
                 ContentView()
             }
         } //: GROUP
+        .navigationViewStyle(.stack) // use stack navigation view style
 
     }
 }
@@ -77,33 +77,23 @@ extension WelcomeView {
                         Spacer()
 
                     }
-//                    // Get started button with custom modifier
-//                    NavigationLink(destination: {
-//
-//                        EmailView()
-//
-//                    }, label: {
-//                        Text("Get Started 🔥")
-//                            .font(.title3)
-//                            .fontWeight(.bold)
-//                            .modifier(GetStartedButtonModifier())
-//                    })
-
+                    
                 } //: VSTACK
-
-
 
                 Spacer()
 
             } //: VSTACK
+            .tint(Color.white)
+
         } //: NAVVIEW
-        .navigationViewStyle(.stack)
-        .onTapGesture {
-            self.hideKeyboard()
-        }
+        .tint(Color.white)
+
+
+
     }
 
 }
+
 
 extension View {
     func hideKeyboard() {

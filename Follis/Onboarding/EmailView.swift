@@ -18,6 +18,7 @@ struct EmailView: View {
     @ObservedObject var keyboardResponder = KeyboardResponder()
     let login: Bool
 
+
     // MARK: - BODY
     var body: some View {
         ZStack{
@@ -26,32 +27,21 @@ struct EmailView: View {
             VStack{
 
                 VStack {
-                    
+
                     Spacer()
-                    
+
                     VStack(spacing: 15){
                         Text("What's your email?")
                             .font(.largeTitle)
                             .foregroundColor(Color.white)
                             .fontWeight(.heavy)
                             .padding(.bottom, 10)
-                        
-                        //                    CustomInputTextField(isSecureField: false, placeholderText: "We promise to not spam you...", text: $email)
-                        //                        .padding(.bottom, 30)
-                        //                        .onSubmit({
-                        //
-                        //                            viewModel.checkIfExistingUser(userEmail: email)
-                        //                            self.isExistingUser = viewModel.isExistingUser ?? false
-                        //                            print("ON SUBMIT")
-                        //                            print(self.isExistingUser)
-                        //                            self.textFieldSubmitted.toggle()
-                        //                        })
-                        
-                        CustomInputTextField(isSecureField: false, placeholderText: "We promise to not spam you...", text: $email)
+
+                        CustomInputTextField(isSecureField: false, placeholderText: "We promise to not spam you...", title: "", bottomMessage: "", confirmText: false, text: $email, confirmPassword: $email)
                             .padding(.bottom, 30)
-                        
+
                         if login == true {
-                            
+
                             NavigationLink(destination: {
                                 PasswordView(email: email)
                             }, label: {
@@ -60,12 +50,12 @@ struct EmailView: View {
                                     .fontWeight(.bold)
                                     .modifier(NextButtonModifier())
                             })
-                            
+
                         } else {
-                            
+
                             NavigationLink(destination: {
                                 SignUpViewOne(email: email)
-                                
+
                             }, label: {
                                 Text("Next")
                                     .font(.title3)
@@ -73,32 +63,7 @@ struct EmailView: View {
                                     .modifier(NextButtonModifier())
                             })
                         }
-                        
-                        //                    if textFieldSubmitted == true {
-                        //
-                        //                        if isExistingUser == false{
-                        //                            NavigationLink(destination: {
-                        //                                SignUpViewOne(email: email)
-                        //
-                        //                            }, label: {
-                        //                                Text("Next")
-                        //                                    .font(.title3)
-                        //                                    .fontWeight(.bold)
-                        //                                    .modifier(NextButtonModifier())
-                        //                            })
-                        //                        } else {
-                        //                            NavigationLink(destination: {
-                        //                                PasswordView(email: email)
-                        //
-                        //                            }, label: {
-                        //                                Text("Next")
-                        //                                    .font(.title3)
-                        //                                    .fontWeight(.bold)
-                        //                                    .modifier(NextButtonModifier())
-                        //                            })
-                        //                        }
-                        //                    }
-                        
+
                     } //: VSTACK
                     .padding()
                     Spacer(minLength: 200)
@@ -108,7 +73,8 @@ struct EmailView: View {
             .offset(y: -keyboardResponder.currentHeight * 0.1)
 
         } //: ZSTACK
-        .accentColor(Color.white)
+        .tint(Color.white)
+
     }
 }
 

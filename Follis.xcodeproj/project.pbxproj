@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C0439DD29B90C7A0037EE72 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0439DC29B90C7A0037EE72 /* ProfileView.swift */; };
+		7C0439DF29B90E130037EE72 /* ProfileItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0439DE29B90E130037EE72 /* ProfileItemCell.swift */; };
 		7C1A2BDA299F0F6E00C0253D /* PopUpModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1A2BD9299F0F6D00C0253D /* PopUpModifier.swift */; };
 		7C1A2BDC299F23EA00C0253D /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1A2BDB299F23EA00C0253D /* Order.swift */; };
 		7C45EC20299B26B300F3B439 /* FollisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC1F299B26B300F3B439 /* FollisApp.swift */; };
@@ -27,8 +29,20 @@
 		7C45EC5D299B32B200F3B439 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC5C299B32B100F3B439 /* UserService.swift */; };
 		7C45EC60299B341400F3B439 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC5F299B341400F3B439 /* User.swift */; };
 		7C45EC62299B354A00F3B439 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC61299B354A00F3B439 /* AppState.swift */; };
+		7C86262429B7E88600919213 /* ShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86262329B7E88600919213 /* ShopCell.swift */; };
+		7C86262729B7EC9500919213 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86262629B7EC9500919213 /* SearchBar.swift */; };
+		7C86262929B7F0F000919213 /* ShopItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86262829B7F0F000919213 /* ShopItemView.swift */; };
+		7C86262B29B7F86000919213 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86262A29B7F86000919213 /* ItemCell.swift */; };
+		7C86262D29B7FD1900919213 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86262C29B7FD1900919213 /* AddItemView.swift */; };
+		7C86262F29B8114100919213 /* AddItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86262E29B8114100919213 /* AddItemCell.swift */; };
+		7C86263129B818E400919213 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86263029B818E400919213 /* CheckoutView.swift */; };
+		7C86263329B8195B00919213 /* OrderItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86263229B8195B00919213 /* OrderItemCell.swift */; };
+		7C86263729B839A300919213 /* OrderStatusModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86263629B839A300919213 /* OrderStatusModalView.swift */; };
 		7C8BBD0729A15AD300414DF0 /* StartButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8BBD0629A15AD300414DF0 /* StartButtonModifier.swift */; };
 		7CA914BF299DB9790006ED5B /* User2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA914BE299DB9790006ED5B /* User2.swift */; };
+		7CCCEFBC29B7C1EC00E27BAA /* SignUpViewFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCEFBB29B7C1EC00E27BAA /* SignUpViewFive.swift */; };
+		7CCCEFC029B7CCCA00E27BAA /* ShopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCEFBF29B7CCCA00E27BAA /* ShopsView.swift */; };
+		7CCCEFC529B7CD2E00E27BAA /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCEFC429B7CD2E00E27BAA /* WalletView.swift */; };
 		7CD78BF5299DE8C8002E01E1 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD78BF4299DE8C8002E01E1 /* PasswordView.swift */; };
 		7CD78BF7299DEE47002E01E1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD78BF6299DEE47002E01E1 /* SettingsView.swift */; };
 		7CD78BFB299DEF7E002E01E1 /* FundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD78BFA299DEF7E002E01E1 /* FundsView.swift */; };
@@ -50,6 +64,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C0439DC29B90C7A0037EE72 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		7C0439DE29B90E130037EE72 /* ProfileItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileItemCell.swift; sourceTree = "<group>"; };
 		7C1A2BD9299F0F6D00C0253D /* PopUpModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpModifier.swift; sourceTree = "<group>"; };
 		7C1A2BDB299F23EA00C0253D /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		7C45EC1C299B26B300F3B439 /* Follis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Follis.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,8 +83,20 @@
 		7C45EC5C299B32B100F3B439 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		7C45EC5F299B341400F3B439 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7C45EC61299B354A00F3B439 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		7C86262329B7E88600919213 /* ShopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCell.swift; sourceTree = "<group>"; };
+		7C86262629B7EC9500919213 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		7C86262829B7F0F000919213 /* ShopItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopItemView.swift; sourceTree = "<group>"; };
+		7C86262A29B7F86000919213 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		7C86262C29B7FD1900919213 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
+		7C86262E29B8114100919213 /* AddItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemCell.swift; sourceTree = "<group>"; };
+		7C86263029B818E400919213 /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
+		7C86263229B8195B00919213 /* OrderItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemCell.swift; sourceTree = "<group>"; };
+		7C86263629B839A300919213 /* OrderStatusModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderStatusModalView.swift; sourceTree = "<group>"; };
 		7C8BBD0629A15AD300414DF0 /* StartButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButtonModifier.swift; sourceTree = "<group>"; };
 		7CA914BE299DB9790006ED5B /* User2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User2.swift; sourceTree = "<group>"; };
+		7CCCEFBB29B7C1EC00E27BAA /* SignUpViewFive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewFive.swift; sourceTree = "<group>"; };
+		7CCCEFBF29B7CCCA00E27BAA /* ShopsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsView.swift; sourceTree = "<group>"; };
+		7CCCEFC429B7CD2E00E27BAA /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
 		7CD78BF4299DE8C8002E01E1 /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
 		7CD78BF6299DEE47002E01E1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		7CD78BFA299DEF7E002E01E1 /* FundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundsView.swift; sourceTree = "<group>"; };
@@ -125,6 +153,10 @@
 		7C45EC1E299B26B300F3B439 /* Follis */ = {
 			isa = PBXGroup;
 			children = (
+				7C86262529B7EC7600919213 /* View Components  */,
+				7C86262229B7E80B00919213 /* Consumer Views */,
+				7CCCEFBE29B7CB6F00E27BAA /* Button Modifiers */,
+				7CCCEFBD29B7CB4300E27BAA /* Merchant Views */,
 				E9A1AF8C29A0111D00ED580E /* solAPI */,
 				7CFE305729A05CC100283B21 /* Info.plist */,
 				7C45EC5E299B33C900F3B439 /* ViewModel */,
@@ -132,22 +164,13 @@
 				7C45EC42299B2D2100F3B439 /* Model */,
 				7C45EC41299B2D1B00F3B439 /* Onboarding */,
 				7C45EC1F299B26B300F3B439 /* FollisApp.swift */,
-				7C45EC37299B2AC700F3B439 /* ButtonModifier.swift */,
 				7C45EC33299B298800F3B439 /* CustomInputTextField.swift */,
 				7C45EC21299B26B300F3B439 /* ContentView.swift */,
 				7C45EC23299B26B900F3B439 /* Assets.xcassets */,
 				7C45EC47299B2EE100F3B439 /* GoogleService-Info.plist */,
 				7C45EC25299B26B900F3B439 /* Preview Content */,
 				7C45EC61299B354A00F3B439 /* AppState.swift */,
-				7CF74DC6299C620B002B2BB9 /* GetStartedButtonModifier.swift */,
-				7CF74DD2299C76F2002B2BB9 /* UserTypeButtonModifier.swift */,
-				7CF74DCC299C65A4002B2BB9 /* NextButtonModifier.swift */,
-				7CD78BF6299DEE47002E01E1 /* SettingsView.swift */,
-				7CD78BFE299DF684002E01E1 /* TransactionView.swift */,
-				7C1A2BD9299F0F6D00C0253D /* PopUpModifier.swift */,
-				7CF441DC299F3F1100A4C660 /* OrderItemView.swift */,
 				E9A1AF9529A0216300ED580E /* backendViews */,
-				7C8BBD0629A15AD300414DF0 /* StartButtonModifier.swift */,
 			);
 			path = Follis;
 			sourceTree = "<group>";
@@ -169,6 +192,7 @@
 				7C45EC45299B2D5F00F3B439 /* SignUpViewTwo.swift */,
 				7CF74DCE299C72DF002B2BB9 /* SignUpViewThree.swift */,
 				7CF74DD0299C738D002B2BB9 /* SignUpViewFour.swift */,
+				7CCCEFBB29B7C1EC00E27BAA /* SignUpViewFive.swift */,
 				7CD78BF4299DE8C8002E01E1 /* PasswordView.swift */,
 			);
 			path = Onboarding;
@@ -202,6 +226,56 @@
 				7C45EC3F299B2D0100F3B439 /* AuthViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7C86262229B7E80B00919213 /* Consumer Views */ = {
+			isa = PBXGroup;
+			children = (
+				7C86263029B818E400919213 /* CheckoutView.swift */,
+				7CCCEFBF29B7CCCA00E27BAA /* ShopsView.swift */,
+				7CCCEFC429B7CD2E00E27BAA /* WalletView.swift */,
+				7C86262829B7F0F000919213 /* ShopItemView.swift */,
+				7C86262C29B7FD1900919213 /* AddItemView.swift */,
+				7C86263629B839A300919213 /* OrderStatusModalView.swift */,
+				7C0439DC29B90C7A0037EE72 /* ProfileView.swift */,
+			);
+			path = "Consumer Views";
+			sourceTree = "<group>";
+		};
+		7C86262529B7EC7600919213 /* View Components  */ = {
+			isa = PBXGroup;
+			children = (
+				7C86262329B7E88600919213 /* ShopCell.swift */,
+				7C86262629B7EC9500919213 /* SearchBar.swift */,
+				7C86262A29B7F86000919213 /* ItemCell.swift */,
+				7C86262E29B8114100919213 /* AddItemCell.swift */,
+				7C86263229B8195B00919213 /* OrderItemCell.swift */,
+				7C0439DE29B90E130037EE72 /* ProfileItemCell.swift */,
+			);
+			path = "View Components ";
+			sourceTree = "<group>";
+		};
+		7CCCEFBD29B7CB4300E27BAA /* Merchant Views */ = {
+			isa = PBXGroup;
+			children = (
+				7CD78BF6299DEE47002E01E1 /* SettingsView.swift */,
+				7CF441DC299F3F1100A4C660 /* OrderItemView.swift */,
+				7CD78BFE299DF684002E01E1 /* TransactionView.swift */,
+				7C1A2BD9299F0F6D00C0253D /* PopUpModifier.swift */,
+			);
+			path = "Merchant Views";
+			sourceTree = "<group>";
+		};
+		7CCCEFBE29B7CB6F00E27BAA /* Button Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				7C45EC37299B2AC700F3B439 /* ButtonModifier.swift */,
+				7C8BBD0629A15AD300414DF0 /* StartButtonModifier.swift */,
+				7CF74DC6299C620B002B2BB9 /* GetStartedButtonModifier.swift */,
+				7CF74DD2299C76F2002B2BB9 /* UserTypeButtonModifier.swift */,
+				7CF74DCC299C65A4002B2BB9 /* NextButtonModifier.swift */,
+			);
+			path = "Button Modifiers";
 			sourceTree = "<group>";
 		};
 		E9A1AF8C29A0111D00ED580E /* solAPI */ = {
@@ -302,37 +376,51 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C86263129B818E400919213 /* CheckoutView.swift in Sources */,
 				E94ABC1029A07D76004DEC26 /* transaction.swift in Sources */,
+				7C0439DF29B90E130037EE72 /* ProfileItemCell.swift in Sources */,
 				7CD78BF7299DEE47002E01E1 /* SettingsView.swift in Sources */,
 				E9A1AF9029A0141000ED580E /* JSONViewModel.swift in Sources */,
 				7C45EC44299B2D5200F3B439 /* SignUpViewOne.swift in Sources */,
+				7C86263329B8195B00919213 /* OrderItemCell.swift in Sources */,
 				7C45EC3E299B2CF700F3B439 /* WelcomeView.swift in Sources */,
 				7CF441DD299F3F1100A4C660 /* OrderItemView.swift in Sources */,
+				7C86262929B7F0F000919213 /* ShopItemView.swift in Sources */,
 				7CF74DC9299C638F002B2BB9 /* EmailView.swift in Sources */,
 				E94ABC0A29A0438D004DEC26 /* Router.swift in Sources */,
 				7C45EC62299B354A00F3B439 /* AppState.swift in Sources */,
 				7C45EC34299B298800F3B439 /* CustomInputTextField.swift in Sources */,
 				7C45EC40299B2D0100F3B439 /* AuthViewModel.swift in Sources */,
+				7CCCEFC529B7CD2E00E27BAA /* WalletView.swift in Sources */,
 				7C45EC22299B26B300F3B439 /* ContentView.swift in Sources */,
+				7C86262D29B7FD1900919213 /* AddItemView.swift in Sources */,
+				7CCCEFC029B7CCCA00E27BAA /* ShopsView.swift in Sources */,
 				7CD78BFB299DEF7E002E01E1 /* FundsView.swift in Sources */,
 				7C1A2BDA299F0F6E00C0253D /* PopUpModifier.swift in Sources */,
 				E94ABC0E29A05FF4004DEC26 /* txCell.swift in Sources */,
 				7CF74DC7299C620C002B2BB9 /* GetStartedButtonModifier.swift in Sources */,
 				7C1A2BDC299F23EA00C0253D /* Order.swift in Sources */,
 				7CF74DCF299C72DF002B2BB9 /* SignUpViewThree.swift in Sources */,
+				7CCCEFBC29B7C1EC00E27BAA /* SignUpViewFive.swift in Sources */,
+				7C86263729B839A300919213 /* OrderStatusModalView.swift in Sources */,
+				7C86262F29B8114100919213 /* AddItemCell.swift in Sources */,
 				7C45EC5D299B32B200F3B439 /* UserService.swift in Sources */,
+				7C86262B29B7F86000919213 /* ItemCell.swift in Sources */,
 				7C45EC46299B2D5F00F3B439 /* SignUpViewTwo.swift in Sources */,
 				7C45EC20299B26B300F3B439 /* FollisApp.swift in Sources */,
 				E943114929A179B700E26EBE /* KeyboardResponder.swift in Sources */,
 				7C45EC38299B2AC700F3B439 /* ButtonModifier.swift in Sources */,
 				7CD78BFF299DF684002E01E1 /* TransactionView.swift in Sources */,
+				7C86262729B7EC9500919213 /* SearchBar.swift in Sources */,
 				7C8BBD0729A15AD300414DF0 /* StartButtonModifier.swift in Sources */,
 				7CF74DCD299C65A4002B2BB9 /* NextButtonModifier.swift in Sources */,
+				7C0439DD29B90C7A0037EE72 /* ProfileView.swift in Sources */,
 				7CD78BF5299DE8C8002E01E1 /* PasswordView.swift in Sources */,
 				7CF74DD3299C76F2002B2BB9 /* UserTypeButtonModifier.swift in Sources */,
 				E9A1AF8E29A0115C00ED580E /* decodeJSON.swift in Sources */,
 				7C45EC60299B341400F3B439 /* User.swift in Sources */,
 				7CF74DD1299C738D002B2BB9 /* SignUpViewFour.swift in Sources */,
+				7C86262429B7E88600919213 /* ShopCell.swift in Sources */,
 				7CA914BF299DB9790006ED5B /* User2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

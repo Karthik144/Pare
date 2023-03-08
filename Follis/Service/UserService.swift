@@ -14,7 +14,7 @@ struct UserService {
     // Fetches current user data
     func fetchUser(withUid uid: String, completion: @escaping(User) -> Void){
 
-        Firestore.firestore().collection("merchants").document(uid).getDocument { snapshot, _ in
+        Firestore.firestore().collection("users").document(uid).getDocument { snapshot, _ in
             guard let snapshot = snapshot else { return }
 
             guard let user = try? snapshot.data(as: User.self) else { return }
@@ -26,7 +26,7 @@ struct UserService {
     func checkIfExistingUser(userEmail: String, completion: @escaping (User2) -> Void) {
 
 
-        Firestore.firestore().collection("merchants").getDocuments { (snapshot, error) -> Void in
+        Firestore.firestore().collection("users").getDocuments { (snapshot, error) -> Void in
              guard let snapshot = snapshot, error == nil else {
                  // Handle error
                  print ("An error occured while trying to verify your account.")

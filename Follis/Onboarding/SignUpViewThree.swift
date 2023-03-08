@@ -17,6 +17,9 @@ struct SignUpViewThree: View {
     @ObservedObject var keyboardResponder = KeyboardResponder()
 
     @State private var password = ""
+    @State private var confirmPassword = ""
+    @State private var strongPassword = false
+    @State private var samePassword = false
 
     var body: some View {
 
@@ -38,6 +41,7 @@ struct SignUpViewThree: View {
                             .padding(.bottom, 15)
                     }
                     .offset(y:-keyboardResponder.currentHeight)
+
                     HStack{
 
                         Spacer()
@@ -54,21 +58,33 @@ struct SignUpViewThree: View {
 
                     } //: HSTACK
 
+                    CustomInputTextField(isSecureField: true, placeholderText: "", title: "New Password" , bottomMessage: "Password Strength: Strong", confirmText: false, text: $password, confirmPassword: $confirmPassword)
+                        .onSubmit {
+                            self.strongPassword = checkPasswordStrength(password: password)
+                        }
 
-                    CustomInputTextField(isSecureField: true, placeholderText: "Something secure...", text: $password)
+
+                    CustomInputTextField(isSecureField: true, placeholderText: "", title: "Confirm Password" , bottomMessage: "Password matches", confirmText: true, text: $confirmPassword, confirmPassword: $password)
                         .padding(.bottom, 30)
+                        .onSubmit {
+                            self.samePassword = checkPasswordsMatch(password, confirmPassword)
+                        }
 
-                    // Next button
-                    NavigationLink(destination: {
-                        SignUpViewFour(firstName: firstName, lastName: lastName, email: email, password: password)
 
-                    }, label: {
+                    if samePassword == true && strongPassword == true {
+                        // Next button
+                        NavigationLink(destination: {
+                            SignUpViewFour(firstName: firstName, lastName: lastName, email: email, password: password)
 
-                        Text("Next")
-                            .font(.title3)
-                            .fontWeight(.bold)
-                            .modifier(NextButtonModifier())
-                    })
+                        }, label: {
+
+                            Text("Next")
+                                .font(.title3)
+                                .fontWeight(.bold)
+                                .modifier(NextButtonModifier())
+                        })
+
+                    }
 
                 } //: VSTACK
 
@@ -76,16 +92,50 @@ struct SignUpViewThree: View {
                 .padding()
                 Spacer(minLength: 200)
             } //: VSTACK
-            .navigationTitle("Sign Up")
-            .foregroundColor(Color.white)
-            .navigationBarTitleDisplayMode(.inline)
-            .accentColor(Color.white)
             .offset(y: -keyboardResponder.currentHeight * 0.1)
 
 
         } //: ZSTACK
+
+
+    }
+
+
+    func checkPasswordStrength(password: String) -> Bool {
+        let passwordLength = password.count
+        let letters = CharacterSet.letters
+        let digits = CharacterSet.decimalDigits
+        let lowercaseLetters = CharacterSet.lowercaseLetters
+        let uppercaseLetters = CharacterSet.uppercaseLetters
+
+        // Check length
+        if passwordLength < 8 {
+            return false
+        }
+
+        // Check for letters and digits
+        if password.rangeOfCharacter(from: letters) == nil || password.rangeOfCharacter(from: digits) == nil {
+            return false
+        }
+
+        // Check for lowercase and uppercase letters
+        if password.rangeOfCharacter(from: lowercaseLetters) == nil || password.rangeOfCharacter(from: uppercaseLetters) == nil {
+            return false
+        }
+
+        // Strong password
+        return true
+    }
+
+    func checkPasswordsMatch(_ password1: String, _ password2: String) -> Bool {
+        if password1 == password2 {
+            return true
+        } else {
+            return false
+        }
     }
 }
+
 
 //struct SignUpViewThree_Previews: PreviewProvider {
 //    static var previews: some View {

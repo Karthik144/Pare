@@ -40,14 +40,12 @@ struct PasswordView: View {
                             .padding(.bottom, 10)
                             .multilineTextAlignment(.center)
 
-
                         Spacer()
 
                     } //: HSTACK
 
 
-                    CustomInputTextField(isSecureField: true, placeholderText: "", text: $password)
-                        .padding(.bottom, 30)
+                    CustomInputTextField(isSecureField: true, placeholderText: "", title: "" , bottomMessage: "Password Strength: Strong", confirmText: false, text: $password, confirmPassword: $password)
 
                     // Next button
                     Button(action: {

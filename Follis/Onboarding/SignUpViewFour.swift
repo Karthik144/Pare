@@ -133,21 +133,16 @@ struct SignUpViewFour: View {
 
                     }
 
-
-                    // Next button
-                    Button(action: {
-
-                        // Call sign up method from backend
-                        viewModel.register(firstName: firstName, lastName: lastName, withEmail: email, password: password, isMerchant: isMerchant)
-
-                    }, label: {
-
+                    NavigationLink {
+                        SignUpViewFive(firstName: firstName, lastName: lastName, email: email, password: password, isMerchant: isMerchant)
+                    } label: {
                         Text("Submit")
                             .font(.title3)
                             .fontWeight(.bold)
                             .modifier(NextButtonModifier())
-                    })
+                    }
                     .padding(.top, 20)
+
 
                 } //: VSTACK
 
@@ -155,10 +150,6 @@ struct SignUpViewFour: View {
                 .padding()
                 Spacer(minLength: 200)
             } //: VSTACK
-            .navigationTitle("Sign Up")
-            .foregroundColor(Color.white)
-            .navigationBarTitleDisplayMode(.inline)
-            .accentColor(Color.white)
             .offset(y: -keyboardResponder.currentHeight * 0.1)
 
 
