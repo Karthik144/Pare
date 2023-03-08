@@ -59,7 +59,7 @@ struct SignUpViewTwo: View {
                     } //: HSTACK
 
 
-                    CustomInputTextField(isSecureField: false, placeholderText: "What your Navy sergeant would call you...", title: "", bottomMessage: "", text: $lastName)
+                    CustomInputTextField(isSecureField: false, placeholderText: "What your Navy sergeant would call you...", title: "", bottomMessage: "", confirmText: false, text: $lastName, confirmPassword: $lastName)
                         .padding(.bottom, 30)
 
                     // Next button
@@ -80,10 +80,6 @@ struct SignUpViewTwo: View {
                 .padding()
                 Spacer(minLength: 200)
             } //: VSTACK
-            .navigationTitle("Sign Up")
-            .foregroundColor(Color.white)
-            .navigationBarTitleDisplayMode(.inline)
-            .accentColor(Color.white)
             .offset(y: -keyboardResponder.currentHeight * 0.1)
 
 

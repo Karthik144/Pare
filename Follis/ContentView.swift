@@ -19,19 +19,19 @@ struct ContentView: View {
     var body: some View {
 
         TabView(selection: $router.selectedTab) {
-            SettingsView().tabItem({
+            ProfileView().tabItem({
                 Image(systemName: "gearshape")
                 Text("Settings")
             })
             .tag(1)
 
-            TransactionView().tabItem({
+            ShopsView().tabItem({
                 Image(systemName: "cart.circle")
                 Text("Order")
             })
             .tag(2)
 
-            FundsView().tabItem({
+            WalletView().tabItem({
                 Image(systemName: "dollarsign.circle")
                 Text("Funds")
             })

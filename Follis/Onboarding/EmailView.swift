@@ -37,9 +37,8 @@ struct EmailView: View {
                             .fontWeight(.heavy)
                             .padding(.bottom, 10)
 
-                        CustomInputTextField(isSecureField: false, placeholderText: "We promise to not spam you...", title: "", bottomMessage: "", text: $email)
+                        CustomInputTextField(isSecureField: false, placeholderText: "We promise to not spam you...", title: "", bottomMessage: "", confirmText: false, text: $email, confirmPassword: $email)
                             .padding(.bottom, 30)
-
 
                         if login == true {
 

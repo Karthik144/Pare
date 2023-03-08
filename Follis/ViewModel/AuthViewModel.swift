@@ -29,29 +29,58 @@ class AuthViewModel: ObservableObject{
     // Register user
     func register(firstName: String, lastName: String, withEmail email: String, password: String, isMerchant: Bool) {
 
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+        if isMerchant == true {
 
-            // Check for error
-            if let error = error {
-                print("Could not create account with error \(error.localizedDescription).")
-                return
-            }
+            Auth.auth().createUser(withEmail: email, password: password) { result, error in
 
-
-            // Saver user data to Firebase Firestore
-            guard let user = result?.user else { return }
-
-            Firestore.firestore().collection("merchants")
-                .document(user.uid)
-                .setData(["first_name": firstName, "last_name": lastName, "email": email, "is_merchant": isMerchant]){ _ in
-                    print("User data successfully uploaded.")
-                    self.didAuthenticateUser = true
-                    self.fetchUser()
+                // Check for error
+                if let error = error {
+                    print("Could not create account with error \(error.localizedDescription).")
+                    return
                 }
 
-            self.userSession = user
 
+                // Saver user data to Firebase Firestore
+                guard let user = result?.user else { return }
+
+                Firestore.firestore().collection("users")
+                    .document(user.uid)
+                    .setData(["first_name": firstName, "last_name": lastName, "email": email, "is_merchant": isMerchant]){ _ in
+                        print("User data successfully uploaded.")
+                        self.didAuthenticateUser = true
+                        self.fetchUser()
+                    }
+
+                self.userSession = user
+
+            }
+        } else {
+            Auth.auth().createUser(withEmail: email, password: password) { result, error in
+
+                // Check for error
+                if let error = error {
+                    print("Could not create account with error \(error.localizedDescription).")
+                    return
+                }
+
+
+                // Saver user data to Firebase Firestore
+                guard let user = result?.user else { return }
+
+                Firestore.firestore().collection("users")
+                    .document(user.uid)
+                    .setData(["first_name": firstName, "last_name": lastName, "email": email, "is_merchant": isMerchant]){ _ in
+                        print("User data successfully uploaded.")
+                        self.didAuthenticateUser = true
+                        self.fetchUser()
+                    }
+
+                self.userSession = user
+
+            }
         }
+
+
 
     } //: FUNC REGISTER
 
