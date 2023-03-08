@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct ShopItemView: View {
+
+    // MARK: - PROPERTIES
+    let shop: Shop 
+
+
+    // MARK: - BODY 
     var body: some View {
         
         if #available(iOS 16.0, *) {
@@ -25,13 +31,13 @@ struct ShopItemView: View {
 
 
 
-                        Text("Otto Turkish Street Food")
+                        Text(shop.name)
                             .font(.title3)
                             .fontWeight(.bold)
 
                         HStack{
 
-                            Text("Food")
+                            Text(shop.type)
                                 .foregroundColor(Color.gray)
 
                             Circle()
@@ -107,7 +113,7 @@ struct ShopItemView: View {
 
                         ForEach((0...3), id: \.self) {_ in
 
-                            NavigationLink(destination: ShopItemView()) {
+                            NavigationLink(destination: AddItemView()) {
                                 ItemCell()
                                     .padding(.leading, 0)
                                     .padding()
@@ -135,8 +141,8 @@ struct ShopItemView: View {
     
 }
 
-struct ShopItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        ShopItemView()
-    }
-}
+//struct ShopItemView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ShopItemView()
+//    }
+//}

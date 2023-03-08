@@ -10,9 +10,7 @@ import SwiftUI
 struct ShopCell: View {
 
     // MARK: - PROPERTIES
-//    let shopName: String
-//    let shopType: String
-//    let rating: String
+    let shop: Shop
 //    let timeOpen: String
 //    let distance: String
 
@@ -22,7 +20,7 @@ struct ShopCell: View {
         VStack(spacing: 10){
 
             HStack{
-                Text("Otto Turkish Street Food")
+                Text(shop.name)
                     .font(.title3)
                     .foregroundColor(Color.black)
                 Spacer()
@@ -31,7 +29,7 @@ struct ShopCell: View {
 
             HStack{
 
-                Text("Food")
+                Text(shop.type)
                     .font(.callout)
                     .foregroundColor(Color.white)
                     .background(
@@ -43,7 +41,7 @@ struct ShopCell: View {
                 HStack{
                     Image(systemName: "star.fill")
                         .foregroundColor(Color.black)
-                    Text("4.86")
+                    Text(shop.rating)
                         .foregroundColor(Color.black)
                 } //: HStack
                 .padding(.leading, 10)
@@ -70,8 +68,8 @@ struct ShopCell: View {
     }
 }
 
-struct ShopCell_Previews: PreviewProvider {
-    static var previews: some View {
-        ShopCell()
-    }
-}
+//struct ShopCell_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ShopCell()
+//    }
+//}
