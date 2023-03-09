@@ -78,8 +78,6 @@ struct ShopsView: View {
                     OrderStatusModalView(shop: "Otto Turkish Street Food", address: "111 W Water St, Charlottesville, VA 22902", orderNumber: "#325", orderStatus: "In Progress")
                 }
 
-
-
                 HStack{
                     Text("Near You")
                         .font(.title2)
@@ -91,20 +89,23 @@ struct ShopsView: View {
                 }
 
                 ScrollView {
-                    LazyVStack{
+
+                    VStack{
 
                         ForEach(viewModel.shops) { shop in
                             NavigationLink {
                                 ShopItemView(shop: shop)
                             } label: {
                                 ShopCell(shop: shop)
-                                      .padding(.leading, 0)
-                                      .padding()
+                                    .padding(.leading, 0)
+                                    .padding()
                             }
 
                         } //: FOR EACH
 
-                    } //: LazyVStack
+                    }
+
+
 
                 } //: SCROLL VIEW
 
@@ -120,6 +121,10 @@ struct ShopsView: View {
         .navigationViewStyle(.stack)
 
 
+
+
+        } //: NAV VIEW
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

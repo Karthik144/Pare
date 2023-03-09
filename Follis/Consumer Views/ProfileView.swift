@@ -35,7 +35,7 @@ struct ProfileView: View {
                         .frame(width: 70, height: 70)
                         .foregroundColor(Color.gray)
 
-                    Text("Karthik Ramu")
+                    Text(viewModel.currentUser?.first_name ?? "Error" + "" + (viewModel.currentUser?.last_name ?? "Error"))
                         .font(.title)
                         .foregroundColor(Color.black)
 

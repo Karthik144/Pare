@@ -5,14 +5,21 @@
 //  Created by Karthik  Ramu on 3/8/23.
 //
 
+
+import Foundation
 import FirebaseFirestoreSwift
 
-struct Shop: Identifiable, Decodable {
+struct Shop: Identifiable{
 
     // Reads doc id from collection without having to duplicate it as a field
-    @DocumentID var id: String?
+//    @DocumentID var id: String?
+
+//    var id: String = UUID().uuidString
+    var id:String
     var address: String
     var name: String
     var rating: String
     var type: String
+    var cuisine: String
+    
 }
