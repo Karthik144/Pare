@@ -10,13 +10,10 @@ import SwiftUI
 struct ShopsView: View {
 
     // MARK: - PROPERTIES
-    @ObservedObject var viewModel = ShopViewModel()
+    @ObservedObject private var viewModel = ShopViewModel()
     @State private var orderScheduled = true
     @State private var showModal = false
-    
-    @EnvironmentObject var appState: AppState
-
-    @State var isActive : Bool = false
+    @State private var totalShops = [Shop]()
 
     // MARK: - BODY
     var body: some View {
@@ -94,9 +91,11 @@ struct ShopsView: View {
 
                 ScrollView {
 
-                    VStack{
-                        
-                        ForEach(viewModel.shops) { shop in
+
+                    LazyVStack{
+
+                        ForEach(totalShops) { shop in
+
                             NavigationLink {
                                 ShopItemView(shop: shop,rootIsActive: $isActive)
                             } label: {
@@ -107,23 +106,22 @@ struct ShopsView: View {
 
                         } //: FOR EACH
 
-                    }
-
-
+                    } //: LAZYVSTACK
 
                 } //: SCROLL VIEW
 
 
             } //: VSTACK
             .onAppear(){
-                print("ON APPEAR")
-                //viewModel.fetchShops()
-                print(viewModel.shops.count)
+                viewModel.fetchShops { shops in
+                    self.totalShops = shops
+                }
             }
 
+
         } //: NAV VIEW
-        .navigationViewStyle(.stack)
-    }
+//        .navigationViewStyle(StackNavigationViewStyle())
+    } //: VIEW 
 }
 
 

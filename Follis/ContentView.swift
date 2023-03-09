@@ -11,15 +11,14 @@ struct ContentView: View {
 
     // MARK: - PROPERTIES
     @EnvironmentObject var viewModel: AuthViewModel
-    @EnvironmentObject var router: Router
-    
-//    @State private var selection = 2
+//    @EnvironmentObject var router: Router
+    @State private var selection = 2
 
     
     // MARK: - BODY
     var body: some View {
 
-        TabView(selection: $router.selectedTab) {
+        TabView(selection: $selection) {
             ProfileView().tabItem({
                 Image(systemName: "gearshape")
                 Text("Settings")

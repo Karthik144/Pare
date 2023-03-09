@@ -26,7 +26,7 @@ struct FollisApp: App {
             WelcomeView()
                 .environmentObject(viewModel)
                 .environmentObject(appState)
-                .environmentObject(Router.shared)
+//                .environmentObject(Router.shared)
                 .environmentObject(FundsViewModel)
         }
 
