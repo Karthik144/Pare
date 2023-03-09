@@ -94,7 +94,6 @@ struct ShopsView: View {
                     LazyVStack{
 
                         ForEach(viewModel.shops) { shop in
-                            
                             NavigationLink {
                                 ShopItemView(shop: shop)
                             } label: {
@@ -112,13 +111,13 @@ struct ShopsView: View {
 
             } //: VSTACK
             .onAppear(){
-
                 print("ON APPEAR")
                 viewModel.fetchShops()
                 print(viewModel.shops.count)
             }
 
         } //: NAV VIEW
+        .navigationViewStyle(.stack)
 
 
     }
