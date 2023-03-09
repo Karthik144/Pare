@@ -13,6 +13,10 @@ struct ShopsView: View {
     @ObservedObject var viewModel = ShopViewModel()
     @State private var orderScheduled = true
     @State private var showModal = false
+    
+    @EnvironmentObject var appState: AppState
+
+    @State var isActive : Bool = false
 
     // MARK: - BODY
     var body: some View {
@@ -91,10 +95,10 @@ struct ShopsView: View {
                 ScrollView {
 
                     VStack{
-
+                        
                         ForEach(viewModel.shops) { shop in
                             NavigationLink {
-                                ShopItemView(shop: shop)
+                                ShopItemView(shop: shop,rootIsActive: $isActive)
                             } label: {
                                 ShopCell(shop: shop)
                                     .padding(.leading, 0)
@@ -113,18 +117,12 @@ struct ShopsView: View {
             } //: VSTACK
             .onAppear(){
                 print("ON APPEAR")
-                viewModel.fetchShops()
+                //viewModel.fetchShops()
                 print(viewModel.shops.count)
             }
 
         } //: NAV VIEW
         .navigationViewStyle(.stack)
-
-
-
-
-        } //: NAV VIEW
-        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

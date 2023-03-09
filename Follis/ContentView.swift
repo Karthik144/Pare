@@ -12,6 +12,7 @@ struct ContentView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject var router: Router
+    
 //    @State private var selection = 2
 
     

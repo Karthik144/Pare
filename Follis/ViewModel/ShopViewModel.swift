@@ -15,8 +15,9 @@ class ShopViewModel: ObservableObject {
     // MARK: - PROPERTIES
     @Published var shops = [Shop]()
     let service = ShopService()
+    
 
-
+    
     init(){
         fetchShops()
     }

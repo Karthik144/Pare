@@ -10,7 +10,8 @@ import SwiftUI
 struct ShopItemView: View {
 
     // MARK: - PROPERTIES
-    let shop: Shop 
+    let shop: Shop
+    @Binding var rootIsActive: Bool
 
 
     // MARK: - BODY 
