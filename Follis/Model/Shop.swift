@@ -9,13 +9,13 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct Shop: Identifiable{
+struct Shop: Identifiable, Decodable{
 
     // Reads doc id from collection without having to duplicate it as a field
-//    @DocumentID var id: String?
+    @DocumentID var id: String?
 
 //    var id: String = UUID().uuidString
-    var id:String
+//    var id:String
     var address: String
     var name: String
     var rating: String

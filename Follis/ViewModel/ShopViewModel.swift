@@ -14,60 +14,25 @@ class ShopViewModel: ObservableObject {
 
     // MARK: - PROPERTIES
     @Published var shops = [Shop]()
-    let service = ShopService()
+    private let service = ShopService()
 
+    func fetchShops(completion: @escaping([Shop]) -> Void){
 
-    init(){
-        fetchShops()
-    }
+        Firestore.firestore().collection("shops").addSnapshotListener { (querySnapshot, error) in
 
-
-//    func fetchShops() {
-//
-//        Firestore.firestore().collection("shops").addSnapshotListener { (querySnapshot, error) in
-//
-//            guard let documents = querySnapshot?.documents else {
-//                print("No documents in this collection.")
-//                return
-//
-//            }
-//
-//
-//            self.shops = documents.compactMap({ try? $0.data(as: Shop.self) })
-//
-//
-//        }
-//
-//        print("Count: " + String(shops.count))
-//
-//    }
-
-    func fetchShops(){
-
-        Firestore.firestore().collection("shops").addSnapshotListener{ (querySnapshot, error) in
-
-            guard let documents = querySnapshot?.documents else{
-                print("No Documents")
+            guard let documents = querySnapshot?.documents else {
+                print("No documents in this collection.")
                 return
-            }
-
-            self.shops = documents.map{ (queryDocumentSnapshot) -> Shop in
-
-                let data = queryDocumentSnapshot.data()
-
-                let address = data["address"] as? String ?? ""
-                let cuisine = data["cuisine"] as? String ?? ""
-                let name = data["name"] as? String ?? ""
-                let rating = data["rating"] as? String ?? ""
-                let type = data["type"] as? String ?? ""
-                let uid = queryDocumentSnapshot.documentID
-
-                return Shop(id: uid, address: address, name: name, rating: rating, type: type, cuisine: cuisine)
 
             }
+
+            let shops = documents.compactMap({ try? $0.data(as: Shop.self) })
+
+            completion(shops)
+
         }
 
-    } //: FUNC GET ORDER DATA
+    } //: FUNC FETCH SHOPS
 
 
 }
