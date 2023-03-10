@@ -10,8 +10,7 @@ import SwiftUI
 struct OrderItemView: View {
 
     // MARK: - PROPERTIES
-    let itemName: String
-    let itemPrice: String
+    let item: MenuItem
     let itemQuantity: String
 
     // MARK: - BODY
@@ -27,12 +26,12 @@ struct OrderItemView: View {
                  )
                 .padding(.trailing, 8)
 
-            Text(itemName)
+            Text(item.name)
                 .foregroundColor(.black)
 
             Spacer()
 
-            Text("$\(itemPrice)")
+            Text("$\(item.price)")
                 .padding()
 
         } //: HSTACK

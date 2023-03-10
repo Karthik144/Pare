@@ -10,6 +10,12 @@ import SwiftUI
 struct CheckoutView: View {
 
     // MARK: - PROPERTIES
+    let shop: Shop
+    @State private var total = 0.0
+    @State private var subtotal = 0.0
+    @State private var tax = 0.0
+    @EnvironmentObject var viewModel: ShopViewModel
+
 
 
     // MARK: - BODY
@@ -30,11 +36,11 @@ struct CheckoutView: View {
 
                     VStack(alignment: .leading){
 
-                        Text("Otto Turkish Street Food")
+                        Text(shop.name)
                             .font(.title3)
                             .fontWeight(.bold)
 
-                        Text("111 W Water St, Charlottesville, VA 22902")
+                        Text(shop.address)
                             .foregroundColor(Color.gray)
 
                         Text("Pickup")
@@ -54,9 +60,14 @@ struct CheckoutView: View {
                     .fontWeight(.bold)
                     .padding(.leading, 20)
 
-                ForEach((0...1), id: \.self) {_ in
+//                ForEach((0...1), id: \.self) {_ in
 
-                    OrderItemCell(itemQuantity: "1", itemName: "Istanbowl", itemPrice: "10.95", rewardPoints: "5")
+                ForEach(viewModel.cartItems) { item in
+
+
+                    let itemTotal = viewModel.calcItemAddOnTotal(item: item) + (Double(item.price) ?? 0.0)
+
+                    OrderItemCell(itemQuantity: "1", itemName: item.name, itemPrice: itemTotal, rewardPoints: item.rewards)
                         .padding(.leading, 25)
                         .padding(.trailing, 20)
 
@@ -70,7 +81,7 @@ struct CheckoutView: View {
 
                     Spacer()
 
-                    Text("20.9 USDC")
+                    Text(String(subtotal) + " USDC")
 
                 } //: HSTACK
                 .padding(.top, 10)
@@ -84,7 +95,7 @@ struct CheckoutView: View {
 
                     Spacer()
 
-                    Text("1.254 USDC")
+                    Text(String(tax) + " USDC")
 
                 } //: HSTACK
                 .padding(.leading, 20)
@@ -99,7 +110,7 @@ struct CheckoutView: View {
 
                     Spacer()
 
-                    Text("22.154 USDC")
+                    Text(String(total) + " USDC")
 
                 } //: HSTACK
                 .padding(.top, 10)
@@ -117,6 +128,11 @@ struct CheckoutView: View {
 
                 Button {
 
+                    // Change cart active status
+                    viewModel.updateCartActiveStatus(cartActive: false)
+
+                    // Upload order to Firebase (so shop can access it) 
+
                 } label: {
                     Text("Pay")
                         .foregroundColor(Color.white)
@@ -129,6 +145,11 @@ struct CheckoutView: View {
 
                 Button {
 
+                    // Change cart active status
+                    viewModel.updateCartActiveStatus(cartActive: false)
+
+                    // Upload order to Firebase (so shop can access it)
+
                 } label: {
                     Text("Pay with stars 🌟")
                         .frame(width: 300, height: 50)
@@ -137,22 +158,80 @@ struct CheckoutView: View {
                                 .stroke(Color.accentColor, lineWidth: 1)
                         )
                 }
-            }
+
+
+            } //: VSTACK
 
 
 
             Spacer()
 
+        } //: VSTACK
+        .onAppear(){
+            viewModel.calcTotal()
+            print("WHEN CHECKOUT VIEW APPEARS")
+            print(viewModel.cartItems.count)
+
         }
 
 
     }
+
+
+//    func calcItemAddOnTotal(item: MenuItem) -> Double{
+//
+//        var addOptionsPrice = 0.0
+//
+//        // Find all add options for that item
+//        let itemAddOptions = viewModel.selectedAddOptions[item]
+//
+//        for each in itemAddOptions ?? [] {
+//
+//            addOptionsPrice += Double(each.price) ?? 0.0
+//        }
+//
+//        return addOptionsPrice
+//
+//    }
+
+//    func calcTotal() {
+//
+////        var addOptionsPrice = 0.0
+//
+//        // Find items in cart
+//        for cartItem in viewModel.cartItems {
+//
+//            subtotal += (Double(cartItem.price) ?? 0.0) + calcItemAddOnTotal(item: cartItem)
+//
+//        }
+//
+//        tax = 0.06 * subtotal
+//
+//        total = 1.06 * subtotal
+//
+//
+//        total = round(total * 100) / 100.0
+//
+//
+////        for each in viewModel.selectedAddOptions.keys {
+////            addOptionsPrice += Double(viewModel.selectedAddOptions[each]?.price ?? "0.0") ?? 0.0
+////        }
+////
+////        subtotal = Double(item.price) ?? 0.0 + addOptionsPrice
+////
+////        tax = 0.06 * subtotal
+////
+////        total = 1.06 * subtotal
+////
+////        total = round(total * 100) / 100.0
+//
+//    } //: FUNC CALC TOTAL
 }
 
 
 // MARK: - PREVIEW 
-struct CheckoutView_Previews: PreviewProvider {
-    static var previews: some View {
-        CheckoutView()
-    }
-}
+//struct CheckoutView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CheckoutView()
+//    }
+//}

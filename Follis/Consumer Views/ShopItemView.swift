@@ -10,8 +10,12 @@ import SwiftUI
 struct ShopItemView: View {
 
     // MARK: - PROPERTIES
+    @EnvironmentObject var viewModel: ShopViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @State private var totalMenuItems = [MenuItem]()
+    @State private var total = 0.0
+    @State private var totalRewards = 0
     let shop: Shop
-
 
     // MARK: - BODY 
     var body: some View {
@@ -30,7 +34,6 @@ struct ShopItemView: View {
                     VStack(alignment: .leading){
 
 
-
                         Text(shop.name)
                             .font(.title3)
                             .fontWeight(.bold)
@@ -44,7 +47,7 @@ struct ShopItemView: View {
                                 .foregroundColor(Color.gray)
                                 .frame(width: 2, height: 2)
 
-                            Text("Turkish")
+                            Text(shop.cuisine)
                                 .foregroundColor(Color.gray)
 
                             Circle()
@@ -54,11 +57,9 @@ struct ShopItemView: View {
                             HStack{
                                 Image(systemName: "star.fill")
                                     .foregroundColor(Color.black)
-                                Text("4.86")
+                                Text(shop.rating)
                                     .foregroundColor(Color.black)
                             } //: HStack
-
-
 
                         }//: HStack
 
@@ -76,7 +77,7 @@ struct ShopItemView: View {
                 ScrollView {
 
                     HStack{
-                        Text("Bowls")
+                        Text("Menu")
                             .fontWeight(.bold)
                             .font(.title3)
                         Spacer()
@@ -85,60 +86,85 @@ struct ShopItemView: View {
                     .padding(.bottom, 0)
 
 
-                    VStack{
-                        ForEach((0...1), id: \.self) {_ in
+                    VStack(alignment: .leading){
+                        ForEach(totalMenuItems) { item in
 
-                            NavigationLink(destination: AddItemView()
+                            NavigationLink(destination: AddItemView(item: item, shop: shop)
                             ) {
-                                ItemCell()
-                                    .padding(.leading, 0)
-                                    .padding()
+                                ItemCell(item: item)
+                                    .padding(.leading, 15)
+                                    .padding(.trailing, 15)
                             }
 
 
                         } //: FOR EACH
-                    } //: VSTACK
-
-
-                    HStack{
-                        Text("Wraps")
-                            .fontWeight(.bold)
-                            .font(.title3)
-                        Spacer()
-                    } //: HSTACK
-                    .padding(.leading, 20)
-                    .padding(.bottom, 0)
-
-                    VStack{
-
-                        ForEach((0...3), id: \.self) {_ in
-
-                            NavigationLink(destination: AddItemView()) {
-                                ItemCell()
-                                    .padding(.leading, 0)
-                                    .padding()
-                            }
-
-
-                        } //: FOR EACH
-
-
                     } //: VSTACK
 
 
                 } //: SCROLL VIEW
+                .onAppear(){
 
+                    viewModel.fetchShopMenu(withUID: shop.id ?? "") { menuItems in
+                        self.totalMenuItems = menuItems
+                    }
+
+                    total = viewModel.calcTotal()
+
+                    totalRewards = viewModel.calcTotalRewards()
+
+                }
+
+                if authViewModel.currentUser?.cart_active == true {
+
+                    NavigationLink {
+                        CheckoutView(shop: shop)
+                    } label: {
+
+                        HStack{
+
+                            Text("Checkout")
+                                .foregroundColor(Color.white)
+                                .padding()
+
+                            Spacer()
+
+
+                            HStack{
+
+                                Text("\(total) USDC")
+                                    .foregroundColor(Color.white)
+
+                                Text("+\(totalRewards) 🌟")
+                                    .foregroundColor(Color.white)
+
+                            }
+                            .padding()
+
+                        }
+                        .frame(width: 300, height: 50)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8,  style: .continuous)
+                                .fill(Color.accentColor)
+                                .frame(width: 300, height: 50)
+                        )
+                    }
+                    .padding()
+                    .padding(.bottom, 20)
+
+
+                } //: IF STATEMENT
 
             } //: VSTACK
             .toolbar(.hidden, for: .tabBar)
+
+
         } else {
             // Fallback on earlier versions
         }
 
 
-    }
+    } //: VIEW
 
-    
 }
 
 //struct ShopItemView_Previews: PreviewProvider {

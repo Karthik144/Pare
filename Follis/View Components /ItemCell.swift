@@ -10,6 +10,7 @@ import SwiftUI
 struct ItemCell: View {
 
     // MARK: - PROPERTIES
+    let item: MenuItem
 
     // MARK: - BODY
     var body: some View {
@@ -22,25 +23,30 @@ struct ItemCell: View {
                 .frame(width: 85, height: 80)
                 .scaledToFit()
                 .cornerRadius(5)
+                .padding()
 
+            Spacer()
 
             VStack(alignment: .leading){
 
-                Text("Istanbowl")
+                Text(item.name)
                     .font(.title3)
                     .fontWeight(.bold)
                     .foregroundColor(Color.black)
+                    .lineLimit(1)
 
-                Text("Try our delicious bowl with white rice, mixed greens...")
+                Text(item.description)
                     .multilineTextAlignment(.leading)
                     .font(.caption)
                     .foregroundColor(Color.gray)
+                    .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
 
 
 
                 HStack{
 
-                    Text("10.95 USDC")
+                    Text(item.price + " USDC")
                         .font(.callout)
                         .foregroundColor(Color.black)
 
@@ -51,25 +57,29 @@ struct ItemCell: View {
                             .frame(width: 15, height: 15)
                             .scaledToFit()
 
-                        Text("Earn 5 rewards")
+                        Text(item.rewards + " rewards")
                             .font(.callout)
                             .foregroundColor(Color.black)
                     } //: HSTACK
                     .padding(.leading, 5)
 
 
-
                 } //: HSTACK
 
 
             } //: VSTACK
+//            .padding()
+//            .padding(.top, 0)
+//            .padding(.bottom, 0)
+
+            Spacer()
 
         } //: HSTACK
     }
 }
 
-struct ItemCell_Previews: PreviewProvider {
-    static var previews: some View {
-        ItemCell()
-    }
-}
+//struct ItemCell_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ItemCell()
+//    }
+//}

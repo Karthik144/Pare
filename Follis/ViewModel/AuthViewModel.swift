@@ -18,6 +18,7 @@ class AuthViewModel: ObservableObject{
     @Published var currentUser: User?
     @Published var User2: User2?
     @Published var isExistingUser: Bool?
+//    @Published var cartItems = [MenuItem]()
     private let service = UserService()
 
     init(){
@@ -69,7 +70,7 @@ class AuthViewModel: ObservableObject{
 
                 Firestore.firestore().collection("users")
                     .document(user.uid)
-                    .setData(["first_name": firstName, "last_name": lastName, "email": email, "is_merchant": isMerchant]){ _ in
+                    .setData(["first_name": firstName, "last_name": lastName, "email": email, "is_merchant": isMerchant, "cart_active": false]){ _ in
                         print("User data successfully uploaded.")
                         self.didAuthenticateUser = true
                         self.fetchUser()
