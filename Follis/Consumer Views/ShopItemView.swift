@@ -11,7 +11,6 @@ struct ShopItemView: View {
 
     // MARK: - PROPERTIES
     let shop: Shop
-    @Binding var rootIsActive: Bool
 
 
     // MARK: - BODY 

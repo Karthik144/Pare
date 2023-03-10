@@ -97,7 +97,7 @@ struct ShopsView: View {
                         ForEach(totalShops) { shop in
 
                             NavigationLink {
-                                ShopItemView(shop: shop,rootIsActive: $isActive)
+                                ShopItemView(shop: shop)
                             } label: {
                                 ShopCell(shop: shop)
                                     .padding(.leading, 0)
