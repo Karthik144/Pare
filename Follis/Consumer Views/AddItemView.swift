@@ -10,7 +10,17 @@ import SwiftUI
 struct AddItemView: View {
 
     // MARK: - PROPERTIES
+    @EnvironmentObject var viewModel: ShopViewModel
     @State private var didTap = false
+    @State private var goesToDetail = false
+    @State private var goesToShopItemView = false
+    @State private var addOptions = [Add]()
+    @State private var requiredOptions = [Required]()
+    @State private var modificationOptions = [Modification]()
+    let item: MenuItem
+    let shop: Shop
+
+    
 
     // MARK: - BODY
     var body: some View {
@@ -29,11 +39,11 @@ struct AddItemView: View {
 
 
 
-                    Text("Istanbowl")
+                    Text(item.name)
                         .font(.title3)
                         .fontWeight(.bold)
 
-                    Text("Try our delicious bowl with white rice, mixed greens, beet salad, red cabbage salad, pickles, and Tzatzki")
+                    Text(item.description)
                         .font(.caption)
                         .foregroundColor(Color.gray)
                         .lineLimit(2)
@@ -62,7 +72,7 @@ struct AddItemView: View {
 
                 LazyVStack(alignment: .leading){
 
-                    Text("Meat")
+                    Text("Required")
                         .font(.title3)
                         .fontWeight(.bold)
                         .padding(.leading, 20)
@@ -73,12 +83,13 @@ struct AddItemView: View {
 
                     VStack{
 
-                        ForEach((0...1), id: \.self) {_ in
+                        ForEach(requiredOptions) { option in
 
                             Button {
                                 didTap.toggle()
                             } label: {
-                                AddItemCell(addMoreType: false, price: "")
+
+                                RequiredItemCell(requiredItem: option, item: item)
                             }
                             .padding(.leading, 20)
                             .padding(5)
@@ -95,12 +106,12 @@ struct AddItemView: View {
 
                     VStack(alignment: .leading){
 
-                        ForEach((0...4), id: \.self) {_ in
+                        ForEach(modificationOptions) { option in
 
                             Button {
                                 didTap.toggle()
                             } label: {
-                                AddItemCell(addMoreType: false, price: "")
+                                ModificationItemCell(modificationItem: option, item: item)
                             }
                             .padding(.leading, 20)
                             .padding(5)
@@ -116,12 +127,12 @@ struct AddItemView: View {
 
                     VStack(alignment: .leading){
 
-                        ForEach((0...3), id: \.self) {_ in
+                        ForEach(addOptions) { option in
 
                             Button {
                                 didTap.toggle()
                             } label: {
-                                AddItemCell(addMoreType: true, price: "0.50")
+                                AddItemCell(item: item, addItem: option)
                             }
                             .padding(.leading, 20)
                             .padding(5)
@@ -140,34 +151,75 @@ struct AddItemView: View {
 
                 Spacer()
 
-                Button {
-                    // Add action
-                } label: {
-                    Text("Add to Cart")
-                        .frame(width: 110, height: 40)
-                        .overlay(
+//                Button {
+//                    // Add action
+//                    viewModel.cartItems.append(item)
+//
+//                } label: {
+//                    Text("Add to Cart")
+//                        .frame(width: 110, height: 40)
+//                        .overlay(
+//
+//                            RoundedRectangle(cornerRadius: 8, style: .continuous)
+//                                .stroke(Color.accentColor, lineWidth: 1)
+//                        )
+//                }
 
-                            RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                .stroke(Color.accentColor, lineWidth: 1)
-                        )
+                NavigationLink(
+                    destination: ShopItemView(shop: shop),
+                    isActive: $goesToShopItemView) {
+                    Button(action: {
+
+                        viewModel.cartItems.append(item)
+                        viewModel.updateCartActiveStatus(cartActive: true)
+                        goesToShopItemView = true
+
+                    }) {
+                        Text("Add to Cart")
+                            .frame(width: 110, height: 40)
+                            .overlay(
+
+                                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                                    .stroke(Color.accentColor, lineWidth: 1)
+                            )
+                    }
                 }
 
                 Spacer()
 
 
-                NavigationLink {
-                    CheckoutView()
-                    
-                } label: {
-                    Text("Order")
-                        .foregroundColor(Color.white)
-                        .background(
+//                NavigationLink {
+//                    CheckoutView(item: item, shop: shop)
+//
+//                } label: {
+//                    Text("Order")
+//                        .foregroundColor(Color.white)
+//                        .background(
+//
+//                            RoundedRectangle(cornerRadius: 8, style: .continuous)
+//                                .fill(Color.accentColor)
+//                                .frame(width: 110, height: 40)
+//
+//                        )
+//                }
 
-                            RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                .fill(Color.accentColor)
-                                .frame(width: 110, height: 40)
+                NavigationLink(
+                    destination: CheckoutView(shop: shop),
+                    isActive: $goesToDetail) {
+                    Button(action: {
 
-                        )
+                        viewModel.cartItems.append(item)
+                        goesToDetail = true
+
+                    }) {
+                        Text("Order")
+                            .foregroundColor(Color.white)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                                    .fill(Color.accentColor)
+                                    .frame(width: 110, height: 40)
+                            )
+                    }
                 }
 
 
@@ -181,6 +233,21 @@ struct AddItemView: View {
 
 
         } //: VSTACK
+        .onAppear(){
+
+            viewModel.fetchItemAddOptions(withUID: shop.id ?? "", itemUID: item.id ?? "") { addOptions in
+                self.addOptions = addOptions
+            }
+
+            viewModel.fetchItemRequiredOptions(withUID: shop.id ?? "", itemUID: item.id ?? "") { requiredOptions in
+                self.requiredOptions = requiredOptions
+            }
+
+            viewModel.fetchItemModificationOptions(withUID: shop.id ?? "", itemUID: item.id ?? "") { modificationOptions in
+                self.modificationOptions = modificationOptions
+            }
+
+        }
 
 
 
@@ -189,8 +256,8 @@ struct AddItemView: View {
 
 
 // MARK: - PREVIEW
-struct AddItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddItemView()
-    }
-}
+//struct AddItemView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddItemView()
+//    }
+//}

@@ -25,10 +25,12 @@ struct ProfileView: View {
 
         NavigationView{
 
+
             VStack{
 
                 Spacer()
 
+                // Profile with points and name
                 VStack(spacing: 5){
 
                     Circle()
@@ -53,13 +55,14 @@ struct ProfileView: View {
 
                 } //: VSTACK
 
-                Spacer()
 
+                Spacer()
 
                 ForEach((0..<imageList.count), id: \.self) { i in
 
-
-                    NavigationLink(destination: CheckoutView()) {
+                    NavigationLink {
+                        PersonalView()
+                    } label: {
                         ProfileItemCell(imageName: imageList[i], cellText: textList[i])
                             .padding(.leading, 20)
                             .padding(.trailing, 20)
@@ -69,18 +72,21 @@ struct ProfileView: View {
 
                 Spacer()
 
+                // Sign out and delete account buttons
                 VStack(spacing: 10){
 
                     Button {
                         viewModel.signOut()
                     } label: {
                         Text("Sign Out")
+                            .foregroundColor(Color.accentColor)
                     }
 
                     Button {
                         showingAlert.toggle()
                     } label: {
                         Text("Delete account")
+                            .foregroundColor(Color.red)
                     }
                     .foregroundColor(Color.red)
                     .alert("Are you sure you want to delete your account?", isPresented: $showingAlert){
@@ -95,24 +101,24 @@ struct ProfileView: View {
 
                 } //: VSTACK
 
-
                 Spacer()
-
-
 
 
             } //: VSTACK
 
 
-
-
         } //: NAV VIEW
+
+
+
     }
+
 }
 
-// MARK: - PREVIEW
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
+
+    // MARK: - PREVIEW
+    struct ProfileView_Previews: PreviewProvider {
+        static var previews: some View {
+            ProfileView()
+        }
     }
-}

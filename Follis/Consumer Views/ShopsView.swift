@@ -19,6 +19,7 @@ struct ShopsView: View {
     var body: some View {
 
         NavigationView {
+
             VStack{
 
                 SearchBar()
@@ -120,8 +121,9 @@ struct ShopsView: View {
 
 
         } //: NAV VIEW
-//        .navigationViewStyle(StackNavigationViewStyle())
-    } //: VIEW 
+    } //: VIEW
+
+
 }
 
 

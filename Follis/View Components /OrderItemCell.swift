@@ -12,7 +12,7 @@ struct OrderItemCell: View {
     // MARK: - PROPERTIES
     let itemQuantity: String
     let itemName: String
-    let itemPrice: String
+    let itemPrice: Double
     let rewardPoints: String 
 
 
@@ -34,7 +34,7 @@ struct OrderItemCell: View {
 
             Spacer()
 
-            Text("\(itemPrice) USDC")
+            Text("\(String(itemPrice)) USDC")
                 .padding()
 
             HStack{

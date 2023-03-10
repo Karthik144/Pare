@@ -74,7 +74,7 @@ struct OrderStatusModalView: View {
 
                 ForEach((0...1), id: \.self) {_ in
 
-                    OrderItemCell(itemQuantity: "1", itemName: "Istanbowl", itemPrice: "10.95", rewardPoints: "5")
+                    OrderItemCell(itemQuantity: "1", itemName: "Istanbowl", itemPrice: 10.95, rewardPoints: "5")
                         .padding(.leading, 25)
                         .padding(.trailing, 20)
 

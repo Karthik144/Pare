@@ -17,6 +17,7 @@ struct FollisApp: App {
     }
 
     @StateObject var viewModel = AuthViewModel()
+    @StateObject var shopViewModel = ShopViewModel()
     @StateObject var FundsViewModel = JSONViewModel()
     @ObservedObject var appState = AppState()
     
@@ -26,8 +27,8 @@ struct FollisApp: App {
             WelcomeView()
                 .environmentObject(viewModel)
                 .environmentObject(appState)
-//                .environmentObject(Router.shared)
                 .environmentObject(FundsViewModel)
+                .environmentObject(shopViewModel)
         }
 
     }

@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-struct AddItemCell: View {
+struct RequiredItemCell: View {
 
     // MARK: - PROPERTIES
     @State var didTap = false
     @EnvironmentObject var viewModel: ShopViewModel
-    let item: MenuItem
-    let addItem: Add
+    let requiredItem: Required
+    var item: MenuItem
 
     // MARK: - BODY
     var body: some View {
-        
+
 
         HStack{
 
@@ -27,14 +27,7 @@ struct AddItemCell: View {
                 // Append to array
                 if didTap {
 
-                    // Check if key exists in dictionary (then just append)
-
-                    // If key does not exist
-                    viewModel.selectedAddOptions[item, default: []].append(addItem)
-
-                    print("WHEN TAPPED")
-                    print(viewModel.selectedAddOptions[item]?.count)
-
+                    viewModel.selectedRequiredOptions[item, default: []].append(requiredItem)
                 }
 
             } label: {
@@ -43,17 +36,12 @@ struct AddItemCell: View {
                     .padding(.trailing, 5)
             }
 
-            Text(addItem.option)
+
+            Text(requiredItem.option)
                 .foregroundColor(Color.black)
 
-            Spacer()
-
-            Text("+\(addItem.price) USDC")
-                .foregroundColor(Color.black)
-                .padding(.trailing, 15)
+            Spacer() 
         } //: HSTACK
-
-
 
 
     }
@@ -61,8 +49,9 @@ struct AddItemCell: View {
 
 
 // MARK: - PREVIEW
-//struct AddItemCell_Previews: PreviewProvider {
+//struct RequiredItemCell_Previews: PreviewProvider {
 //    static var previews: some View {
 //        AddItemCell()
 //    }
 //}
+
