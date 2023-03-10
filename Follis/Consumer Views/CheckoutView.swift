@@ -65,7 +65,7 @@ struct CheckoutView: View {
                 ForEach(viewModel.cartItems) { item in
 
 
-                    let itemTotal = calcItemAddOnTotal(item: item) + (Double(item.price) ?? 0.0)
+                    let itemTotal = viewModel.calcItemAddOnTotal(item: item) + (Double(item.price) ?? 0.0)
 
                     OrderItemCell(itemQuantity: "1", itemName: item.name, itemPrice: itemTotal, rewardPoints: item.rewards)
                         .padding(.leading, 25)
@@ -128,7 +128,10 @@ struct CheckoutView: View {
 
                 Button {
 
-                    // Add action
+                    // Change cart active status
+                    viewModel.updateCartActiveStatus(cartActive: false)
+
+                    // Upload order to Firebase (so shop can access it) 
 
                 } label: {
                     Text("Pay")
@@ -142,7 +145,10 @@ struct CheckoutView: View {
 
                 Button {
 
-                    // Add action 
+                    // Change cart active status
+                    viewModel.updateCartActiveStatus(cartActive: false)
+
+                    // Upload order to Firebase (so shop can access it)
 
                 } label: {
                     Text("Pay with stars 🌟")
@@ -162,67 +168,64 @@ struct CheckoutView: View {
 
         } //: VSTACK
         .onAppear(){
-            calcTotal()
+            viewModel.calcTotal()
             print("WHEN CHECKOUT VIEW APPEARS")
             print(viewModel.cartItems.count)
 
-            for each in viewModel.cartItems{
-                print (each.price)
-            }
         }
 
 
     }
 
 
-    func calcItemAddOnTotal(item: MenuItem) -> Double{
-
-        var addOptionsPrice = 0.0
-
-        // Find all add options for that item
-        let itemAddOptions = viewModel.selectedAddOptions[item]
-
-        for each in itemAddOptions ?? [] {
-
-            addOptionsPrice += Double(each.price) ?? 0.0
-        }
-
-        return addOptionsPrice
-
-    }
-
-    func calcTotal() {
-
+//    func calcItemAddOnTotal(item: MenuItem) -> Double{
+//
 //        var addOptionsPrice = 0.0
-
-        // Find items in cart
-        for cartItem in viewModel.cartItems {
-
-            subtotal += (Double(cartItem.price) ?? 0.0) + calcItemAddOnTotal(item: cartItem)
-
-        }
-
-        tax = 0.06 * subtotal
-
-        total = 1.06 * subtotal
-
-
-        total = round(total * 100) / 100.0
-
-
-//        for each in viewModel.selectedAddOptions.keys {
-//            addOptionsPrice += Double(viewModel.selectedAddOptions[each]?.price ?? "0.0") ?? 0.0
+//
+//        // Find all add options for that item
+//        let itemAddOptions = viewModel.selectedAddOptions[item]
+//
+//        for each in itemAddOptions ?? [] {
+//
+//            addOptionsPrice += Double(each.price) ?? 0.0
 //        }
 //
-//        subtotal = Double(item.price) ?? 0.0 + addOptionsPrice
+//        return addOptionsPrice
+//
+//    }
+
+//    func calcTotal() {
+//
+////        var addOptionsPrice = 0.0
+//
+//        // Find items in cart
+//        for cartItem in viewModel.cartItems {
+//
+//            subtotal += (Double(cartItem.price) ?? 0.0) + calcItemAddOnTotal(item: cartItem)
+//
+//        }
 //
 //        tax = 0.06 * subtotal
 //
 //        total = 1.06 * subtotal
 //
+//
 //        total = round(total * 100) / 100.0
-
-    } //: FUNC CALC TOTAL
+//
+//
+////        for each in viewModel.selectedAddOptions.keys {
+////            addOptionsPrice += Double(viewModel.selectedAddOptions[each]?.price ?? "0.0") ?? 0.0
+////        }
+////
+////        subtotal = Double(item.price) ?? 0.0 + addOptionsPrice
+////
+////        tax = 0.06 * subtotal
+////
+////        total = 1.06 * subtotal
+////
+////        total = round(total * 100) / 100.0
+//
+//    } //: FUNC CALC TOTAL
 }
 
 

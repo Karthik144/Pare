@@ -13,6 +13,8 @@ struct ShopItemView: View {
     @EnvironmentObject var viewModel: ShopViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
     @State private var totalMenuItems = [MenuItem]()
+    @State private var total = 0.0
+    @State private var totalRewards = 0
     let shop: Shop
 
     // MARK: - BODY 
@@ -106,6 +108,10 @@ struct ShopItemView: View {
                         self.totalMenuItems = menuItems
                     }
 
+                    total = viewModel.calcTotal()
+
+                    totalRewards = viewModel.calcTotalRewards()
+
                 }
 
                 if authViewModel.currentUser?.cart_active == true {
@@ -113,13 +119,34 @@ struct ShopItemView: View {
                     NavigationLink {
                         CheckoutView(shop: shop)
                     } label: {
-                        Text("Checkout")
-                            .foregroundColor(Color.white)
-                            .background(
-                                RoundedRectangle(cornerRadius: 8,  style: .continuous)
-                                    .fill(Color.accentColor)
-                                    .frame(width: 300, height: 50)
-                            )
+
+                        HStack{
+
+                            Text("Checkout")
+                                .foregroundColor(Color.white)
+                                .padding()
+
+                            Spacer()
+
+
+                            HStack{
+
+                                Text("\(total) USDC")
+                                    .foregroundColor(Color.white)
+
+                                Text("+\(totalRewards) 🌟")
+                                    .foregroundColor(Color.white)
+
+                            }
+                            .padding()
+
+                        }
+                        .frame(width: 300, height: 50)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8,  style: .continuous)
+                                .fill(Color.accentColor)
+                                .frame(width: 300, height: 50)
+                        )
                     }
                     .padding()
                     .padding(.bottom, 20)

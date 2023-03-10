@@ -17,8 +17,12 @@ class ShopViewModel: ObservableObject {
     @Published var selectedRequiredOptions = [MenuItem: [Required]]()
     @Published var selectedModificationOptions = [MenuItem: [Modification]]()
     @Published var selectedAddOptions = [MenuItem: [Add]]()
-//    @Published var selectedAddOptions : [MenuItem: [Add]] = [:]
+    //    @Published var selectedAddOptions : [MenuItem: [Add]] = [:]
     @Published var cartItems = [MenuItem]()
+    @Published private var total = 0.0
+    @Published private var subtotal = 0.0
+    @Published private var tax = 0.0
+    @Published private var totalRewards = 0
 
     
     private let service = ShopService()
@@ -133,6 +137,62 @@ class ShopViewModel: ObservableObject {
 
 
     } //: UPDATE CART ACTIVE IN FIREBASE
+
+
+    func calcItemAddOnTotal(item: MenuItem) -> Double{
+
+        var addOptionsPrice = 0.0
+
+        // Find all add options for that item
+        let itemAddOptions = selectedAddOptions[item]
+
+        for each in itemAddOptions ?? [] {
+
+            addOptionsPrice += Double(each.price) ?? 0.0
+        }
+
+        return addOptionsPrice
+
+    }
+
+    func calcTotal() -> Double {
+
+        // Find items in cart
+        for cartItem in cartItems {
+
+            subtotal += (Double(cartItem.price) ?? 0.0) + calcItemAddOnTotal(item: cartItem)
+
+        }
+
+        tax = 0.06 * subtotal
+
+        total = 1.06 * subtotal
+
+
+        total = round(total * 100) / 100.0
+
+        let finalTotal = total
+
+        return finalTotal
+
+
+    } //: FUNC CALC TOTAL
+
+
+    func calcTotalRewards() -> Int {
+
+        // Find items in cart
+        for cartItem in cartItems {
+
+            totalRewards += Int(cartItem.rewards) ?? 0
+
+        }
+
+        let finalTotalRewards = totalRewards
+
+        return finalTotalRewards
+
+    } //: FUNC CALC TOTAL REWARDS
 
 
 
