@@ -16,7 +16,9 @@ struct OrderItemCell: View {
     let itemPrice: Double
     let rewardPoints: String
     let index: Int
-
+    
+    @State var finalTotal:Double
+    
 
     // MARK: - BODY
     var body: some View {
@@ -36,25 +38,39 @@ struct OrderItemCell: View {
             Menu{
                 Button(action: {
                     viewModel.cartItems.remove(at: index)
+                    itemQuantity = 0
+                    
+                    finalTotal = viewModel.calcTotal()
                 }, label: {
                     Text("delete")
                         .foregroundColor(Color.red)
                 })
                 
                 Button(action: {
+                    viewModel.cartItems[index].quantity = 1
                     itemQuantity = 1
+                    
+                    finalTotal = viewModel.calcTotal()
                 }, label: {
                     Text("1")
                 })
                 
                 Button(action: {
+                    viewModel.updateQuantity(index: index, newQuantity: 2)
                     itemQuantity = 2
+                    
+                    finalTotal = viewModel.calcTotal()
+
                 }, label: {
                     Text("2")
                 })
                 
                 Button(action: {
+                    viewModel.cartItems[index].quantity = 3
                     itemQuantity = 3
+                    
+                    finalTotal = viewModel.calcTotal()
+
                 }, label: {
                     Text("3")
                 })
@@ -70,7 +86,6 @@ struct OrderItemCell: View {
                      )}, icon: {Image(systemName: "pencil.circle.fill")}
                 )
             }
-           
             .padding(.trailing, 10)
             
             
@@ -96,6 +111,9 @@ struct OrderItemCell: View {
 
 
         } //: HSTACK
+        .onAppear{
+            
+        }
     }
 }
 

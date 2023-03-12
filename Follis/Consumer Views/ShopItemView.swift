@@ -124,14 +124,14 @@ struct ShopItemView: View {
 
                             Text("Checkout")
                                 .foregroundColor(Color.white)
-                                .padding()
+                                .padding(.leading,10)
 
                             Spacer()
 
 
                             HStack{
 
-                                Text("\(total) USDC")
+                                Text(String(total) + " USDC")
                                     .foregroundColor(Color.white)
 
                                 Text("+\(totalRewards) 🌟")

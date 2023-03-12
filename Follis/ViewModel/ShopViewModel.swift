@@ -19,10 +19,9 @@ class ShopViewModel: ObservableObject {
     @Published var selectedAddOptions = [MenuItem: [Add]]()
     //    @Published var selectedAddOptions : [MenuItem: [Add]] = [:]
     @Published var cartItems = [MenuItem]()
-    @Published var hashList = [Int]()
-    @Published private var total = 0.0
-    @Published private var subtotal = 0.0
-    @Published private var tax = 0.0
+    @Published var total = 0.0
+    @Published var subtotal = 0.0
+    @Published var tax = 0.0
     @Published private var totalRewards = 0
 
     
@@ -159,13 +158,14 @@ class ShopViewModel: ObservableObject {
     func calcTotal() -> Double {
 
         // Find items in cart
+        subtotal = 0
         for cartItem in cartItems {
 
-            subtotal += (Double(cartItem.price) ?? 0.0) + calcItemAddOnTotal(item: cartItem)
+            subtotal += ((Double(cartItem.price) ?? 0.0) + calcItemAddOnTotal(item: cartItem)) * Double(cartItem.quantity!)
 
         }
 
-        tax = 0.06 * subtotal
+        tax = round((0.06 * subtotal) * 100) / 100.0
 
         total = 1.06 * subtotal
 
@@ -194,6 +194,10 @@ class ShopViewModel: ObservableObject {
         return finalTotalRewards
 
     } //: FUNC CALC TOTAL REWARDS
+    
+    func updateQuantity(index:Int, newQuantity:Int){
+        cartItems[index].quantity = newQuantity
+    }
 
 
 

@@ -11,9 +11,9 @@ struct CheckoutView: View {
 
     // MARK: - PROPERTIES
     let shop: Shop
-    @State private var total = 0.0
-    @State private var subtotal = 0.0
-    @State private var tax = 0.0
+    @State var total = 0.0
+    @State var subtotal = 0.0
+    @State var tax = 0.0
     @EnvironmentObject var viewModel: ShopViewModel
 
 
@@ -68,7 +68,7 @@ struct CheckoutView: View {
                     let index = viewModel.cartItems.firstIndex(of: item)
  
                     
-                    OrderItemCell(itemQuantity: item.quantity!, itemName: item.name, itemPrice: itemTotal, rewardPoints: item.rewards, index: index!)
+                    OrderItemCell(itemQuantity: item.quantity!, itemName: item.name, itemPrice: itemTotal, rewardPoints: item.rewards, index: index!,finalTotal: total)
                         .padding(.leading, 25)
                         .padding(.trailing, 20)
 
@@ -82,7 +82,7 @@ struct CheckoutView: View {
 
                     Spacer()
 
-                    Text(String(subtotal) + " USDC")
+                    Text(String(viewModel.subtotal) + " USDC")
 
                 } //: HSTACK
                 .padding(.top, 10)
@@ -96,7 +96,7 @@ struct CheckoutView: View {
 
                     Spacer()
 
-                    Text(String(tax) + " USDC")
+                    Text(String(viewModel.tax) + " USDC")
 
                 } //: HSTACK
                 .padding(.leading, 20)
@@ -111,7 +111,7 @@ struct CheckoutView: View {
 
                     Spacer()
 
-                    Text(String(total) + " USDC")
+                    Text(String(viewModel.total) + " USDC")
 
                 } //: HSTACK
                 .padding(.top, 10)
