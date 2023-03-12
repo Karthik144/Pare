@@ -68,7 +68,7 @@ struct CheckoutView: View {
                     let index = viewModel.cartItems.firstIndex(of: item)
  
                     
-                    OrderItemCell(itemQuantity: item.quantity!, itemName: item.name, itemPrice: itemTotal, rewardPoints: item.rewards, index: index!,finalTotal: total)
+                    OrderItemCell(itemQuantity: item.quantity!, itemName: item.name, itemPrice: itemTotal, rewardPoints: item.rewards, index: index!, popup: false, finalTotal: total)
                         .padding(.leading, 25)
                         .padding(.trailing, 20)
 
