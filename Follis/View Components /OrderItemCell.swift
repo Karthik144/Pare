@@ -10,7 +10,7 @@ import SwiftUI
 struct OrderItemCell: View {
 
     // MARK: - PROPERTIES
-    let itemQuantity: String
+    let itemQuantity: Int
     let itemName: String
     let itemPrice: Double
     let rewardPoints: String 
@@ -20,7 +20,7 @@ struct OrderItemCell: View {
     var body: some View {
         HStack{
 
-            Text(itemQuantity)
+            Text("\(itemQuantity)")
                 .overlay(
                     RoundedRectangle(cornerRadius: 2, style: .circular)
                         .stroke(Color(red: 0.167, green: 0.29, blue: 0.933), lineWidth: 0.5)

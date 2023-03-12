@@ -64,10 +64,10 @@ struct CheckoutView: View {
 
                 ForEach(viewModel.cartItems) { item in
 
-
                     let itemTotal = viewModel.calcItemAddOnTotal(item: item) + (Double(item.price) ?? 0.0)
-
-                    OrderItemCell(itemQuantity: "1", itemName: item.name, itemPrice: itemTotal, rewardPoints: item.rewards)
+ 
+                    
+                    OrderItemCell(itemQuantity: item.quantity!, itemName: item.name, itemPrice: itemTotal, rewardPoints: item.rewards)
                         .padding(.leading, 25)
                         .padding(.trailing, 20)
 
@@ -127,7 +127,14 @@ struct CheckoutView: View {
             VStack(spacing: 30){
 
                 Button {
-
+                    let url = URL(string: "https://metamask.app.link/send/0x2791bca1f2de4661ed88a30c99a7a9449aa84174@137/transfer?address=0x14DA5EEF615205F7D3ddf80F8a0752f7F7Dfe4F6&uint256=1e7")!
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        //If you want handle the completion block than
+                        UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+                             print("Open url : \(success)")
+                        })
+                    }
                     // Change cart active status
                     viewModel.updateCartActiveStatus(cartActive: false)
 

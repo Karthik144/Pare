@@ -9,6 +9,7 @@ import Foundation
 import FirebaseFirestoreSwift
 
 struct MenuItem: Identifiable, Decodable, Hashable{
+    
 
     // Reads doc id from collection without having to duplicate it as a field
     @DocumentID var id: String?
@@ -18,6 +19,8 @@ struct MenuItem: Identifiable, Decodable, Hashable{
     var price: String
     var rewards: String
     var type: String
+    var quantity: Int?
+    var hash: Int?
 
 //    var requiredItems: [Required]?
 //    var modificationItems: [Modification]?

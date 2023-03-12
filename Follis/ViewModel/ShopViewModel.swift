@@ -19,6 +19,7 @@ class ShopViewModel: ObservableObject {
     @Published var selectedAddOptions = [MenuItem: [Add]]()
     //    @Published var selectedAddOptions : [MenuItem: [Add]] = [:]
     @Published var cartItems = [MenuItem]()
+    @Published var hashList = [Int]()
     @Published private var total = 0.0
     @Published private var subtotal = 0.0
     @Published private var tax = 0.0
@@ -193,6 +194,11 @@ class ShopViewModel: ObservableObject {
         return finalTotalRewards
 
     } //: FUNC CALC TOTAL REWARDS
+    
+    //update quantity
+    func updateQuantity(item: inout MenuItem, newQuantity:Int){
+        item.quantity = newQuantity
+    }
 
 
 
