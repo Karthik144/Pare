@@ -194,11 +194,6 @@ class ShopViewModel: ObservableObject {
         return finalTotalRewards
 
     } //: FUNC CALC TOTAL REWARDS
-    
-    //update quantity
-    func updateQuantity(item: inout MenuItem, newQuantity:Int){
-        item.quantity = newQuantity
-    }
 
 
 
