@@ -65,9 +65,10 @@ struct CheckoutView: View {
                 ForEach(viewModel.cartItems) { item in
 
                     let itemTotal = viewModel.calcItemAddOnTotal(item: item) + (Double(item.price) ?? 0.0)
+                    let index = viewModel.cartItems.firstIndex(of: item)
  
                     
-                    OrderItemCell(itemQuantity: item.quantity!, itemName: item.name, itemPrice: itemTotal, rewardPoints: item.rewards)
+                    OrderItemCell(itemQuantity: item.quantity!, itemName: item.name, itemPrice: itemTotal, rewardPoints: item.rewards, index: index!)
                         .padding(.leading, 25)
                         .padding(.trailing, 20)
 
@@ -175,7 +176,7 @@ struct CheckoutView: View {
 
         } //: VSTACK
         .onAppear(){
-            viewModel.calcTotal()
+            total = viewModel.calcTotal()
             print("WHEN CHECKOUT VIEW APPEARS")
             print(viewModel.cartItems.count)
 

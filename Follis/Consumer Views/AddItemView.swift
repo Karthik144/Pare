@@ -234,7 +234,35 @@ struct AddItemView: View {
                     isActive: $goesToDetail) {
                     Button(action: {
 
-                        viewModel.cartItems.append(item)
+                        var count = 0
+                        let itemHash = item.hashValue
+                        viewModel.hashList.append(itemHash)
+                        item.hash = itemHash
+                        
+                        
+                        if (viewModel.cartItems.isEmpty){
+                            item.quantity = 1
+                            viewModel.cartItems.append(item)
+                        }
+                        
+                        
+                        for (index,itemI) in viewModel.cartItems.enumerated(){
+                            if (item.hash != itemI.hash!){
+                                item.quantity = 1
+                                viewModel.cartItems.append(item)
+                            }
+                            else{
+                                for hash in viewModel.hashList{
+                                    if(hash == itemHash){
+                                        count += 1
+                                    }
+                                }
+                                viewModel.cartItems[index] = MenuItem(description: itemI.description, name: itemI.name, price: itemI.price, rewards: itemI.rewards, type: itemI.type,quantity: count, hash: itemI.hash!)
+                                
+                            }
+                        }
+                        
+                        viewModel.updateCartActiveStatus(cartActive: true)
                         goesToDetail = true
 
                     }) {
