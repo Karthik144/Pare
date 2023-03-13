@@ -13,7 +13,7 @@ struct OrderItemCell: View {
     @EnvironmentObject var viewModel: ShopViewModel
     @State var itemQuantity: Int
     let itemName: String
-    let itemPrice: Double
+    let itemPrice: String
     let rewardPoints: String
     let index: Int
     
