@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 
-
+@MainActor
 class ShopViewModel: ObservableObject {
 
 
@@ -153,7 +153,7 @@ class ShopViewModel: ObservableObject {
         let db = Firestore.firestore()
 
         // Takes us to the current user
-        Firestore.firestore().collection("users").document(userUID).updateData(["cart_active": cartActive]){ _ in
+        db.collection("users").document(userUID).updateData(["cart_active": cartActive]){ _ in
 
             print("User data successfully uploaded.")
         }
@@ -165,6 +165,7 @@ class ShopViewModel: ObservableObject {
     // Upload order to firebase
     func postOrderData(shopID: String, cartTotalItems: String, cart: [MenuItem], selectedRequiredOptions: [MenuItem: [Required]], selectedModificationOptions: [MenuItem: [Modification]], selectedAddOptions: [MenuItem: [Add]], orderStatus: String){
 
+
         // Gets the current users uid so we can reference it
         guard let userUID = Auth.auth().currentUser?.uid else {return}
 
@@ -173,7 +174,7 @@ class ShopViewModel: ObservableObject {
 
 
         // Add a document to user's values collection
-        db.collection("users").document(userUID).collection("pending_orders").addDocument(data: ["shop_id": shopID, "total_items": cartTotalItems, "user_who_ordered": userUID, "date_ordered": Timestamp(date: Date())]) { error in
+        let ordersDocRef = db.collection("users").document(userUID).collection("pending_orders").addDocument(data: ["shop_id": shopID, "total_items": cartTotalItems, "user_who_ordered": userUID, "date_ordered": Timestamp(date: Date())]) { error in
 
             // Check for errors
             if error == nil {
@@ -187,24 +188,27 @@ class ShopViewModel: ObservableObject {
             }
         }
 
+
         let totalItems = Int(cartTotalItems) ?? 0
 
-        for i in 0..<(totalItems-1) {
+        print(cartTotalItems)
+
+        for i in 0..<(totalItems) {
 
             var cartItem = cart[i]
 
             // Store the array of required objects for the cart item
-            var itemRequiredOptions = selectedRequiredOptions[cartItem]
+            let itemRequiredOptions = selectedRequiredOptions[cartItem, default: []]
 
             // Store the array of modified objects for the cart item
-            var itemModificationOptions = selectedModificationOptions[cartItem]
+            let itemModificationOptions = selectedModificationOptions[cartItem, default: []]
 
             // Store the array of addOn objects for the cart item
-            var itemAddOnOptions = selectedAddOptions[cartItem]
+            let itemAddOnOptions = selectedAddOptions[cartItem, default: []]
 
 
             // Add a document to user's values collection
-            db.collection("users").document(userUID).collection("pending_orders").addDocument(data: ["shop_id": shopID, "total_items": cartTotalItems, "user_who_ordered": userUID, "date_posted": Timestamp(date: Date())]) { error in
+            let itemDocRef = db.collection("users").document(userUID).collection("pending_orders").document(ordersDocRef.documentID).collection("order_items").addDocument(data: ["order_id": ordersDocRef.documentID]) { error in
 
                 // Check for errors
                 if error == nil {
@@ -216,6 +220,69 @@ class ShopViewModel: ObservableObject {
                     print("Here's the error: \(String(describing: error?.localizedDescription))")
                     return
                 }
+            }
+
+            print("DOC ID")
+            print(itemDocRef.documentID)
+
+            print("Number of items in required options array")
+            print(selectedRequiredOptions[cartItem]?.count)
+            
+            for each in (selectedRequiredOptions[cartItem, default: []]) {
+
+                // Add a document to user's values collection
+                db.collection("users").document(userUID).collection("pending_orders").document(ordersDocRef.documentID).collection("order_items").document(itemDocRef.documentID).collection("required").addDocument(data: ["option": each.option]) { error in
+
+                    // Check for errors
+                    if error == nil {
+                        // No errors
+                        print("Success!")
+
+                    } else {
+                        // Handle the error
+                        print("Here's the error: \(String(describing: error?.localizedDescription))")
+                        return
+                    }
+                }
+
+            }
+
+            for each in itemAddOnOptions {
+
+                // Add a document to user's values collection
+                db.collection("users").document(userUID).collection("pending_orders").document(ordersDocRef.documentID).collection("order_items").document(itemDocRef.documentID).collection("add").addDocument(data: ["option": each.option, "price": each.price]) { error in
+
+                    // Check for errors
+                    if error == nil {
+                        // No errors
+                        print("Success!")
+
+                    } else {
+                        // Handle the error
+                        print("Here's the error: \(String(describing: error?.localizedDescription))")
+                        return
+                    }
+                }
+
+            }
+
+            for each in itemModificationOptions {
+
+                // Add a document to user's values collection
+                db.collection("users").document(userUID).collection("pending_orders").document(ordersDocRef.documentID).collection("order_items").document(itemDocRef.documentID).collection("modifications").addDocument(data: ["option": each.option]) { error in
+
+                    // Check for errors
+                    if error == nil {
+                        // No errors
+                        print("Success!")
+
+                    } else {
+                        // Handle the error
+                        print("Here's the error: \(String(describing: error?.localizedDescription))")
+                        return
+                    }
+                }
+
             }
 
 

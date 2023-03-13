@@ -151,19 +151,6 @@ struct AddItemView: View {
 
                 Spacer()
 
-//                Button {
-//                    // Add action
-//                    viewModel.cartItems.append(item)
-//
-//                } label: {
-//                    Text("Add to Cart")
-//                        .frame(width: 110, height: 40)
-//                        .overlay(
-//
-//                            RoundedRectangle(cornerRadius: 8, style: .continuous)
-//                                .stroke(Color.accentColor, lineWidth: 1)
-//                        )
-//                }
 
                 NavigationLink(
                     destination: ShopItemView(shop: shop),
@@ -172,17 +159,21 @@ struct AddItemView: View {
                         let itemHash = item.hashValue
                         //viewModel.hashList.append(itemHash)
                         item.hash = itemHash
-                        
-                        
+
+
                         if (viewModel.cartItems.isEmpty){
                             item.quantity = 1
+
                             viewModel.cartItems.append(item)
+
                         }
                         else{
                             for (index,selectedItem) in viewModel.cartItems.enumerated(){
                                 if (item.hash != selectedItem.hash!){
                                     item.quantity = 1
+
                                     viewModel.cartItems.append(item)
+
                                 }
                                 else{
                                     /*
@@ -192,16 +183,20 @@ struct AddItemView: View {
                                      }
                                      }*/
                                     var count = selectedItem.quantity! + 1
-                                    
+
+
+
                                     viewModel.cartItems[index] = MenuItem(description: selectedItem.description, name: selectedItem.name, price: selectedItem.price, rewards: selectedItem.rewards, type: selectedItem.type,quantity: count, hash: selectedItem.hash!)
-                                    
+
+
                                 }
                             }
                         }
-                        
-                        
-                        
+
+
                         viewModel.updateCartActiveStatus(cartActive: true)
+
+
                         goesToShopItemView = true
 
                     }) {
@@ -218,21 +213,6 @@ struct AddItemView: View {
                 Spacer()
 
 
-//                NavigationLink {
-//                    CheckoutView(item: item, shop: shop)
-//
-//                } label: {
-//                    Text("Order")
-//                        .foregroundColor(Color.white)
-//                        .background(
-//
-//                            RoundedRectangle(cornerRadius: 8, style: .continuous)
-//                                .fill(Color.accentColor)
-//                                .frame(width: 110, height: 40)
-//
-//                        )
-//                }
-
                 NavigationLink(
                     destination: CheckoutView(shop: shop),
                     isActive: $goesToDetail) {
@@ -241,17 +221,21 @@ struct AddItemView: View {
                         let itemHash = item.hashValue
                         //viewModel.hashList.append(itemHash)
                         item.hash = itemHash
-                        
-                        
+
+
                         if (viewModel.cartItems.isEmpty){
                             item.quantity = 1
+
                             viewModel.cartItems.append(item)
+
                         }
                         else{
                             for (index,selectedItem) in viewModel.cartItems.enumerated(){
                                 if (item.hash != selectedItem.hash!){
                                     item.quantity = 1
-                                    viewModel.cartItems.append(item)
+
+                                        viewModel.cartItems.append(item)
+
                                 }
                                 else{
                                     /*
@@ -261,15 +245,18 @@ struct AddItemView: View {
                                      }
                                      }*/
                                     var count = selectedItem.quantity! + 1
-                                    
+
+
                                     viewModel.cartItems[index] = MenuItem(description: selectedItem.description, name: selectedItem.name, price: selectedItem.price, rewards: selectedItem.rewards, type: selectedItem.type,quantity: count, hash: selectedItem.hash!)
-                                    
+
+
                                 }
                             }
                         }
-                        
-                        
+
+
                         viewModel.updateCartActiveStatus(cartActive: true)
+
                         goesToDetail = true
 
                     }) {
@@ -280,7 +267,7 @@ struct AddItemView: View {
                                     .fill(Color.accentColor)
                                     .frame(width: 110, height: 40)
                             )
-                    }
+                    } //: END OF BUTTON
                 }
 
 
@@ -300,6 +287,7 @@ struct AddItemView: View {
                 self.addOptions = addOptions
             }
 
+
             viewModel.fetchItemRequiredOptions(withUID: shop.id ?? "", itemUID: item.id ?? "") { requiredOptions in
                 self.requiredOptions = requiredOptions
             }
@@ -308,8 +296,8 @@ struct AddItemView: View {
                 self.modificationOptions = modificationOptions
             }
 
-        }
 
+        }
 
 
     }

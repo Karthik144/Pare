@@ -60,22 +60,19 @@ struct CheckoutView: View {
                     .fontWeight(.bold)
                     .padding(.leading, 20)
 
-//                ForEach((0...1), id: \.self) {_ in
 
                 ForEach(viewModel.cartItems) { item in
                     
 
                     let index = viewModel.cartItems.firstIndex(of: item)
-                    //let itemTotal = viewModel.calcItemAddOnTotal(itemIndex: index ?? 0) + (Double(item.price) ?? 0.0)
+//                    let itemTotal = viewModel.calcItemAddOnTotal(itemIndex: index ?? 0) + (Double(item.price) ?? 0.0)
                      
                     OrderItemCell(itemQuantity: item.quantity!, itemName: item.name, itemPrice: item.price, rewardPoints: item.rewards, index: index!, popup:false, finalTotal: total)
                         .padding(.leading, 25)
                         .padding(.trailing, 20)
 
                 } //: FOR EACH
-                .onAppear{
-                    print(viewModel.cartItems)
-                }
+
 
                 Divider()
 
@@ -162,6 +159,7 @@ struct CheckoutView: View {
                     viewModel.updateCartActiveStatus(cartActive: false)
 
                     // Upload order to Firebase (so shop can access it)
+                    viewModel.postOrderData(shopID: shop.id ?? "", cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, selectedRequiredOptions: viewModel.selectedRequiredOptions, selectedModificationOptions: viewModel.selectedModificationOptions, selectedAddOptions: viewModel.selectedAddOptions, orderStatus: "pending")
 
                 } label: {
                     Text("Pay with stars 🌟")
