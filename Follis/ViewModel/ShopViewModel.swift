@@ -65,6 +65,7 @@ class ShopViewModel: ObservableObject {
     }
 
 
+
     func fetchItemAddOptions(withUID uid: String, itemUID: String, completion: @escaping([Add]) -> Void){
 
         Firestore.firestore().collection("shops").document(uid).collection("menu").document(itemUID).collection("add").addSnapshotListener { (querySnapshot, error) in
@@ -191,11 +192,19 @@ class ShopViewModel: ObservableObject {
 
         let totalItems = Int(cartTotalItems) ?? 0
 
-        print(cartTotalItems)
-
         for i in 0..<(totalItems) {
 
             var cartItem = cart[i]
+
+            let saveQuantity = cartItem.quantity!
+            let saveHash = cartItem.hash!
+
+            cartItem.quantity = nil
+            cartItem.hash = nil
+
+            print("Cart item in for loop")
+            print(cartItem)
+    
 
             // Store the array of required objects for the cart item
             let itemRequiredOptions = selectedRequiredOptions[cartItem, default: []]
@@ -206,6 +215,9 @@ class ShopViewModel: ObservableObject {
             // Store the array of addOn objects for the cart item
             let itemAddOnOptions = selectedAddOptions[cartItem, default: []]
 
+            cartItem.quantity = saveQuantity
+            cartItem.hash = saveHash
+
 
             // Add a document to user's values collection
             let itemDocRef = db.collection("users").document(userUID).collection("pending_orders").document(ordersDocRef.documentID).collection("order_items").addDocument(data: ["order_id": ordersDocRef.documentID]) { error in
@@ -213,7 +225,7 @@ class ShopViewModel: ObservableObject {
                 // Check for errors
                 if error == nil {
                     // No errors
-                    print("Success!")
+//                    print("Success!")
 
                 } else {
                     // Handle the error
@@ -221,14 +233,8 @@ class ShopViewModel: ObservableObject {
                     return
                 }
             }
-
-            print("DOC ID")
-            print(itemDocRef.documentID)
-
-            print("Number of items in required options array")
-            print(selectedRequiredOptions[cartItem]?.count)
             
-            for each in (selectedRequiredOptions[cartItem, default: []]) {
+            for each in itemRequiredOptions {
 
                 // Add a document to user's values collection
                 db.collection("users").document(userUID).collection("pending_orders").document(ordersDocRef.documentID).collection("order_items").document(itemDocRef.documentID).collection("required").addDocument(data: ["option": each.option]) { error in
@@ -236,7 +242,7 @@ class ShopViewModel: ObservableObject {
                     // Check for errors
                     if error == nil {
                         // No errors
-                        print("Success!")
+//                        print("Success!")
 
                     } else {
                         // Handle the error

@@ -31,7 +31,7 @@ struct RequiredItemCell: View {
                 }
 
                 print("count inside the required cell")
-                print(viewModel.selectedRequiredOptions[item]?.count)
+                print(item)
 
             } label: {
                 Image(systemName: didTap ? "circle.fill" : "circle")
