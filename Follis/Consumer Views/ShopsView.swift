@@ -14,6 +14,7 @@ struct ShopsView: View {
     @State private var orderScheduled = true
     @State private var showModal = false
     @State private var totalShops = [Shop]()
+    @State private var pendingOrders = [PendingOrder]()
 
     // MARK: - BODY
     var body: some View {
@@ -25,60 +26,68 @@ struct ShopsView: View {
                 SearchBar()
                     .padding(.top, 10)
 
-                ZStack{
+                if self.pendingOrders.count >= 1 {
 
-                    RoundedRectangle(cornerRadius: 7, style: .continuous)
-                        .fill(Color.accentColor)
-                        .frame(width: 340, height: 75)
 
-                    HStack{
+                    ZStack{
 
-                        Spacer()
+                        RoundedRectangle(cornerRadius: 7, style: .continuous)
+                            .fill(Color.accentColor)
+                            .frame(width: 340, height: 75)
 
-                        VStack(alignment: .leading, spacing: 0){
 
-                            Text("Ordered Scheduled")
-                                .foregroundColor(Color.white)
-                                .font(.title2)
-                                .fontWeight(.bold)
+                        HStack{
 
-                            HStack{
+                            Spacer()
 
-                                Text("In Progress")
-                                    .font(.caption)
+
+                            VStack(alignment: .leading, spacing: 0){
+
+                                Text("Ordered Scheduled")
                                     .foregroundColor(Color.white)
-                                    .fontWeight(.light)
+                                    .font(.title2)
+                                    .fontWeight(.bold)
 
-                                Circle()
-                                    .frame(width: 2, height: 2)
-                                    .foregroundColor(Color.white)
+                                HStack{
 
-                                Text("Scheduled for 3pm")
-                                    .font(.caption)
-                                    .foregroundColor(Color.white)
-                                    .fontWeight(.light)
+                                    Text("In Progress")
+                                        .font(.caption)
+                                        .foregroundColor(Color.white)
+                                        .fontWeight(.light)
+
+                                    Circle()
+                                        .frame(width: 2, height: 2)
+                                        .foregroundColor(Color.white)
+
+                                    Text("Scheduled for 3pm")
+                                        .font(.caption)
+                                        .foregroundColor(Color.white)
+                                        .fontWeight(.light)
+                                }
                             }
-                        }
 
-                        Spacer()
-
-
-                        Image(systemName: "clock.badge.checkmark")
-                            .font(.title)
-                            .foregroundColor(Color.white)
-                            .frame(width: 30, height: 30)
+                            Spacer()
 
 
-                        Spacer()
+                            Image(systemName: "clock.badge.checkmark")
+                                .font(.title)
+                                .foregroundColor(Color.white)
+                                .frame(width: 30, height: 30)
 
-                    } //: HSTACK
 
-                } //: ZSTACK
-                .onTapGesture {
-                    showModal.toggle()
-                }.sheet(isPresented: $showModal) {
-                    OrderStatusModalView(shop: "Otto Turkish Street Food", address: "111 W Water St, Charlottesville, VA 22902", orderNumber: "#325", orderStatus: "In Progress")
+                            Spacer()
+
+                        } //: HSTACK
+
+                    } //: ZSTACK
+                    .onTapGesture {
+                        showModal.toggle()
+                    }.sheet(isPresented: $showModal) {
+                        OrderStatusModalView(shop: "Otto Turkish Street Food", address: "111 W Water St, Charlottesville, VA 22902", orderNumber: "#325", orderStatus: "In Progress")
+                    }
+
                 }
+
 
                 HStack{
                     Text("Near You")
@@ -116,6 +125,10 @@ struct ShopsView: View {
             .onAppear(){
                 viewModel.fetchShops { shops in
                     self.totalShops = shops
+                }
+
+                viewModel.fetchPendingOrders { orders in
+                    self.pendingOrders = orders
                 }
             }
 

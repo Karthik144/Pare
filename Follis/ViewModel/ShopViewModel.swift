@@ -120,7 +120,30 @@ class ShopViewModel: ObservableObject {
 
     } //: FETCH ITEM ADD OPTIONS
 
+    // Fetch pending orders data
+    func fetchPendingOrders(completion: @escaping([PendingOrder]) -> Void){
 
+        // Gets the current users uid so we can reference it
+        guard let userUID = Auth.auth().currentUser?.uid else {return}
+
+        Firestore.firestore().collection("users").document(userUID).collection("pending_orders").addSnapshotListener { (querySnapshot, error) in
+
+            guard let documents = querySnapshot?.documents else {
+                print("No documents in this collection.")
+                return
+
+            }
+
+            let pendingOrders = documents.compactMap({ try? $0.data(as: PendingOrder.self) })
+
+            completion(pendingOrders)
+
+        }
+
+    } //: FETCH ITEM ADD OPTIONS
+
+
+    // NOTE: NEED TO FINISHED THIS FUNC TO UPLOAD DATA
     func updateCartActiveStatus(cartActive: Bool){
 
         // Gets the current users uid so we can reference it
@@ -137,6 +160,70 @@ class ShopViewModel: ObservableObject {
 
 
     } //: UPDATE CART ACTIVE IN FIREBASE
+
+
+    // Upload order to firebase
+    func postOrderData(shopID: String, cartTotalItems: String, cart: [MenuItem], selectedRequiredOptions: [MenuItem: [Required]], selectedModificationOptions: [MenuItem: [Modification]], selectedAddOptions: [MenuItem: [Add]], orderStatus: String){
+
+        // Gets the current users uid so we can reference it
+        guard let userUID = Auth.auth().currentUser?.uid else {return}
+
+        // Create a reference to the database
+        let db = Firestore.firestore()
+
+
+        // Add a document to user's values collection
+        db.collection("users").document(userUID).collection("pending_orders").addDocument(data: ["shop_id": shopID, "total_items": cartTotalItems, "user_who_ordered": userUID, "date_ordered": Timestamp(date: Date())]) { error in
+
+            // Check for errors
+            if error == nil {
+                // No errors
+                print("Success!")
+
+            } else {
+                // Handle the error
+                print("Here's the error: \(String(describing: error?.localizedDescription))")
+                return
+            }
+        }
+
+        let totalItems = Int(cartTotalItems) ?? 0
+
+        for i in 0..<(totalItems-1) {
+
+            var cartItem = cart[i]
+
+            // Store the array of required objects for the cart item
+            var itemRequiredOptions = selectedRequiredOptions[cartItem]
+
+            // Store the array of modified objects for the cart item
+            var itemModificationOptions = selectedModificationOptions[cartItem]
+
+            // Store the array of addOn objects for the cart item
+            var itemAddOnOptions = selectedAddOptions[cartItem]
+
+
+            // Add a document to user's values collection
+            db.collection("users").document(userUID).collection("pending_orders").addDocument(data: ["shop_id": shopID, "total_items": cartTotalItems, "user_who_ordered": userUID, "date_posted": Timestamp(date: Date())]) { error in
+
+                // Check for errors
+                if error == nil {
+                    // No errors
+                    print("Success!")
+
+                } else {
+                    // Handle the error
+                    print("Here's the error: \(String(describing: error?.localizedDescription))")
+                    return
+                }
+            }
+
+
+        }
+
+
+
+    } //: ADD SHARE DATA TO BACKEND
 
 
     func calcItemAddOnTotal(itemIndex: Int) -> Double{
@@ -159,8 +246,14 @@ class ShopViewModel: ObservableObject {
         cartItems[itemIndex].hash = saveHash
         
 
+        print("INSIDE CALC ITEM ADD ON TOTAL")
+        print(itemAddOptions?.count)
+
         for each in itemAddOptions ?? [] {
             //print("Price: \(each.price)")
+
+            print("INSIDE FOR LOOP IN VIEW MODEL")
+            print(each.option)
             addOptionsPrice += Double(each.price) ?? 0.0
         }
         return addOptionsPrice

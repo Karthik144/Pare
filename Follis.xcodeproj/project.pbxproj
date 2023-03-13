@@ -51,6 +51,7 @@
 		7CD78BF5299DE8C8002E01E1 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD78BF4299DE8C8002E01E1 /* PasswordView.swift */; };
 		7CD78BF7299DEE47002E01E1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD78BF6299DEE47002E01E1 /* SettingsView.swift */; };
 		7CD78BFF299DF684002E01E1 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD78BFE299DF684002E01E1 /* TransactionView.swift */; };
+		7CEB24D729BE53CF00018FB2 /* PendingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEB24D629BE53CF00018FB2 /* PendingOrder.swift */; };
 		7CEDCD1429BBB4B700C70EF5 /* PersonalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEDCD1329BBB4B700C70EF5 /* PersonalView.swift */; };
 		7CF441DD299F3F1100A4C660 /* OrderItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF441DC299F3F1100A4C660 /* OrderItemView.swift */; };
 		7CF74DC7299C620C002B2BB9 /* GetStartedButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF74DC6299C620B002B2BB9 /* GetStartedButtonModifier.swift */; };
@@ -114,6 +115,7 @@
 		7CD78BF4299DE8C8002E01E1 /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
 		7CD78BF6299DEE47002E01E1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		7CD78BFE299DF684002E01E1 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
+		7CEB24D629BE53CF00018FB2 /* PendingOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOrder.swift; sourceTree = "<group>"; };
 		7CEDCD1329BBB4B700C70EF5 /* PersonalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalView.swift; sourceTree = "<group>"; };
 		7CF441DC299F3F1100A4C660 /* OrderItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemView.swift; sourceTree = "<group>"; };
 		7CF74DC6299C620B002B2BB9 /* GetStartedButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedButtonModifier.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				7C97788029BA9E8500F0C6C5 /* Add.swift */,
 				7C97788229BAA68900F0C6C5 /* Required.swift */,
 				7C97788629BAA97C00F0C6C5 /* Modification.swift */,
+				7CEB24D629BE53CF00018FB2 /* PendingOrder.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				7C86262B29B7F86000919213 /* ItemCell.swift in Sources */,
 				7C45EC46299B2D5F00F3B439 /* SignUpViewTwo.swift in Sources */,
 				7C45EC20299B26B300F3B439 /* FollisApp.swift in Sources */,
+				7CEB24D729BE53CF00018FB2 /* PendingOrder.swift in Sources */,
 				E943114929A179B700E26EBE /* KeyboardResponder.swift in Sources */,
 				7C45EC38299B2AC700F3B439 /* ButtonModifier.swift in Sources */,
 				7CD78BFF299DF684002E01E1 /* TransactionView.swift in Sources */,
