@@ -63,12 +63,12 @@ struct CheckoutView: View {
 //                ForEach((0...1), id: \.self) {_ in
 
                 ForEach(viewModel.cartItems) { item in
-
-                    let itemTotal = viewModel.calcItemAddOnTotal(item: item) + (Double(item.price) ?? 0.0)
-                    let index = viewModel.cartItems.firstIndex(of: item)
- 
                     
-                    OrderItemCell(itemQuantity: item.quantity!, itemName: item.name, itemPrice: itemTotal, rewardPoints: item.rewards, index: index!,finalTotal: total)
+
+                    let index = viewModel.cartItems.firstIndex(of: item)
+                    //let itemTotal = viewModel.calcItemAddOnTotal(itemIndex: index ?? 0) + (Double(item.price) ?? 0.0)
+ 
+                    OrderItemCell(itemQuantity: item.quantity!, itemName: item.name, itemPrice: viewModel.total, rewardPoints: item.rewards, index: index!,finalTotal: total)
                         .padding(.leading, 25)
                         .padding(.trailing, 20)
 
@@ -179,7 +179,6 @@ struct CheckoutView: View {
             total = viewModel.calcTotal()
             print("WHEN CHECKOUT VIEW APPEARS")
             print(viewModel.cartItems.count)
-
         }
 
 

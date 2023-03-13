@@ -139,18 +139,30 @@ class ShopViewModel: ObservableObject {
     } //: UPDATE CART ACTIVE IN FIREBASE
 
 
-    func calcItemAddOnTotal(item: MenuItem) -> Double{
+    func calcItemAddOnTotal(itemIndex: Int) -> Double{
 
         var addOptionsPrice = 0.0
 
+        print(cartItems[itemIndex])
+        
+        //save values
+        var saveQuantity = cartItems[itemIndex].quantity!
+        var saveHash = cartItems[itemIndex].hash!
+        
+        //set to nil to match dictionary key
+        cartItems[itemIndex].quantity = nil
+        cartItems[itemIndex].hash = nil
         // Find all add options for that item
-        let itemAddOptions = selectedAddOptions[item]
+        let itemAddOptions = selectedAddOptions[cartItems[itemIndex]]
+        
+        cartItems[itemIndex].quantity = saveQuantity
+        cartItems[itemIndex].hash = saveHash
+        
 
         for each in itemAddOptions ?? [] {
-
+            //print("Price: \(each.price)")
             addOptionsPrice += Double(each.price) ?? 0.0
         }
-
         return addOptionsPrice
 
     }
@@ -161,7 +173,7 @@ class ShopViewModel: ObservableObject {
         subtotal = 0
         for cartItem in cartItems {
 
-            subtotal += ((Double(cartItem.price) ?? 0.0) + calcItemAddOnTotal(item: cartItem)) * Double(cartItem.quantity!)
+            subtotal += ((Double(cartItem.price) ?? 0.0) + calcItemAddOnTotal(itemIndex: cartItems.firstIndex(of: cartItem)!)) * Double(cartItem.quantity!)
 
         }
 
@@ -182,10 +194,11 @@ class ShopViewModel: ObservableObject {
 
     func calcTotalRewards() -> Int {
 
+        totalRewards = 0
         // Find items in cart
         for cartItem in cartItems {
 
-            totalRewards += Int(cartItem.rewards) ?? 0
+            totalRewards += (Int(cartItem.rewards) ?? 0) * cartItem.quantity!
 
         }
 
