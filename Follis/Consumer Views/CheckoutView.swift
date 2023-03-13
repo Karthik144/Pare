@@ -159,7 +159,7 @@ struct CheckoutView: View {
                     viewModel.updateCartActiveStatus(cartActive: false)
 
                     // Upload order to Firebase (so shop can access it)
-                    viewModel.postOrderData(shopID: shop.id ?? "", cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, selectedRequiredOptions: viewModel.selectedRequiredOptions, selectedModificationOptions: viewModel.selectedModificationOptions, selectedAddOptions: viewModel.selectedAddOptions, orderStatus: "pending")
+                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, selectedRequiredOptions: viewModel.selectedRequiredOptions, selectedModificationOptions: viewModel.selectedModificationOptions, selectedAddOptions: viewModel.selectedAddOptions, orderStatus: "pending")
 
                 } label: {
                     Text("Pay with stars 🌟")
