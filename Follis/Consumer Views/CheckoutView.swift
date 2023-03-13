@@ -68,7 +68,7 @@ struct CheckoutView: View {
                     let index = viewModel.cartItems.firstIndex(of: item)
                     //let itemTotal = viewModel.calcItemAddOnTotal(itemIndex: index ?? 0) + (Double(item.price) ?? 0.0)
  
-                    OrderItemCell(itemQuantity: item.quantity!, itemName: item.name, itemPrice: viewModel.total, rewardPoints: item.rewards, index: index!,finalTotal: total)
+                    OrderItemCell(itemQuantity: item.quantity!, itemName: item.name, itemPrice: viewModel.total, rewardPoints: item.rewards, index: index!, popup:false, finalTotal: total)
                         .padding(.leading, 25)
                         .padding(.trailing, 20)
 
@@ -82,7 +82,7 @@ struct CheckoutView: View {
 
                     Spacer()
 
-                    Text(String(viewModel.subtotal) + " USDC")
+                    Text(String(round(viewModel.subtotal * 100) / 100.0) + " USDC")
 
                 } //: HSTACK
                 .padding(.top, 10)
