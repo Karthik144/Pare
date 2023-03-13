@@ -196,6 +196,8 @@ class ShopViewModel: ObservableObject {
         for i in 0..<(totalItems) {
 
             var cartItem = cart[i]
+            
+            
 
             // Store the array of required objects for the cart item
             let itemRequiredOptions = selectedRequiredOptions[cartItem, default: []]
