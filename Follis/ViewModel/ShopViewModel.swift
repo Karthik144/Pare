@@ -164,7 +164,7 @@ class ShopViewModel: ObservableObject {
 
 
     // Upload order to firebase
-    func postOrderData(shopID: String, cartTotalItems: String, cart: [MenuItem], selectedRequiredOptions: [MenuItem: [Required]], selectedModificationOptions: [MenuItem: [Modification]], selectedAddOptions: [MenuItem: [Add]], orderStatus: String){
+    func postOrderData(shop: Shop, cartTotalItems: String, cart: [MenuItem], selectedRequiredOptions: [MenuItem: [Required]], selectedModificationOptions: [MenuItem: [Modification]], selectedAddOptions: [MenuItem: [Add]], orderStatus: String){
 
 
         // Gets the current users uid so we can reference it
@@ -175,7 +175,7 @@ class ShopViewModel: ObservableObject {
 
 
         // Add a document to user's values collection
-        let ordersDocRef = db.collection("users").document(userUID).collection("pending_orders").addDocument(data: ["shop_id": shopID, "total_items": cartTotalItems, "user_who_ordered": userUID, "date_ordered": Timestamp(date: Date())]) { error in
+        let ordersDocRef = db.collection("users").document(userUID).collection("pending_orders").addDocument(data: ["shop_id": shop.id, "total_items": cartTotalItems, "user_who_ordered": userUID, "date_ordered": Timestamp(date: Date())]) { error in
 
             // Check for errors
             if error == nil {
@@ -296,9 +296,38 @@ class ShopViewModel: ObservableObject {
 
         }
 
+        // Share data to merchant as well
+        postOrderDataToMerchant(userID: userUID, orderID: ordersDocRef.documentID, shop: shop)
+
 
 
     } //: ADD SHARE DATA TO BACKEND
+
+
+    func postOrderDataToMerchant(userID: String, orderID: String, shop: Shop){
+
+        // Create a reference to the database
+        let db = Firestore.firestore()
+
+        let merchantID = shop.merchant_id ?? ""
+
+        // Add a document to user's values collection
+        let ordersDocRef = db.collection("merchants").document(merchantID).collection("pending_orders").addDocument(data: ["order_id": orderID, "user_id": userID]) { error in
+
+            // Check for errors
+            if error == nil {
+                // No errors
+                print("Success!")
+
+            } else {
+                // Handle the error
+                print("Here's the error: \(String(describing: error?.localizedDescription))")
+                return
+            }
+        }
+
+
+    }
 
 
     func calcItemAddOnTotal(itemIndex: Int) -> Double{
@@ -319,10 +348,7 @@ class ShopViewModel: ObservableObject {
         
         cartItems[itemIndex].quantity = saveQuantity
         cartItems[itemIndex].hash = saveHash
-        
 
-        print("INSIDE CALC ITEM ADD ON TOTAL")
-        print(itemAddOptions?.count)
 
         for each in itemAddOptions ?? [] {
             //print("Price: \(each.price)")

@@ -162,9 +162,9 @@ struct CheckoutView: View {
                     // Change cart active status
                     viewModel.updateCartActiveStatus(cartActive: false)
 
-                    // Upload order to Firebase (so shop can access it)
-                    viewModel.postOrderData(shopID: shop.id ?? "", cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, selectedRequiredOptions: viewModel.selectedRequiredOptions, selectedModificationOptions: viewModel.selectedModificationOptions, selectedAddOptions: viewModel.selectedAddOptions, orderStatus: "pending")
-                    
+                    // Upload order to Firebase (so shop can access it)                    
+                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, selectedRequiredOptions: viewModel.selectedRequiredOptions, selectedModificationOptions: viewModel.selectedModificationOptions, selectedAddOptions: viewModel.selectedAddOptions, orderStatus: "pending")
+
                     //Empty out cart
                     viewModel.cartItems = []
 
