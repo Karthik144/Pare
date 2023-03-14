@@ -10,6 +10,7 @@ import SwiftUI
 struct OrderStatusModalView: View {
 
     // MARK: - PROPERTIES
+    @EnvironmentObject var viewModel: ShopViewModel
     let shop: String
     let address: String
     let orderNumber: String
@@ -128,6 +129,16 @@ struct OrderStatusModalView: View {
             }
 
             Spacer()
+
+            Button {
+                viewModel.updatePendingOrders()
+            } label: {
+                Text("Complete")
+            }
+            .padding()
+
+            Spacer()
+
 
         } //: VSTACK
     }

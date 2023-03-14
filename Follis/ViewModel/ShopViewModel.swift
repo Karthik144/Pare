@@ -24,6 +24,13 @@ class ShopViewModel: ObservableObject {
     @Published var tax = 0.0
     @Published private var totalRewards = 0
 
+    // Properties for uploading to completed_orders
+    @Published private var pendingOrders = [PendingOrder]()
+    @Published private var orderItems = [OrderItem]()
+    @Published private var orderAddOptions = [OrderItem : [Add]]()
+    @Published private var orderRequiredOptions = [OrderItem : [Required]]()
+    @Published private var orderModificationOptions = [OrderItem : [Modification]]()
+
     
     private let service = ShopService()
 
@@ -173,7 +180,7 @@ class ShopViewModel: ObservableObject {
 
 
         // Add a document to user's values collection
-        let ordersDocRef = db.collection("users").document(userUID).collection("pending_orders").addDocument(data: ["shop_id": shop.id, "total_items": cartTotalItems, "user_who_ordered": userUID, "date_ordered": Timestamp(date: Date())]) { error in
+        let ordersDocRef = db.collection("users").document(userUID).collection("pending_orders").addDocument(data: ["shop_id": shop.id, "total_items": cartTotalItems, "user_who_ordered": userUID, "pending": true, "date_ordered": Timestamp(date: Date())]) { error in
 
             // Check for errors
             if error == nil {
@@ -220,7 +227,7 @@ class ShopViewModel: ObservableObject {
 
 
             // Add a document to user's values collection
-            let itemDocRef = db.collection("users").document(userUID).collection("pending_orders").document(ordersDocRef.documentID).collection("order_items").addDocument(data: ["order_id": ordersDocRef.documentID]) { error in
+            let itemDocRef = db.collection("users").document(userUID).collection("pending_orders").document(ordersDocRef.documentID).collection("order_items").addDocument(data: ["name": cartItem.name, "order_id": ordersDocRef.documentID]) { error in
 
                 // Check for errors
                 if error == nil {
@@ -295,14 +302,14 @@ class ShopViewModel: ObservableObject {
         }
 
         // Share data to merchant as well
-        postOrderDataToMerchant(userID: userUID, orderID: ordersDocRef.documentID, shop: shop)
+        postOrderDataToMerchant(userID: userUID, orderID: ordersDocRef.documentID, shop: shop, totalPrice: calcTotal())
 
 
 
     } //: ADD SHARE DATA TO BACKEND
 
 
-    func postOrderDataToMerchant(userID: String, orderID: String, shop: Shop){
+    func postOrderDataToMerchant(userID: String, orderID: String, shop: Shop, totalPrice: Double){
 
         // Create a reference to the database
         let db = Firestore.firestore()
@@ -310,7 +317,7 @@ class ShopViewModel: ObservableObject {
         let merchantID = shop.merchant_id ?? ""
 
         // Add a document to user's values collection
-        let ordersDocRef = db.collection("merchants").document(merchantID).collection("pending_orders").addDocument(data: ["order_id": orderID, "user_id": userID]) { error in
+        let ordersDocRef = db.collection("merchants").document(merchantID).collection("pending_orders").addDocument(data: ["order_id": orderID, "user_id": userID, "total": totalPrice]) { error in
 
             // Check for errors
             if error == nil {
@@ -337,6 +344,280 @@ class ShopViewModel: ObservableObject {
 
         return addOptionsPrice
     }
+
+    // NEED TO FIX
+    func updatePendingOrders(){
+
+        fetchPendingData()
+
+        
+    }
+
+    // NEED TO FIX
+    func fetchPendingData(){
+
+
+        // Fetch pending orders
+        fetchPendingOrders { orders in
+            self.pendingOrders = orders
+
+            // Fetch order items of the 1 pending order
+            // Note: User can only have 1 pending order at a time
+            if !self.pendingOrders.isEmpty{
+
+                self.fetchOrderItems(orderID: self.pendingOrders[0].id ?? "") { items in
+                    self.orderItems = items
+
+                    self.updateAddDict { dict in
+                        self.orderAddOptions = dict
+
+                        self.uploadCompleteData()
+
+                    }
+
+
+//                    self.uploadCompleteData()
+
+
+
+                }
+
+            }
+
+//            self.uploadCompleteData()
+
+
+        } //: FETCH PENDING ORDER & DETAILS
+    }
+
+    // NEED TO FIX
+    func updateAddDict(completion: @escaping([OrderItem: [Add]]) -> Void){
+
+        var tempDict = [OrderItem : [Add]]()
+
+        for item in self.orderItems{
+
+            // Fetch add options for each item
+            self.fetchOrderItemAddOptions(orderID: self.pendingOrders[0].id ?? "", itemID: item.id ?? "") { addOptions in
+
+                // Add to addOptions dictionary
+                tempDict[item] = addOptions
+            }
+        }
+
+        completion(tempDict)
+    }
+
+    // NEED TO FIX
+    func uploadCompleteData(){
+
+        // Gets the current users uid so we can reference it
+        guard let userUID = Auth.auth().currentUser?.uid else {return}
+
+        // Create a reference to the database
+        let db = Firestore.firestore()
+
+
+        // Add a document to user's values collection
+        let ordersDocRef = db.collection("users").document(userUID).collection("completed_orders").addDocument(data: ["shop_id": pendingOrders[0].shop_id, "total_items": pendingOrders[0].total_items, "user_who_ordered": pendingOrders[0].user_who_ordered, "pending": false, "date_ordered": pendingOrders[0].date_ordered]) { error in
+
+            // Check for errors
+            if error == nil {
+                // No errors
+                print("Success!")
+
+            } else {
+                // Handle the error
+                print("Here's the error: \(String(describing: error?.localizedDescription))")
+                return
+            }
+        }
+
+
+        let totalItems = orderItems.count
+
+        print("Total order items: \(totalItems)")
+
+        for i in 0..<(totalItems) {
+
+            var item = orderItems[i]
+
+            // Store the array of required objects for the cart item
+            let itemRequiredOptions = orderRequiredOptions[item, default: []]
+            print("Required Dict Count: \(itemRequiredOptions.count)")
+
+            // Store the array of modified objects for the cart item
+            let itemModificationOptions = orderModificationOptions[item, default: []]
+            print("Modification Dict Count: \(itemModificationOptions.count)")
+
+            // Store the array of addOn objects for the cart item
+            let itemAddOnOptions = orderAddOptions[item, default: []]
+            print("Add Dict Count: \(itemAddOnOptions.count)")
+
+
+
+            // Add a document to user's values collection
+            let itemDocRef = db.collection("users").document(userUID).collection("completed_orders").document(ordersDocRef.documentID).collection("order_items").addDocument(data: ["name": item.name, "order_id": ordersDocRef.documentID]) { error in
+
+                // Check for errors
+                if error == nil {
+                    // No errors
+                    //                    print("Success!")
+
+                } else {
+                    // Handle the error
+                    print("Here's the error: \(String(describing: error?.localizedDescription))")
+                    return
+                }
+            }
+
+            for each in itemRequiredOptions {
+
+                // Add a document to user's values collection
+                db.collection("users").document(userUID).collection("completed_orders").document(ordersDocRef.documentID).collection("order_items").document(itemDocRef.documentID).collection("required").addDocument(data: ["option": each.option]) { error in
+
+                    // Check for errors
+                    if error == nil {
+                        // No errors
+                        //                        print("Success!")
+
+                    } else {
+                        // Handle the error
+                        print("Here's the error: \(String(describing: error?.localizedDescription))")
+                        return
+                    }
+                }
+
+            }
+
+            for each in itemAddOnOptions {
+
+                // Add a document to user's values collection
+                db.collection("users").document(userUID).collection("completed_orders").document(ordersDocRef.documentID).collection("order_items").document(itemDocRef.documentID).collection("add").addDocument(data: ["option": each.option, "price": each.price]) { error in
+
+                    // Check for errors
+                    if error == nil {
+                        // No errors
+                        print("Success!")
+
+                    } else {
+                        // Handle the error
+                        print("Here's the error: \(String(describing: error?.localizedDescription))")
+                        return
+                    }
+                }
+
+            }
+
+            for each in itemModificationOptions {
+
+                // Add a document to user's values collection
+                db.collection("users").document(userUID).collection("completed_orders").document(ordersDocRef.documentID).collection("order_items").document(itemDocRef.documentID).collection("modifications").addDocument(data: ["option": each.option]) { error in
+
+                    // Check for errors
+                    if error == nil {
+                        // No errors
+                        print("Success!")
+
+                    } else {
+                        // Handle the error
+                        print("Here's the error: \(String(describing: error?.localizedDescription))")
+                        return
+                    }
+                }
+
+            }
+
+
+        }
+
+    }
+
+    func fetchOrderItems(orderID: String, completion: @escaping([OrderItem]) -> Void){
+
+        // Gets the current users uid so we can reference it
+        guard let userUID = Auth.auth().currentUser?.uid else {return}
+
+        Firestore.firestore().collection("users").document(userUID).collection("pending_orders").document(orderID).collection("order_items").addSnapshotListener { (querySnapshot, error) in
+
+            guard let documents = querySnapshot?.documents else {
+                print("No documents in this collection.")
+                return
+
+            }
+
+            let orderItems = documents.compactMap({ try? $0.data(as: OrderItem.self) })
+
+            completion(orderItems)
+
+        }
+
+    }
+
+    func fetchOrderItemAddOptions(orderID: String, itemID: String, completion: @escaping([Add]) -> Void){
+
+        // Gets the current users uid so we can reference it
+        guard let userUID = Auth.auth().currentUser?.uid else {return}
+
+        Firestore.firestore().collection("users").document(userUID).collection("pending_orders").document(orderID).collection("order_items").document(itemID).collection("add").addSnapshotListener { (querySnapshot, error) in
+
+            guard let documents = querySnapshot?.documents else {
+                print("No documents in this collection.")
+                return
+
+            }
+
+            let itemAddOptions = documents.compactMap({ try? $0.data(as: Add.self) })
+
+            completion(itemAddOptions)
+
+        }
+
+    }
+
+    func fetchOrderItemModificationOptions(orderID: String, itemID: String, completion: @escaping([Modification]) -> Void){
+
+
+        // Gets the current users uid so we can reference it
+        guard let userUID = Auth.auth().currentUser?.uid else {return}
+
+        Firestore.firestore().collection("users").document(userUID).collection("pending_orders").document(orderID).collection("order_items").document(itemID).collection("modifications").addSnapshotListener { (querySnapshot, error) in
+
+            guard let documents = querySnapshot?.documents else {
+                print("No documents in this collection.")
+                return
+
+            }
+
+            let itemModificationOptions = documents.compactMap({ try? $0.data(as: Modification.self) })
+
+            completion(itemModificationOptions)
+
+        }
+
+    }
+
+    func fetchOrderItemRequiredOptions(orderID: String, itemID: String, completion: @escaping([Required]) -> Void){
+
+        // Gets the current users uid so we can reference it
+        guard let userUID = Auth.auth().currentUser?.uid else {return}
+
+        Firestore.firestore().collection("users").document(userUID).collection("pending_orders").document(orderID).collection("order_items").document(itemID).collection("required").addSnapshotListener { (querySnapshot, error) in
+
+            guard let documents = querySnapshot?.documents else {
+                print("No documents in this collection.")
+                return
+
+            }
+
+            let itemRequiredOptions = documents.compactMap({ try? $0.data(as: Required.self) })
+
+            completion(itemRequiredOptions)
+
+        }
+
+    }
+
 
     func calcTotal() -> Double {
 
