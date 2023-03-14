@@ -61,13 +61,13 @@ struct CheckoutView: View {
                     .padding(.leading, 20)
 
                 ScrollView{
-                    ForEach(viewModel.cartItems) { item in
+                    ForEach(viewModel.cartItems) { order in
                         
                         
-                        let index = viewModel.cartItems.firstIndex(of: item)
-                        //                    let itemTotal = viewModel.calcItemAddOnTotal(itemIndex: index ?? 0) + (Double(item.price) ?? 0.0)
+                        let index = viewModel.cartItems.firstIndex(of: order)
+                        let itemPrice = Double(order.item.price)! + Double(order.getAddOns())!
                         
-                        OrderItemCell(itemQuantity: item.quantity!, itemName: item.name, itemPrice: item.price, rewardPoints: item.rewards, index: index!, popup:false, finalTotal: total)
+                        OrderItemCell(itemQuantity: order.item.quantity!, itemName: order.item.name, itemPrice: String(itemPrice), rewardPoints: order.item.rewards, index: index!, popup:false, finalTotal: total)
                             .padding(.leading, 25)
                             .padding(.trailing, 20)
                         
@@ -163,7 +163,7 @@ struct CheckoutView: View {
                     viewModel.updateCartActiveStatus(cartActive: false)
 
                     // Upload order to Firebase (so shop can access it)                    
-                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, selectedRequiredOptions: viewModel.selectedRequiredOptions, selectedModificationOptions: viewModel.selectedModificationOptions, selectedAddOptions: viewModel.selectedAddOptions, orderStatus: "pending")
+                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending")
 
                     //Empty out cart
                     viewModel.cartItems = []
@@ -188,7 +188,6 @@ struct CheckoutView: View {
         .onAppear(){
             total = viewModel.calcTotal()
             print("WHEN CHECKOUT VIEW APPEARS")
-            print(viewModel.cartItems.count)
         }
 
 

@@ -18,7 +18,7 @@ class ShopViewModel: ObservableObject {
     @Published var selectedModificationOptions = [MenuItem: [Modification]]()
     @Published var selectedAddOptions = [MenuItem: [Add]]()
     //    @Published var selectedAddOptions : [MenuItem: [Add]] = [:]
-    @Published var cartItems = [MenuItem]()
+    @Published var cartItems = [Order]()
     @Published var total = 0.0
     @Published var subtotal = 0.0
     @Published var tax = 0.0
@@ -164,9 +164,7 @@ class ShopViewModel: ObservableObject {
 
 
     // Upload order to firebase
-    func postOrderData(shop: Shop, cartTotalItems: String, cart: [MenuItem], selectedRequiredOptions: [MenuItem: [Required]], selectedModificationOptions: [MenuItem: [Modification]], selectedAddOptions: [MenuItem: [Add]], orderStatus: String){
-
-
+    func postOrderData(shop: Shop, cartTotalItems: String, cart: [Order], orderStatus: String){
         // Gets the current users uid so we can reference it
         guard let userUID = Auth.auth().currentUser?.uid else {return}
 
@@ -197,7 +195,7 @@ class ShopViewModel: ObservableObject {
             var cartItem = cart[i]
             
             
-
+/*
             let saveQuantity = cartItem.quantity!
             let saveHash = cartItem.hash!
 
@@ -218,7 +216,7 @@ class ShopViewModel: ObservableObject {
             let itemAddOnOptions = selectedAddOptions[cartItem, default: []]
 
             cartItem.quantity = saveQuantity
-            cartItem.hash = saveHash
+            cartItem.hash = saveHash*/
 
 
             // Add a document to user's values collection
@@ -236,7 +234,7 @@ class ShopViewModel: ObservableObject {
                 }
             }
             
-            for each in itemRequiredOptions {
+            for each in cartItem.requiredSelection ?? []{
 
                 // Add a document to user's values collection
                 db.collection("users").document(userUID).collection("pending_orders").document(ordersDocRef.documentID).collection("order_items").document(itemDocRef.documentID).collection("required").addDocument(data: ["option": each.option]) { error in
@@ -255,7 +253,7 @@ class ShopViewModel: ObservableObject {
 
             }
 
-            for each in itemAddOnOptions {
+            for each in cartItem.addOns ?? [] {
 
                 // Add a document to user's values collection
                 db.collection("users").document(userUID).collection("pending_orders").document(ordersDocRef.documentID).collection("order_items").document(itemDocRef.documentID).collection("add").addDocument(data: ["option": each.option, "price": each.price]) { error in
@@ -274,7 +272,7 @@ class ShopViewModel: ObservableObject {
 
             }
 
-            for each in itemModificationOptions {
+            for each in cartItem.modifications ?? [] {
 
                 // Add a document to user's values collection
                 db.collection("users").document(userUID).collection("pending_orders").document(ordersDocRef.documentID).collection("order_items").document(itemDocRef.documentID).collection("modifications").addDocument(data: ["option": each.option]) { error in
@@ -330,44 +328,23 @@ class ShopViewModel: ObservableObject {
     }
 
 
-    func calcItemAddOnTotal(itemIndex: Int) -> Double{
-
+    func calcItemAddOnTotal(order: Order) -> Double{
         var addOptionsPrice = 0.0
-
-        print(cartItems[itemIndex])
         
-        //save values
-        var saveQuantity = cartItems[itemIndex].quantity!
-        var saveHash = cartItems[itemIndex].hash!
-        
-        //set to nil to match dictionary key
-        cartItems[itemIndex].quantity = nil
-        cartItems[itemIndex].hash = nil
-        // Find all add options for that item
-        let itemAddOptions = selectedAddOptions[cartItems[itemIndex]]
-        
-        cartItems[itemIndex].quantity = saveQuantity
-        cartItems[itemIndex].hash = saveHash
-
-
-        for each in itemAddOptions ?? [] {
-            //print("Price: \(each.price)")
-
-            print("INSIDE FOR LOOP IN VIEW MODEL")
-            print(each.option)
+        for each in order.addOns ?? []{
             addOptionsPrice += Double(each.price) ?? 0.0
         }
-        return addOptionsPrice
 
+        return addOptionsPrice
     }
 
     func calcTotal() -> Double {
 
         // Find items in cart
-        subtotal = 0
-        for cartItem in cartItems {
+        subtotal = 0.0
+        for cartOrder in cartItems {
 
-            subtotal += ((Double(cartItem.price) ?? 0.0) + calcItemAddOnTotal(itemIndex: cartItems.firstIndex(of: cartItem)!)) * Double(cartItem.quantity!)
+            subtotal += ((Double(cartOrder.item.price) ?? 0.0) + calcItemAddOnTotal(order: cartOrder)) * Double(cartOrder.item.quantity!)
 
         }
 
@@ -390,9 +367,9 @@ class ShopViewModel: ObservableObject {
 
         totalRewards = 0
         // Find items in cart
-        for cartItem in cartItems {
+        for cartOrder in cartItems {
 
-            totalRewards += (Int(cartItem.rewards) ?? 0) * cartItem.quantity!
+            totalRewards += (Int(cartOrder.item.rewards) ?? 0) * cartOrder.item.quantity!
 
         }
 
@@ -402,9 +379,10 @@ class ShopViewModel: ObservableObject {
 
     } //: FUNC CALC TOTAL REWARDS
     
+    
     func updateQuantity(index:Int, newQuantity:Int){
-        cartItems[index].quantity = newQuantity
-    }
+        cartItems[index].item.quantity = newQuantity
+    } //: FUNC UPDATE QUANTITY
 
 
 

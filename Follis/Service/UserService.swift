@@ -23,7 +23,7 @@ struct UserService {
         }
     } //: FETCH USER DATA
 
-    func checkIfExistingUser(userEmail: String, completion: @escaping (User2) -> Void) {
+    func checkIfExistingUser(userEmail: String, completion: @escaping (UserCheck) -> Void) {
 
 
         Firestore.firestore().collection("users").getDocuments { (snapshot, error) -> Void in
@@ -41,7 +41,7 @@ struct UserService {
 
                     let docID = documentSnapshot.documentID
 
-                    let user = User2(id: docID, email: email ?? "")
+                    let user = UserCheck(id: docID, email: email ?? "")
 
                     completion(user)
 

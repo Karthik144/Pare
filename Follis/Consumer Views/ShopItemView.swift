@@ -15,6 +15,7 @@ struct ShopItemView: View {
     @State private var totalMenuItems = [MenuItem]()
     @State private var total = 0.0
     @State private var totalRewards = 0
+    
     let shop: Shop
 
     // MARK: - BODY 
@@ -88,14 +89,16 @@ struct ShopItemView: View {
 
                     VStack(alignment: .leading){
                         ForEach(totalMenuItems) { item in
-
-                            NavigationLink(destination: AddItemView(item: item, shop: shop)
+                            
+                            NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop)
                             ) {
                                 ItemCell(item: item)
                                     .padding(.leading, 15)
                                     .padding(.trailing, 15)
                             }
-
+                            .onAppear{
+                                
+                            }
 
                         } //: FOR EACH
                     } //: VSTACK

@@ -17,7 +17,8 @@ struct AddItemView: View {
     @State private var addOptions = [Add]()
     @State private var requiredOptions = [Required]()
     @State private var modificationOptions = [Modification]()
-    @State var item: MenuItem
+    //@State var item: MenuItem
+    @StateObject var order: Order
     let shop: Shop
 
     
@@ -39,11 +40,11 @@ struct AddItemView: View {
 
 
 
-                    Text(item.name)
+                    Text(order.item.name)
                         .font(.title3)
                         .fontWeight(.bold)
 
-                    Text(item.description)
+                    Text(order.item.description)
                         .font(.caption)
                         .foregroundColor(Color.gray)
                         .lineLimit(2)
@@ -89,7 +90,7 @@ struct AddItemView: View {
                                 didTap.toggle()
                             } label: {
 
-                                RequiredItemCell(requiredItem: option, item: item)
+                                RequiredItemCell(requiredItem: option, order: order)
                             }
                             .padding(.leading, 20)
                             .padding(5)
@@ -111,7 +112,7 @@ struct AddItemView: View {
                             Button {
                                 didTap.toggle()
                             } label: {
-                                ModificationItemCell(modificationItem: option, item: item)
+                                ModificationItemCell(modificationItem: option, order: order)
                             }
                             .padding(.leading, 20)
                             .padding(5)
@@ -132,7 +133,7 @@ struct AddItemView: View {
                             Button {
                                 didTap.toggle()
                             } label: {
-                                AddItemCell(item: item, addItem: option)
+                                AddItemCell(addItem: option, order: order)
                             }
                             .padding(.leading, 20)
                             .padding(5)
@@ -156,43 +157,26 @@ struct AddItemView: View {
                     destination: ShopItemView(shop: shop),
                     isActive: $goesToShopItemView) {
                     Button(action: {
-                        let itemHash = item.hashValue
+                        let orderHash = order.hashValue
                         //viewModel.hashList.append(itemHash)
-                        item.hash = itemHash
+                        //item.hash = itemHash
 
 
                         if (viewModel.cartItems.isEmpty){
-                            item.quantity = 1
+                            order.item.quantity = 1
 
-                            viewModel.cartItems.append(item)
+                            viewModel.cartItems.append(order)
 
                         }
                         else{
-                            for (index,selectedItem) in viewModel.cartItems.enumerated(){
-                                if (item.hash != selectedItem.hash!){
-                                    item.quantity = 1
-
-                                    viewModel.cartItems.append(item)
-
-                                }
-                                else{
-                                    /*
-                                     for hash in viewModel.hashList{
-                                     if(hash == itemHash){
-                                     count += 1
-                                     }
-                                     }*/
-                                    var count = selectedItem.quantity! + 1
-
-
-
-                                    viewModel.cartItems[index] = MenuItem(description: selectedItem.description, name: selectedItem.name, price: selectedItem.price, rewards: selectedItem.rewards, type: selectedItem.type,quantity: count, hash: selectedItem.hash!)
-
-
-                                }
+                            if let cartOrder = viewModel.cartItems.first(where: { $0 == order}){
+                                cartOrder.item.quantity! += 1
+                            }
+                            else{
+                                order.item.quantity = 1
+                                viewModel.cartItems.append(order)
                             }
                         }
-
 
                         viewModel.updateCartActiveStatus(cartActive: true)
 
@@ -217,44 +201,25 @@ struct AddItemView: View {
                     destination: CheckoutView(shop: shop),
                     isActive: $goesToDetail) {
                     Button(action: {
-
-                        let itemHash = item.hashValue
-                        //viewModel.hashList.append(itemHash)
-                        item.hash = itemHash
+                        let orderHash = order.hashValue
 
 
                         if (viewModel.cartItems.isEmpty){
-                            item.quantity = 1
+                            order.item.quantity = 1
 
-                            viewModel.cartItems.append(item)
+                            viewModel.cartItems.append(order)
 
                         }
                         else{
-                            for (index,selectedItem) in viewModel.cartItems.enumerated(){
-                                if (item.hash != selectedItem.hash!){
-                                    item.quantity = 1
-
-                                        viewModel.cartItems.append(item)
-
-                                }
-                                else{
-                                    /*
-                                     for hash in viewModel.hashList{
-                                     if(hash == itemHash){
-                                     count += 1
-                                     }
-                                     }*/
-                                    var count = selectedItem.quantity! + 1
-
-
-                                    viewModel.cartItems[index] = MenuItem(description: selectedItem.description, name: selectedItem.name, price: selectedItem.price, rewards: selectedItem.rewards, type: selectedItem.type,quantity: count, hash: selectedItem.hash!)
-
-
-                                }
+                            if let cartOrder = viewModel.cartItems.first(where: { $0 == order}){
+                                cartOrder.item.quantity! += 1
+                            }
+                            else{
+                                order.item.quantity = 1
+                                viewModel.cartItems.append(order)
                             }
                         }
-
-
+                        
                         viewModel.updateCartActiveStatus(cartActive: true)
 
                         goesToDetail = true
@@ -283,20 +248,18 @@ struct AddItemView: View {
         } //: VSTACK
         .onAppear(){
 
-            viewModel.fetchItemAddOptions(withUID: shop.id ?? "", itemUID: item.id ?? "") { addOptions in
+            viewModel.fetchItemAddOptions(withUID: shop.id ?? "", itemUID: order.item.id ?? "") { addOptions in
                 self.addOptions = addOptions
             }
 
 
-            viewModel.fetchItemRequiredOptions(withUID: shop.id ?? "", itemUID: item.id ?? "") { requiredOptions in
+            viewModel.fetchItemRequiredOptions(withUID: shop.id ?? "", itemUID: order.item.id ?? "") { requiredOptions in
                 self.requiredOptions = requiredOptions
             }
 
-            viewModel.fetchItemModificationOptions(withUID: shop.id ?? "", itemUID: item.id ?? "") { modificationOptions in
+            viewModel.fetchItemModificationOptions(withUID: shop.id ?? "", itemUID: order.item.id ?? "") { modificationOptions in
                 self.modificationOptions = modificationOptions
             }
-
-
         }
 
 

@@ -13,7 +13,7 @@ struct RequiredItemCell: View {
     @State var didTap = false
     @EnvironmentObject var viewModel: ShopViewModel
     let requiredItem: Required
-    var item: MenuItem
+    @StateObject var order: Order
 
     // MARK: - BODY
     var body: some View {
@@ -26,12 +26,8 @@ struct RequiredItemCell: View {
 
                 // Append to array
                 if didTap {
-
-                    viewModel.selectedRequiredOptions[item, default: []].append(requiredItem)
+                    order.requiredSelection?.append(requiredItem)
                 }
-
-                print("count inside the required cell")
-                print(item)
 
             } label: {
                 Image(systemName: didTap ? "circle.fill" : "circle")

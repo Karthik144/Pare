@@ -16,7 +16,7 @@ class AuthViewModel: ObservableObject{
     @Published var userSession = Auth.auth().currentUser
     @Published var didAuthenticateUser = false
     @Published var currentUser: User?
-    @Published var User2: User2?
+    @Published var User2: UserCheck?
     @Published var isExistingUser: Bool?
 //    @Published var cartItems = [MenuItem]()
     private let service = UserService()

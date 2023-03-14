@@ -7,7 +7,7 @@
 
 import FirebaseFirestoreSwift
 
-struct User2: Identifiable, Decodable {
+struct UserCheck: Identifiable, Decodable {
 
     var id: String?
     var email: String

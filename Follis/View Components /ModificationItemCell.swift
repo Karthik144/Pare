@@ -14,7 +14,7 @@ struct ModificationItemCell: View {
     @State var didTap = false
 //    @Binding var selectedItems: [MenuItem: [Modification]]
     let modificationItem: Modification
-    var item: MenuItem
+    @StateObject var order: Order
 
     // MARK: - BODY
     var body: some View {
@@ -27,8 +27,8 @@ struct ModificationItemCell: View {
 
                 // Append to array
                 if didTap {
+                    order.modifications?.append(modificationItem)
 
-                    viewModel.selectedModificationOptions[item, default: []].append(modificationItem)
                 }
 
             } label: {

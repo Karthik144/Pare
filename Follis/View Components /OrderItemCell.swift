@@ -44,7 +44,7 @@ struct OrderItemCell: View {
                 Menu{
                     
                     Button(action: {
-                        viewModel.cartItems[index].quantity = 1
+                        viewModel.updateQuantity(index: index, newQuantity: 1)
                         itemQuantity = 1
                         
                         finalTotal = viewModel.calcTotal()
@@ -63,7 +63,7 @@ struct OrderItemCell: View {
                     })
                     
                     Button(action: {
-                        viewModel.cartItems[index].quantity = 3
+                        viewModel.updateQuantity(index: index, newQuantity: 3)
                         itemQuantity = 3
                         
                         finalTotal = viewModel.calcTotal()

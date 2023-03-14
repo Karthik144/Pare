@@ -22,13 +22,6 @@ struct MenuItem: Identifiable, Decodable, Hashable{
     var quantity: Int?
     var hash: Int?
 
-    var requiredItems: [Required]?
-    var modificationItems: [Modification]?
-    var addMoreItems: [Add]?
-
-//    var requiredItems = [Required]()
-//    var modificationItems = [Modification]()
-//    var addMoreItems = [Add]()
 
 
 }

@@ -12,8 +12,8 @@ struct AddItemCell: View {
     // MARK: - PROPERTIES
     @State var didTap = false
     @EnvironmentObject var viewModel: ShopViewModel
-    let item: MenuItem
     let addItem: Add
+    @StateObject var order: Order
 
     // MARK: - BODY
     var body: some View {
@@ -28,12 +28,8 @@ struct AddItemCell: View {
                 if didTap {
 
                     // Check if key exists in dictionary (then just append)
-
-                    // If key does not exist
-                    viewModel.selectedAddOptions[item, default: []].append(addItem)
-
-                    print("WHEN TAPPED")
-                    print(viewModel.selectedAddOptions[item]?.count)
+                    
+                    order.addOns?.append(addItem)
 
                 }
 
