@@ -130,17 +130,6 @@ struct ShopsView: View {
                 viewModel.fetchPendingOrders { orders in
                     self.pendingOrders = orders
                 }
-
-                if !self.pendingOrders.isEmpty{
-
-                    if self.pendingOrders[0].pending == false{
-
-                        // Copy order from pending_orders into completed_orders
-
-                        // Delete order from pending_orders 
-
-                    }
-                }
             }
 
 

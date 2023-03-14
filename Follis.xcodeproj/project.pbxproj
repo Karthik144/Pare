@@ -45,6 +45,7 @@
 		7C97788929BAAA3A00F0C6C5 /* ModificationItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C97788829BAAA3A00F0C6C5 /* ModificationItemCell.swift */; };
 		7CA83B4B29BA578900E4C4CD /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA83B4A29BA578900E4C4CD /* MenuItem.swift */; };
 		7CA914BF299DB9790006ED5B /* User2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA914BE299DB9790006ED5B /* User2.swift */; };
+		7CC4189C29C1151C004CE58B /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC4189B29C1151C004CE58B /* OrderItem.swift */; };
 		7CCCEFBC29B7C1EC00E27BAA /* SignUpViewFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCEFBB29B7C1EC00E27BAA /* SignUpViewFive.swift */; };
 		7CCCEFC029B7CCCA00E27BAA /* ShopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCEFBF29B7CCCA00E27BAA /* ShopsView.swift */; };
 		7CCCEFC529B7CD2E00E27BAA /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCEFC429B7CD2E00E27BAA /* WalletView.swift */; };
@@ -109,6 +110,7 @@
 		7C97788829BAAA3A00F0C6C5 /* ModificationItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificationItemCell.swift; sourceTree = "<group>"; };
 		7CA83B4A29BA578900E4C4CD /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		7CA914BE299DB9790006ED5B /* User2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User2.swift; sourceTree = "<group>"; };
+		7CC4189B29C1151C004CE58B /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		7CCCEFBB29B7C1EC00E27BAA /* SignUpViewFive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewFive.swift; sourceTree = "<group>"; };
 		7CCCEFBF29B7CCCA00E27BAA /* ShopsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsView.swift; sourceTree = "<group>"; };
 		7CCCEFC429B7CD2E00E27BAA /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				7C97788229BAA68900F0C6C5 /* Required.swift */,
 				7C97788629BAA97C00F0C6C5 /* Modification.swift */,
 				7CEB24D629BE53CF00018FB2 /* PendingOrder.swift */,
+				7CC4189B29C1151C004CE58B /* OrderItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				7C1A2BDC299F23EA00C0253D /* Order.swift in Sources */,
 				7CF74DCF299C72DF002B2BB9 /* SignUpViewThree.swift in Sources */,
 				7CCCEFBC29B7C1EC00E27BAA /* SignUpViewFive.swift in Sources */,
+				7CC4189C29C1151C004CE58B /* OrderItem.swift in Sources */,
 				7C86263729B839A300919213 /* OrderStatusModalView.swift in Sources */,
 				7C86262F29B8114100919213 /* AddItemCell.swift in Sources */,
 				7C45EC5D299B32B200F3B439 /* UserService.swift in Sources */,
