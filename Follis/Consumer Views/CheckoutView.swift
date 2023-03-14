@@ -60,19 +60,20 @@ struct CheckoutView: View {
                     .fontWeight(.bold)
                     .padding(.leading, 20)
 
-
-                ForEach(viewModel.cartItems) { item in
-                    
-
-                    let index = viewModel.cartItems.firstIndex(of: item)
-//                    let itemTotal = viewModel.calcItemAddOnTotal(itemIndex: index ?? 0) + (Double(item.price) ?? 0.0)
-                     
-                    OrderItemCell(itemQuantity: item.quantity!, itemName: item.name, itemPrice: item.price, rewardPoints: item.rewards, index: index!, popup:false, finalTotal: total)
-                        .padding(.leading, 25)
-                        .padding(.trailing, 20)
-
-                } //: FOR EACH
-
+                ScrollView{
+                    ForEach(viewModel.cartItems) { item in
+                        
+                        
+                        let index = viewModel.cartItems.firstIndex(of: item)
+                        //                    let itemTotal = viewModel.calcItemAddOnTotal(itemIndex: index ?? 0) + (Double(item.price) ?? 0.0)
+                        
+                        OrderItemCell(itemQuantity: item.quantity!, itemName: item.name, itemPrice: item.price, rewardPoints: item.rewards, index: index!, popup:false, finalTotal: total)
+                            .padding(.leading, 25)
+                            .padding(.trailing, 20)
+                        
+                    } //: FOR EACH
+                } //: SCROLLVIEW
+                .frame(height: 150)
 
                 Divider()
 
@@ -140,6 +141,9 @@ struct CheckoutView: View {
                     }
                     // Change cart active status
                     viewModel.updateCartActiveStatus(cartActive: false)
+                    
+                    //Empty out cart
+                    viewModel.cartItems = []
 
                     // Upload order to Firebase (so shop can access it) 
 
@@ -160,6 +164,9 @@ struct CheckoutView: View {
 
                     // Upload order to Firebase (so shop can access it)
                     viewModel.postOrderData(shopID: shop.id ?? "", cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, selectedRequiredOptions: viewModel.selectedRequiredOptions, selectedModificationOptions: viewModel.selectedModificationOptions, selectedAddOptions: viewModel.selectedAddOptions, orderStatus: "pending")
+                    
+                    //Empty out cart
+                    viewModel.cartItems = []
 
                 } label: {
                     Text("Pay with stars 🌟")
