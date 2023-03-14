@@ -15,7 +15,7 @@ struct PendingOrder: Identifiable, Decodable {
     var date_ordered: Date
     var shop_id: String
     var total_items: String
-
-
+    var user_who_ordered: String
+    var pending: Bool
 
 }

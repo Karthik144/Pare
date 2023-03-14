@@ -175,7 +175,7 @@ class ShopViewModel: ObservableObject {
 
 
         // Add a document to user's values collection
-        let ordersDocRef = db.collection("users").document(userUID).collection("pending_orders").addDocument(data: ["shop_id": shop.id, "total_items": cartTotalItems, "user_who_ordered": userUID, "date_ordered": Timestamp(date: Date())]) { error in
+        let ordersDocRef = db.collection("users").document(userUID).collection("pending_orders").addDocument(data: ["shop_id": shop.id, "total_items": cartTotalItems, "user_who_ordered": userUID, "pending": true, "date_ordered": Timestamp(date: Date())]) { error in
 
             // Check for errors
             if error == nil {
@@ -220,7 +220,7 @@ class ShopViewModel: ObservableObject {
 
 
             // Add a document to user's values collection
-            let itemDocRef = db.collection("users").document(userUID).collection("pending_orders").document(ordersDocRef.documentID).collection("order_items").addDocument(data: ["order_id": ordersDocRef.documentID]) { error in
+            let itemDocRef = db.collection("users").document(userUID).collection("pending_orders").document(ordersDocRef.documentID).collection("order_items").addDocument(data: ["name": cartItem.name, "order_id": ordersDocRef.documentID]) { error in
 
                 // Check for errors
                 if error == nil {
@@ -295,14 +295,14 @@ class ShopViewModel: ObservableObject {
         }
 
         // Share data to merchant as well
-        postOrderDataToMerchant(userID: userUID, orderID: ordersDocRef.documentID, shop: shop)
+        postOrderDataToMerchant(userID: userUID, orderID: ordersDocRef.documentID, shop: shop, totalPrice: calcTotal())
 
 
 
     } //: ADD SHARE DATA TO BACKEND
 
 
-    func postOrderDataToMerchant(userID: String, orderID: String, shop: Shop){
+    func postOrderDataToMerchant(userID: String, orderID: String, shop: Shop, totalPrice: Double){
 
         // Create a reference to the database
         let db = Firestore.firestore()
@@ -310,7 +310,7 @@ class ShopViewModel: ObservableObject {
         let merchantID = shop.merchant_id ?? ""
 
         // Add a document to user's values collection
-        let ordersDocRef = db.collection("merchants").document(merchantID).collection("pending_orders").addDocument(data: ["order_id": orderID, "user_id": userID]) { error in
+        let ordersDocRef = db.collection("merchants").document(merchantID).collection("pending_orders").addDocument(data: ["order_id": orderID, "user_id": userID, "total": totalPrice]) { error in
 
             // Check for errors
             if error == nil {
@@ -357,6 +357,11 @@ class ShopViewModel: ObservableObject {
         }
         return addOptionsPrice
 
+    }
+
+    func updatePendingOrders(){
+
+        
     }
 
     func calcTotal() -> Double {
