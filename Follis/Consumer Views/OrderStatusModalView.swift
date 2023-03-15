@@ -15,6 +15,13 @@ struct OrderStatusModalView: View {
     let address: String
     let orderNumber: String
     let orderStatus: String
+    
+    @State var total = 0.0
+    @State var subtotal = 0.0
+    @State var tax = 0.0
+
+
+
 
 
     // MARK: - BODY
@@ -73,13 +80,20 @@ struct OrderStatusModalView: View {
                     .fontWeight(.bold)
                     .padding(.leading, 20)
 
-                ForEach((0...1), id: \.self) {_ in
-
-                    OrderItemCell(itemQuantity: 1, itemName: "Istanbowl", itemPrice: "10.95", rewardPoints: "5",index:2, popup: true, finalTotal: 2.0)
-                        .padding(.leading, 25)
-                        .padding(.trailing, 20)
-
-                } //: FOR EACH
+                ScrollView{
+                    ForEach(viewModel.cartItems) { order in
+                        
+                        
+                        let index = viewModel.cartItems.firstIndex(of: order)
+                        let itemPrice = Double(order.item.price)! + Double(order.getAddOns())!
+                        
+                        OrderItemCell(itemQuantity: order.item.quantity!, itemName: order.item.name, itemPrice: String(itemPrice), rewardPoints: order.item.rewards, index: index!, popup:false, finalTotal: total)
+                            .padding(.leading, 25)
+                            .padding(.trailing, 20)
+                        
+                    } //: FOR EACH
+                } //: SCROLLVIEW
+                .frame(height: 150)
 
                 Divider()
 
@@ -89,7 +103,7 @@ struct OrderStatusModalView: View {
 
                     Spacer()
 
-                    Text("20.9 USDC")
+                    Text(String(round(viewModel.subtotal * 100) / 100.0) + " USDC")
 
                 } //: HSTACK
                 .padding(.top, 10)
@@ -103,7 +117,7 @@ struct OrderStatusModalView: View {
 
                     Spacer()
 
-                    Text("1.254 USDC")
+                    Text(String(viewModel.tax) + " USDC")
 
                 } //: HSTACK
                 .padding(.leading, 20)
@@ -118,7 +132,7 @@ struct OrderStatusModalView: View {
 
                     Spacer()
 
-                    Text("22.154 USDC")
+                    Text(String(viewModel.total) + " USDC")
 
                 } //: HSTACK
                 .padding(.top, 10)
@@ -132,8 +146,14 @@ struct OrderStatusModalView: View {
 
             Button {
                 viewModel.updatePendingOrders()
+                viewModel.cartItems = []
+                
+                viewModel.total = 0.0
+                viewModel.subtotal = 0.0
+                viewModel.tax = 0.0
+                
             } label: {
-                Text("Complete")
+                Text("I Have My Food!")
             }
             .padding()
 
@@ -141,6 +161,9 @@ struct OrderStatusModalView: View {
 
 
         } //: VSTACK
+        .onAppear(){
+            total = viewModel.calcTotal()
+        }
     }
 
 

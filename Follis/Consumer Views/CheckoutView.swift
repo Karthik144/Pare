@@ -164,9 +164,11 @@ struct CheckoutView: View {
 
                     // Upload order to Firebase (so shop can access it)                    
                     viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending")
-
+                    
+                    //Pop to Shop View
+                   
                     //Empty out cart
-                    viewModel.cartItems = []
+                    //viewModel.cartItems = []
 
                 } label: {
                     Text("Pay with stars 🌟")

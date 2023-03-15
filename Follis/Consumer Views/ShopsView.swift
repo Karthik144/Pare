@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct ShopsView: View {
+    
+    let dateFormatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .short
+            return formatter
+        }()
 
     // MARK: - PROPERTIES
     @ObservedObject private var viewModel = ShopViewModel()
@@ -15,6 +22,8 @@ struct ShopsView: View {
     @State private var showModal = false
     @State private var totalShops = [Shop]()
     @State private var pendingOrders = [PendingOrder]()
+    
+    @State var pickUpTime: Date?
 
     // MARK: - BODY
     var body: some View {
@@ -59,7 +68,7 @@ struct ShopsView: View {
                                         .frame(width: 2, height: 2)
                                         .foregroundColor(Color.white)
 
-                                    Text("Scheduled for 3pm")
+                                    Text(dateFormatter.string(from: pickUpTime!))
                                         .font(.caption)
                                         .foregroundColor(Color.white)
                                         .fontWeight(.light)
@@ -129,7 +138,12 @@ struct ShopsView: View {
 
                 viewModel.fetchPendingOrders { orders in
                     self.pendingOrders = orders
+                    if (self.pendingOrders.count >= 1){
+                        self.pickUpTime = (orders[0].date_ordered).addingTimeInterval(20 * 60)
+                    }
                 }
+                
+                
             }
 
 
