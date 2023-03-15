@@ -158,11 +158,15 @@ struct ShopsView: View {
                         if order.pending == true && order.complete == false {
                             self.filteredPendingOrders.append(order)
                         }
+
+                        if order.pending == false && order.complete == false {
+                            self.filteredPendingOrders.append(order)
+                        }
                     }
 
                     if let firstOrder = self.filteredPendingOrders.first {
 
-                        if firstOrder.pending != true || firstOrder.complete != false {
+                        if firstOrder.pending != true && firstOrder.complete != false {
 
                             print("Entered inside filtered if statement")
 

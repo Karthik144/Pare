@@ -27,6 +27,7 @@
 		7C45EC5D299B32B200F3B439 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC5C299B32B100F3B439 /* UserService.swift */; };
 		7C45EC60299B341400F3B439 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC5F299B341400F3B439 /* User.swift */; };
 		7C45EC62299B354A00F3B439 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC61299B354A00F3B439 /* AppState.swift */; };
+		7C840AF829C2253F001F067E /* PastOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C840AF729C2253F001F067E /* PastOrderCell.swift */; };
 		7C86262429B7E88600919213 /* ShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86262329B7E88600919213 /* ShopCell.swift */; };
 		7C86262729B7EC9500919213 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86262629B7EC9500919213 /* SearchBar.swift */; };
 		7C86262929B7F0F000919213 /* ShopItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C86262829B7F0F000919213 /* ShopItemView.swift */; };
@@ -93,6 +94,7 @@
 		7C45EC5C299B32B100F3B439 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		7C45EC5F299B341400F3B439 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7C45EC61299B354A00F3B439 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		7C840AF729C2253F001F067E /* PastOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastOrderCell.swift; sourceTree = "<group>"; };
 		7C86262329B7E88600919213 /* ShopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCell.swift; sourceTree = "<group>"; };
 		7C86262629B7EC9500919213 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		7C86262829B7F0F000919213 /* ShopItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopItemView.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 				7C0439DE29B90E130037EE72 /* ProfileItemCell.swift */,
 				7C97788429BAA88500F0C6C5 /* RequiredItemCell.swift */,
 				7C97788829BAAA3A00F0C6C5 /* ModificationItemCell.swift */,
+				7C840AF729C2253F001F067E /* PastOrderCell.swift */,
 			);
 			path = "View Components ";
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 			files = (
 				7C86263129B818E400919213 /* CheckoutView.swift in Sources */,
 				7C0439DF29B90E130037EE72 /* ProfileItemCell.swift in Sources */,
+				7C840AF829C2253F001F067E /* PastOrderCell.swift in Sources */,
 				7CD78BF7299DEE47002E01E1 /* SettingsView.swift in Sources */,
 				7C45EC44299B2D5200F3B439 /* SignUpViewOne.swift in Sources */,
 				7C86263329B8195B00919213 /* OrderItemCell.swift in Sources */,

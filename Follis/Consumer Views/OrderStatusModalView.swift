@@ -236,6 +236,11 @@ struct OrderStatusModalView: View {
                         print("Number of filtered pending orders \(self.filteredPendingOrders.count)")
 
                     }
+
+                    if order.pending == false && order.complete == false {
+                        self.filteredPendingOrders.append(order)
+                    }
+
                 }
 
                 if !self.filteredPendingOrders.isEmpty{

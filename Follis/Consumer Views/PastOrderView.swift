@@ -22,13 +22,12 @@ struct PastOrderView: View {
 
                 ForEach(filteredPendingOrders){ order in
 
-                    Text(order.total_items)
-                        .font(.title2)
-
+                    PastOrderCell(order: order)
                 }
+                .padding() 
 
-            }
-        }
+            } //: LAZY VSTACK
+        } //: SCROLL VIEW 
         .navigationTitle("Order History")
         .navigationBarTitleDisplayMode(.large)
         .onAppear(){
@@ -39,6 +38,8 @@ struct PastOrderView: View {
                 for order in self.pendingOrders {
 
                     if order.pending == false && order.complete == true {
+
+                        print("Entered if statement in PastOrderView")
 
                         self.filteredPendingOrders.append(order)
                     }
