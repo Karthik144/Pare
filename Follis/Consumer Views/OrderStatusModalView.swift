@@ -11,6 +11,7 @@ struct OrderStatusModalView: View {
 
     // MARK: - PROPERTIES
     @EnvironmentObject var viewModel: ShopViewModel
+    @EnvironmentObject var AuthViewModel: AuthViewModel
     let shop: String
     let address: String
     let orderNumber: String
@@ -19,8 +20,6 @@ struct OrderStatusModalView: View {
     @State var total = 0.0
     @State var subtotal = 0.0
     @State var tax = 0.0
-
-
 
 
 
@@ -60,8 +59,9 @@ struct OrderStatusModalView: View {
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(Color.yellow)
+                
 
-                Text("Karthik Ramu")
+                Text(AuthViewModel.currentUser!.first_name + " " + AuthViewModel.currentUser!.last_name)
                     .font(.title)
                     .foregroundColor(Color.black)
                     .padding(20)
@@ -151,6 +151,8 @@ struct OrderStatusModalView: View {
                 viewModel.total = 0.0
                 viewModel.subtotal = 0.0
                 viewModel.tax = 0.0
+                
+                
                 
             } label: {
                 Text("I Have My Food!")

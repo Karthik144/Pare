@@ -15,6 +15,7 @@ struct ShopsView: View {
             formatter.timeStyle = .short
             return formatter
         }()
+    
 
     // MARK: - PROPERTIES
     @ObservedObject private var viewModel = ShopViewModel()
@@ -148,6 +149,9 @@ struct ShopsView: View {
 
 
         } //: NAV VIEW
+        .onAppear{
+            
+        }
     } //: VIEW
 
 
