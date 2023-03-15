@@ -40,7 +40,7 @@ extension WelcomeView {
 
                 VStack(spacing: 12){
 
-                    Text("Follis")
+                    Text("MealX")
                         .font(.largeTitle)
                         .fontWeight(.heavy)
                         .offset(y:-50)
