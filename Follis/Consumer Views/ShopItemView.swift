@@ -11,6 +11,7 @@ struct ShopItemView: View {
 
     // MARK: - PROPERTIES
     @EnvironmentObject var viewModel: ShopViewModel
+    @EnvironmentObject var appState: AppState
     @EnvironmentObject var authViewModel: AuthViewModel
     @State private var totalMenuItems = [MenuItem]()
     @State private var total = 0.0

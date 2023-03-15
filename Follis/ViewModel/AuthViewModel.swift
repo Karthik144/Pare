@@ -70,7 +70,7 @@ class AuthViewModel: ObservableObject{
 
                 Firestore.firestore().collection("users")
                     .document(user.uid)
-                    .setData(["first_name": firstName, "last_name": lastName, "email": email, "is_merchant": isMerchant, "cart_active": false]){ _ in
+                    .setData(["first_name": firstName, "last_name": lastName, "email": email, "is_merchant": isMerchant, "cart_active": false, "rewards": 0]){ _ in
                         print("User data successfully uploaded.")
                         self.didAuthenticateUser = true
                         self.fetchUser()
@@ -152,6 +152,32 @@ class AuthViewModel: ObservableObject{
         userSession = nil
 
     } //: DELETE USER
+
+    func updateUserData(firstName: String, lastName: String, email: String){
+
+        // Update first name
+
+        // Create a reference to the database
+        let db = Firestore.firestore()
+
+        // Takes us to the current user
+        db.collection("users").document(currentUser?.id ?? "").updateData(["first_name": firstName]){ _ in
+
+            print("User data successfully uploaded.")
+        }
+
+        // Update last name
+        db.collection("users").document(currentUser?.id ?? "").updateData(["last_name": lastName]){ _ in
+
+            print("User data successfully uploaded.")
+        }
+
+        // Update email
+        db.collection("users").document(currentUser?.id ?? "").updateData(["email": email]){ _ in
+
+            print("User data successfully uploaded.")
+        }
+    }
 
 
 

@@ -22,6 +22,7 @@ class ShopViewModel: ObservableObject {
     @Published var total = 0.0
     @Published var subtotal = 0.0
     @Published var tax = 0.0
+    @Published var rewards = 0
     @Published private var totalRewards = 0
 
     // Properties for uploading to completed_orders
@@ -143,8 +144,29 @@ class ShopViewModel: ObservableObject {
 
         }
 
-    } //: FETCH ITEM ADD OPTIONS
+    } //: FETCH PENDING ORDERS
 
+    func fetchOrderItems(pendingOrderID: String, completion: @escaping([OrderItem]) -> Void){
+
+
+        // Gets the current users uid so we can reference it
+        guard let userUID = Auth.auth().currentUser?.uid else {return}
+
+        Firestore.firestore().collection("users").document(userUID).collection("pending_orders").document(pendingOrderID).collection("order_items").addSnapshotListener { (querySnapshot, error) in
+
+            guard let documents = querySnapshot?.documents else {
+                print("No documents in this collection.")
+                return
+
+            }
+
+            let orderItems = documents.compactMap({ try? $0.data(as: OrderItem.self) })
+
+            completion(orderItems)
+
+        }
+
+    } //: FETCH ORDER ITEMS
 
     // NOTE: NEED TO FINISHED THIS FUNC TO UPLOAD DATA
     func updateCartActiveStatus(cartActive: Bool){
@@ -164,9 +186,44 @@ class ShopViewModel: ObservableObject {
 
     } //: UPDATE CART ACTIVE IN FIREBASE
 
+    func updateRewards(rewards: Int){
+
+        // Gets the current users uid so we can reference it
+        guard let userUID = Auth.auth().currentUser?.uid else {return}
+
+        // Create a reference to the database
+        let db = Firestore.firestore()
+
+        // Takes us to the current user
+        db.collection("users").document(userUID).updateData(["rewards": rewards]){ _ in
+
+            print("User data successfully uploaded.")
+        }
+
+
+    } //: UPDATE REWARDS IN FIREBASE
+
+    // NOTE: NEED TO FINISHED THIS FUNC TO UPLOAD DATA
+    func updatePendingToComplete(pendingOrderID: String, complete: Bool){
+
+        // Gets the current users uid so we can reference it
+        guard let userUID = Auth.auth().currentUser?.uid else {return}
+
+        // Create a reference to the database
+        let db = Firestore.firestore()
+
+        // Takes us to the current user
+        db.collection("users").document(userUID).collection("pending_orders").document(pendingOrderID).updateData(["complete": complete]){ _ in
+
+            print("User data successfully uploaded.")
+        }
+
+
+    } //: UPDATE CART ACTIVE IN FIREBASE
+
 
     // Upload order to firebase
-    func postOrderData(shop: Shop, cartTotalItems: String, cart: [Order], orderStatus: String){
+    func postOrderData(shop: Shop, cartTotalItems: String, cart: [Order], orderStatus: String, subtotal: Double, total: Double){
         // Gets the current users uid so we can reference it
         guard let userUID = Auth.auth().currentUser?.uid else {return}
 
@@ -175,7 +232,7 @@ class ShopViewModel: ObservableObject {
 
 
         // Add a document to user's values collection
-        let ordersDocRef = db.collection("users").document(userUID).collection("pending_orders").addDocument(data: ["shop_id": shop.id, "total_items": cartTotalItems, "user_who_ordered": userUID, "pending": true, "date_ordered": Timestamp(date: Date())]) { error in
+        let ordersDocRef = db.collection("users").document(userUID).collection("pending_orders").addDocument(data: ["shop_id": shop.id, "total_items": cartTotalItems, "user_who_ordered": userUID, "pending": true, "complete": false, "subtotal": subtotal, "total": total, "date_ordered": Timestamp(date: Date())]) { error in
 
             // Check for errors
             if error == nil {
@@ -199,7 +256,7 @@ class ShopViewModel: ObservableObject {
 
 
             // Add a document to user's values collection
-            let itemDocRef = db.collection("users").document(userUID).collection("pending_orders").document(ordersDocRef.documentID).collection("order_items").addDocument(data: ["name": cartItem.item.name, "order_id": ordersDocRef.documentID]) { error in
+            let itemDocRef = db.collection("users").document(userUID).collection("pending_orders").document(ordersDocRef.documentID).collection("order_items").addDocument(data: ["name": cartItem.item.name, "price": cartItem.item.price, "quantity": cartItem.item.quantity ?? 1, "rewards": cartItem.item.rewards, "order_id": ordersDocRef.documentID]) { error in
 
                 // Check for errors
                 if error == nil {
@@ -307,6 +364,9 @@ class ShopViewModel: ObservableObject {
     }
 
 
+
+
+
     func calcItemAddOnTotal(order: Order) -> Double{
         var addOptionsPrice = 0.0
         
@@ -324,6 +384,8 @@ class ShopViewModel: ObservableObject {
         for cartOrder in cartItems {
 
             subtotal += ((Double(cartOrder.item.price) ?? 0.0) + calcItemAddOnTotal(order: cartOrder)) * Double(cartOrder.item.quantity!)
+
+            rewards += Int(cartOrder.item.rewards) ?? 0
 
         }
 

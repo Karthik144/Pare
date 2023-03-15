@@ -44,6 +44,9 @@
 		7C97788929BAAA3A00F0C6C5 /* ModificationItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C97788829BAAA3A00F0C6C5 /* ModificationItemCell.swift */; };
 		7CA83B4B29BA578900E4C4CD /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA83B4A29BA578900E4C4CD /* MenuItem.swift */; };
 		7CA914BF299DB9790006ED5B /* UserCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA914BE299DB9790006ED5B /* UserCheck.swift */; };
+		7CC4189E29C16F1A004CE58B /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC4189D29C16F1A004CE58B /* OrderItem.swift */; };
+		7CC418A329C1958F004CE58B /* PastOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC418A229C1958F004CE58B /* PastOrderView.swift */; };
+		7CC418A529C19598004CE58B /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC418A429C19598004CE58B /* HelpView.swift */; };
 		7CCCEFBC29B7C1EC00E27BAA /* SignUpViewFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCEFBB29B7C1EC00E27BAA /* SignUpViewFive.swift */; };
 		7CCCEFC029B7CCCA00E27BAA /* ShopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCEFBF29B7CCCA00E27BAA /* ShopsView.swift */; };
 		7CCCEFC529B7CD2E00E27BAA /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCEFC429B7CD2E00E27BAA /* WalletView.swift */; };
@@ -107,6 +110,9 @@
 		7C97788829BAAA3A00F0C6C5 /* ModificationItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificationItemCell.swift; sourceTree = "<group>"; };
 		7CA83B4A29BA578900E4C4CD /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		7CA914BE299DB9790006ED5B /* UserCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCheck.swift; sourceTree = "<group>"; };
+		7CC4189D29C16F1A004CE58B /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
+		7CC418A229C1958F004CE58B /* PastOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastOrderView.swift; sourceTree = "<group>"; };
+		7CC418A429C19598004CE58B /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		7CCCEFBB29B7C1EC00E27BAA /* SignUpViewFive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewFive.swift; sourceTree = "<group>"; };
 		7CCCEFBF29B7CCCA00E27BAA /* ShopsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsView.swift; sourceTree = "<group>"; };
 		7CCCEFC429B7CD2E00E27BAA /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
@@ -177,7 +183,6 @@
 				7C45EC23299B26B900F3B439 /* Assets.xcassets */,
 				7C45EC47299B2EE100F3B439 /* GoogleService-Info.plist */,
 				7C45EC25299B26B900F3B439 /* Preview Content */,
-				7C45EC61299B354A00F3B439 /* AppState.swift */,
 			);
 			path = Follis;
 			sourceTree = "<group>";
@@ -208,11 +213,11 @@
 		7C45EC42299B2D2100F3B439 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7CC4189F29C16F27004CE58B /* Pending Order Models */,
 				E9DD9CCF29C0F1D80001106E /* Order.swift */,
 				E9DD9CCE29C0F19F0001106E /* orderComponents */,
 				E9DD9CCD29C0F1730001106E /* Authentication */,
 				7C0439E129B938920037EE72 /* Shop.swift */,
-				7CEB24D629BE53CF00018FB2 /* PendingOrder.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -231,6 +236,7 @@
 		7C45EC5E299B33C900F3B439 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				7C45EC61299B354A00F3B439 /* AppState.swift */,
 				7C45EC3F299B2D0100F3B439 /* AuthViewModel.swift */,
 				7C0439E329B939170037EE72 /* ShopViewModel.swift */,
 			);
@@ -248,6 +254,8 @@
 				7C86263629B839A300919213 /* OrderStatusModalView.swift */,
 				7C0439DC29B90C7A0037EE72 /* ProfileView.swift */,
 				7CEDCD1329BBB4B700C70EF5 /* PersonalView.swift */,
+				7CC418A229C1958F004CE58B /* PastOrderView.swift */,
+				7CC418A429C19598004CE58B /* HelpView.swift */,
 			);
 			path = "Consumer Views";
 			sourceTree = "<group>";
@@ -265,6 +273,15 @@
 				7C97788829BAAA3A00F0C6C5 /* ModificationItemCell.swift */,
 			);
 			path = "View Components ";
+			sourceTree = "<group>";
+		};
+		7CC4189F29C16F27004CE58B /* Pending Order Models */ = {
+			isa = PBXGroup;
+			children = (
+				7CEB24D629BE53CF00018FB2 /* PendingOrder.swift */,
+				7CC4189D29C16F1A004CE58B /* OrderItem.swift */,
+			);
+			path = "Pending Order Models";
 			sourceTree = "<group>";
 		};
 		7CCCEFBD29B7CB4300E27BAA /* Merchant Views */ = {
@@ -408,6 +425,7 @@
 				7C86262929B7F0F000919213 /* ShopItemView.swift in Sources */,
 				7CF74DC9299C638F002B2BB9 /* EmailView.swift in Sources */,
 				E9DD9CD029C0F1D80001106E /* Order.swift in Sources */,
+				7CC418A329C1958F004CE58B /* PastOrderView.swift in Sources */,
 				7CEDCD1429BBB4B700C70EF5 /* PersonalView.swift in Sources */,
 				E94ABC0A29A0438D004DEC26 /* Router.swift in Sources */,
 				7C45EC62299B354A00F3B439 /* AppState.swift in Sources */,
@@ -434,6 +452,7 @@
 				7CEB24D729BE53CF00018FB2 /* PendingOrder.swift in Sources */,
 				E943114929A179B700E26EBE /* KeyboardResponder.swift in Sources */,
 				7C45EC38299B2AC700F3B439 /* ButtonModifier.swift in Sources */,
+				7CC418A529C19598004CE58B /* HelpView.swift in Sources */,
 				7CD78BFF299DF684002E01E1 /* TransactionView.swift in Sources */,
 				7C86262729B7EC9500919213 /* SearchBar.swift in Sources */,
 				7C8BBD0729A15AD300414DF0 /* StartButtonModifier.swift in Sources */,
@@ -447,6 +466,7 @@
 				7CF74DD1299C738D002B2BB9 /* SignUpViewFour.swift in Sources */,
 				7C86262429B7E88600919213 /* ShopCell.swift in Sources */,
 				7CA914BF299DB9790006ED5B /* UserCheck.swift in Sources */,
+				7CC4189E29C16F1A004CE58B /* OrderItem.swift in Sources */,
 				7C0439E229B938930037EE72 /* Shop.swift in Sources */,
 				7C97788529BAA88500F0C6C5 /* RequiredItemCell.swift in Sources */,
 			);

@@ -12,12 +12,14 @@ struct ProfileView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var viewModel: AuthViewModel
     @State private var showingAlert = false
+    @State private var isViewActive: Bool = false
 
     let imageList = ["person", "calendar.badge.clock", "questionmark.circle"]
     let textList = ["Personal", "Past Orders", "Help"]
 
-
-
+    @State var firstName = ""
+    @State var lastName = ""
+    @State var email = ""
 
     // MARK: - BODY
     var body: some View {
@@ -47,7 +49,7 @@ struct ProfileView: View {
                             .frame(width: 15, height: 15)
                             .scaledToFit()
 
-                        Text("220 Points")
+                        Text(String(viewModel.currentUser?.rewards ?? 0) + " Points")
                             .font(.callout)
                             .foregroundColor(Color.black)
                     } //: HSTACK
@@ -58,17 +60,39 @@ struct ProfileView: View {
 
                 Spacer()
 
-                ForEach((0..<imageList.count), id: \.self) { i in
 
-                    NavigationLink {
-                        PersonalView()
-                    } label: {
-                        ProfileItemCell(imageName: imageList[i], cellText: textList[i])
-                            .padding(.leading, 20)
-                            .padding(.trailing, 20)
-                    }
+                NavigationLink(destination: PersonalView(viewActive: $isViewActive, email: $email, firstName: $firstName, lastName: $lastName), isActive: $isViewActive){
 
-                } //: FOR EACH
+                    ProfileItemCell(imageName: imageList[0], cellText: textList[0])
+                        .padding(.leading, 20)
+                        .padding(.trailing, 20)
+
+                }
+                .isDetailLink(false)
+
+//                NavigationLink {
+//                    PersonalView(email: $email, firstName: $firstName, lastName: $lastName)
+//                } label: {
+//                    ProfileItemCell(imageName: imageList[0], cellText: textList[0])
+//                        .padding(.leading, 20)
+//                        .padding(.trailing, 20)
+//                }
+
+                NavigationLink {
+                    PastOrderView()
+                } label: {
+                    ProfileItemCell(imageName: imageList[1], cellText: textList[1])
+                        .padding(.leading, 20)
+                        .padding(.trailing, 20)
+                }
+
+                NavigationLink {
+                    HelpView()
+                } label: {
+                    ProfileItemCell(imageName: imageList[2], cellText: textList[2])
+                        .padding(.leading, 20)
+                        .padding(.trailing, 20)
+                }
 
                 Spacer()
 
@@ -105,6 +129,11 @@ struct ProfileView: View {
 
 
             } //: VSTACK
+            .onAppear(){
+                self.firstName = viewModel.currentUser?.first_name ?? "Error"
+                self.lastName = viewModel.currentUser?.last_name ?? "Error"
+                self.email = viewModel.currentUser?.email ?? "Error"
+            }
 
 
         } //: NAV VIEW

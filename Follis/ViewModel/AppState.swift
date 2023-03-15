@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import Combine
 
 final class AppState : ObservableObject{
     @Published var rootViewId = UUID()
+    @Published var moveToDashboard: Bool = false 
 }

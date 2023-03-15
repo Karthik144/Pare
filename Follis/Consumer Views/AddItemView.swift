@@ -10,6 +10,7 @@ import SwiftUI
 struct AddItemView: View {
 
     // MARK: - PROPERTIES
+    @EnvironmentObject var appState: AppState
     @EnvironmentObject var viewModel: ShopViewModel
     @State private var didTap = false
     @State private var goesToDetail = false

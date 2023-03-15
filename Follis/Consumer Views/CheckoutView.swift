@@ -15,6 +15,7 @@ struct CheckoutView: View {
     @State var subtotal = 0.0
     @State var tax = 0.0
     @EnvironmentObject var viewModel: ShopViewModel
+    @EnvironmentObject var appState: AppState
 
 
 
@@ -162,13 +163,14 @@ struct CheckoutView: View {
                     // Change cart active status
                     viewModel.updateCartActiveStatus(cartActive: false)
 
-                    // Upload order to Firebase (so shop can access it)                    
-                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending")
-                    
+                    // Update user's rewards 
+                    viewModel.updateRewards(rewards: viewModel.rewards)
+
+                    // Upload order to Firebase (so shop can access it)
+                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total)
+
                     //Pop to Shop View
-                   
-                    //Empty out cart
-                    //viewModel.cartItems = []
+                    self.appState.moveToDashboard = true
 
                 } label: {
                     Text("Pay with stars 🌟")

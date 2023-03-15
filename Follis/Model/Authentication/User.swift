@@ -16,4 +16,5 @@ struct User: Identifiable, Decodable {
     var is_merchant: Bool
     var last_name: String
     var cart_active: Bool
+    var rewards: Int
 }

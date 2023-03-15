@@ -19,10 +19,13 @@ struct ShopsView: View {
 
     // MARK: - PROPERTIES
     @ObservedObject private var viewModel = ShopViewModel()
+    @EnvironmentObject var appState: AppState
+    @State var isViewActive: Bool = false
     @State private var orderScheduled = true
     @State private var showModal = false
     @State private var totalShops = [Shop]()
     @State private var pendingOrders = [PendingOrder]()
+    @State private var filteredPendingOrders = [PendingOrder]()
     
     @State var pickUpTime: Date?
 
@@ -36,7 +39,7 @@ struct ShopsView: View {
                 SearchBar()
                     .padding(.top, 10)
 
-                if self.pendingOrders.count >= 1 {
+                if self.filteredPendingOrders.count >= 1 {
 
 
                     ZStack{
@@ -93,7 +96,7 @@ struct ShopsView: View {
                     .onTapGesture {
                         showModal.toggle()
                     }.sheet(isPresented: $showModal) {
-                        OrderStatusModalView(shop: "Otto Turkish Street Food", address: "111 W Water St, Charlottesville, VA 22902", orderNumber: "#325", orderStatus: "In Progress")
+                        OrderStatusModalView(shop: "Otto Turkish Street Food", address: "111 W Water St, Charlottesville, VA 22902", orderNumber: "#325", orderStatus: "In Progress", showModal: $showModal)
                     }
 
                 }
@@ -116,13 +119,19 @@ struct ShopsView: View {
 
                         ForEach(totalShops) { shop in
 
-                            NavigationLink {
-                                ShopItemView(shop: shop)
-                            } label: {
+                            NavigationLink(destination: ShopItemView(shop: shop), isActive: $isViewActive) {
                                 ShopCell(shop: shop)
                                     .padding(.leading, 0)
                                     .padding()
                             }
+                            .isDetailLink(false)
+//                            NavigationLink {
+//                                ShopItemView(shop: shop)
+//                            } label: {
+//                                ShopCell(shop: shop)
+//                                    .padding(.leading, 0)
+//                                    .padding()
+//                            }
 
                         } //: FOR EACH
 
@@ -139,19 +148,48 @@ struct ShopsView: View {
 
                 viewModel.fetchPendingOrders { orders in
                     self.pendingOrders = orders
+
                     if (self.pendingOrders.count >= 1){
                         self.pickUpTime = (orders[0].date_ordered).addingTimeInterval(20 * 60)
                     }
+
+                    for order in self.pendingOrders{
+
+                        if order.pending == true && order.complete == false {
+                            self.filteredPendingOrders.append(order)
+                        }
+                    }
+
+                    if let firstOrder = self.filteredPendingOrders.first {
+
+                        if firstOrder.pending != true || firstOrder.complete != false {
+
+                            print("Entered inside filtered if statement")
+
+                            self.filteredPendingOrders.removeAll()
+
+                        }
+
+                    }
+
+
+
+
+
+
                 }
-                
-                
-            }
+
+            } //: ON APPEAR
 
 
         } //: NAV VIEW
-        .onAppear{
-            
+        .onReceive(self.appState.$moveToDashboard) { moveToDashboard in
+            if moveToDashboard {
+                self.isViewActive = false
+                self.appState.moveToDashboard = false
+            }
         }
+
     } //: VIEW
 
 
