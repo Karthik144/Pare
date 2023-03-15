@@ -146,7 +146,14 @@ struct CheckoutView: View {
                     //Empty out cart
                     viewModel.cartItems = []
 
-                    // Upload order to Firebase (so shop can access it) 
+                    // Update user's rewards
+                    viewModel.updateRewards(rewards: viewModel.rewards)
+
+                    // Upload order to Firebase (so shop can access it)
+                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total)
+
+                    //Pop to Shop View
+                    self.appState.moveToDashboard = true
 
                 } label: {
                     Text("Pay")
@@ -162,6 +169,9 @@ struct CheckoutView: View {
 
                     // Change cart active status
                     viewModel.updateCartActiveStatus(cartActive: false)
+
+                    //Empty out cart
+                    viewModel.cartItems = []
 
                     // Update user's rewards 
                     viewModel.updateRewards(rewards: viewModel.rewards)
