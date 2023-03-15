@@ -212,6 +212,7 @@ struct OrderStatusModalView: View {
                 }
 
                 showModal = false
+                
 
                 
             } label: {

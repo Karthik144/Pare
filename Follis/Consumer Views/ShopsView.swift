@@ -27,6 +27,8 @@ struct ShopsView: View {
     @State private var pendingOrders = [PendingOrder]()
     @State private var filteredPendingOrders = [PendingOrder]()
     
+    @State var orderDone: Bool = false
+    
     @State var pickUpTime: Date?
 
     // MARK: - BODY
@@ -56,17 +58,45 @@ struct ShopsView: View {
 
                             VStack(alignment: .leading, spacing: 0){
 
-                                Text("Ordered Scheduled")
-                                    .foregroundColor(Color.white)
-                                    .font(.title2)
-                                    .fontWeight(.bold)
+                                if let firstOrder = filteredPendingOrders.first {
+
+                                    if firstOrder.pending == true {
+                                        Text("Order Scheduled")
+                                            .foregroundColor(Color.white)
+                                            .font(.title2)
+                                            .fontWeight(.bold)
+                                    } else {
+                                        Text("Order Ready")
+                                            .foregroundColor(Color.white)
+                                            .font(.title2)
+                                            .fontWeight(.bold)
+                                    }
+
+                                } else {
+                                    Text("No orders found")
+                                }
+                                   
 
                                 HStack{
 
-                                    Text("In Progress")
-                                        .font(.caption)
-                                        .foregroundColor(Color.white)
-                                        .fontWeight(.light)
+                                    if let firstOrder = filteredPendingOrders.first {
+
+                                        if firstOrder.pending == true {
+                                            Text("In Progress")
+                                                .font(.caption)
+                                                .foregroundColor(Color.white)
+                                                .fontWeight(.light)
+                                        } else {
+                                            Text("Complete")
+                                                .font(.caption)
+                                                .foregroundColor(Color.white)
+                                                .fontWeight(.light)
+                                        }
+
+                                    } else {
+                                        Text("No orders found")
+                                    }
+                                    
 
                                     Circle()
                                         .frame(width: 2, height: 2)

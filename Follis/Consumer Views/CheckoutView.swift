@@ -145,6 +145,8 @@ struct CheckoutView: View {
                     
                     //Empty out cart
                     viewModel.cartItems = []
+                    
+                    
 
                     // Upload order to Firebase (so shop can access it) 
 
