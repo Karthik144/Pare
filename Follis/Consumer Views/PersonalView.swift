@@ -16,6 +16,7 @@ struct PersonalView: View {
     @Binding var firstName: String
     @Binding var lastName: String
 
+
     // MARK: - BODY 
     var body: some View {
 
@@ -24,6 +25,7 @@ struct PersonalView: View {
                 TextField("First Name", text: $firstName)
                 TextField("Last Name", text: $lastName)
                 TextField("Email", text: $email)
+            
             }
 
             Section(header: Text("Preferences")) {
