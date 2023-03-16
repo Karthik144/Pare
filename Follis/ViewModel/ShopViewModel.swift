@@ -331,7 +331,7 @@ class ShopViewModel: ObservableObject {
         }
 
         // Share data to merchant as well
-        postOrderDataToMerchant(userID: userUID, orderID: ordersDocRef.documentID, shop: shop, totalPrice: calcTotal())
+        postOrderDataToMerchant(userID: userUID, orderID: ordersDocRef.documentID, shop: shop, totalPrice: total)
 
 
 
