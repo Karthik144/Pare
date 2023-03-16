@@ -72,7 +72,7 @@ struct OrderStatusModalView: View {
                             .foregroundColor(Color.yellow)
                     }
                     else{
-                        Text(firstOrder.status)
+                        Text("Ready")
                             .font(.title)
                             .fontWeight(.bold)
                             .foregroundColor(Color.green)
