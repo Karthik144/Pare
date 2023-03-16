@@ -173,10 +173,10 @@ struct OrderStatusModalView: View {
 
 
                     if let firstOrder = readyOrders.first {
-                        Text(String((round(firstOrder.subtotal * 100) / 100.0) * 0.06) + " USDC")
+                        Text(String((round(firstOrder.total * 100) / 100.0) * 0.06) + " USDC")
                     } else {
                         if let firstOrder = pendingOrders.first {
-                            Text(String(round(firstOrder.subtotal * 100) / 100.0) + " USDC")
+                            Text(String((round(firstOrder.total * 100) / 100.0) * 0.06) + " USDC")
                         }
                     }
 
@@ -199,7 +199,7 @@ struct OrderStatusModalView: View {
                         Text(String(firstOrder.total) + " USDC")
                     } else {
                         if let firstOrder = pendingOrders.first {
-                            Text(String(round(firstOrder.subtotal * 100) / 100.0) + " USDC")
+                            Text(String(round(firstOrder.total * 100) / 100.0) + " USDC")
                         }
                     }
 
