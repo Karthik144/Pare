@@ -11,7 +11,7 @@ struct PastOrderView: View {
 
     // MARK: - PROPERTIES
     @EnvironmentObject var viewModel: ShopViewModel
-    @State private var pendingOrders = [PendingOrder]()
+    @State private var orders = [PendingOrder]()
     @State private var filteredPendingOrders = [PendingOrder]()
 
     // MARK: - BODY
@@ -32,12 +32,12 @@ struct PastOrderView: View {
         .navigationBarTitleDisplayMode(.large)
         .onAppear(){
 
-            viewModel.fetchPendingOrders { orders in
-                self.pendingOrders = orders
+            viewModel.fetchAllOrders{ orders in
+                self.orders = orders
 
-                for order in self.pendingOrders {
+                for order in self.orders {
 
-                    if order.pending == false && order.complete == true {
+                    if order.status == "complete"{
 
                         print("Entered if statement in PastOrderView")
 

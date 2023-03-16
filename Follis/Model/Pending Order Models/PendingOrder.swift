@@ -16,8 +16,9 @@ struct PendingOrder: Identifiable, Decodable {
     var shop_id: String
     var total_items: String
     var user_who_ordered: String
-    var pending: Bool
-    var complete: Bool
+    //var pending: Bool
+    //var complete: Bool
+    var status: String
     var subtotal: Double
     var total: Double
 

@@ -18,12 +18,14 @@ struct OrderStatusModalView: View {
     let orderStatus: String
 
     @State private var pendingOrders = [PendingOrder]()
-    @State private var filteredPendingOrders = [PendingOrder]()
+    @State private var readyOrders = [PendingOrder]()
     @State private var orderItems = [OrderItem]()
     
     @State var total = 0.0
     @State var subtotal = 0.0
     @State var tax = 0.0
+    
+    @Binding var orderReady: Bool
 
     @Binding var showModal: Bool
 
@@ -60,25 +62,33 @@ struct OrderStatusModalView: View {
                     .font(.largeTitle)
                     .font(.system(size: 80))
                     .fontWeight(.bold)
-
-                if let firstOrder = filteredPendingOrders.first {
-
-                    if firstOrder.pending == true {
-                        Text(orderStatus)
+                
+                
+                if let firstOrder = readyOrders.first {
+                    if (firstOrder.status == "pending"){
+                        Text(firstOrder.status)
                             .font(.title)
                             .fontWeight(.bold)
                             .foregroundColor(Color.yellow)
-                    } else {
-                        Text("Complete")
+                    }
+                    else{
+                        Text(firstOrder.status)
                             .font(.title)
                             .fontWeight(.bold)
                             .foregroundColor(Color.green)
                     }
-
+                    
                 } else {
-                    Text("No orders found")
+                    Text(orderStatus)
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.yellow)
                 }
 
+
+                
+              
+                   
 
 //                Text(orderStatus)
 //                    .font(.title)
@@ -139,10 +149,12 @@ struct OrderStatusModalView: View {
 
 //                    Text(String(round(filteredPendingOrders[0].subtotal * 100) / 100.0) + " USDC")
 
-                    if let firstOrder = filteredPendingOrders.first {
+                    if let firstOrder = readyOrders.first {
                         Text(String(round(firstOrder.subtotal * 100) / 100.0) + " USDC")
                     } else {
-                        Text("No orders found")
+                        if let firstOrder = pendingOrders.first {
+                            Text(String(round(firstOrder.subtotal * 100) / 100.0) + " USDC")
+                        }
                     }
 
                 } //: HSTACK
@@ -160,10 +172,12 @@ struct OrderStatusModalView: View {
 //                    Text(String((round(filteredPendingOrders[0].subtotal * 100) / 100.0) * 0.06) + " USDC")
 
 
-                    if let firstOrder = filteredPendingOrders.first {
+                    if let firstOrder = readyOrders.first {
                         Text(String((round(firstOrder.subtotal * 100) / 100.0) * 0.06) + " USDC")
                     } else {
-                        Text("No orders found")
+                        if let firstOrder = pendingOrders.first {
+                            Text(String(round(firstOrder.subtotal * 100) / 100.0) + " USDC")
+                        }
                     }
 
                 } //: HSTACK
@@ -181,10 +195,12 @@ struct OrderStatusModalView: View {
 
 //                    Text(String(filteredPendingOrders[0].total) + " USDC")
 
-                    if let firstOrder = filteredPendingOrders.first {
+                    if let firstOrder = readyOrders.first {
                         Text(String(firstOrder.total) + " USDC")
                     } else {
-                        Text("No orders found")
+                        if let firstOrder = pendingOrders.first {
+                            Text(String(round(firstOrder.subtotal * 100) / 100.0) + " USDC")
+                        }
                     }
 
                 } //: HSTACK
@@ -206,10 +222,12 @@ struct OrderStatusModalView: View {
 //                viewModel.tax = 0.0
 
                 // Update complete status
-                if let firstOrder = filteredPendingOrders.first {
+                if let firstOrder = readyOrders.first {
 
-                    viewModel.updatePendingToComplete(pendingOrderID: firstOrder.id ?? "", complete: true)
+                    viewModel.updatePendingToComplete(pendingOrderID: firstOrder.id ?? "")
                 }
+                
+                orderReady = false
 
                 showModal = false
                 
@@ -226,38 +244,17 @@ struct OrderStatusModalView: View {
         } //: VSTACK
         .onAppear(){
             total = viewModel.calcTotal()
-
-            viewModel.fetchPendingOrders { pendingOrders in
-                self.pendingOrders = pendingOrders
-
-                print("Number of pending orders \(self.pendingOrders.count)")
-                for order in self.pendingOrders{
-
-                    if order.pending == true && order.complete == false {
-                        self.filteredPendingOrders.append(order)
-                        print("Number of filtered pending orders \(self.filteredPendingOrders.count)")
-
+            
+            viewModel.fetchAllOrders{ orders in
+                for order in orders{
+                    if (order.status == "ready"){
+                        self.readyOrders.append(order)
                     }
-
-                    if order.pending == false && order.complete == false {
-                        self.filteredPendingOrders.append(order)
+                    if (order.status == "pending"){
+                        self.pendingOrders.append(order)
                     }
-
+                    
                 }
-
-                if !self.filteredPendingOrders.isEmpty{
-
-                    print("Entered if not empty statement")
-
-                    viewModel.fetchOrderItems(pendingOrderID: self.filteredPendingOrders[0].id ?? "") { orderItems in
-
-                        self.orderItems = orderItems
-                        print("Number of order items \(self.orderItems.count)")
-
-                    }
-
-                }
-
             }
         } //: ON APPEAR
 

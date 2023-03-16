@@ -26,7 +26,7 @@ class ShopViewModel: ObservableObject {
     @Published private var totalRewards = 0
 
     // Properties for uploading to completed_orders
-    @Published private var pendingOrders = [PendingOrder]()
+    @Published private var allOrders = [PendingOrder]()
     
     private let service = ShopService()
 
@@ -125,12 +125,12 @@ class ShopViewModel: ObservableObject {
     } //: FETCH ITEM ADD OPTIONS
 
     // Fetch pending orders data
-    func fetchPendingOrders(completion: @escaping([PendingOrder]) -> Void){
+    func fetchAllOrders(completion: @escaping([PendingOrder]) -> Void){
 
         // Gets the current users uid so we can reference it
         guard let userUID = Auth.auth().currentUser?.uid else {return}
 
-        Firestore.firestore().collection("users").document(userUID).collection("pending_orders").addSnapshotListener { (querySnapshot, error) in
+        Firestore.firestore().collection("users").document(userUID).collection("orders").addSnapshotListener { (querySnapshot, error) in
 
             guard let documents = querySnapshot?.documents else {
                 print("No documents in this collection.")
@@ -138,9 +138,9 @@ class ShopViewModel: ObservableObject {
 
             }
 
-            let pendingOrders = documents.compactMap({ try? $0.data(as: PendingOrder.self) })
+            let ordersallOrders = documents.compactMap({ try? $0.data(as: PendingOrder.self) })
 
-            completion(pendingOrders)
+            completion(ordersallOrders)
 
         }
 
@@ -152,7 +152,7 @@ class ShopViewModel: ObservableObject {
         // Gets the current users uid so we can reference it
         guard let userUID = Auth.auth().currentUser?.uid else {return}
 
-        Firestore.firestore().collection("users").document(userUID).collection("pending_orders").document(pendingOrderID).collection("order_items").addSnapshotListener { (querySnapshot, error) in
+        Firestore.firestore().collection("users").document(userUID).collection("orders").document(pendingOrderID).collection("order_items").addSnapshotListener { (querySnapshot, error) in
 
             guard let documents = querySnapshot?.documents else {
                 print("No documents in this collection.")
@@ -204,7 +204,7 @@ class ShopViewModel: ObservableObject {
     } //: UPDATE REWARDS IN FIREBASE
 
     // NOTE: NEED TO FINISHED THIS FUNC TO UPLOAD DATA
-    func updatePendingToComplete(pendingOrderID: String, complete: Bool){
+    func updatePendingToComplete(pendingOrderID: String){
 
         // Gets the current users uid so we can reference it
         guard let userUID = Auth.auth().currentUser?.uid else {return}
@@ -213,7 +213,7 @@ class ShopViewModel: ObservableObject {
         let db = Firestore.firestore()
 
         // Takes us to the current user
-        db.collection("users").document(userUID).collection("pending_orders").document(pendingOrderID).updateData(["complete": complete]){ _ in
+        db.collection("users").document(userUID).collection("orders").document(pendingOrderID).updateData(["status": "complete"]){ _ in
 
             print("User data successfully uploaded.")
         }
@@ -232,7 +232,7 @@ class ShopViewModel: ObservableObject {
 
 
         // Add a document to user's values collection
-        let ordersDocRef = db.collection("users").document(userUID).collection("pending_orders").addDocument(data: ["shop_id": shop.id, "total_items": cartTotalItems, "user_who_ordered": userUID, "pending": true, "complete": false, "subtotal": subtotal, "total": total, "date_ordered": Timestamp(date: Date())]) { error in
+        let ordersDocRef = db.collection("users").document(userUID).collection("orders").addDocument(data: ["shop_id": shop.id!, "total_items": cartTotalItems, "user_who_ordered": userUID, "status": "pending", "subtotal": subtotal, "total": total, "date_ordered": Timestamp(date: Date())]) { error in
 
             // Check for errors
             if error == nil {
@@ -256,7 +256,7 @@ class ShopViewModel: ObservableObject {
 
 
             // Add a document to user's values collection
-            let itemDocRef = db.collection("users").document(userUID).collection("pending_orders").document(ordersDocRef.documentID).collection("order_items").addDocument(data: ["name": cartItem.item.name, "price": cartItem.item.price, "quantity": cartItem.item.quantity ?? 1, "rewards": cartItem.item.rewards, "order_id": ordersDocRef.documentID]) { error in
+            let itemDocRef = db.collection("users").document(userUID).collection("orders").document(ordersDocRef.documentID).collection("order_items").addDocument(data: ["name": cartItem.item.name, "price": cartItem.item.price, "quantity": cartItem.item.quantity ?? 1, "rewards": cartItem.item.rewards, "order_id": ordersDocRef.documentID]) { error in
 
                 // Check for errors
                 if error == nil {
@@ -273,7 +273,7 @@ class ShopViewModel: ObservableObject {
             for each in cartItem.requiredSelection ?? []{
 
                 // Add a document to user's values collection
-                db.collection("users").document(userUID).collection("pending_orders").document(ordersDocRef.documentID).collection("order_items").document(itemDocRef.documentID).collection("required").addDocument(data: ["option": each.option]) { error in
+                db.collection("users").document(userUID).collection("orders").document(ordersDocRef.documentID).collection("order_items").document(itemDocRef.documentID).collection("required").addDocument(data: ["option": each.option]) { error in
 
                     // Check for errors
                     if error == nil {
@@ -292,7 +292,7 @@ class ShopViewModel: ObservableObject {
             for each in cartItem.addOns ?? [] {
 
                 // Add a document to user's values collection
-                db.collection("users").document(userUID).collection("pending_orders").document(ordersDocRef.documentID).collection("order_items").document(itemDocRef.documentID).collection("add").addDocument(data: ["option": each.option, "price": each.price]) { error in
+                db.collection("users").document(userUID).collection("orders").document(ordersDocRef.documentID).collection("order_items").document(itemDocRef.documentID).collection("add").addDocument(data: ["option": each.option, "price": each.price]) { error in
 
                     // Check for errors
                     if error == nil {
@@ -311,7 +311,7 @@ class ShopViewModel: ObservableObject {
             for each in cartItem.modifications ?? [] {
 
                 // Add a document to user's values collection
-                db.collection("users").document(userUID).collection("pending_orders").document(ordersDocRef.documentID).collection("order_items").document(itemDocRef.documentID).collection("modifications").addDocument(data: ["option": each.option]) { error in
+                db.collection("users").document(userUID).collection("orders").document(ordersDocRef.documentID).collection("order_items").document(itemDocRef.documentID).collection("modifications").addDocument(data: ["option": each.option]) { error in
 
                     // Check for errors
                     if error == nil {
@@ -346,7 +346,7 @@ class ShopViewModel: ObservableObject {
         let merchantID = shop.merchant_id ?? ""
 
         // Add a document to user's values collection
-        let ordersDocRef = db.collection("merchants").document(merchantID).collection("pending_orders").addDocument(data: ["order_id": orderID, "user_id": userID, "total": totalPrice]) { error in
+        let ordersDocRef = db.collection("merchants").document(merchantID).collection("orders").addDocument(data: ["order_id": orderID, "user_id": userID, "total": totalPrice]) { error in
 
             // Check for errors
             if error == nil {
@@ -426,7 +426,7 @@ class ShopViewModel: ObservableObject {
     } //: FUNC UPDATE QUANTITY
 
 
-    func updatePendingOrders(){
+    func updateordersallOrders(){
         print("Change pending status from true to false")
     }
 }

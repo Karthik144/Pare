@@ -27,7 +27,11 @@ struct ShopsView: View {
     @State private var pendingOrders = [PendingOrder]()
     @State private var filteredPendingOrders = [PendingOrder]()
     
+    @State private var readyOrders = [PendingOrder]()
+
+    
     @State var orderDone: Bool = false
+    @State var orderReady: Bool = false
     
     @State var pickUpTime: Date?
 
@@ -41,7 +45,8 @@ struct ShopsView: View {
                 SearchBar()
                     .padding(.top, 10)
 
-                if self.filteredPendingOrders.count >= 1 {
+                //Show ModalView Conditional Block
+                if orderReady == true{
 
 
                     ZStack{
@@ -57,47 +62,35 @@ struct ShopsView: View {
 
 
                             VStack(alignment: .leading, spacing: 0){
-
-                                if let firstOrder = filteredPendingOrders.first {
-
-                                    if firstOrder.pending == true {
-                                        Text("Order Scheduled")
-                                            .foregroundColor(Color.white)
-                                            .font(.title2)
-                                            .fontWeight(.bold)
-                                    } else {
-                                        Text("Order Ready")
-                                            .foregroundColor(Color.white)
-                                            .font(.title2)
-                                            .fontWeight(.bold)
-                                    }
-
+                                
+                                if let firstOrder = readyOrders.first {
+                                    Text("Order Ready for Pickup")
+                                        .foregroundColor(Color.white)
+                                        .font(.title2)
+                                        .fontWeight(.bold)
                                 } else {
-                                    Text("No orders found")
+                                    Text("Order Scheduled")
+                                        .foregroundColor(Color.white)
+                                        .font(.title2)
+                                        .fontWeight(.bold)
                                 }
-                                   
-
+                                
                                 HStack{
 
-                                    if let firstOrder = filteredPendingOrders.first {
-
-                                        if firstOrder.pending == true {
-                                            Text("In Progress")
-                                                .font(.caption)
-                                                .foregroundColor(Color.white)
-                                                .fontWeight(.light)
-                                        } else {
-                                            Text("Complete")
-                                                .font(.caption)
-                                                .foregroundColor(Color.white)
-                                                .fontWeight(.light)
-                                        }
-
+                                    if let firstOrder = readyOrders.first {
+                                        Text("Ready")
+                                            .font(.caption)
+                                            .foregroundColor(Color.white)
+                                            .fontWeight(.light)
                                     } else {
-                                        Text("No orders found")
+                                        Text("In Progress")
+                                            .font(.caption)
+                                            .foregroundColor(Color.white)
+                                            .fontWeight(.light)
                                     }
                                     
 
+                        
                                     Circle()
                                         .frame(width: 2, height: 2)
                                         .foregroundColor(Color.white)
@@ -126,7 +119,7 @@ struct ShopsView: View {
                     .onTapGesture {
                         showModal.toggle()
                     }.sheet(isPresented: $showModal) {
-                        OrderStatusModalView(shop: "Otto Turkish Street Food", address: "111 W Water St, Charlottesville, VA 22902", orderNumber: "#325", orderStatus: "In Progress", showModal: $showModal)
+                        OrderStatusModalView(shop: "Otto Turkish Street Food", address: "111 W Water St, Charlottesville, VA 22902", orderNumber: "#325", orderStatus: "In Progress", orderReady: $orderReady, showModal: $showModal)
                     }
 
                 }
@@ -176,42 +169,6 @@ struct ShopsView: View {
                     self.totalShops = shops
                 }
 
-                viewModel.fetchPendingOrders { orders in
-                    self.pendingOrders = orders
-
-                    if (self.pendingOrders.count >= 1){
-                        self.pickUpTime = (orders[0].date_ordered).addingTimeInterval(20 * 60)
-                    }
-
-                    for order in self.pendingOrders{
-
-                        if order.pending == true && order.complete == false {
-                            self.filteredPendingOrders.append(order)
-                        }
-
-                        if order.pending == false && order.complete == false {
-                            self.filteredPendingOrders.append(order)
-                        }
-                    }
-
-                    if let firstOrder = self.filteredPendingOrders.first {
-
-                        if firstOrder.pending != true && firstOrder.complete != false {
-
-                            print("Entered inside filtered if statement")
-
-                            self.filteredPendingOrders.removeAll()
-
-                        }
-
-                    }
-
-
-
-
-
-
-                }
 
             } //: ON APPEAR
 
@@ -222,6 +179,22 @@ struct ShopsView: View {
                 self.isViewActive = false
                 self.appState.moveToDashboard = false
             }
+            
+            
+            
+            viewModel.fetchAllOrders{ orders in
+                for order in orders{
+                    if (order.status == "ready" || order.status == "pending"){
+                        self.pickUpTime = (orders[0].date_ordered).addingTimeInterval(20 * 60)
+                        orderReady = true
+                        if (order.status == "ready"){
+                            self.readyOrders.append(order)
+                        }
+                    }
+                    
+                }
+            }
+            
         }
 
     } //: VIEW
