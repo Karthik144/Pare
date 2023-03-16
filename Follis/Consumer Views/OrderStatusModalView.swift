@@ -255,7 +255,30 @@ struct OrderStatusModalView: View {
                     }
                     
                 }
+                
+                if !self.pendingOrders.isEmpty{
+
+                    viewModel.fetchOrderItems(pendingOrderID: self.pendingOrders[0].id ?? "") { orderItems in
+
+                        self.orderItems = orderItems
+                        print("Number of order items \(self.orderItems.count)")
+
+                    }
+
+                }
+                
+                if !self.readyOrders.isEmpty{
+
+                    viewModel.fetchOrderItems(pendingOrderID: self.readyOrders[0].id ?? "") { orderItems in
+
+                        self.orderItems = orderItems
+                        print("Number of order items \(self.orderItems.count)")
+
+                    }
+
+                }
             }
+            
         } //: ON APPEAR
 
 

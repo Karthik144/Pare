@@ -68,9 +68,13 @@ struct CheckoutView: View {
                         let index = viewModel.cartItems.firstIndex(of: order)
                         let itemPrice = Double(order.item.price)! + Double(order.getAddOns())!
                         
-                        OrderItemCell(itemQuantity: order.item.quantity!, itemName: order.item.name, itemPrice: String(itemPrice), rewardPoints: order.item.rewards, index: index!, popup:false, finalTotal: total)
+                        
+                        OrderItemCell(itemQuantity: order.item.quantity!, itemName: order.item.name, itemPrice: order.item.price, rewardPoints: order.item.rewards, index: index!, popup:false, finalTotal: total)
                             .padding(.leading, 25)
                             .padding(.trailing, 20)
+                            .onAppear{
+                                order.item.price = String(itemPrice)
+                            }
                         
                     } //: FOR EACH
                 } //: SCROLLVIEW
