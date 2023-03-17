@@ -16,6 +16,7 @@ struct CheckoutView: View {
     @State var tax = 0.0
     @EnvironmentObject var viewModel: ShopViewModel
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var authViewModel: AuthViewModel
 
 
 
@@ -162,7 +163,7 @@ struct CheckoutView: View {
                     viewModel.updateRewards(rewards: viewModel.rewards)
 
                     // Upload order to Firebase (so shop can access it)
-                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total)
+                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!)
 
                     
                     //Empty out cart
@@ -191,7 +192,7 @@ struct CheckoutView: View {
                     viewModel.updateRewards(rewards: viewModel.rewards)
 
                     // Upload order to Firebase (so shop can access it)
-                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total)
+                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!)
                     
                     //Empty out cart
                     viewModel.cartItems = []

@@ -23,6 +23,7 @@ struct PastOrderView: View {
 
                 Spacer()
                 Text("No orders yet. Go out and treat yourself! 😀")
+                    .foregroundColor(Color.gray)
                     .padding()
                 Spacer()
             } else {
