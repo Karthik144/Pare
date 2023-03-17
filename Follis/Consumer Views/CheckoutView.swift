@@ -75,8 +75,19 @@ struct CheckoutView: View {
                             .onAppear{
                                 order.item.price = String(itemPrice)
                             }
+                            .onAppear(){
+                                let index = viewModel.cartItems.firstIndex(of: order)
+
+                                print("Index inside on Appear")
+                                print(index)
+                            }
                         
                     } //: FOR EACH
+                    .onAppear(){
+                        print("Count of cart items")
+                        print(viewModel.cartItems.count)
+                    }
+                    
                 } //: SCROLLVIEW
                 .frame(height: 150)
 
@@ -154,7 +165,6 @@ struct CheckoutView: View {
                     viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total)
 
                     
-                    
                     //Empty out cart
                     viewModel.cartItems = []
                     
@@ -213,56 +223,6 @@ struct CheckoutView: View {
 
 
     }
-
-
-//    func calcItemAddOnTotal(item: MenuItem) -> Double{
-//
-//        var addOptionsPrice = 0.0
-//
-//        // Find all add options for that item
-//        let itemAddOptions = viewModel.selectedAddOptions[item]
-//
-//        for each in itemAddOptions ?? [] {
-//
-//            addOptionsPrice += Double(each.price) ?? 0.0
-//        }
-//
-//        return addOptionsPrice
-//
-//    }
-
-//    func calcTotal() {
-//
-////        var addOptionsPrice = 0.0
-//
-//        // Find items in cart
-//        for cartItem in viewModel.cartItems {
-//
-//            subtotal += (Double(cartItem.price) ?? 0.0) + calcItemAddOnTotal(item: cartItem)
-//
-//        }
-//
-//        tax = 0.06 * subtotal
-//
-//        total = 1.06 * subtotal
-//
-//
-//        total = round(total * 100) / 100.0
-//
-//
-////        for each in viewModel.selectedAddOptions.keys {
-////            addOptionsPrice += Double(viewModel.selectedAddOptions[each]?.price ?? "0.0") ?? 0.0
-////        }
-////
-////        subtotal = Double(item.price) ?? 0.0 + addOptionsPrice
-////
-////        tax = 0.06 * subtotal
-////
-////        total = 1.06 * subtotal
-////
-////        total = round(total * 100) / 100.0
-//
-//    } //: FUNC CALC TOTAL
 }
 
 

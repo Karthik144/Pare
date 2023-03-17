@@ -231,8 +231,19 @@ class ShopViewModel: ObservableObject {
         let db = Firestore.firestore()
 
 
+        print("quantity of item")
+        print(cartItems[0].item.quantity)
+
+
+        var totalItems = 0
+
+        for each in cartItems{
+            totalItems += each.item.quantity ?? 1
+        }
+
+
         // Add a document to user's values collection
-        let ordersDocRef = db.collection("users").document(userUID).collection("orders").addDocument(data: ["shop_id": shop.id!, "total_items": cartTotalItems, "user_who_ordered": userUID, "status": "pending", "subtotal": subtotal, "total": total, "date_ordered": Timestamp(date: Date())]) { error in
+        let ordersDocRef = db.collection("users").document(userUID).collection("orders").addDocument(data: ["shop_id": shop.id!, "total_items": String(totalItems ?? 0), "user_who_ordered": userUID, "status": "pending", "subtotal": subtotal, "total": total, "date_ordered": Timestamp(date: Date())]) { error in
 
             // Check for errors
             if error == nil {
@@ -247,16 +258,16 @@ class ShopViewModel: ObservableObject {
         }
 
 
-        let totalItems = Int(cartTotalItems) ?? 0
+        var totalIndex = Int(cartTotalItems) ?? 0
 
-        for i in 0..<(totalItems) {
+        for i in 0..<(totalIndex) {
 
             var cartItem = cart[i]
-            
 
+//            var cartItem = cartItems[i]
 
             // Add a document to user's values collection
-            let itemDocRef = db.collection("users").document(userUID).collection("orders").document(ordersDocRef.documentID).collection("order_items").addDocument(data: ["name": cartItem.item.name, "price": cartItem.item.price, "quantity": cartItem.item.quantity ?? 1, "rewards": cartItem.item.rewards, "order_id": ordersDocRef.documentID]) { error in
+            let itemDocRef = db.collection("users").document(userUID).collection("orders").document(ordersDocRef.documentID).collection("order_items").addDocument(data: ["name": cartItem.item.name, "price": cartItem.item.price, "quantity": cartItem.item.quantity ?? 0, "rewards": cartItem.item.rewards, "order_id": ordersDocRef.documentID]) { error in
 
                 // Check for errors
                 if error == nil {
@@ -345,6 +356,7 @@ class ShopViewModel: ObservableObject {
 
         let merchantID = shop.merchant_id ?? ""
 
+
         // Add a document to user's values collection
         let ordersDocRef = db.collection("merchants").document(merchantID).collection("orders").addDocument(data: ["order_id": orderID, "user_id": userID, "total": totalPrice]) { error in
 
@@ -422,7 +434,13 @@ class ShopViewModel: ObservableObject {
     
     
     func updateQuantity(index:Int, newQuantity:Int){
+
         cartItems[index].item.quantity = newQuantity
+
+        print("Index inside updateQuantity")
+        print(index)
+
+        print(cartItems[index].item.quantity)
     } //: FUNC UPDATE QUANTITY
 
 
