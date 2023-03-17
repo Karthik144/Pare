@@ -35,9 +35,10 @@ struct ProfileView: View {
                 // Profile with points and name
                 VStack(spacing: 5){
 
-                    Circle()
+                    Image("ProfileImage")
+                        .resizable()
                         .frame(width: 70, height: 70)
-                        .foregroundColor(Color.gray)
+                        .scaledToFit()
 
                     Text(viewModel.currentUser?.first_name ?? "Error" + "" + (viewModel.currentUser?.last_name ?? "Error"))
                         .font(.title)

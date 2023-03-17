@@ -20,8 +20,8 @@ struct ContentView: View {
 
         TabView(selection: $selection) {
             ProfileView().tabItem({
-                Image(systemName: "gearshape")
-                Text("Settings")
+                Image(systemName: "person.circle")
+                Text("Profile")
             })
             .tag(1)
 

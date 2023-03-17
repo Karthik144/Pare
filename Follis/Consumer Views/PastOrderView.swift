@@ -17,17 +17,33 @@ struct PastOrderView: View {
     // MARK: - BODY
     var body: some View {
 
-        ScrollView{
-            LazyVStack{
+        VStack{
 
-                ForEach(filteredPendingOrders){ order in
+            if filteredPendingOrders.isEmpty{
 
-                    PastOrderCell(order: order)
-                }
-                .padding() 
+                Spacer()
+                Text("No orders yet. Go out and treat yourself! 😀")
+                    .foregroundColor(Color.gray)
+                    .padding()
+                Spacer()
+            } else {
 
-            } //: LAZY VSTACK
-        } //: SCROLL VIEW 
+                ScrollView{
+                    LazyVStack{
+
+                        ForEach(filteredPendingOrders){ order in
+
+                            PastOrderCell(order: order)
+                        }
+                        .padding()
+
+                    } //: LAZY VSTACK
+                } //: SCROLL VIEW
+
+            } //: ELSE
+
+            
+        } //: VSTACK
         .navigationTitle("Order History")
         .navigationBarTitleDisplayMode(.large)
         .onAppear(){
@@ -47,6 +63,9 @@ struct PastOrderView: View {
             }
 
         } //: ON APPEAR
+
+
+
     }
 }
 
