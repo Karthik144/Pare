@@ -14,9 +14,9 @@ struct CheckoutView: View {
     @State var total = 0.0
     @State var subtotal = 0.0
     @State var tax = 0.0
+    @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var viewModel: ShopViewModel
     @EnvironmentObject var appState: AppState
-    @EnvironmentObject var authViewModel: AuthViewModel
 
 
 
@@ -188,8 +188,38 @@ struct CheckoutView: View {
                     // Change cart active status
                     viewModel.updateCartActiveStatus(cartActive: false)
 
-                    // Update user's rewards 
+                    // Store users rewards
+                    let userRewards = Double(authViewModel.currentUser?.rewards ?? Int(0.0))
+
+                    if userRewards >= viewModel.total{
+
+                        // Subtract used rewards from new rewards and update it to total rewards
+                        let extraRewards = userRewards - viewModel.total
+
+                        let updatedRewards = viewModel.rewards + Int(extraRewards)
+
+                        // Update user's rewards with new rewards from purchase
+                        viewModel.updateRewards(rewards: updatedRewards)
+
+                        // Upload order to Firebase (so shop can access it)
+                        viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!)
+
+                        //Empty out cart
+                        viewModel.cartItems = []
+
+                        //Pop to Shop View
+                        self.appState.moveToDashboard = true
+
+                    } else {
+
+                        // Decrease price by amount of stars and show updated price
+
+                        // Hide pay with stars button 
+                    }
+
+                    // Update user's rewards with new rewards from purchase
                     viewModel.updateRewards(rewards: viewModel.rewards)
+
 
                     // Upload order to Firebase (so shop can access it)
                     viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!)
@@ -224,6 +254,7 @@ struct CheckoutView: View {
 
 
     }
+
 }
 
 
