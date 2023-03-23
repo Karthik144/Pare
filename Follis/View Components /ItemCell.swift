@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ItemCell: View {
 
@@ -18,12 +19,15 @@ struct ItemCell: View {
 
         HStack{
 
-            Image("OttoBowl")
+            KFImage(URL(string: "https://firebasestorage.googleapis.com/v0/b/follis-e41c6.appspot.com/o/dumplings.png?alt=media&token=645aacaf-801d-4fee-99d5-ebd0dd8bfe4c"))
                 .resizable()
                 .frame(width: 85, height: 80)
                 .scaledToFit()
                 .cornerRadius(5)
                 .padding()
+                .onAppear{
+                    print(item.image)
+                }
 
             Spacer()
 
