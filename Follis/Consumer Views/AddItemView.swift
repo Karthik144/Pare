@@ -63,6 +63,12 @@ struct AddItemView: View {
                         Text("Popular")
                             .fontWeight(.semibold)
                             .foregroundColor(Color.orange)
+
+                        Circle()
+                            .frame(width: 2, height: 2)
+
+                        Text(order.item.type)
+
                     } //: HSTACK
 
 
@@ -77,74 +83,95 @@ struct AddItemView: View {
 
                 LazyVStack(alignment: .leading){
 
-                    Text("Required")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .padding(.leading, 20)
-                    Text("Choose 1")
-                        .font(.subheadline)
-                        .fontWeight(.light)
-                        .padding(.leading, 20)
-
-                    VStack{
-
-                        ForEach(requiredOptions) { option in
-
-                            Button {
-                                didTap.toggle()
-                            } label: {
-
-                                RequiredItemCell(requiredItem: option, order: order)
-                            }
+                    if requiredOptions.count >= 1 {
+                        Text("Required")
+                            .font(.title3)
+                            .fontWeight(.bold)
                             .padding(.leading, 20)
-                            .padding(5)
-
-                        } //: FOR EACH
-
-                    } //: VSTACK
-
-
-                    Text("Modifications")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .padding(.leading, 20)
-
-                    VStack(alignment: .leading){
-
-                        ForEach(modificationOptions) { option in
-
-                            Button {
-                                didTap.toggle()
-                            } label: {
-                                ModificationItemCell(modificationItem: option, order: order)
-                            }
+                        Text("Choose 1")
+                            .font(.subheadline)
+                            .fontWeight(.light)
                             .padding(.leading, 20)
-                            .padding(5)
 
-                        } //: FOR EACH
+                        VStack{
 
-                    } //: VSTACK
+                            ForEach(requiredOptions) { option in
 
-                    Text("Add More")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .padding(.leading, 20)
+                                Button {
+                                    didTap.toggle()
+                                } label: {
 
-                    VStack(alignment: .leading){
+                                    RequiredItemCell(requiredItem: option, order: order)
+                                }
+                                .padding(.leading, 20)
+                                .padding(5)
 
-                        ForEach(addOptions) { option in
+                            } //: FOR EACH
 
-                            Button {
-                                didTap.toggle()
-                            } label: {
-                                AddItemCell(addItem: option, order: order)
-                            }
+                        } //: VSTACK
+                    }
+
+
+
+                    if modificationOptions.count >= 1 {
+
+                        Text("Modifications")
+                            .font(.title3)
+                            .fontWeight(.bold)
                             .padding(.leading, 20)
-                            .padding(5)
 
-                        } //: FOR EACH
+                        VStack(alignment: .leading){
 
-                    } //: VSTACK
+                            ForEach(modificationOptions) { option in
+
+                                Button {
+                                    didTap.toggle()
+                                } label: {
+                                    ModificationItemCell(modificationItem: option, order: order)
+                                }
+                                .padding(.leading, 20)
+                                .padding(5)
+
+                            } //: FOR EACH
+
+                        } //: VSTACK
+
+                    }
+
+
+                    if addOptions.count >= 1 {
+
+                        Text("Add More")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .padding(.leading, 20)
+
+                        VStack(alignment: .leading){
+
+                            ForEach(addOptions) { option in
+
+                                Button {
+                                    didTap.toggle()
+                                } label: {
+                                    AddItemCell(addItem: option, order: order)
+                                }
+                                .padding(.leading, 20)
+                                .padding(5)
+
+                            } //: FOR EACH
+
+                        } //: VSTACK
+                    }
+
+                    if addOptions.count == 0 && requiredOptions.count == 0 && modificationOptions.count == 0 {
+
+
+                        Text("This item does not have any required options or modifications available.")
+                            .foregroundColor(Color.gray)
+                            .padding()
+                    }
+
+
 
                 } //: LAZYVSTACK
 

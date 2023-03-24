@@ -64,6 +64,7 @@ struct ItemCell: View {
                         Text(item.rewards + " rewards")
                             .font(.callout)
                             .foregroundColor(Color.black)
+                            .lineLimit(1)
                     } //: HSTACK
                     .padding(.leading, 5)
 

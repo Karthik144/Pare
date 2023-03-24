@@ -15,6 +15,9 @@ struct ShopItemView: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var authViewModel: AuthViewModel
     @State private var totalMenuItems = [MenuItem]()
+    @State private var appetizers = [MenuItem]()
+    @State private var entrees = [MenuItem]()
+    @State private var vegetarian = [MenuItem]()
     @State private var total = 0.0
     @State private var totalRewards = 0
 
@@ -83,46 +86,113 @@ struct ShopItemView: View {
 
                 ScrollView {
 
-                    HStack{
-                        Text("Menu")
-                            .fontWeight(.bold)
-                            .font(.title3)
-                        Spacer()
-                    } //: HSTACK
-                    .padding(.leading, 20)
-                    .padding(.bottom, 0)
+                    if appetizers.count >= 1 {
+
+                        HStack{
+                            Text("Appetizers")
+                                .fontWeight(.bold)
+                                .font(.title3)
+                            Spacer()
+                        } //: HSTACK
+                        .padding(.leading, 20)
+                        .padding(.bottom, 0)
+
+                        VStack(alignment: .leading){
+                            ForEach(appetizers) { item in
+
+                                NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+                                ) {
+                                    ItemCell(item: item)
+                                        .padding(.leading, 15)
+                                        .padding(.trailing, 15)
+                                }
 
 
-                    VStack(alignment: .leading){
-                        ForEach(totalMenuItems) { item in
-                            
-                            NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
-                            ) {
-                                ItemCell(item: item)
-                                    .padding(.leading, 15)
-                                    .padding(.trailing, 15)
-                            }
+                            } //: FOR EACH
+                        } //: VSTACK
+
+                    }
+
+                    if vegetarian.count >= 1 {
+
+                        HStack{
+                            Text("Vegetarian")
+                                .fontWeight(.bold)
+                                .font(.title3)
+                            Spacer()
+                        } //: HSTACK
+                        .padding(.leading, 20)
+                        .padding(.bottom, 0)
+
+                        VStack(alignment: .leading){
+                            ForEach(vegetarian) { item in
+
+                                NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+                                ) {
+                                    ItemCell(item: item)
+                                        .padding(.leading, 15)
+                                        .padding(.trailing, 15)
+                                }
 
 
-                        } //: FOR EACH
-                    } //: VSTACK
+                            } //: FOR EACH
+                        } //: VSTACK
+
+                    }
+
+                    if entrees.count >= 1 {
+
+                        HStack{
+                            Text("Entrees")
+                                .fontWeight(.bold)
+                                .font(.title3)
+                            Spacer()
+                        } //: HSTACK
+                        .padding(.leading, 20)
+                        .padding(.bottom, 0)
+
+                        VStack(alignment: .leading){
+                            ForEach(entrees) { item in
+
+                                NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+                                ) {
+                                    ItemCell(item: item)
+                                        .padding(.leading, 15)
+                                        .padding(.trailing, 15)
+                                }
+
+
+                            } //: FOR EACH
+                        } //: VSTACK
+                    }
+
+//                    HStack{
+//                        Text("Menu")
+//                            .fontWeight(.bold)
+//                            .font(.title3)
+//                        Spacer()
+//                    } //: HSTACK
+//                    .padding(.leading, 20)
+//                    .padding(.bottom, 0)
+
+
+//                    VStack(alignment: .leading){
+//                        ForEach(totalMenuItems) { item in
+//
+//                            NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+//                            ) {
+//                                ItemCell(item: item)
+//                                    .padding(.leading, 15)
+//                                    .padding(.trailing, 15)
+//                            }
+//
+//
+//                        } //: FOR EACH
+//                    } //: VSTACK
 
 
                 } //: SCROLL VIEW
-                .onAppear(){
 
-                    viewModel.fetchShopMenu(withUID: shop.id ?? "") { menuItems in
-                        self.totalMenuItems = menuItems
-                    }
-
-                    total = viewModel.calcTotal()
-
-                    totalRewards = viewModel.calcTotalRewards()
-
-                    print("ON APPEAR")
-                    print(rootIsActive)
-
-                }
 
                 if authViewModel.currentUser?.cart_active == true {
 
@@ -167,11 +237,38 @@ struct ShopItemView: View {
 
             } //: VSTACK
             .toolbar(.hidden, for: .tabBar)
-            .onDisappear(){
+            .onAppear(){
 
-                print("ON DISSAPPEAR")
+                viewModel.fetchShopMenu(withUID: shop.id ?? "") { menuItems in
+                    self.totalMenuItems = menuItems
+
+                    for each in totalMenuItems{
+
+                        if each.type.contains("Veg"){
+                            vegetarian.append(each)
+                        }
+
+                        else if each.type.contains("Appetizer"){
+
+                            appetizers.append(each)
+                        }
+
+                        else {
+
+                            entrees.append(each)
+                        }
+                    }
+                }
+
+                total = viewModel.calcTotal()
+
+                totalRewards = viewModel.calcTotalRewards()
+
+                print("ON APPEAR")
                 print(rootIsActive)
-            }
+
+            } //: ON APPEAR 
+
 
 
         } else {

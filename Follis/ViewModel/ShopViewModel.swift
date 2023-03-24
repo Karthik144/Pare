@@ -230,11 +230,6 @@ class ShopViewModel: ObservableObject {
         // Create a reference to the database
         let db = Firestore.firestore()
 
-
-        print("quantity of item")
-        print(cartItems[0].item.quantity)
-
-
         var totalItems = 0
 
         for each in cartItems{

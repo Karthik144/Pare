@@ -19,6 +19,7 @@ struct CheckoutView: View {
     @EnvironmentObject var viewModel: ShopViewModel
     @EnvironmentObject var appState: AppState
 
+    @State private var showingAlert = false
     @Binding var rootActive: Bool
 
 
@@ -191,7 +192,7 @@ struct CheckoutView: View {
                     viewModel.updateCartActiveStatus(cartActive: false)
 
                     // Store users rewards
-                    let userRewards = Double(authViewModel.currentUser?.rewards ?? Int(0.0))
+                    var userRewards = Double(authViewModel.currentUser?.rewards ?? 0.0)
 
                     if userRewards >= viewModel.total{
 
@@ -214,23 +215,22 @@ struct CheckoutView: View {
 
                     } else {
 
-                        // Decrease price by amount of stars and show updated price
+                        showingAlert = true
 
-                        // Hide pay with stars button 
                     }
 
-                    // Update user's rewards with new rewards from purchase
-                    viewModel.updateRewards(rewards: viewModel.rewards)
-
-
-                    // Upload order to Firebase (so shop can access it)
-                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!)
-                    
-                    //Empty out cart
-                    viewModel.cartItems = []
-
-                    //Pop to Shop View
-//                    self.appState.moveToDashboard = true
+//                    // Update user's rewards with new rewards from purchase
+//                    viewModel.updateRewards(rewards: viewModel.rewards)
+//
+//
+//                    // Upload order to Firebase (so shop can access it)
+//                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!)
+//
+//                    //Empty out cart
+//                    viewModel.cartItems = []
+//
+//                    //Pop to Shop View
+////                    self.appState.moveToDashboard = true
 
                     rootActive = false 
 
@@ -241,6 +241,9 @@ struct CheckoutView: View {
                             RoundedRectangle(cornerRadius: 8,  style: .continuous)
                                 .stroke(Color.accentColor, lineWidth: 1)
                         )
+                }
+                .alert("Not enough rewards!", isPresented: $showingAlert) {
+                    Button("Ok", role: .cancel) { }
                 }
 
 

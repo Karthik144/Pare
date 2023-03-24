@@ -121,7 +121,7 @@ struct ShopsView: View {
                     .onTapGesture {
                         showModal.toggle()
                     }.sheet(isPresented: $showModal) {
-                        OrderStatusModalView(shop: "Otto Turkish Street Food", address: "111 W Water St, Charlottesville, VA 22902", orderNumber: "#325", orderStatus: "In Progress", orderReady: $orderReady, showModal: $showModal)
+                        OrderStatusModalView(shop: "Yuanho Gao Chinese", address: "117 Maury Ave, Charlottesville, VA 22903", orderNumber: "#325", orderStatus: "In Progress", orderReady: $orderReady, showModal: $showModal)
                     }
 
                 }

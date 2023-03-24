@@ -62,7 +62,7 @@ struct ShopCell: View {
                     .frame(width: 2, height: 2)
                     .foregroundColor(Color.gray)
 
-                Text("2.8 mi")
+                Text("<1 mi")
                     .foregroundColor(Color.gray)
 
                 Spacer()
