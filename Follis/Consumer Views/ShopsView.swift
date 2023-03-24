@@ -35,6 +35,8 @@ struct ShopsView: View {
     
     @State var pickUpTime: Date?
 
+    @State var isActive : Bool = false
+
     // MARK: - BODY
     var body: some View {
 
@@ -142,12 +144,27 @@ struct ShopsView: View {
 
                         ForEach(totalShops) { shop in
 
-                            NavigationLink(destination: ShopItemView(shop: shop), isActive: $isViewActive) {
+                            Button {
+                                self.isActive = true
+
+                            } label: {
                                 ShopCell(shop: shop)
                                     .padding(.leading, 0)
                                     .padding()
                             }
-                            .isDetailLink(false)
+                            .background(
+
+                                NavigationLink(destination: ShopItemView(rootIsActive: $isActive, shop: shop),
+                                                isActive: $isActive) {EmptyView()}
+                            )
+
+//
+//                            NavigationLink(destination: ShopItemView(shop: shop)) {
+//                                ShopCell(shop: shop)
+//                                    .padding(.leading, 0)
+//                                    .padding()
+//                            }
+//                            .isDetailLink(false)
 //                            NavigationLink {
 //                                ShopItemView(shop: shop)
 //                            } label: {
@@ -174,14 +191,9 @@ struct ShopsView: View {
 
 
         } //: NAV VIEW
-        .onReceive(self.appState.$moveToDashboard) { moveToDashboard in
-            if moveToDashboard {
-                self.isViewActive = false
-                self.appState.moveToDashboard = false
-            }
-            
-            
-            
+        .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear(){
+
             viewModel.fetchAllOrders{ orders in
                 for order in orders{
                     if (order.status == "ready" || order.status == "pending"){
@@ -191,11 +203,35 @@ struct ShopsView: View {
                             self.readyOrders.append(order)
                         }
                     }
-                    
+
                 }
             }
-            
-        }
+
+
+        } //: ON APPEAR
+
+//        .onReceive(self.appState.$moveToDashboard) { moveToDashboard in
+//            if moveToDashboard {
+//                self.isViewActive = false
+//                self.appState.moveToDashboard = false
+//            }
+//
+//
+//
+//            viewModel.fetchAllOrders{ orders in
+//                for order in orders{
+//                    if (order.status == "ready" || order.status == "pending"){
+//                        self.pickUpTime = (orders[0].date_ordered).addingTimeInterval(20 * 60)
+//                        orderReady = true
+//                        if (order.status == "ready"){
+//                            self.readyOrders.append(order)
+//                        }
+//                    }
+//
+//                }
+//            }
+//
+//        }
 
     } //: VIEW
 

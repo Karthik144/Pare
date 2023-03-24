@@ -22,6 +22,8 @@ struct AddItemView: View {
     @StateObject var order: Order
     let shop: Shop
 
+    @Binding var rootIsStillActive : Bool 
+
     
 
     // MARK: - BODY
@@ -155,7 +157,7 @@ struct AddItemView: View {
 
 
                 NavigationLink(
-                    destination: ShopItemView(shop: shop),
+                    destination: ShopItemView(rootIsActive: $rootIsStillActive, shop: shop),
                     isActive: $goesToShopItemView) {
                     Button(action: {
                         let orderHash = order.hashValue
@@ -199,7 +201,7 @@ struct AddItemView: View {
 
 
                 NavigationLink(
-                    destination: CheckoutView(shop: shop),
+                    destination: CheckoutView(shop: shop, rootActive: $rootIsStillActive),
                     isActive: $goesToDetail) {
                     Button(action: {
                         let orderHash = order.hashValue

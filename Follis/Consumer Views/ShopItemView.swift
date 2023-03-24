@@ -17,6 +17,8 @@ struct ShopItemView: View {
     @State private var totalMenuItems = [MenuItem]()
     @State private var total = 0.0
     @State private var totalRewards = 0
+
+    @Binding var rootIsActive: Bool 
     
     let shop: Shop
 
@@ -28,6 +30,8 @@ struct ShopItemView: View {
 
                 HStack{
 
+
+                    
                     Image("OttoStore")
                         .resizable()
                         .frame(width: 115, height: 115)
@@ -92,15 +96,13 @@ struct ShopItemView: View {
                     VStack(alignment: .leading){
                         ForEach(totalMenuItems) { item in
                             
-                            NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop)
+                            NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
                             ) {
                                 ItemCell(item: item)
                                     .padding(.leading, 15)
                                     .padding(.trailing, 15)
                             }
-                            .onAppear{
-                                
-                            }
+
 
                         } //: FOR EACH
                     } //: VSTACK
@@ -117,12 +119,16 @@ struct ShopItemView: View {
 
                     totalRewards = viewModel.calcTotalRewards()
 
+                    print("ON APPEAR")
+                    print(rootIsActive)
+
                 }
 
                 if authViewModel.currentUser?.cart_active == true {
 
+                    
                     NavigationLink {
-                        CheckoutView(shop: shop)
+                        CheckoutView(shop: shop, rootActive: $rootIsActive)
                     } label: {
 
                         HStack{
@@ -161,6 +167,11 @@ struct ShopItemView: View {
 
             } //: VSTACK
             .toolbar(.hidden, for: .tabBar)
+            .onDisappear(){
+
+                print("ON DISSAPPEAR")
+                print(rootIsActive)
+            }
 
 
         } else {

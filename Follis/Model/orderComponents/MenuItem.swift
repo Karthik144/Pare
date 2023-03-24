@@ -21,8 +21,6 @@ struct MenuItem: Identifiable, Decodable, Hashable{
     var type: String
     var quantity: Int?
     var hash: Int?
-    //var image: String
-
-
+    var image: String
 
 }

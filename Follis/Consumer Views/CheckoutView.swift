@@ -18,6 +18,7 @@ struct CheckoutView: View {
     @EnvironmentObject var viewModel: ShopViewModel
     @EnvironmentObject var appState: AppState
 
+    @Binding var rootActive: Bool
 
 
     // MARK: - BODY
@@ -228,7 +229,9 @@ struct CheckoutView: View {
                     viewModel.cartItems = []
 
                     //Pop to Shop View
-                    self.appState.moveToDashboard = true
+//                    self.appState.moveToDashboard = true
+
+                    rootActive = false 
 
                 } label: {
                     Text("Pay with stars 🌟")
