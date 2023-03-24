@@ -19,7 +19,7 @@ struct ItemCell: View {
 
         HStack{
 
-            KFImage(URL(string: "https://firebasestorage.googleapis.com/v0/b/follis-e41c6.appspot.com/o/dumplings.png?alt=media&token=645aacaf-801d-4fee-99d5-ebd0dd8bfe4c"))
+            KFImage(URL(string: item.image))
                 .resizable()
                 .frame(width: 85, height: 80)
                 .scaledToFit()

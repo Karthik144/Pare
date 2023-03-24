@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct AddItemView: View {
 
@@ -32,12 +33,12 @@ struct AddItemView: View {
         VStack(alignment: .leading){
 
             HStack{
-
-                Image("OttoBowl")
+                KFImage(URL(string: order.item.image))
                     .resizable()
                     .frame(width: 115, height: 115)
                     .scaledToFit()
                     .cornerRadius(7)
+
 
                 VStack(alignment: .leading){
 
