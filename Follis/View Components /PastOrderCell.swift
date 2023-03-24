@@ -19,7 +19,7 @@ struct PastOrderCell: View {
     var body: some View {
         HStack{
 
-            Image("Pizza")
+            Image("TakeoutBox")
                 .resizable()
                 .frame(width: 45, height: 45)
                 .scaledToFit()

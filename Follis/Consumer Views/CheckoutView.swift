@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher 
 
 struct CheckoutView: View {
 
@@ -31,7 +32,7 @@ struct CheckoutView: View {
 
                 HStack{
 
-                    Image("OttoStore")
+                    KFImage(URL(string: shop.image))
                         .resizable()
                         .frame(width: 115, height: 115)
                         .scaledToFit()

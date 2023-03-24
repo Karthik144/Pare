@@ -13,7 +13,7 @@ struct HelpView: View {
     var phoneNumber1 = "571-635-3433"
     var emailAddress1 = "wvv6xa@virginia.edu"
 
-    var phoneNumber2 = "571-635-3433"
+    var phoneNumber2 = "‭703-220-4590‬"
     var emailAddress2 = "cuw5zg@virginia.edu"
 
     init(){

@@ -31,8 +31,8 @@ struct ShopItemView: View {
                 HStack{
 
 
-                    
-                    Image("OttoStore")
+
+                    KFImage(URL(string: shop.image))
                         .resizable()
                         .frame(width: 115, height: 115)
                         .scaledToFit()

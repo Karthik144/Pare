@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ShopCell: View {
 
@@ -55,6 +56,10 @@ struct ShopCell: View {
 
             HStack{
                 Text("Open Now")
+                    .foregroundColor(Color.gray)
+
+                Circle()
+                    .frame(width: 2, height: 2)
                     .foregroundColor(Color.gray)
 
                 Text("2.8 mi")

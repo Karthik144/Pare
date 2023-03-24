@@ -19,6 +19,7 @@ struct Shop: Identifiable, Decodable{
     var rating: String
     var type: String
     var cuisine: String
-    var merchant_id: String? 
+    var merchant_id: String?
+    var image: String
     
 }
