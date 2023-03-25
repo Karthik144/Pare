@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Combine
+
 
 struct CustomInputTextField: View {
     
@@ -31,6 +33,7 @@ struct CustomInputTextField: View {
             if isSecureField ?? false {
 
                 Text(title)
+                    .foregroundColor(Color.white)
                     .font(.callout)
                     .bold()
                 SecureField(placeholderText, text: $text, onCommit: {
@@ -49,11 +52,14 @@ struct CustomInputTextField: View {
                 if strongPassword == false && confirmText == false {
                     Text(passwordStrength)
                         .font(.caption2)
+                        .foregroundColor(Color.white)
                 }
 
                 if confirmText == true {
                     Text(passwordMatchMessage)
                         .font(.caption2)
+                        .foregroundColor(Color.white)
+
                 }
 
 

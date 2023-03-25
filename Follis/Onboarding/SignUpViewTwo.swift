@@ -29,18 +29,17 @@ struct SignUpViewTwo: View {
 
                 Spacer()
 
-                VStack(){
+                VStack(spacing: 15){
 
                     // Progress View
-                    HStack{
-                        Text("Step 2/4")
-                            .font(.subheadline)
-                            .foregroundColor(Color.white)
-                            .padding(.bottom, 15)
-                            .offset(y:keyboardResponder.currentHeight)
-                        
-                    }
-                    .offset(y:-keyboardResponder.currentHeight)
+                    Text("Step 2/3")
+                        .font(.subheadline)
+                        .foregroundColor(Color.white)
+//                        .padding(.bottom, 15)
+                        .padding()
+
+
+                    Spacer()
 
                     HStack{
 
@@ -59,7 +58,7 @@ struct SignUpViewTwo: View {
                     } //: HSTACK
 
 
-                    CustomInputTextField(isSecureField: false, placeholderText: "What your Navy sergeant would call you...", title: "", bottomMessage: "", confirmText: false, text: $lastName, confirmPassword: $lastName)
+                    CustomInputTextField(isSecureField: false, placeholderText: "", title: "", bottomMessage: "", confirmText: false, text: $lastName, confirmPassword: $lastName)
                         .padding(.bottom, 30)
 
                     // Next button
@@ -75,10 +74,10 @@ struct SignUpViewTwo: View {
                     })
 
                 } //: VSTACK
-
-
                 .padding()
-                Spacer(minLength: 200)
+                Spacer(minLength: 240)
+
+
             } //: VSTACK
             .offset(y: -keyboardResponder.currentHeight * 0.1)
 

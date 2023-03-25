@@ -40,11 +40,11 @@ extension WelcomeView {
 
                 VStack(spacing: 12){
 
-                    Text("MealX")
+                    Text("Pare")
                         .font(.largeTitle)
                         .fontWeight(.heavy)
                         .offset(y:-50)
-                    Text("Unlock the power of web3 in the real-world.")
+                    Text("Earn rewards every time you spend.")
                         .font(.body)
                         .offset(y:-50)
 

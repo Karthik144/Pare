@@ -19,7 +19,7 @@ struct ShopItemView: View {
     @State private var entrees = [MenuItem]()
     @State private var vegetarian = [MenuItem]()
     @State private var total = 0.0
-    @State private var totalRewards = 0
+    @State private var totalRewards = 0.0
 
     @Binding var rootIsActive: Bool 
     

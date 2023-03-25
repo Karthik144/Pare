@@ -14,6 +14,8 @@ struct SignUpViewThree: View {
     let lastName: String
     let email: String
 
+    @EnvironmentObject var viewModel: AuthViewModel
+
     @ObservedObject var keyboardResponder = KeyboardResponder()
 
     @State private var password = ""
@@ -35,7 +37,7 @@ struct SignUpViewThree: View {
 
                     // Progress View
                     HStack{
-                        Text("Step 3/4")
+                        Text("Step 3/3")
                             .font(.subheadline)
                             .foregroundColor(Color.white)
                             .padding(.bottom, 15)
@@ -72,17 +74,27 @@ struct SignUpViewThree: View {
 
 
                     if samePassword == true && strongPassword == true {
-                        // Next button
-                        NavigationLink(destination: {
-                            SignUpViewFour(firstName: firstName, lastName: lastName, email: email, password: password)
+//                        // Next button
+//                        NavigationLink(destination: {
+//                            SignUpViewFour(firstName: firstName, lastName: lastName, email: email, password: password)
+//
+//                        }, label: {
+//
+//                            Text("Next")
+//                                .font(.title3)
+//                                .fontWeight(.bold)
+//                                .modifier(NextButtonModifier())
+//                        })
 
-                        }, label: {
-
-                            Text("Next")
+                        Button {
+                            viewModel.register(firstName: firstName, lastName: lastName, withEmail: email, password: password, isMerchant: false)
+                        } label: {
+                            Text("Sign Up")
                                 .font(.title3)
                                 .fontWeight(.bold)
                                 .modifier(NextButtonModifier())
-                        })
+                        }
+
 
                     }
 

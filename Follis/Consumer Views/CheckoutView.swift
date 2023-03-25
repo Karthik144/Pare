@@ -163,18 +163,17 @@ struct CheckoutView: View {
                     viewModel.updateCartActiveStatus(cartActive: false)
 
                     // Update user's rewards
-                    viewModel.updateRewards(rewards: viewModel.rewards)
+                    viewModel.updateRewards(rewards: viewModel.totalRewards)
 
                     // Upload order to Firebase (so shop can access it)
                     viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!)
 
-                    
+
                     //Empty out cart
                     viewModel.cartItems = []
-                    
-                    
+
                     //Pop to Shop View
-                    self.appState.moveToDashboard = true
+                    rootActive = false
 
                 } label: {
                     Text("Pay")
@@ -199,10 +198,10 @@ struct CheckoutView: View {
                         // Subtract used rewards from new rewards and update it to total rewards
                         let extraRewards = userRewards - viewModel.total
 
-                        let updatedRewards = viewModel.rewards + Int(extraRewards)
+                        let updatedRewards = (viewModel.totalRewards) + extraRewards
 
                         // Update user's rewards with new rewards from purchase
-                        viewModel.updateRewards(rewards: updatedRewards)
+                        viewModel.updateRewards(rewards: Double(updatedRewards))
 
                         // Upload order to Firebase (so shop can access it)
                         viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!)
@@ -211,7 +210,7 @@ struct CheckoutView: View {
                         viewModel.cartItems = []
 
                         //Pop to Shop View
-                        self.appState.moveToDashboard = true
+                        rootActive = false
 
                     } else {
 
@@ -256,7 +255,7 @@ struct CheckoutView: View {
         } //: VSTACK
         .onAppear(){
             total = viewModel.calcTotal()
-            print("WHEN CHECKOUT VIEW APPEARS")
+            viewModel.totalRewards = viewModel.calcTotalRewards()
         }
 
 

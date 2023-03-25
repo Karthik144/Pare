@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestoreSwift
 
 @MainActor
 class ShopViewModel: ObservableObject {
@@ -22,8 +23,8 @@ class ShopViewModel: ObservableObject {
     @Published var total = 0.0
     @Published var subtotal = 0.0
     @Published var tax = 0.0
-    @Published var rewards = 0
-    @Published private var totalRewards = 0
+    @Published var rewards = 0.0
+    @Published var totalRewards = 0.0
 
     // Properties for uploading to completed_orders
     @Published private var allOrders = [PendingOrder]()
@@ -186,7 +187,7 @@ class ShopViewModel: ObservableObject {
 
     } //: UPDATE CART ACTIVE IN FIREBASE
 
-    func updateRewards(rewards: Int){
+    func updateRewards(rewards: Double){
 
         // Gets the current users uid so we can reference it
         guard let userUID = Auth.auth().currentUser?.uid else {return}
@@ -393,7 +394,7 @@ class ShopViewModel: ObservableObject {
 
             subtotal += ((Double(cartOrder.item.price) ?? 0.0) + calcItemAddOnTotal(order: cartOrder)) * Double(cartOrder.item.quantity!)
 
-            rewards += Int(cartOrder.item.rewards) ?? 0
+            rewards += Double(cartOrder.item.rewards) ?? 0.0
 
         }
 
@@ -412,13 +413,13 @@ class ShopViewModel: ObservableObject {
     } //: FUNC CALC TOTAL
 
 
-    func calcTotalRewards() -> Int {
+    func calcTotalRewards() -> Double {
 
-        totalRewards = 0
+        totalRewards = 0.0
         // Find items in cart
         for cartOrder in cartItems {
 
-            totalRewards += (Int(cartOrder.item.rewards) ?? 0) * cartOrder.item.quantity!
+            totalRewards += (Double(cartOrder.item.rewards) ?? 0.0) * Double(cartOrder.item.quantity!)
 
         }
 

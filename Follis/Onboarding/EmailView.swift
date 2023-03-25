@@ -37,7 +37,7 @@ struct EmailView: View {
                             .fontWeight(.heavy)
                             .padding(.bottom, 10)
 
-                        CustomInputTextField(isSecureField: false, placeholderText: "We promise to not spam you...", title: "", bottomMessage: "", confirmText: false, text: $email, confirmPassword: $email)
+                        CustomInputTextField(isSecureField: false, placeholderText: "", title: "", bottomMessage: "", confirmText: false, text: $email, confirmPassword: $email)
                             .padding(.bottom, 30)
 
                         if login == true {
@@ -66,7 +66,7 @@ struct EmailView: View {
 
                     } //: VSTACK
                     .padding()
-                    Spacer(minLength: 200)
+                    Spacer(minLength: 240)
                 }
             } //: VSTACK
             .accentColor(Color.white)

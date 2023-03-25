@@ -40,15 +40,16 @@ struct SignUpViewOne: View {
 
                 Spacer()
 
-                VStack(){
+                VStack(spacing: 15){
 
                     // Progress View
-                   
-                    Text("Step 1/4")
+                    Text("Step 1/3")
                         .font(.subheadline)
                         .foregroundColor(Color.white)
-                        .padding(.bottom, 15)
-                
+//                        .padding(.bottom, 15)
+                        .padding()
+
+                    Spacer()
 
                     HStack{
 
@@ -58,7 +59,8 @@ struct SignUpViewOne: View {
                             .font(.largeTitle)
                             .foregroundColor(Color.white)
                             .fontWeight(.heavy)
-                            .padding(.bottom, 10)
+                            .padding()
+//                            .padding(.bottom, 10)
                             .multilineTextAlignment(.center)
 
                         Spacer()
@@ -66,7 +68,7 @@ struct SignUpViewOne: View {
                     } //: HSTACK
 
 
-                    CustomInputTextField(isSecureField: false, placeholderText: "What your friends call you...", title: "", bottomMessage: "", confirmText: false, text: $firstName, confirmPassword: $firstName)
+                    CustomInputTextField(isSecureField: false, placeholderText: "", title: "", bottomMessage: "", confirmText: false, text: $firstName, confirmPassword: $firstName)
                         .padding(.bottom, 30)
 
 
@@ -84,12 +86,10 @@ struct SignUpViewOne: View {
                     })
 
                 } //: VSTACK
-
                 .padding()
-                Spacer(minLength: 200)
+                Spacer(minLength: 240)
 
             } //: VSTACK
-            .navigationTitle("Sign Up")
             .tint(Color.white)
             .foregroundColor(.white)
             .navigationBarTitleDisplayMode(.inline)

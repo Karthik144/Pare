@@ -33,7 +33,7 @@ struct PasswordView: View {
 
                         Spacer()
 
-                        Text("Enter your password.")
+                        Text("Enter password.")
                             .font(.largeTitle)
                             .foregroundColor(Color.white)
                             .fontWeight(.heavy)
@@ -46,6 +46,7 @@ struct PasswordView: View {
 
 
                     CustomInputTextField(isSecureField: true, placeholderText: "", title: "" , bottomMessage: "Password Strength: Strong", confirmText: false, text: $password, confirmPassword: $password)
+                        .padding(.bottom, 30)
 
                     // Next button
                     Button(action: {
@@ -59,12 +60,11 @@ struct PasswordView: View {
 
 
                 } //: VSTACK
-
-
                 .padding()
-                Spacer(minLength: 200)
+                Spacer(minLength: 240)
+
+
             } //: VSTACK
-            .navigationTitle("Log In")
             .foregroundColor(Color.white)
             .navigationBarTitleDisplayMode(.inline)
             .accentColor(Color.white)
