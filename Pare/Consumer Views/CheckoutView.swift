@@ -139,6 +139,20 @@ struct CheckoutView: View {
                 .padding(.leading, 20)
                 .padding(.trailing, 20)
 
+                HStack{
+
+                    Text("Rewards Earned")
+
+                    Spacer()
+
+                    Text(String(viewModel.totalRewards) + " 🌟")
+
+                } //: HSTACK
+                .padding(.top, 10)
+                .padding(.leading, 20)
+                .padding(.trailing, 20)
+
+
 
 
             } //: VSTACK
