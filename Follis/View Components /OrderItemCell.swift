@@ -48,6 +48,8 @@ struct OrderItemCell: View {
                         itemQuantity = 1
                         
                         finalTotal = viewModel.calcTotal()
+                        viewModel.calcTotalRewards()
+
                     }, label: {
                         Text("+1")
                     })
@@ -57,6 +59,9 @@ struct OrderItemCell: View {
                         itemQuantity = 2
                         
                         finalTotal = viewModel.calcTotal()
+
+                        viewModel.calcTotalRewards()
+
                         
                     }, label: {
                         Text("+2")
@@ -67,6 +72,8 @@ struct OrderItemCell: View {
                         itemQuantity = 3
                         
                         finalTotal = viewModel.calcTotal()
+                        viewModel.calcTotalRewards()
+
                         
                     }, label: {
                         Text("+3")
@@ -77,6 +84,8 @@ struct OrderItemCell: View {
                         itemQuantity = 0
                         
                         finalTotal = viewModel.calcTotal()
+                        viewModel.calcTotalRewards()
+
                     }, label: {
                         Text("Delete")
                             .foregroundColor(Color.red)

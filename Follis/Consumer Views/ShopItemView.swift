@@ -20,6 +20,7 @@ struct ShopItemView: View {
     @State private var vegetarian = [MenuItem]()
     @State private var total = 0.0
     @State private var totalRewards = 0.0
+    @State private var appearTotal = 0
 
     @Binding var rootIsActive: Bool 
     
@@ -215,7 +216,7 @@ struct ShopItemView: View {
                                 Text(String(total) + " USDC")
                                     .foregroundColor(Color.white)
 
-                                Text("+\(totalRewards) 🌟")
+                                Text("+\(String(viewModel.totalRewards)) 🌟")
                                     .foregroundColor(Color.white)
 
                             }
@@ -239,33 +240,36 @@ struct ShopItemView: View {
             .toolbar(.hidden, for: .tabBar)
             .onAppear(){
 
-                viewModel.fetchShopMenu(withUID: shop.id ?? "") { menuItems in
-                    self.totalMenuItems = menuItems
+                if appearTotal<1{
 
-                    for each in totalMenuItems{
+                    viewModel.fetchShopMenu(withUID: shop.id ?? "") { menuItems in
+                        self.totalMenuItems = menuItems
 
-                        if each.type.contains("Veg"){
-                            vegetarian.append(each)
-                        }
+                        for each in totalMenuItems{
 
-                        else if each.type.contains("Appetizer"){
+                            if each.type.contains("Veg"){
+                                vegetarian.append(each)
+                            }
 
-                            appetizers.append(each)
-                        }
+                            else if each.type.contains("Appetizer"){
 
-                        else {
+                                appetizers.append(each)
+                            }
 
-                            entrees.append(each)
+                            else {
+
+                                entrees.append(each)
+                            }
                         }
                     }
+
+                    total = viewModel.calcTotal()
+
+                    totalRewards = viewModel.calcTotalRewards()
+
+                    appearTotal += 1
+
                 }
-
-                total = viewModel.calcTotal()
-
-                totalRewards = viewModel.calcTotalRewards()
-
-                print("ON APPEAR")
-                print(rootIsActive)
 
             } //: ON APPEAR 
 
