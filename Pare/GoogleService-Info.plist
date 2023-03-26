@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>820451512694-upiib7l8gj4n7jlcgfr01hflg8jqo30h.apps.googleusercontent.com</string>
+	<string>820451512694-q35ib2df88qc2dtudi8i622raq2tip0j.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.820451512694-upiib7l8gj4n7jlcgfr01hflg8jqo30h</string>
+	<string>com.googleusercontent.apps.820451512694-q35ib2df88qc2dtudi8i622raq2tip0j</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBOd_xYqJ9TzZfTETGYAxIC7iPAadP5Smc</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.karthikramu.Follis</string>
+	<string>com.Pare.team</string>
 	<key>PROJECT_ID</key>
 	<string>follis-e41c6</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:820451512694:ios:dfc9aea3578c5f13e6aa57</string>
+	<string>1:820451512694:ios:fcb8dc2f939b0b5be6aa57</string>
 </dict>
 </plist>

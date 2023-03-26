@@ -11,7 +11,7 @@ import Firebase
 import Combine
 
 @main
-struct FollisApp: App{
+struct PareApp: App{
     //@UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     init(){

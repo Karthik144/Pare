@@ -12,7 +12,7 @@
 		7C0439E229B938930037EE72 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0439E129B938920037EE72 /* Shop.swift */; };
 		7C0439E429B939170037EE72 /* ShopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0439E329B939170037EE72 /* ShopViewModel.swift */; };
 		7C0439E629B939620037EE72 /* ShopService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0439E529B939620037EE72 /* ShopService.swift */; };
-		7C45EC20299B26B300F3B439 /* FollisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC1F299B26B300F3B439 /* FollisApp.swift */; };
+		7C45EC20299B26B300F3B439 /* PareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC1F299B26B300F3B439 /* PareApp.swift */; };
 		7C45EC22299B26B300F3B439 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC21299B26B300F3B439 /* ContentView.swift */; };
 		7C45EC24299B26B900F3B439 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C45EC23299B26B900F3B439 /* Assets.xcassets */; };
 		7C45EC27299B26B900F3B439 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C45EC26299B26B900F3B439 /* Preview Assets.xcassets */; };
@@ -22,7 +22,6 @@
 		7C45EC40299B2D0100F3B439 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC3F299B2D0100F3B439 /* AuthViewModel.swift */; };
 		7C45EC44299B2D5200F3B439 /* SignUpViewOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC43299B2D5200F3B439 /* SignUpViewOne.swift */; };
 		7C45EC46299B2D5F00F3B439 /* SignUpViewTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC45299B2D5F00F3B439 /* SignUpViewTwo.swift */; };
-		7C45EC48299B2EE200F3B439 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C45EC47299B2EE100F3B439 /* GoogleService-Info.plist */; };
 		7C45EC5D299B32B200F3B439 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC5C299B32B100F3B439 /* UserService.swift */; };
 		7C45EC60299B341400F3B439 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC5F299B341400F3B439 /* User.swift */; };
 		7C45EC62299B354A00F3B439 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC61299B354A00F3B439 /* AppState.swift */; };
@@ -65,6 +64,7 @@
 		E97A865929C21A100089F028 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E97A865829C21A100089F028 /* FirebaseAuth */; };
 		E97A865B29C21A100089F028 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E97A865A29C21A100089F028 /* FirebaseFirestore */; };
 		E97A865D29C21A100089F028 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E97A865C29C21A100089F028 /* FirebaseFirestoreSwift */; };
+		E9A3DA1D29CF648600F5A1D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9A3DA1C29CF648600F5A1D0 /* GoogleService-Info.plist */; };
 		E9B38F9729CBE2EB0053C2FE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E9B38F9629CBE2EB0053C2FE /* Kingfisher */; };
 		E9DD9CD029C0F1D80001106E /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DD9CCF29C0F1D80001106E /* Order.swift */; };
 /* End PBXBuildFile section */
@@ -75,8 +75,8 @@
 		7C0439E129B938920037EE72 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		7C0439E329B939170037EE72 /* ShopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewModel.swift; sourceTree = "<group>"; };
 		7C0439E529B939620037EE72 /* ShopService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopService.swift; sourceTree = "<group>"; };
-		7C45EC1C299B26B300F3B439 /* Follis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Follis.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7C45EC1F299B26B300F3B439 /* FollisApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollisApp.swift; sourceTree = "<group>"; };
+		7C45EC1C299B26B300F3B439 /* Pare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pare.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C45EC1F299B26B300F3B439 /* PareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PareApp.swift; sourceTree = "<group>"; };
 		7C45EC21299B26B300F3B439 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7C45EC23299B26B900F3B439 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C45EC26299B26B900F3B439 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -86,7 +86,6 @@
 		7C45EC3F299B2D0100F3B439 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		7C45EC43299B2D5200F3B439 /* SignUpViewOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewOne.swift; sourceTree = "<group>"; };
 		7C45EC45299B2D5F00F3B439 /* SignUpViewTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewTwo.swift; sourceTree = "<group>"; };
-		7C45EC47299B2EE100F3B439 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7C45EC5C299B32B100F3B439 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		7C45EC5F299B341400F3B439 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7C45EC61299B354A00F3B439 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -126,6 +125,7 @@
 		7CFE305A29A05EB600283B21 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E943114829A179B700E26EBE /* KeyboardResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
 		E94ABC0929A0438D004DEC26 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		E9A3DA1C29CF648600F5A1D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E9DD9CCF29C0F1D80001106E /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,7 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				7CFE305A29A05EB600283B21 /* Launch Screen.storyboard */,
-				7C45EC1E299B26B300F3B439 /* Follis */,
+				7C45EC1E299B26B300F3B439 /* Pare */,
 				7C45EC1D299B26B300F3B439 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -156,12 +156,12 @@
 		7C45EC1D299B26B300F3B439 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7C45EC1C299B26B300F3B439 /* Follis.app */,
+				7C45EC1C299B26B300F3B439 /* Pare.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7C45EC1E299B26B300F3B439 /* Follis */ = {
+		7C45EC1E299B26B300F3B439 /* Pare */ = {
 			isa = PBXGroup;
 			children = (
 				E9B0CF9429B932DC008D9FDA /* Web3 */,
@@ -172,14 +172,14 @@
 				7C45EC5E299B33C900F3B439 /* ViewModel */,
 				7C45EC5B299B327500F3B439 /* Service */,
 				7C45EC41299B2D1B00F3B439 /* Onboarding */,
-				7C45EC1F299B26B300F3B439 /* FollisApp.swift */,
+				7C45EC1F299B26B300F3B439 /* PareApp.swift */,
 				7C45EC33299B298800F3B439 /* CustomInputTextField.swift */,
 				7C45EC21299B26B300F3B439 /* ContentView.swift */,
+				E9A3DA1C29CF648600F5A1D0 /* GoogleService-Info.plist */,
 				7C45EC23299B26B900F3B439 /* Assets.xcassets */,
-				7C45EC47299B2EE100F3B439 /* GoogleService-Info.plist */,
 				7C45EC25299B26B900F3B439 /* Preview Content */,
 			);
-			path = Follis;
+			path = Pare;
 			sourceTree = "<group>";
 		};
 		7C45EC25299B26B900F3B439 /* Preview Content */ = {
@@ -322,9 +322,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7C45EC1B299B26B300F3B439 /* Follis */ = {
+		7C45EC1B299B26B300F3B439 /* Pare */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7C45EC2A299B26B900F3B439 /* Build configuration list for PBXNativeTarget "Follis" */;
+			buildConfigurationList = 7C45EC2A299B26B900F3B439 /* Build configuration list for PBXNativeTarget "Pare" */;
 			buildPhases = (
 				7C45EC18299B26B300F3B439 /* Sources */,
 				7C45EC19299B26B300F3B439 /* Frameworks */,
@@ -334,7 +334,7 @@
 			);
 			dependencies = (
 			);
-			name = Follis;
+			name = Pare;
 			packageProductDependencies = (
 				E97A865829C21A100089F028 /* FirebaseAuth */,
 				E97A865A29C21A100089F028 /* FirebaseFirestore */,
@@ -342,7 +342,7 @@
 				E9B38F9629CBE2EB0053C2FE /* Kingfisher */,
 			);
 			productName = Follis;
-			productReference = 7C45EC1C299B26B300F3B439 /* Follis.app */;
+			productReference = 7C45EC1C299B26B300F3B439 /* Pare.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -360,7 +360,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7C45EC17299B26B300F3B439 /* Build configuration list for PBXProject "Follis" */;
+			buildConfigurationList = 7C45EC17299B26B300F3B439 /* Build configuration list for PBXProject "Pare" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -377,7 +377,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7C45EC1B299B26B300F3B439 /* Follis */,
+				7C45EC1B299B26B300F3B439 /* Pare */,
 			);
 		};
 /* End PBXProject section */
@@ -389,8 +389,8 @@
 			files = (
 				7C45EC27299B26B900F3B439 /* Preview Assets.xcassets in Resources */,
 				7C45EC24299B26B900F3B439 /* Assets.xcassets in Resources */,
+				E9A3DA1D29CF648600F5A1D0 /* GoogleService-Info.plist in Resources */,
 				7CFE305B29A05EB600283B21 /* Launch Screen.storyboard in Resources */,
-				7C45EC48299B2EE200F3B439 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,7 +433,7 @@
 				7C45EC5D299B32B200F3B439 /* UserService.swift in Sources */,
 				7C86262B29B7F86000919213 /* ItemCell.swift in Sources */,
 				7C45EC46299B2D5F00F3B439 /* SignUpViewTwo.swift in Sources */,
-				7C45EC20299B26B300F3B439 /* FollisApp.swift in Sources */,
+				7C45EC20299B26B300F3B439 /* PareApp.swift in Sources */,
 				7CEB24D729BE53CF00018FB2 /* PendingOrder.swift in Sources */,
 				E943114929A179B700E26EBE /* KeyboardResponder.swift in Sources */,
 				7C45EC38299B2AC700F3B439 /* ButtonModifier.swift in Sources */,
@@ -581,11 +581,11 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Follis/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Pare/Preview Content\"";
 				DEVELOPMENT_TEAM = U28DY7SUR7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Follis/Info.plist;
+				INFOPLIST_FILE = Pare/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MealX;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
@@ -598,7 +598,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Pare.team;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -615,11 +615,11 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Follis/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Pare/Preview Content\"";
 				DEVELOPMENT_TEAM = U28DY7SUR7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Follis/Info.plist;
+				INFOPLIST_FILE = Pare/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MealX;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
@@ -632,7 +632,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Pare.team;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -644,7 +644,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7C45EC17299B26B300F3B439 /* Build configuration list for PBXProject "Follis" */ = {
+		7C45EC17299B26B300F3B439 /* Build configuration list for PBXProject "Pare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7C45EC28299B26B900F3B439 /* Debug */,
@@ -653,7 +653,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7C45EC2A299B26B900F3B439 /* Build configuration list for PBXNativeTarget "Follis" */ = {
+		7C45EC2A299B26B900F3B439 /* Build configuration list for PBXNativeTarget "Pare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7C45EC2B299B26B900F3B439 /* Debug */,

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7C45EC1B299B26B300F3B439"
-               BuildableName = "Follis.app"
-               BlueprintName = "Follis"
-               ReferencedContainer = "container:Follis.xcodeproj">
+               BuildableName = "Pare.app"
+               BlueprintName = "Pare"
+               ReferencedContainer = "container:Pare.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,9 +46,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7C45EC1B299B26B300F3B439"
-            BuildableName = "Follis.app"
-            BlueprintName = "Follis"
-            ReferencedContainer = "container:Follis.xcodeproj">
+            BuildableName = "Pare.app"
+            BlueprintName = "Pare"
+            ReferencedContainer = "container:Pare.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -63,9 +63,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7C45EC1B299B26B300F3B439"
-            BuildableName = "Follis.app"
-            BlueprintName = "Follis"
-            ReferencedContainer = "container:Follis.xcodeproj">
+            BuildableName = "Pare.app"
+            BlueprintName = "Pare"
+            ReferencedContainer = "container:Pare.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
