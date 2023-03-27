@@ -165,7 +165,7 @@ struct CheckoutView: View {
                 Button {
                     
                     let requestedAmt = viewModel.total * (pow(10,6))
-                    let url = URL(string: "https://metamask.app.link/send/0x2791bca1f2de4661ed88a30c99a7a9449aa84174@137/transfer?address=0x14DA5EEF615205F7D3ddf80F8a0752f7F7Dfe4F6&uint256=\(requestedAmt)")!
+                    let url = URL(string: "https://metamask.app.link/send/0x2791bca1f2de4661ed88a30c99a7a9449aa84174@137/transfer?address=0xA741b63997bbF5AaC72bd36380533aaE0f419b14&uint256=\(requestedAmt)")!
                     if UIApplication.shared.canOpenURL(url) {
                         UIApplication.shared.open(url, options: [:], completionHandler: nil)
                         //If you want handle the completion block than
