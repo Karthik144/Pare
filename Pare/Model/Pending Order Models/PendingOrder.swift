@@ -21,5 +21,6 @@ struct PendingOrder: Identifiable, Decodable {
     var status: String
     var subtotal: Double
     var total: Double
+    var rewards: Bool?
 
 }

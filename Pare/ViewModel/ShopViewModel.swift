@@ -224,7 +224,7 @@ class ShopViewModel: ObservableObject {
 
 
     // Upload order to firebase
-    func postOrderData(shop: Shop, cartTotalItems: String, cart: [Order], orderStatus: String, subtotal: Double, total: Double, user: User){
+    func postOrderData(shop: Shop, cartTotalItems: String, cart: [Order], orderStatus: String, subtotal: Double, total: Double, user: User, rewards: Bool){
         // Gets the current users uid so we can reference it
         guard let userUID = Auth.auth().currentUser?.uid else {return}
 
@@ -239,7 +239,7 @@ class ShopViewModel: ObservableObject {
 
 
         // Add a document to user's values collection
-        let ordersDocRef = db.collection("users").document(userUID).collection("orders").addDocument(data: ["shop_id": shop.id!, "total_items": String(totalItems ?? 0), "user_who_ordered": userUID, "status": "pending", "subtotal": subtotal, "total": total, "date_ordered": Timestamp(date: Date())]) { error in
+        let ordersDocRef = db.collection("users").document(userUID).collection("orders").addDocument(data: ["shop_id": shop.id!, "total_items": String(totalItems ?? 0), "user_who_ordered": userUID, "status": "pending", "subtotal": subtotal, "total": total, "rewards": rewards, "date_ordered": Timestamp(date: Date())]) { error in
 
             // Check for errors
             if error == nil {

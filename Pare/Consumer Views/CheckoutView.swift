@@ -176,11 +176,17 @@ struct CheckoutView: View {
                     // Change cart active status
                     viewModel.updateCartActiveStatus(cartActive: false)
 
-                    // Update user's rewards
-                    viewModel.updateRewards(rewards: viewModel.totalRewards)
+                    // Store users rewards
+                    let userRewards = Double(authViewModel.currentUser?.rewards ?? 0.0)
+
+                    // Find new total rewards from purchase
+                    let totalFinalRewards = userRewards + viewModel.totalRewards
+
+                    // Update rewarads in firebase
+                    viewModel.updateRewards(rewards: totalFinalRewards)
 
                     // Upload order to Firebase (so shop can access it)
-                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!)
+                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!, rewards: false)
 
 
                     //Empty out cart
@@ -218,7 +224,7 @@ struct CheckoutView: View {
                         viewModel.updateRewards(rewards: Double(updatedRewards))
 
                         // Upload order to Firebase (so shop can access it)
-                        viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!)
+                        viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!, rewards: true)
 
                         //Empty out cart
                         viewModel.cartItems = []
