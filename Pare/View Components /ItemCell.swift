@@ -25,9 +25,7 @@ struct ItemCell: View {
                 .scaledToFit()
                 .cornerRadius(5)
                 .padding()
-                .onAppear{
-                    print(item.image)
-                }
+
 
             Spacer()
 

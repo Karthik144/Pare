@@ -59,11 +59,39 @@ struct CheckoutView: View {
                 .padding()
 
 
-                Text("Your Order")
-                    .font(.title3)
-                    .foregroundColor(Color.black)
-                    .fontWeight(.bold)
-                    .padding(.leading, 20)
+                HStack{
+
+                    Text("Your Order")
+                        .font(.title3)
+                        .foregroundColor(Color.black)
+                        .fontWeight(.bold)
+                        .padding(.leading, 20)
+
+
+                    Spacer()
+
+                    Button {
+
+                        // Show popup with textfield
+
+                    } label: {
+
+
+                        Text("Add Note")
+                            .frame(width: 100, height: 25)
+                            .foregroundColor(Color.accentColor)
+                            .overlay(
+
+                                RoundedRectangle(cornerRadius: 5, style: .continuous)
+                                    .stroke(Color.accentColor, lineWidth: 1)
+                            )
+
+                    }
+                    .padding()
+
+
+                }
+
 
                 ScrollView{
                     ForEach(viewModel.cartItems) { order in
@@ -162,40 +190,8 @@ struct CheckoutView: View {
 
             VStack(spacing: 30){
 
-                Button {
-                    
-                    let requestedAmt = viewModel.total * (pow(10,6))
-                    let url = URL(string: "https://metamask.app.link/send/0x2791bca1f2de4661ed88a30c99a7a9449aa84174@137/transfer?address=0xA741b63997bbF5AaC72bd36380533aaE0f419b14&uint256=\(requestedAmt)")!
-                    if UIApplication.shared.canOpenURL(url) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                        //If you want handle the completion block than
-                        UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
-                             print("Open url : \(success)")
-                        })
-                    }
-                    // Change cart active status
-                    viewModel.updateCartActiveStatus(cartActive: false)
+                NavigationLink(destination: PaySubView(shop: shop, rootIsActive: $rootActive)){
 
-                    // Store users rewards
-                    let userRewards = Double(authViewModel.currentUser?.rewards ?? 0.0)
-
-                    // Find new total rewards from purchase
-                    let totalFinalRewards = userRewards + viewModel.totalRewards
-
-                    // Update rewarads in firebase
-                    viewModel.updateRewards(rewards: totalFinalRewards)
-
-                    // Upload order to Firebase (so shop can access it)
-                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!, rewards: false)
-
-
-                    //Empty out cart
-                    viewModel.cartItems = []
-
-                    //Pop to Shop View
-                    rootActive = false
-
-                } label: {
                     Text("Pay")
                         .foregroundColor(Color.white)
                         .background(
@@ -204,6 +200,49 @@ struct CheckoutView: View {
                                 .frame(width: 300, height: 50)
                         )
                 }
+
+//                Button {
+//
+//                    let requestedAmt = viewModel.total * (pow(10,6))
+//                    let url = URL(string: "https://metamask.app.link/send/0x2791bca1f2de4661ed88a30c99a7a9449aa84174@137/transfer?address=0xA741b63997bbF5AaC72bd36380533aaE0f419b14&uint256=\(requestedAmt)")!
+//                    if UIApplication.shared.canOpenURL(url) {
+//                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//                        //If you want handle the completion block than
+//                        UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+//                             print("Open url : \(success)")
+//                        })
+//                    }
+//                    // Change cart active status
+//                    viewModel.updateCartActiveStatus(cartActive: false)
+//
+//                    // Store users rewards
+//                    let userRewards = Double(authViewModel.currentUser?.rewards ?? 0.0)
+//
+//                    // Find new total rewards from purchase
+//                    let totalFinalRewards = userRewards + viewModel.totalRewards
+//
+//                    // Update rewarads in firebase
+//                    viewModel.updateRewards(rewards: totalFinalRewards)
+//
+//                    // Upload order to Firebase (so shop can access it)
+//                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!, rewards: false)
+//
+//
+//                    //Empty out cart
+//                    viewModel.cartItems = []
+//
+//                    //Pop to Shop View
+//                    rootActive = false
+//
+//                } label: {
+//                    Text("Pay")
+//                        .foregroundColor(Color.white)
+//                        .background(
+//                            RoundedRectangle(cornerRadius: 8,  style: .continuous)
+//                                .fill(Color.accentColor)
+//                                .frame(width: 300, height: 50)
+//                        )
+//                }
 
                 Button {
 

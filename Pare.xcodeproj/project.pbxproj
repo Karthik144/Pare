@@ -43,6 +43,7 @@
 		7C97788929BAAA3A00F0C6C5 /* ModificationItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C97788829BAAA3A00F0C6C5 /* ModificationItemCell.swift */; };
 		7CA83B4B29BA578900E4C4CD /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA83B4A29BA578900E4C4CD /* MenuItem.swift */; };
 		7CA914BF299DB9790006ED5B /* UserCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA914BE299DB9790006ED5B /* UserCheck.swift */; };
+		7CB5F3DF29DCE6C600A13A2B /* PaySubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB5F3DE29DCE6C600A13A2B /* PaySubView.swift */; };
 		7CC4189E29C16F1A004CE58B /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC4189D29C16F1A004CE58B /* OrderItem.swift */; };
 		7CC418A329C1958F004CE58B /* PastOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC418A229C1958F004CE58B /* PastOrderView.swift */; };
 		7CC418A529C19598004CE58B /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC418A429C19598004CE58B /* HelpView.swift */; };
@@ -107,6 +108,7 @@
 		7C97788829BAAA3A00F0C6C5 /* ModificationItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificationItemCell.swift; sourceTree = "<group>"; };
 		7CA83B4A29BA578900E4C4CD /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		7CA914BE299DB9790006ED5B /* UserCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCheck.swift; sourceTree = "<group>"; };
+		7CB5F3DE29DCE6C600A13A2B /* PaySubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaySubView.swift; sourceTree = "<group>"; };
 		7CC4189D29C16F1A004CE58B /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		7CC418A229C1958F004CE58B /* PastOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastOrderView.swift; sourceTree = "<group>"; };
 		7CC418A429C19598004CE58B /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				7CEDCD1329BBB4B700C70EF5 /* PersonalView.swift */,
 				7CC418A229C1958F004CE58B /* PastOrderView.swift */,
 				7CC418A429C19598004CE58B /* HelpView.swift */,
+				7CB5F3DE29DCE6C600A13A2B /* PaySubView.swift */,
 			);
 			path = "Consumer Views";
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				7C0439DD29B90C7A0037EE72 /* ProfileView.swift in Sources */,
 				7CD78BF5299DE8C8002E01E1 /* PasswordView.swift in Sources */,
 				7CF74DD3299C76F2002B2BB9 /* UserTypeButtonModifier.swift in Sources */,
+				7CB5F3DF29DCE6C600A13A2B /* PaySubView.swift in Sources */,
 				7C45EC60299B341400F3B439 /* User.swift in Sources */,
 				7CF74DD1299C738D002B2BB9 /* SignUpViewFour.swift in Sources */,
 				7C86262429B7E88600919213 /* ShopCell.swift in Sources */,
