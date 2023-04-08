@@ -21,6 +21,7 @@ struct PareApp: App{
     @StateObject var viewModel = AuthViewModel()
     @StateObject var shopViewModel = ShopViewModel()
     @ObservedObject var appState = AppState()
+    @StateObject var sheetManager = SheetManager()
     
     
 
@@ -30,6 +31,7 @@ struct PareApp: App{
                 .environmentObject(viewModel)
                 .environmentObject(appState)
                 .environmentObject(shopViewModel)
+                .environmentObject(sheetManager)
         }
 
     }

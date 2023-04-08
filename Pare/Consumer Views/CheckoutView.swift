@@ -18,6 +18,7 @@ struct CheckoutView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var viewModel: ShopViewModel
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var sheetManager: SheetManager
 
     @State private var showingAlert = false
     @Binding var rootActive: Bool
@@ -73,6 +74,7 @@ struct CheckoutView: View {
                     Button {
 
                         // Show popup with textfield
+                        sheetManager.present()
 
                     } label: {
 
@@ -109,9 +111,6 @@ struct CheckoutView: View {
                             }
                             .onAppear(){
                                 let index = viewModel.cartItems.firstIndex(of: order)
-
-                                print("Index inside on Appear")
-                                print(index)
                             }
                         
                     } //: FOR EACH
@@ -201,48 +200,6 @@ struct CheckoutView: View {
                         )
                 }
 
-//                Button {
-//
-//                    let requestedAmt = viewModel.total * (pow(10,6))
-//                    let url = URL(string: "https://metamask.app.link/send/0x2791bca1f2de4661ed88a30c99a7a9449aa84174@137/transfer?address=0xA741b63997bbF5AaC72bd36380533aaE0f419b14&uint256=\(requestedAmt)")!
-//                    if UIApplication.shared.canOpenURL(url) {
-//                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-//                        //If you want handle the completion block than
-//                        UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
-//                             print("Open url : \(success)")
-//                        })
-//                    }
-//                    // Change cart active status
-//                    viewModel.updateCartActiveStatus(cartActive: false)
-//
-//                    // Store users rewards
-//                    let userRewards = Double(authViewModel.currentUser?.rewards ?? 0.0)
-//
-//                    // Find new total rewards from purchase
-//                    let totalFinalRewards = userRewards + viewModel.totalRewards
-//
-//                    // Update rewarads in firebase
-//                    viewModel.updateRewards(rewards: totalFinalRewards)
-//
-//                    // Upload order to Firebase (so shop can access it)
-//                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!, rewards: false)
-//
-//
-//                    //Empty out cart
-//                    viewModel.cartItems = []
-//
-//                    //Pop to Shop View
-//                    rootActive = false
-//
-//                } label: {
-//                    Text("Pay")
-//                        .foregroundColor(Color.white)
-//                        .background(
-//                            RoundedRectangle(cornerRadius: 8,  style: .continuous)
-//                                .fill(Color.accentColor)
-//                                .frame(width: 300, height: 50)
-//                        )
-//                }
 
                 Button {
 
@@ -316,6 +273,19 @@ struct CheckoutView: View {
             total = viewModel.calcTotal()
             viewModel.totalRewards = viewModel.calcTotalRewards()
         }
+        .overlay(alignment: .bottom){
+
+            if sheetManager.action.isPresented {
+                PopUpView{
+
+                    withAnimation {
+                        sheetManager.dismiss()
+                    }
+                }
+            }
+
+        }
+//        .ignoresSafeArea()
 
 
     }

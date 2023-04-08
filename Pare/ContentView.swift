@@ -31,12 +31,12 @@ struct ContentView: View {
             })
             .tag(2)
 
-            /*
+
             WalletView().tabItem({
                 Image(systemName: "dollarsign.circle")
                 Text("Funds")
             })
-            .tag(3)*/
+            .tag(3)
         }
 
     }

@@ -8,11 +8,30 @@
 import SwiftUI
 
 struct WalletView: View {
+
+    // MARK: - PROPERTIES
+
+    // MARK: - BODY
     var body: some View {
-        Text("Enter your public address to view")
+
+        NavigationView{
+
+            Form {
+
+                Text("Public address")
+
+            } //: FORM
+            .navigationTitle("Wallet")
+            .navigationBarTitleDisplayMode(.large)
+
+
+        } //: NAV VIEW
+            
     }
 }
 
+
+// MARK: - PREVIEW
 struct WalletView_Previews: PreviewProvider {
     static var previews: some View {
         WalletView()

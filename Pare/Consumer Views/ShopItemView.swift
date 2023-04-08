@@ -21,6 +21,11 @@ struct ShopItemView: View {
     @State private var total = 0.0
     @State private var totalRewards = 0.0
     @State private var appearTotal = 0
+    @State private var isAppExpanded = false
+    @State private var isVegExpanded = false
+    @State private var isEntreeExpanded = false
+
+
 
     @Binding var rootIsActive: Bool 
     
@@ -33,8 +38,6 @@ struct ShopItemView: View {
             VStack{
 
                 HStack{
-
-
 
                     KFImage(URL(string: shop.image))
                         .resizable()
@@ -81,6 +84,8 @@ struct ShopItemView: View {
                     } //: VSTACK
                     .padding(.leading, 5)
 
+                    Spacer()
+
 
                 } //: HSTACK
                 .padding()
@@ -89,107 +94,113 @@ struct ShopItemView: View {
 
                     if appetizers.count >= 1 {
 
-                        HStack{
-                            Text("Appetizers")
-                                .fontWeight(.bold)
-                                .font(.title3)
-                            Spacer()
-                        } //: HSTACK
-                        .padding(.leading, 20)
-                        .padding(.bottom, 0)
+                        DisclosureGroup {
+                            VStack(alignment: .leading){
+                                ForEach(appetizers) { item in
 
-                        VStack(alignment: .leading){
-                            ForEach(appetizers) { item in
+                                    NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+                                    ) {
+                                        ItemCell(item: item)
 
-                                NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
-                                ) {
-                                    ItemCell(item: item)
-                                        .padding(.leading, 15)
-                                        .padding(.trailing, 15)
-                                }
+                                    }
 
 
-                            } //: FOR EACH
-                        } //: VSTACK
+                                } //: FOR EACH
+                            } //: VSTACK
+                        } label: {
+                            HStack{
+
+                                Image("appetizer")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 30, height: 30)
+
+                                Text("Appetizer")
+
+                            }
+                        }
+                        .accentColor(Color.black)
+                        .fontWeight(.medium)
+                        .font(.title3)
+                        .padding()
+
 
                     }
 
                     if vegetarian.count >= 1 {
 
-                        HStack{
-                            Text("Vegetarian")
-                                .fontWeight(.bold)
-                                .font(.title3)
-                            Spacer()
-                        } //: HSTACK
-                        .padding(.leading, 20)
-                        .padding(.bottom, 0)
+                        DisclosureGroup {
 
-                        VStack(alignment: .leading){
-                            ForEach(vegetarian) { item in
+                            VStack(alignment: .leading){
+                                ForEach(vegetarian) { item in
 
-                                NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
-                                ) {
-                                    ItemCell(item: item)
-                                        .padding(.leading, 15)
-                                        .padding(.trailing, 15)
-                                }
+                                    NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+                                    ) {
+                                        ItemCell(item: item)
+                                    }
 
 
-                            } //: FOR EACH
-                        } //: VSTACK
+                                } //: FOR EACH
+                            } //: VSTACK
+
+                        } label: {
+
+                            HStack{
+
+                                Image("veg")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 30, height: 30)
+
+                                Text("Vegetarian")
+
+                            }
+
+                        }
+                        .accentColor(Color.black)
+                        .fontWeight(.medium)
+                        .font(.title3)
+                        .padding()
 
                     }
 
                     if entrees.count >= 1 {
 
-                        HStack{
-                            Text("Entrees")
-                                .fontWeight(.bold)
-                                .font(.title3)
-                            Spacer()
-                        } //: HSTACK
-                        .padding(.leading, 20)
-                        .padding(.bottom, 0)
+                        DisclosureGroup {
 
-                        VStack(alignment: .leading){
-                            ForEach(entrees) { item in
+                            VStack(alignment: .leading){
+                                ForEach(entrees) { item in
 
-                                NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
-                                ) {
-                                    ItemCell(item: item)
-                                        .padding(.leading, 15)
-                                        .padding(.trailing, 15)
-                                }
+                                    NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+                                    ) {
+                                        ItemCell(item: item)
+//                                            .padding(.leading, 15)
+//                                            .padding(.trailing, 15)
+                                    }
 
 
-                            } //: FOR EACH
-                        } //: VSTACK
+                                } //: FOR EACH
+                            } //: VSTACK
+
+                        } label: {
+
+                            HStack{
+
+                                Image("entree")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 30, height: 30)
+
+                                Text("Entrees")
+
+                            }
+
+                        }
+                        .accentColor(Color.black)
+                        .fontWeight(.medium)
+                        .font(.title3)
+                        .padding()
                     }
-
-//                    HStack{
-//                        Text("Menu")
-//                            .fontWeight(.bold)
-//                            .font(.title3)
-//                        Spacer()
-//                    } //: HSTACK
-//                    .padding(.leading, 20)
-//                    .padding(.bottom, 0)
-
-
-//                    VStack(alignment: .leading){
-//                        ForEach(totalMenuItems) { item in
-//
-//                            NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
-//                            ) {
-//                                ItemCell(item: item)
-//                                    .padding(.leading, 15)
-//                                    .padding(.trailing, 15)
-//                            }
-//
-//
-//                        } //: FOR EACH
-//                    } //: VSTACK
 
 
                 } //: SCROLL VIEW
@@ -277,6 +288,251 @@ struct ShopItemView: View {
 
         } else {
             // Fallback on earlier versions
+
+            VStack{
+
+                HStack{
+
+                    KFImage(URL(string: shop.image))
+                        .resizable()
+                        .frame(width: 115, height: 115)
+                        .scaledToFit()
+                        .cornerRadius(7)
+
+                    VStack(alignment: .leading){
+
+
+                        Text(shop.name)
+                            .font(.title3)
+                            .fontWeight(.bold)
+
+                        HStack{
+
+                            Text(shop.type)
+                                .foregroundColor(Color.gray)
+
+                            Circle()
+                                .foregroundColor(Color.gray)
+                                .frame(width: 2, height: 2)
+
+                            Text(shop.cuisine)
+                                .foregroundColor(Color.gray)
+
+                            Circle()
+                                .foregroundColor(Color.gray)
+                                .frame(width: 2, height: 2)
+
+                            HStack{
+                                Image(systemName: "star.fill")
+                                    .foregroundColor(Color.black)
+                                Text(shop.rating)
+                                    .foregroundColor(Color.black)
+                            } //: HStack
+
+                        }//: HStack
+
+                        Text("Open Now")
+                            .foregroundColor(Color.green)
+
+
+                    } //: VSTACK
+                    .padding(.leading, 5)
+
+                    Spacer()
+
+
+                } //: HSTACK
+                .padding()
+
+                ScrollView {
+
+                    if appetizers.count >= 1 {
+
+                        DisclosureGroup {
+                            VStack(alignment: .leading){
+                                ForEach(appetizers) { item in
+
+                                    NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+                                    ) {
+                                        ItemCell(item: item)
+
+                                    }
+
+
+                                } //: FOR EACH
+                            } //: VSTACK
+                        } label: {
+                            HStack{
+
+                                Image("appetizer")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 30, height: 30)
+
+                                Text("Appetizer")
+
+                            }
+                        }
+                        .accentColor(Color.black)
+                        .font(.title3)
+                        .padding()
+
+
+                    }
+
+                    if vegetarian.count >= 1 {
+
+                        DisclosureGroup {
+
+                            VStack(alignment: .leading){
+                                ForEach(vegetarian) { item in
+
+                                    NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+                                    ) {
+                                        ItemCell(item: item)
+                                    }
+
+
+                                } //: FOR EACH
+                            } //: VSTACK
+
+                        } label: {
+
+                            HStack{
+
+                                Image("veg")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 30, height: 30)
+
+                                Text("Vegetarian")
+
+                            }
+
+                        }
+                        .accentColor(Color.black)
+                        .font(.title3)
+                        .padding()
+
+                    }
+
+                    if entrees.count >= 1 {
+
+                        DisclosureGroup {
+
+                            VStack(alignment: .leading){
+                                ForEach(entrees) { item in
+
+                                    NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+                                    ) {
+                                        ItemCell(item: item)
+//                                            .padding(.leading, 15)
+//                                            .padding(.trailing, 15)
+                                    }
+
+
+                                } //: FOR EACH
+                            } //: VSTACK
+
+                        } label: {
+
+                            HStack{
+
+                                Image("entree")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 30, height: 30)
+
+                                Text("Entrees")
+
+                            }
+
+                        }
+                        .accentColor(Color.black)
+                        .font(.title3)
+                        .padding()
+                    }
+
+
+                } //: SCROLL VIEW
+
+
+                if authViewModel.currentUser?.cart_active == true {
+
+
+                    NavigationLink {
+                        CheckoutView(shop: shop, rootActive: $rootIsActive)
+                    } label: {
+
+                        HStack{
+
+                            Text("Checkout")
+                                .foregroundColor(Color.white)
+                                .padding(.leading,10)
+
+                            Spacer()
+
+
+                            HStack{
+
+                                Text(String(total) + " USDC")
+                                    .foregroundColor(Color.white)
+
+                                Text("+\(String(viewModel.totalRewards)) 🌟")
+                                    .foregroundColor(Color.white)
+
+                            }
+                            .padding()
+
+                        }
+                        .frame(width: 300, height: 50)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8,  style: .continuous)
+                                .fill(Color.accentColor)
+                                .frame(width: 300, height: 50)
+                        )
+                    }
+                    .padding()
+                    .padding(.bottom, 20)
+
+
+                } //: IF STATEMENT
+
+            } //: VSTACK
+            .onAppear(){
+
+                if appearTotal<1{
+
+                    viewModel.fetchShopMenu(withUID: shop.id ?? "") { menuItems in
+                        self.totalMenuItems = menuItems
+
+                        for each in totalMenuItems{
+
+                            if each.type.contains("Veg"){
+                                vegetarian.append(each)
+                            }
+
+                            else if each.type.contains("Appetizer"){
+
+                                appetizers.append(each)
+                            }
+
+                            else {
+
+                                entrees.append(each)
+                            }
+                        }
+                    }
+
+                    total = viewModel.calcTotal()
+
+                    totalRewards = viewModel.calcTotalRewards()
+
+                    appearTotal += 1
+
+                }
+
+            } //: ON APPEAR
         }
 
 
