@@ -10,7 +10,7 @@ import SwiftUI
 struct PopUpView: View {
 
     // MARK: - PROPERTIES
-    @State private var instructions = ""
+    @Binding var instructions: String
     let didClose: () -> Void 
 
     // MARK: - BODY
@@ -22,7 +22,7 @@ struct PopUpView: View {
 
                 HStack{
 
-                    Text("Send a note")
+                    Text("Add a note")
                         .font(.title2)
                         .fontWeight(.bold)
                         .padding()
@@ -34,7 +34,11 @@ struct PopUpView: View {
                 HStack{
 
                     Text("Mention any dietary restrictions, additional modifications, or just say thanks!")
+                        .lineLimit(3)
                         .foregroundColor(Color.gray)
+                        .padding(.leading)
+
+                    Spacer()
                 }
 
             }
@@ -50,6 +54,20 @@ struct PopUpView: View {
                     .textFieldStyle(.roundedBorder)
                     .padding()
             }
+
+            Button {
+                didClose()
+            } label: {
+                Text("Add")
+                    .foregroundColor(Color.white)
+                    .background(
+                        RoundedRectangle(cornerRadius: 50)
+                            .fill(Color(red: 0.167, green: 0.29, blue: 0.933))
+                            .frame(width:100, height: 50)
+                    )
+                    .padding()
+            }
+
 
         } //: VSTACK
         .frame(maxWidth: .infinity)
@@ -68,7 +86,7 @@ private extension PopUpView {
 
     var background: some View {
 
-        RoundedCorners(color: .white, tl: 10, tr: 10, bl: 0, br: 0)
+        RoundedCorners(color: .white, tl: 18, tr: 18, bl: 0, br: 0)
             .shadow(color: .black.opacity(0.2), radius: 3)
     }
 
@@ -76,6 +94,7 @@ private extension PopUpView {
 
         Button {
 
+            instructions = ""
             // Close popup view
             didClose()
 

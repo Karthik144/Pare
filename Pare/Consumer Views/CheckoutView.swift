@@ -21,6 +21,7 @@ struct CheckoutView: View {
     @EnvironmentObject var sheetManager: SheetManager
 
     @State private var showingAlert = false
+    @State var noteText = ""
     @Binding var rootActive: Bool
 
 
@@ -29,6 +30,7 @@ struct CheckoutView: View {
 
         VStack{
 
+            Spacer()
 
             VStack(alignment: .leading){
 
@@ -58,6 +60,7 @@ struct CheckoutView: View {
 
                 } //: HSTACK
                 .padding()
+                .padding(.top, 30)
 
 
                 HStack{
@@ -230,6 +233,8 @@ struct CheckoutView: View {
 
                     } else {
 
+                        print("Note text: ")
+                        print(noteText)
                         showingAlert = true
 
                     }
@@ -270,13 +275,15 @@ struct CheckoutView: View {
 
         } //: VSTACK
         .onAppear(){
+
+            print("ON APPEAR INSIDE CHECKOUT VIEW")
             total = viewModel.calcTotal()
             viewModel.totalRewards = viewModel.calcTotalRewards()
         }
         .overlay(alignment: .bottom){
 
             if sheetManager.action.isPresented {
-                PopUpView{
+                PopUpView(instructions: $noteText){
 
                     withAnimation {
                         sheetManager.dismiss()
@@ -285,7 +292,7 @@ struct CheckoutView: View {
             }
 
         }
-//        .ignoresSafeArea()
+        .ignoresSafeArea()
 
 
     }
