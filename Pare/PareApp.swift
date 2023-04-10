@@ -19,6 +19,7 @@ struct PareApp: App{
     }
 
     @StateObject var viewModel = AuthViewModel()
+    @StateObject var walletViewModel = web3ViewModel()
     @StateObject var shopViewModel = ShopViewModel()
     @ObservedObject var appState = AppState()
     
@@ -26,10 +27,11 @@ struct PareApp: App{
 
     var body: some Scene {
         WindowGroup {
-            WelcomeView()
+            WelcomeView(walletViewModel: walletViewModel)
                 .environmentObject(viewModel)
                 .environmentObject(appState)
                 .environmentObject(shopViewModel)
+                //.environmentObject(walletViewModel)
         }
 
     }

@@ -65,6 +65,10 @@
 		E97A865B29C21A100089F028 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E97A865A29C21A100089F028 /* FirebaseFirestore */; };
 		E97A865D29C21A100089F028 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E97A865C29C21A100089F028 /* FirebaseFirestoreSwift */; };
 		E9A3DA1D29CF648600F5A1D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9A3DA1C29CF648600F5A1D0 /* GoogleService-Info.plist */; };
+		E9A3DA6529D8F07A00F5A1D0 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A3DA6429D8F07A00F5A1D0 /* Wallet.swift */; };
+		E9A3DA6829D8F0E200F5A1D0 /* WalletConnectSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E9A3DA6729D8F0E200F5A1D0 /* WalletConnectSwift */; };
+		E9A3DA6C29DD96FF00F5A1D0 /* WalletConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A3DA6B29DD96FF00F5A1D0 /* WalletConnect.swift */; };
+		E9A3DA6E29DD992A00F5A1D0 /* web3ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A3DA6D29DD992A00F5A1D0 /* web3ViewModel.swift */; };
 		E9B38F9729CBE2EB0053C2FE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E9B38F9629CBE2EB0053C2FE /* Kingfisher */; };
 		E9DD9CD029C0F1D80001106E /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DD9CCF29C0F1D80001106E /* Order.swift */; };
 /* End PBXBuildFile section */
@@ -126,6 +130,9 @@
 		E943114829A179B700E26EBE /* KeyboardResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
 		E94ABC0929A0438D004DEC26 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		E9A3DA1C29CF648600F5A1D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E9A3DA6429D8F07A00F5A1D0 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
+		E9A3DA6B29DD96FF00F5A1D0 /* WalletConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnect.swift; sourceTree = "<group>"; };
+		E9A3DA6D29DD992A00F5A1D0 /* web3ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = web3ViewModel.swift; sourceTree = "<group>"; };
 		E9DD9CCF29C0F1D80001106E /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -136,6 +143,7 @@
 			files = (
 				E9B38F9729CBE2EB0053C2FE /* Kingfisher in Frameworks */,
 				E97A865929C21A100089F028 /* FirebaseAuth in Frameworks */,
+				E9A3DA6829D8F0E200F5A1D0 /* WalletConnectSwift in Frameworks */,
 				E97A865B29C21A100089F028 /* FirebaseFirestore in Frameworks */,
 				E97A865D29C21A100089F028 /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -295,6 +303,9 @@
 		E9B0CF9429B932DC008D9FDA /* Web3 */ = {
 			isa = PBXGroup;
 			children = (
+				E9A3DA6429D8F07A00F5A1D0 /* Wallet.swift */,
+				E9A3DA6B29DD96FF00F5A1D0 /* WalletConnect.swift */,
+				E9A3DA6D29DD992A00F5A1D0 /* web3ViewModel.swift */,
 			);
 			path = Web3;
 			sourceTree = "<group>";
@@ -340,6 +351,7 @@
 				E97A865A29C21A100089F028 /* FirebaseFirestore */,
 				E97A865C29C21A100089F028 /* FirebaseFirestoreSwift */,
 				E9B38F9629CBE2EB0053C2FE /* Kingfisher */,
+				E9A3DA6729D8F0E200F5A1D0 /* WalletConnectSwift */,
 			);
 			productName = Follis;
 			productReference = 7C45EC1C299B26B300F3B439 /* Pare.app */;
@@ -372,6 +384,7 @@
 			packageReferences = (
 				E97A865729C21A100089F028 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				E9B38F9529CBE2EA0053C2FE /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				E9A3DA6629D8F0E200F5A1D0 /* XCRemoteSwiftPackageReference "WalletConnectSwift" */,
 			);
 			productRefGroup = 7C45EC1D299B26B300F3B439 /* Products */;
 			projectDirPath = "";
@@ -403,6 +416,7 @@
 			files = (
 				7C86263129B818E400919213 /* CheckoutView.swift in Sources */,
 				7C0439DF29B90E130037EE72 /* ProfileItemCell.swift in Sources */,
+				E9A3DA6529D8F07A00F5A1D0 /* Wallet.swift in Sources */,
 				7C840AF829C2253F001F067E /* PastOrderCell.swift in Sources */,
 				7C45EC44299B2D5200F3B439 /* SignUpViewOne.swift in Sources */,
 				7C86263329B8195B00919213 /* OrderItemCell.swift in Sources */,
@@ -422,10 +436,12 @@
 				7C86262D29B7FD1900919213 /* AddItemView.swift in Sources */,
 				7C97788929BAAA3A00F0C6C5 /* ModificationItemCell.swift in Sources */,
 				7C97788329BAA68900F0C6C5 /* Required.swift in Sources */,
+				E9A3DA6C29DD96FF00F5A1D0 /* WalletConnect.swift in Sources */,
 				7CCCEFC029B7CCCA00E27BAA /* ShopsView.swift in Sources */,
 				7C0439E429B939170037EE72 /* ShopViewModel.swift in Sources */,
 				7C97788129BA9E8500F0C6C5 /* Add.swift in Sources */,
 				7CF74DC7299C620C002B2BB9 /* GetStartedButtonModifier.swift in Sources */,
+				E9A3DA6E29DD992A00F5A1D0 /* web3ViewModel.swift in Sources */,
 				7CF74DCF299C72DF002B2BB9 /* SignUpViewThree.swift in Sources */,
 				7CCCEFBC29B7C1EC00E27BAA /* SignUpViewFive.swift in Sources */,
 				7C86263729B839A300919213 /* OrderStatusModalView.swift in Sources */,
@@ -580,7 +596,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Pare/Preview Content\"";
 				DEVELOPMENT_TEAM = U28DY7SUR7;
 				ENABLE_PREVIEWS = YES;
@@ -614,7 +630,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Pare/Preview Content\"";
 				DEVELOPMENT_TEAM = U28DY7SUR7;
 				ENABLE_PREVIEWS = YES;
@@ -673,6 +689,14 @@
 				kind = branch;
 			};
 		};
+		E9A3DA6629D8F0E200F5A1D0 /* XCRemoteSwiftPackageReference "WalletConnectSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/penachett/WalletConnectSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		E9B38F9529CBE2EA0053C2FE /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -698,6 +722,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E97A865729C21A100089F028 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		E9A3DA6729D8F0E200F5A1D0 /* WalletConnectSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E9A3DA6629D8F0E200F5A1D0 /* XCRemoteSwiftPackageReference "WalletConnectSwift" */;
+			productName = WalletConnectSwift;
 		};
 		E9B38F9629CBE2EB0053C2FE /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

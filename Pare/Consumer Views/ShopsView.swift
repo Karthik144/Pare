@@ -176,6 +176,7 @@ struct ShopsView: View {
                         } //: FOR EACH
 
                     } //: LAZYVSTACK
+                    
 
                 } //: SCROLL VIEW
 

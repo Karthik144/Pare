@@ -11,6 +11,7 @@ struct ContentView: View {
 
     // MARK: - PROPERTIES
     @EnvironmentObject var viewModel: AuthViewModel
+    @StateObject var walletViewModel : web3ViewModel
 //    @EnvironmentObject var router: Router
     @State private var selection = 2
 
@@ -30,6 +31,15 @@ struct ContentView: View {
                 Text("Order")
             })
             .tag(2)
+            WalletView().tabItem({
+                Image(systemName: "wallet.pass.fill")
+                Text("Wallet")
+            })
+            .tag(3)
+            .environmentObject(walletViewModel)
+            .onAppear{
+                walletViewModel.initWalletConnect()
+            }
 
             /*
             WalletView().tabItem({

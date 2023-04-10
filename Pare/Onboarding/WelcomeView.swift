@@ -12,6 +12,7 @@ struct WelcomeView: View {
     // MARK: - PROPERTEIS
     @EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject var appState: AppState
+    @StateObject var walletViewModel: web3ViewModel
     @ObservedObject var keyboardResponder = KeyboardResponder()
 
     // MARK: - BODY
@@ -23,7 +24,7 @@ struct WelcomeView: View {
             if viewModel.userSession == nil {
                 mainWelcomeView
             } else {
-                ContentView()
+                ContentView(walletViewModel: walletViewModel)
             }
         } //: GROUP
         .navigationViewStyle(.stack) // use stack navigation view style
@@ -100,7 +101,7 @@ extension View {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
-
+/*
 struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {
         WelcomeView()
@@ -108,3 +109,4 @@ struct WelcomeView_Previews: PreviewProvider {
     }
 }
 
+*/
