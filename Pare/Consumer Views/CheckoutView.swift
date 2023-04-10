@@ -22,6 +22,7 @@ struct CheckoutView: View {
 
     @State private var showingAlert = false
     @State var noteText = ""
+    @State var rewards = false
     @Binding var rootActive: Bool
 
 
@@ -192,7 +193,7 @@ struct CheckoutView: View {
 
             VStack(spacing: 30){
 
-                NavigationLink(destination: PaySubView(shop: shop, rootIsActive: $rootActive)){
+                NavigationLink(destination: PaySubView(shop: shop, rewards: rewards, rootIsActive: $rootActive, noteText: noteText)){
 
                     Text("Pay")
                         .foregroundColor(Color.white)
@@ -204,67 +205,90 @@ struct CheckoutView: View {
                 }
 
 
-                Button {
+                if rewards == false {
 
-                    // Change cart active status
-                    viewModel.updateCartActiveStatus(cartActive: false)
+                    Button {
 
-                    // Store users rewards
-                    var userRewards = Double(authViewModel.currentUser?.rewards ?? 0.0)
+                        // Change cart active status
+                        viewModel.updateCartActiveStatus(cartActive: false)
 
-                    if userRewards >= viewModel.total{
+                        // Store users rewards
+                        var userRewards = Double(authViewModel.currentUser?.rewards ?? 0.0)
 
-                        // Subtract used rewards from new rewards and update it to total rewards
-                        let extraRewards = userRewards - viewModel.total
 
-                        let updatedRewards = (viewModel.totalRewards) + extraRewards
+                        if userRewards >= viewModel.total{
 
-                        // Update user's rewards with new rewards from purchase
-                        viewModel.updateRewards(rewards: Double(updatedRewards))
+                            // Subtract used rewards from new rewards and update it to total rewards
+                            let extraRewards = userRewards - viewModel.total
 
-                        // Upload order to Firebase (so shop can access it)
-                        viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!, rewards: true)
+                            let updatedRewards = (viewModel.totalRewards) + extraRewards
 
-                        //Empty out cart
-                        viewModel.cartItems = []
+                            // Update user's rewards with new rewards from purchase
+                            viewModel.updateRewards(rewards: Double(updatedRewards))
 
-                        //Pop to Shop View
-                        rootActive = false
+                            // Upload order to Firebase (so shop can access it)
+                            viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!, rewards: true, notes: noteText)
 
-                    } else {
+                            //Empty out cart
+                            viewModel.cartItems = []
 
-                        print("Note text: ")
-                        print(noteText)
-                        showingAlert = true
+                            //Pop to Shop View
+                            rootActive = false
 
+                        } else {
+
+    //                        showingAlert = true
+
+                            // Subtract total from rewards to get new price
+                            // 5.67 - 1 = 4.67
+                            let newTotal = viewModel.total - userRewards
+                            let newSubTotal = viewModel.subtotal - userRewards
+
+                            // new total: 4.67
+                            viewModel.total = newTotal
+
+
+                            viewModel.totalRewards = (newSubTotal) * 0.10
+
+                            // 0.10 x 4.67 = 0.467
+    //                        let newRewards = viewModel.subtotal * 0.10
+
+                            // Update user's rewards with new rewards from purchase
+                            viewModel.updateRewards(rewards: Double(viewModel.totalRewards))
+
+                            rewards = true
+
+                        }
+
+    //                    // Update user's rewards with new rewards from purchase
+    //                    viewModel.updateRewards(rewards: viewModel.rewards)
+    //
+    //
+    //                    // Upload order to Firebase (so shop can access it)
+    //                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!)
+    //
+    //                    //Empty out cart
+    //                    viewModel.cartItems = []
+    //
+    //                    //Pop to Shop View
+    ////                    self.appState.moveToDashboard = true
+
+    //                    rootActive = false
+
+                    } label: {
+                        Text("Pay with stars 🌟")
+                            .frame(width: 300, height: 50)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8,  style: .continuous)
+                                    .stroke(Color.accentColor, lineWidth: 1)
+                            )
+                    }
+                    .alert("Not enough rewards!", isPresented: $showingAlert) {
+                        Button("Ok", role: .cancel) { }
                     }
 
-//                    // Update user's rewards with new rewards from purchase
-//                    viewModel.updateRewards(rewards: viewModel.rewards)
-//
-//
-//                    // Upload order to Firebase (so shop can access it)
-//                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!)
-//
-//                    //Empty out cart
-//                    viewModel.cartItems = []
-//
-//                    //Pop to Shop View
-////                    self.appState.moveToDashboard = true
-
-                    rootActive = false 
-
-                } label: {
-                    Text("Pay with stars 🌟")
-                        .frame(width: 300, height: 50)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8,  style: .continuous)
-                                .stroke(Color.accentColor, lineWidth: 1)
-                        )
                 }
-                .alert("Not enough rewards!", isPresented: $showingAlert) {
-                    Button("Ok", role: .cancel) { }
-                }
+
 
 
             } //: VSTACK

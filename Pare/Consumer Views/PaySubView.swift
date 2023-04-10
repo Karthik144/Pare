@@ -11,12 +11,15 @@ struct PaySubView: View {
 
     // MARK: - PROPERTIES
     let shop: Shop
+    let rewards: Bool
     private let pasteboard = UIPasteboard.general
     @Binding var rootIsActive: Bool
 
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var viewModel: ShopViewModel
     @EnvironmentObject var appState: AppState
+
+    let noteText: String
 
 
     // MARK: - BODY
@@ -193,14 +196,16 @@ struct PaySubView: View {
                 // Store users rewards
                 let userRewards = Double(authViewModel.currentUser?.rewards ?? 0.0)
 
-                // Find new total rewards from purchase
-                let totalFinalRewards = userRewards + viewModel.totalRewards
+                if rewards != true {
+                    // Find new total rewards from purchase
+                    let totalFinalRewards = userRewards + viewModel.totalRewards
 
-                // Update rewarads in firebase
-                viewModel.updateRewards(rewards: totalFinalRewards)
+                    // Update rewarads in firebase
+                    viewModel.updateRewards(rewards: totalFinalRewards)
+                }
 
                 // Upload order to Firebase (so shop can access it)
-                viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!, rewards: false)
+                viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!, rewards: rewards, notes: noteText)
 
 
                 //Empty out cart
