@@ -193,7 +193,7 @@ struct CheckoutView: View {
 
             VStack(spacing: 30){
 
-                NavigationLink(destination: PaySubView(shop: shop, rewards: rewards, rootIsActive: $rootActive, noteText: noteText)){
+                NavigationLink(destination: PayOptionView(shop: shop, rewards: rewards, rootIsActive: $rootActive, noteText: noteText)){
 
                     Text("Pay")
                         .foregroundColor(Color.white)
@@ -287,7 +287,7 @@ struct CheckoutView: View {
                         Button("Ok", role: .cancel) { }
                     }
 
-                }
+                } //: IF STATEMENT 
 
 
 
