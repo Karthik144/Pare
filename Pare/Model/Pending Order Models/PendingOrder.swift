@@ -18,8 +18,10 @@ struct PendingOrder: Identifiable, Decodable {
     var user_who_ordered: String
     //var pending: Bool
     //var complete: Bool
+    var notes: String 
     var status: String
     var subtotal: Double
     var total: Double
+    var rewards: Bool?
 
 }

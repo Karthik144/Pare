@@ -60,20 +60,23 @@ struct SignUpViewThree: View {
 
                     } //: HSTACK
 
-                    CustomInputTextField(isSecureField: true, placeholderText: "", title: "New Password" , bottomMessage: "Password Strength: Strong", confirmText: false, text: $password, confirmPassword: $confirmPassword)
-                        .onSubmit {
-                            self.strongPassword = checkPasswordStrength(password: password)
-                        }
-
-
-                    CustomInputTextField(isSecureField: true, placeholderText: "", title: "Confirm Password" , bottomMessage: "Password matches", confirmText: true, text: $confirmPassword, confirmPassword: $password)
+                    CustomInputTextField(isSecureField: true, placeholderText: "", title: "New Password" , bottomMessage: "", confirmText: false, text: $password, confirmPassword: $confirmPassword)
                         .padding(.bottom, 30)
-                        .onSubmit {
-                            self.samePassword = checkPasswordsMatch(password, confirmPassword)
-                        }
 
 
-                    if samePassword == true && strongPassword == true {
+                    Button {
+                        viewModel.register(firstName: firstName, lastName: lastName, withEmail: email, password: password, isMerchant: false)
+                    } label: {
+                        Text("Sign Up")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .modifier(NextButtonModifier())
+                    }
+
+
+
+
+//                    if samePassword == true && strongPassword == true {
 //                        // Next button
 //                        NavigationLink(destination: {
 //                            SignUpViewFour(firstName: firstName, lastName: lastName, email: email, password: password)
@@ -86,23 +89,23 @@ struct SignUpViewThree: View {
 //                                .modifier(NextButtonModifier())
 //                        })
 
-                        Button {
-                            viewModel.register(firstName: firstName, lastName: lastName, withEmail: email, password: password, isMerchant: false)
-                        } label: {
-                            Text("Sign Up")
-                                .font(.title3)
-                                .fontWeight(.bold)
-                                .modifier(NextButtonModifier())
-                        }
+//                        Button {
+//                            viewModel.register(firstName: firstName, lastName: lastName, withEmail: email, password: password, isMerchant: false)
+//                        } label: {
+//                            Text("Sign Up")
+//                                .font(.title3)
+//                                .fontWeight(.bold)
+//                                .modifier(NextButtonModifier())
+//                        }
 
 
-                    }
+//                    }
 
                 } //: VSTACK
 
 
                 .padding()
-                Spacer(minLength: 200)
+                Spacer(minLength: 240)
             } //: VSTACK
             .offset(y: -keyboardResponder.currentHeight * 0.1)
 

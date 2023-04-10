@@ -40,13 +40,6 @@ struct ContentView: View {
             .onAppear{
                 walletViewModel.initWalletConnect()
             }
-
-            /*
-            WalletView().tabItem({
-                Image(systemName: "dollarsign.circle")
-                Text("Funds")
-            })
-            .tag(3)*/
         }
 
     }

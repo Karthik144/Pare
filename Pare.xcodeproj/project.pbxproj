@@ -12,6 +12,8 @@
 		7C0439E229B938930037EE72 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0439E129B938920037EE72 /* Shop.swift */; };
 		7C0439E429B939170037EE72 /* ShopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0439E329B939170037EE72 /* ShopViewModel.swift */; };
 		7C0439E629B939620037EE72 /* ShopService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0439E529B939620037EE72 /* ShopService.swift */; };
+		7C37106229E1EC7D00EC4E07 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C37106129E1EC7D00EC4E07 /* PopUpView.swift */; };
+		7C37106429E1F30B00EC4E07 /* SheetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C37106329E1F30B00EC4E07 /* SheetManager.swift */; };
 		7C45EC20299B26B300F3B439 /* PareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC1F299B26B300F3B439 /* PareApp.swift */; };
 		7C45EC22299B26B300F3B439 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C45EC21299B26B300F3B439 /* ContentView.swift */; };
 		7C45EC24299B26B900F3B439 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C45EC23299B26B900F3B439 /* Assets.xcassets */; };
@@ -43,6 +45,7 @@
 		7C97788929BAAA3A00F0C6C5 /* ModificationItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C97788829BAAA3A00F0C6C5 /* ModificationItemCell.swift */; };
 		7CA83B4B29BA578900E4C4CD /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA83B4A29BA578900E4C4CD /* MenuItem.swift */; };
 		7CA914BF299DB9790006ED5B /* UserCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA914BE299DB9790006ED5B /* UserCheck.swift */; };
+		7CB5F3DF29DCE6C600A13A2B /* PaySubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB5F3DE29DCE6C600A13A2B /* PaySubView.swift */; };
 		7CC4189E29C16F1A004CE58B /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC4189D29C16F1A004CE58B /* OrderItem.swift */; };
 		7CC418A329C1958F004CE58B /* PastOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC418A229C1958F004CE58B /* PastOrderView.swift */; };
 		7CC418A529C19598004CE58B /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC418A429C19598004CE58B /* HelpView.swift */; };
@@ -79,6 +82,8 @@
 		7C0439E129B938920037EE72 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		7C0439E329B939170037EE72 /* ShopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewModel.swift; sourceTree = "<group>"; };
 		7C0439E529B939620037EE72 /* ShopService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopService.swift; sourceTree = "<group>"; };
+		7C37106129E1EC7D00EC4E07 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
+		7C37106329E1F30B00EC4E07 /* SheetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetManager.swift; sourceTree = "<group>"; };
 		7C45EC1C299B26B300F3B439 /* Pare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C45EC1F299B26B300F3B439 /* PareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PareApp.swift; sourceTree = "<group>"; };
 		7C45EC21299B26B300F3B439 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -111,6 +116,7 @@
 		7C97788829BAAA3A00F0C6C5 /* ModificationItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificationItemCell.swift; sourceTree = "<group>"; };
 		7CA83B4A29BA578900E4C4CD /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		7CA914BE299DB9790006ED5B /* UserCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCheck.swift; sourceTree = "<group>"; };
+		7CB5F3DE29DCE6C600A13A2B /* PaySubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaySubView.swift; sourceTree = "<group>"; };
 		7CC4189D29C16F1A004CE58B /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		7CC418A229C1958F004CE58B /* PastOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastOrderView.swift; sourceTree = "<group>"; };
 		7CC418A429C19598004CE58B /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
@@ -232,6 +238,7 @@
 				E94ABC0929A0438D004DEC26 /* Router.swift */,
 				E943114829A179B700E26EBE /* KeyboardResponder.swift */,
 				7C0439E529B939620037EE72 /* ShopService.swift */,
+				7C37106329E1F30B00EC4E07 /* SheetManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -259,6 +266,8 @@
 				7CEDCD1329BBB4B700C70EF5 /* PersonalView.swift */,
 				7CC418A229C1958F004CE58B /* PastOrderView.swift */,
 				7CC418A429C19598004CE58B /* HelpView.swift */,
+				7CB5F3DE29DCE6C600A13A2B /* PaySubView.swift */,
+				7C37106129E1EC7D00EC4E07 /* PopUpView.swift */,
 			);
 			path = "Consumer Views";
 			sourceTree = "<group>";
@@ -456,12 +465,15 @@
 				7CC418A529C19598004CE58B /* HelpView.swift in Sources */,
 				7C86262729B7EC9500919213 /* SearchBar.swift in Sources */,
 				7C8BBD0729A15AD300414DF0 /* StartButtonModifier.swift in Sources */,
+				7C37106229E1EC7D00EC4E07 /* PopUpView.swift in Sources */,
 				7CF74DCD299C65A4002B2BB9 /* NextButtonModifier.swift in Sources */,
 				7CA83B4B29BA578900E4C4CD /* MenuItem.swift in Sources */,
 				7C0439E629B939620037EE72 /* ShopService.swift in Sources */,
 				7C0439DD29B90C7A0037EE72 /* ProfileView.swift in Sources */,
+				7C37106429E1F30B00EC4E07 /* SheetManager.swift in Sources */,
 				7CD78BF5299DE8C8002E01E1 /* PasswordView.swift in Sources */,
 				7CF74DD3299C76F2002B2BB9 /* UserTypeButtonModifier.swift in Sources */,
+				7CB5F3DF29DCE6C600A13A2B /* PaySubView.swift in Sources */,
 				7C45EC60299B341400F3B439 /* User.swift in Sources */,
 				7CF74DD1299C738D002B2BB9 /* SignUpViewFour.swift in Sources */,
 				7C86262429B7E88600919213 /* ShopCell.swift in Sources */,
@@ -596,20 +608,21 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Pare/Preview Content\"";
 				DEVELOPMENT_TEAM = U28DY7SUR7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Pare/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Pare;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -630,20 +643,21 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Pare/Preview Content\"";
 				DEVELOPMENT_TEAM = U28DY7SUR7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Pare/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Pare;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

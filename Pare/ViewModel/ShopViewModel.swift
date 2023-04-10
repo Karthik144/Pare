@@ -224,7 +224,7 @@ class ShopViewModel: ObservableObject {
 
 
     // Upload order to firebase
-    func postOrderData(shop: Shop, cartTotalItems: String, cart: [Order], orderStatus: String, subtotal: Double, total: Double, user: User){
+    func postOrderData(shop: Shop, cartTotalItems: String, cart: [Order], orderStatus: String, subtotal: Double, total: Double, user: User, rewards: Bool, notes: String){
         // Gets the current users uid so we can reference it
         guard let userUID = Auth.auth().currentUser?.uid else {return}
 
@@ -239,7 +239,7 @@ class ShopViewModel: ObservableObject {
 
 
         // Add a document to user's values collection
-        let ordersDocRef = db.collection("users").document(userUID).collection("orders").addDocument(data: ["shop_id": shop.id!, "total_items": String(totalItems ?? 0), "user_who_ordered": userUID, "status": "pending", "subtotal": subtotal, "total": total, "date_ordered": Timestamp(date: Date())]) { error in
+        let ordersDocRef = db.collection("users").document(userUID).collection("orders").addDocument(data: ["shop_id": shop.id!, "total_items": String(totalItems ?? 0), "user_who_ordered": userUID, "status": "pending", "subtotal": subtotal, "total": total, "rewards": rewards, "notes": notes, "date_ordered": Timestamp(date: Date())]) { error in
 
             // Check for errors
             if error == nil {
@@ -338,14 +338,14 @@ class ShopViewModel: ObservableObject {
         }
 
         // Share data to merchant as well
-        postOrderDataToMerchant(userID: userUID, orderID: ordersDocRef.documentID, shop: shop, totalPrice: total, user: user, totalItems: totalItems)
+        postOrderDataToMerchant(userID: userUID, orderID: ordersDocRef.documentID, shop: shop, totalPrice: total, user: user, totalItems: totalItems, notes: notes)
 
 
 
     } //: ADD SHARE DATA TO BACKEND
 
 
-    func postOrderDataToMerchant(userID: String, orderID: String, shop: Shop, totalPrice: Double, user: User, totalItems: Int){
+    func postOrderDataToMerchant(userID: String, orderID: String, shop: Shop, totalPrice: Double, user: User, totalItems: Int, notes: String){
 
         // Create a reference to the database
         let db = Firestore.firestore()
@@ -355,7 +355,7 @@ class ShopViewModel: ObservableObject {
 
 
         // Add a document to user's values collection
-        let ordersDocRef = db.collection("merchants").document(merchantID).collection("orders").addDocument(data: ["order_id": orderID, "user_id": userID, "total": totalPrice, "consumer_name": user.first_name + " " + user.last_name, "date_ordered": Timestamp(date: Date()), "total_items": String(totalItems)]) { error in
+        let ordersDocRef = db.collection("merchants").document(merchantID).collection("orders").addDocument(data: ["order_id": orderID, "user_id": userID, "total": totalPrice, "consumer_name": user.first_name + " " + user.last_name, "date_ordered": Timestamp(date: Date()), "notes": notes, "total_items": String(totalItems)]) { error in
 
             // Check for errors
             if error == nil {

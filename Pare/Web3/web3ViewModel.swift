@@ -11,7 +11,7 @@ import SwiftUI
 
 class web3ViewModel: ObservableObject {
     
-    let deepLinkDelay = 0.5
+    let deepLinkDelay = 0.0
     
     @Published var session: Session?
     @Published var currentWallet: Wallet?

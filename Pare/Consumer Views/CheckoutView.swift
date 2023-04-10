@@ -18,8 +18,11 @@ struct CheckoutView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var viewModel: ShopViewModel
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var sheetManager: SheetManager
 
     @State private var showingAlert = false
+    @State var noteText = ""
+    @State var rewards = false
     @Binding var rootActive: Bool
 
 
@@ -28,6 +31,7 @@ struct CheckoutView: View {
 
         VStack{
 
+            Spacer()
 
             VStack(alignment: .leading){
 
@@ -57,13 +61,43 @@ struct CheckoutView: View {
 
                 } //: HSTACK
                 .padding()
+                .padding(.top, 30)
 
 
-                Text("Your Order")
-                    .font(.title3)
-                    .foregroundColor(Color.black)
-                    .fontWeight(.bold)
-                    .padding(.leading, 20)
+                HStack{
+
+                    Text("Your Order")
+                        .font(.title3)
+                        .foregroundColor(Color.black)
+                        .fontWeight(.bold)
+                        .padding(.leading, 20)
+
+
+                    Spacer()
+
+                    Button {
+
+                        // Show popup with textfield
+                        sheetManager.present()
+
+                    } label: {
+
+
+                        Text("Add Note")
+                            .frame(width: 100, height: 25)
+                            .foregroundColor(Color.accentColor)
+                            .overlay(
+
+                                RoundedRectangle(cornerRadius: 5, style: .continuous)
+                                    .stroke(Color.accentColor, lineWidth: 1)
+                            )
+
+                    }
+                    .padding()
+
+
+                }
+
 
                 ScrollView{
                     ForEach(viewModel.cartItems) { order in
@@ -81,9 +115,6 @@ struct CheckoutView: View {
                             }
                             .onAppear(){
                                 let index = viewModel.cartItems.firstIndex(of: order)
-
-                                print("Index inside on Appear")
-                                print(index)
                             }
                         
                     } //: FOR EACH
@@ -162,34 +193,8 @@ struct CheckoutView: View {
 
             VStack(spacing: 30){
 
-                Button {
-                    
-                    let requestedAmt = viewModel.total * (pow(10,6))
-                    let url = URL(string: "https://metamask.app.link/send/0x2791bca1f2de4661ed88a30c99a7a9449aa84174@137/transfer?address=0xA741b63997bbF5AaC72bd36380533aaE0f419b14&uint256=\(requestedAmt)")!
-                    if UIApplication.shared.canOpenURL(url) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                        //If you want handle the completion block than
-                        UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
-                             print("Open url : \(success)")
-                        })
-                    }
-                    // Change cart active status
-                    viewModel.updateCartActiveStatus(cartActive: false)
+                NavigationLink(destination: PaySubView(shop: shop, rewards: rewards, rootIsActive: $rootActive, noteText: noteText)){
 
-                    // Update user's rewards
-                    viewModel.updateRewards(rewards: viewModel.totalRewards)
-
-                    // Upload order to Firebase (so shop can access it)
-                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!)
-
-
-                    //Empty out cart
-                    viewModel.cartItems = []
-
-                    //Pop to Shop View
-                    rootActive = false
-
-                } label: {
                     Text("Pay")
                         .foregroundColor(Color.white)
                         .background(
@@ -199,65 +204,91 @@ struct CheckoutView: View {
                         )
                 }
 
-                Button {
 
-                    // Change cart active status
-                    viewModel.updateCartActiveStatus(cartActive: false)
+                if rewards == false {
 
-                    // Store users rewards
-                    var userRewards = Double(authViewModel.currentUser?.rewards ?? 0.0)
+                    Button {
 
-                    if userRewards >= viewModel.total{
+                        // Change cart active status
+                        viewModel.updateCartActiveStatus(cartActive: false)
 
-                        // Subtract used rewards from new rewards and update it to total rewards
-                        let extraRewards = userRewards - viewModel.total
+                        // Store users rewards
+                        var userRewards = Double(authViewModel.currentUser?.rewards ?? 0.0)
 
-                        let updatedRewards = (viewModel.totalRewards) + extraRewards
 
-                        // Update user's rewards with new rewards from purchase
-                        viewModel.updateRewards(rewards: Double(updatedRewards))
+                        if userRewards >= viewModel.total{
 
-                        // Upload order to Firebase (so shop can access it)
-                        viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!)
+                            // Subtract used rewards from new rewards and update it to total rewards
+                            let extraRewards = userRewards - viewModel.total
 
-                        //Empty out cart
-                        viewModel.cartItems = []
+                            let updatedRewards = (viewModel.totalRewards) + extraRewards
 
-                        //Pop to Shop View
-                        rootActive = false
+                            // Update user's rewards with new rewards from purchase
+                            viewModel.updateRewards(rewards: Double(updatedRewards))
 
-                    } else {
+                            // Upload order to Firebase (so shop can access it)
+                            viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!, rewards: true, notes: noteText)
 
-                        showingAlert = true
+                            //Empty out cart
+                            viewModel.cartItems = []
 
+                            //Pop to Shop View
+                            rootActive = false
+
+                        } else {
+
+    //                        showingAlert = true
+
+                            // Subtract total from rewards to get new price
+                            // 5.67 - 1 = 4.67
+                            let newTotal = viewModel.total - userRewards
+                            let newSubTotal = viewModel.subtotal - userRewards
+
+                            // new total: 4.67
+                            viewModel.total = newTotal
+
+
+                            viewModel.totalRewards = (newSubTotal) * 0.10
+
+                            // 0.10 x 4.67 = 0.467
+    //                        let newRewards = viewModel.subtotal * 0.10
+
+                            // Update user's rewards with new rewards from purchase
+                            viewModel.updateRewards(rewards: Double(viewModel.totalRewards))
+
+                            rewards = true
+
+                        }
+
+    //                    // Update user's rewards with new rewards from purchase
+    //                    viewModel.updateRewards(rewards: viewModel.rewards)
+    //
+    //
+    //                    // Upload order to Firebase (so shop can access it)
+    //                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!)
+    //
+    //                    //Empty out cart
+    //                    viewModel.cartItems = []
+    //
+    //                    //Pop to Shop View
+    ////                    self.appState.moveToDashboard = true
+
+    //                    rootActive = false
+
+                    } label: {
+                        Text("Pay with stars 🌟")
+                            .frame(width: 300, height: 50)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8,  style: .continuous)
+                                    .stroke(Color.accentColor, lineWidth: 1)
+                            )
+                    }
+                    .alert("Not enough rewards!", isPresented: $showingAlert) {
+                        Button("Ok", role: .cancel) { }
                     }
 
-//                    // Update user's rewards with new rewards from purchase
-//                    viewModel.updateRewards(rewards: viewModel.rewards)
-//
-//
-//                    // Upload order to Firebase (so shop can access it)
-//                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!)
-//
-//                    //Empty out cart
-//                    viewModel.cartItems = []
-//
-//                    //Pop to Shop View
-////                    self.appState.moveToDashboard = true
-
-                    rootActive = false 
-
-                } label: {
-                    Text("Pay with stars 🌟")
-                        .frame(width: 300, height: 50)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8,  style: .continuous)
-                                .stroke(Color.accentColor, lineWidth: 1)
-                        )
                 }
-                .alert("Not enough rewards!", isPresented: $showingAlert) {
-                    Button("Ok", role: .cancel) { }
-                }
+
 
 
             } //: VSTACK
@@ -268,9 +299,24 @@ struct CheckoutView: View {
 
         } //: VSTACK
         .onAppear(){
+
+            print("ON APPEAR INSIDE CHECKOUT VIEW")
             total = viewModel.calcTotal()
             viewModel.totalRewards = viewModel.calcTotalRewards()
         }
+        .overlay(alignment: .bottom){
+
+            if sheetManager.action.isPresented {
+                PopUpView(instructions: $noteText){
+
+                    withAnimation {
+                        sheetManager.dismiss()
+                    }
+                }
+            }
+
+        }
+        .ignoresSafeArea()
 
 
     }

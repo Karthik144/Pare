@@ -22,6 +22,7 @@ struct PareApp: App{
     @StateObject var walletViewModel = web3ViewModel()
     @StateObject var shopViewModel = ShopViewModel()
     @ObservedObject var appState = AppState()
+    @StateObject var sheetManager = SheetManager()
     
     
 
@@ -31,7 +32,8 @@ struct PareApp: App{
                 .environmentObject(viewModel)
                 .environmentObject(appState)
                 .environmentObject(shopViewModel)
-                //.environmentObject(walletViewModel)
+                .environmentObject(walletViewModel)
+                .environmentObject(sheetManager)
         }
 
     }

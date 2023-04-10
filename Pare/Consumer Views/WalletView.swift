@@ -9,8 +9,7 @@ import SwiftUI
 
 struct WalletView: View {
     
-    @EnvironmentObject
-    var viewModel: web3ViewModel
+    @EnvironmentObject var viewModel: web3ViewModel
     
     var body: some View {
         VStack(spacing: 0) {
@@ -36,7 +35,8 @@ struct WalletView: View {
                 }
                 .padding(.horizontal, 30)
                 .padding(.vertical, 24)
-                
+                //metamask not working rn
+                /*
                 Button {
                     viewModel.connect(wallet: Wallets.Metamask)
                 } label: {
@@ -53,6 +53,7 @@ struct WalletView: View {
                     .cornerRadius(32)
                 }
                 .padding(.horizontal, 30)
+                 */
                  
             } else {
                 
