@@ -30,7 +30,7 @@ struct PaySubView: View {
 
             HStack{
 
-                Text("Follow these steps on your walletina. Select the confirm payment button to finish your order.")
+                Text("Follow these steps on your wallet. Select the confirm payment button to finish your order.")
                     .fontWeight(.light)
                     .padding()
 
