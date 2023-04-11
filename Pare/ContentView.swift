@@ -31,15 +31,15 @@ struct ContentView: View {
                 Text("Order")
             })
             .tag(2)
-            WalletView().tabItem({
-                Image(systemName: "wallet.pass.fill")
-                Text("Wallet")
-            })
-            .tag(3)
-            .environmentObject(walletViewModel)
-            .onAppear{
-                walletViewModel.initWalletConnect()
-            }
+//            WalletView().tabItem({
+//                Image(systemName: "wallet.pass.fill")
+//                Text("Wallet")
+//            })
+//            .tag(3)
+//            .environmentObject(walletViewModel)
+//            .onAppear{
+//                walletViewModel.initWalletConnect()
+//            }
         }
 
     }

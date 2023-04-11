@@ -30,7 +30,7 @@ struct PaySubView: View {
 
             HStack{
 
-                Text("Follow these steps on MetaMask. Select the confirm payment button to finish your order.")
+                Text("Follow these steps on your walletina. Select the confirm payment button to finish your order.")
                     .fontWeight(.light)
                     .padding()
 
@@ -229,7 +229,7 @@ struct PaySubView: View {
             Spacer()
 
         } //: VSTACK
-        .navigationTitle("Pay With MetaMask")
+        .navigationTitle("Pay With Wallet")
         .navigationBarTitleDisplayMode(.large)
     }
 
