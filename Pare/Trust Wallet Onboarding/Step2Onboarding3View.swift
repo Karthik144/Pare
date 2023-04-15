@@ -1,5 +1,5 @@
 //
-//  Step3Onboarding4View.swift
+//  Step3Onboarding3View.swift
 //  Pare
 //
 //  Created by Karthik  Ramu on 4/15/23.
@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-struct Step3Onboarding4View: View {
+struct Step2Onboarding3View: View {
 
     // MARK: - PROPERTIES
+    @Binding var isActive: Bool 
 
     // MARK: - BODY
     var body: some View {
@@ -18,7 +19,7 @@ struct Step3Onboarding4View: View {
 
             HStack{
 
-                Text("Select Payment Details & Enter Info")
+                Text("Enter amount to buy")
                     .font(.title2)
                     .fontWeight(.semibold)
                     .padding(.leading)
@@ -29,34 +30,38 @@ struct Step3Onboarding4View: View {
 
             } //: HSTACK
 
+            HStack{
+
+                Text("Each USDC coin equals one dollar")
+                    .padding(.leading)
+                    .padding(.trailing)
+                Spacer()
+
+            } //: HSTACK
 
             HStack{
 
-                Text("Select if you'd like to pay with Apple Pay, Credit Card, or an ACH Transfer")
+                Text("The amount you purchase will be slightly less since there's a purchasing fee. This should decrease over time.")
                     .padding()
                     .font(.title3)
 
                 Spacer()
             } //: HSTACK
 
-            HStack{
 
-                Text("You'll then be prompted to enter personal info to verify your identity. So think of it as setting up a Venmo account.")
-                    .padding()
-                    .font(.title3)
-
-                Spacer()
-            } //: HSTACK
-
-
-            // Insert image here
+            Image("TrustPurchaseAmount")
+                .resizable()
+                .frame(width: UIScreen.main.bounds.width - 50, height: 360)
+                .scaledToFit()
+                .cornerRadius(10)
+                .padding()
 
             Spacer()
 
             NavigationLink {
 
                 // Navigate to next view
-                Step1Onboarding4View()
+                Step2Onboarding4View(isActive: $isActive)
 
             } label: {
 
@@ -85,14 +90,17 @@ struct Step3Onboarding4View: View {
 
             Spacer()
 
+
+
+
         } //: VSTACK
     }
 }
 
 
-// MARK: - PREVIEW 
-struct Step3Onboarding4View_Previews: PreviewProvider {
-    static var previews: some View {
-        Step3Onboarding4View()
-    }
-}
+// MARK: - PREVIEW
+//struct Step3Onboarding3View_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Step2Onboarding3View()
+//    }
+//}

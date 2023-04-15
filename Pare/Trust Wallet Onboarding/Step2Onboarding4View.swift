@@ -1,5 +1,5 @@
 //
-//  Step3Onboarding3View.swift
+//  Step3Onboarding4View.swift
 //  Pare
 //
 //  Created by Karthik  Ramu on 4/15/23.
@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-struct Step3Onboarding3View: View {
+struct Step2Onboarding4View: View {
 
     // MARK: - PROPERTIES
+    @Binding var isActive: Bool 
 
     // MARK: - BODY
     var body: some View {
@@ -18,7 +19,7 @@ struct Step3Onboarding3View: View {
 
             HStack{
 
-                Text("Enter amount to buy")
+                Text("Select Payment Details & Enter Info")
                     .font(.title2)
                     .fontWeight(.semibold)
                     .padding(.leading)
@@ -29,18 +30,19 @@ struct Step3Onboarding3View: View {
 
             } //: HSTACK
 
+
             HStack{
 
-                Text("Each USDC coin equals one dollar")
-                    .padding(.leading)
-                    .padding(.trailing)
-                Spacer()
+                Text("Select if you'd like to pay with Apple Pay, Credit Card, or an ACH Transfer")
+                    .padding()
+                    .font(.title3)
 
+                Spacer()
             } //: HSTACK
 
             HStack{
 
-                Text("The amount you purchase will be slightly less since there's a purchasing fee. This should decrease over time.")
+                Text("You'll then be prompted to enter personal info to verify your identity. So think of it as setting up a Venmo account.")
                     .padding()
                     .font(.title3)
 
@@ -55,8 +57,8 @@ struct Step3Onboarding3View: View {
             NavigationLink {
 
                 // Navigate to next view
-                Step1Onboarding4View()
-
+                Step2CompleteView(isActive: $isActive)
+                
             } label: {
 
 
@@ -84,17 +86,14 @@ struct Step3Onboarding3View: View {
 
             Spacer()
 
-
-
-
         } //: VSTACK
     }
 }
 
 
-// MARK: - PREVIEW
-struct Step3Onboarding3View_Previews: PreviewProvider {
-    static var previews: some View {
-        Step3Onboarding3View()
-    }
-}
+// MARK: - PREVIEW 
+//struct Step3Onboarding4View_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Step2Onboarding4View()
+//    }
+//}

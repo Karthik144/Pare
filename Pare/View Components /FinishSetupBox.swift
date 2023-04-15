@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FinishSetupBox: View {
+
     var body: some View {
         ZStack{
 

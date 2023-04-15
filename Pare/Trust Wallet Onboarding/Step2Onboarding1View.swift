@@ -10,6 +10,7 @@ import SwiftUI
 struct Step2Onboarding1View: View {
 
     // MARK: - PROPERTIES
+    @Binding var isActive: Bool 
 
     // MARK: - BODY
     var body: some View {
@@ -47,21 +48,13 @@ struct Step2Onboarding1View: View {
             } //: HSTACK
 
 
-            // Insert image here
-            Image("TrustSelectUSDC")
-                .resizable()
-                .frame(width: UIScreen.main.bounds.width - 50, height: 360)
-                .scaledToFit()
-                .cornerRadius(10)
-                .padding()
-
 
             Spacer()
 
             NavigationLink {
 
                 // Navigate to next view
-                Step2Onboarding2View()
+                Step2Onboarding2View(isActive: $isActive)
 
             } label: {
 
@@ -99,8 +92,8 @@ struct Step2Onboarding1View: View {
 
 
 // MARK: - PREVIEW
-struct Step2Onboarding1View_Previews: PreviewProvider {
-    static var previews: some View {
-        Step2Onboarding1View()
-    }
-}
+//struct Step2Onboarding1View_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Step2Onboarding1View()
+//    }
+//}

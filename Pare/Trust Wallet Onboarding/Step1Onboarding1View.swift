@@ -10,6 +10,7 @@ import SwiftUI
 struct Step1Onboarding1View: View {
 
     // MARK: - PROPERTIES
+    @Binding var isActive: Bool
 
     // MARK: - BODY
     var body: some View {
@@ -77,12 +78,7 @@ struct Step1Onboarding1View: View {
 
             Spacer()
 
-            NavigationLink {
-
-                // Navigate to next view
-                Step1Onboarding2View()
-
-            } label: {
+            NavigationLink(destination: Step1Onboarding2View(isViewActive: $isActive)) {
                 Text("Get started")
                     .foregroundColor(Color.white)
                     .fontWeight(.semibold)
@@ -105,8 +101,8 @@ struct Step1Onboarding1View: View {
 
 
 // MARK: - PREVIEW
-struct Step1Onboarding1View_Previews: PreviewProvider {
-    static var previews: some View {
-        Step1Onboarding1View()
-    }
-}
+//struct Step1Onboarding1View_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Step1Onboarding1View()
+//    }
+//}

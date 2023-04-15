@@ -1,5 +1,5 @@
 //
-//  Step1CompleteView.swift
+//  Step2CompleteView.swift
 //  Pare
 //
 //  Created by Karthik  Ramu on 4/15/23.
@@ -7,15 +7,14 @@
 
 import SwiftUI
 
-struct Step1CompleteView: View {
+struct Step2CompleteView: View {
 
     // MARK: - PROPERTIES
     @Binding var isActive: Bool
+//    @Environment(\.dismiss) private var dismiss
 
-    
     // MARK: - BODY
     var body: some View {
-
 
         ZStack{
 
@@ -32,19 +31,15 @@ struct Step1CompleteView: View {
                     .foregroundColor(Color.white)
                     .padding()
 
-                Text("You're done with Step 1!")
+                Text("You're done with Step 2!")
                     .font(.title)
                     .foregroundColor(Color.white)
                     .fontWeight(.bold)
 
-                NavigationLink {
-
-                    // Navigate to next view
-                    Step2Onboarding1View(isActive: $isActive)
-                    
+                Button {
+                    isActive = false 
                 } label: {
-
-                    Text("Continue to Step 2")
+                    Text("Done")
                         .foregroundColor(Color.accentColor)
                         .fontWeight(.semibold)
                         .frame(width: 300, height: 50)
@@ -53,8 +48,7 @@ struct Step1CompleteView: View {
                                 .fill(Color.white)
                                 .frame(width: 300, height: 50)
                         )
-
-                } //: NAV LINK
+                }
 
                 Spacer()
 
@@ -66,9 +60,9 @@ struct Step1CompleteView: View {
 }
 
 
-// MARK: - PREVIEW 
-//struct Step1CompleteView_Previews: PreviewProvider {
+// MARK: - PREVIEW
+//struct Step2CompleteView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        Step1CompleteView()
+//        Step2CompleteView()
 //    }
 //}
