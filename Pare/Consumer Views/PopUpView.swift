@@ -11,6 +11,7 @@ struct PopUpView: View {
 
     // MARK: - PROPERTIES
     @Binding var instructions: String
+    @ObservedObject var keyboardResponder = KeyboardResponder()
     let didClose: () -> Void 
 
     // MARK: - BODY
@@ -70,9 +71,11 @@ struct PopUpView: View {
 
 
         } //: VSTACK
-        .frame(maxWidth: .infinity)
+        //.offset(y: -200)
+        .offset(y: -keyboardResponder.currentHeight * 0.1)
+        .frame(maxWidth: .infinity, maxHeight: 500)
         .padding(.horizontal, 24)
-        .padding(.vertical, 40)
+        .padding(.vertical, 10)
         .background(background)
         .overlay(alignment: .topTrailing){
             close 

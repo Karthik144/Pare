@@ -18,6 +18,7 @@ struct PaySubView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var viewModel: ShopViewModel
     @EnvironmentObject var appState: AppState
+    
 
     let noteText: String
 
@@ -38,6 +39,15 @@ struct PaySubView: View {
             } //: HSTACK
 
             VStack(){
+                HStack{
+                    Text("Your Total is: $")
+                        .font(.title2)
+                        .fontWeight(.medium)
+                    Text(String(viewModel.total))
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.accentColor)
+                }
 
                 HStack{
 
@@ -235,7 +245,8 @@ struct PaySubView: View {
 
     func copyToClipboard(){
 
-        pasteboard.string = "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+        //pasteboard.string = "0x2791bca1f2de4661ed88a30c99a7a9449aa84174" *Commented out for testing*
+        pasteboard.string = "0xA741b63997bbF5AaC72bd36380533aaE0f419b14"
 
     } //: FUNC COPY TO CLIP
 }
