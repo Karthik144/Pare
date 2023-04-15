@@ -58,9 +58,12 @@ struct ProfileView: View {
 
                 } //: VSTACK
 
+                //                Spacer()
 
-                Spacer()
 
+                NavigationLink(destination: Step1Onboarding1View()) {
+                    FinishSetupBox()
+                }
 
                 NavigationLink(destination: PersonalView(viewActive: $isViewActive, email: $email, firstName: $firstName, lastName: $lastName), isActive: $isViewActive){
 
@@ -70,14 +73,6 @@ struct ProfileView: View {
 
                 }
                 .isDetailLink(false)
-
-//                NavigationLink {
-//                    PersonalView(email: $email, firstName: $firstName, lastName: $lastName)
-//                } label: {
-//                    ProfileItemCell(imageName: imageList[0], cellText: textList[0])
-//                        .padding(.leading, 20)
-//                        .padding(.trailing, 20)
-//                }
 
                 NavigationLink {
                     PastOrderView()
@@ -146,9 +141,9 @@ struct ProfileView: View {
 }
 
 
-    // MARK: - PREVIEW
-    struct ProfileView_Previews: PreviewProvider {
-        static var previews: some View {
-            ProfileView()
-        }
+// MARK: - PREVIEW
+struct ProfileView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProfileView()
     }
+}
