@@ -49,8 +49,7 @@ struct ProfileView: View {
                             .resizable()
                             .frame(width: 15, height: 15)
                             .scaledToFit()
-
-                        Text(String(viewModel.currentUser?.rewards ?? 0) + " Points")
+                        Text(String(round((viewModel.currentUser?.rewards ?? 0) * 100) / 100.0) + " Points")
                             .font(.callout)
                             .foregroundColor(Color.black)
                     } //: HSTACK
