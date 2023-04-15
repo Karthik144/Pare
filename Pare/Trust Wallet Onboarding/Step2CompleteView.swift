@@ -10,6 +10,7 @@ import SwiftUI
 struct Step2CompleteView: View {
 
     // MARK: - PROPERTIES
+    @EnvironmentObject var viewModel: AuthViewModel
     @Binding var isActive: Bool
 //    @Environment(\.dismiss) private var dismiss
 
@@ -37,6 +38,7 @@ struct Step2CompleteView: View {
                     .fontWeight(.bold)
 
                 Button {
+                    viewModel.updateUserWalletSetupStatus()
                     isActive = false 
                 } label: {
                     Text("Done")

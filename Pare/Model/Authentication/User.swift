@@ -17,4 +17,5 @@ struct User: Identifiable, Decodable {
     var last_name: String
     var cart_active: Bool
     var rewards: Double
+    var wallet: Bool?
 }

@@ -179,6 +179,21 @@ class AuthViewModel: ObservableObject{
         }
     }
 
+    func updateUserWalletSetupStatus(){
+
+        // Update first name
+
+        // Create a reference to the database
+        let db = Firestore.firestore()
+
+        // Updates wallet status
+        db.collection("users").document(currentUser?.id ?? "").updateData(["wallet": true]){ _ in
+
+            print("User data successfully uploaded.")
+        }
+
+    }
+
 
 
 }
