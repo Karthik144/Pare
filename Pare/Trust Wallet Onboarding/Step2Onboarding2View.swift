@@ -10,7 +10,8 @@ import SwiftUI
 struct Step2Onboarding2View: View {
 
     // MARK: - PROPERTIES
-    @Binding var isActive: Bool 
+    @Binding var isActive: Bool
+    let trust: Bool 
 
     // MARK: - BODY
     var body: some View {
@@ -32,9 +33,17 @@ struct Step2Onboarding2View: View {
 
             HStack{
 
-                Text("Select the 'USD Coin (PoS)'")
-                    .padding(.leading)
-                    .padding(.trailing)
+                if trust == true {
+                    Text("Select the 'USD Coin (PoS)'")
+                        .padding(.leading)
+                        .padding(.trailing)
+                } else {
+
+                    Text("Select 'You want to buy' dropdown and select the 'USD Coin (PoS)'")
+                        .padding(.leading)
+                        .padding(.trailing)
+                }
+
                 Spacer()
                 
             } //: HSTACK
@@ -71,7 +80,7 @@ struct Step2Onboarding2View: View {
             NavigationLink {
 
                 // Navigate to next view
-                Step2Onboarding3View(isActive: $isActive)
+                Step2Onboarding3View(isActive: $isActive, trust: trust)
 
             } label: {
 

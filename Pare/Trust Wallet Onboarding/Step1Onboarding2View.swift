@@ -64,7 +64,7 @@ struct Step1Onboarding2View: View {
 
                     NavigationLink {
 
-                        Step1Onboarding3View(isActive: $isViewActive)
+                        Step1Onboarding3View(trust: true, isActive: $isViewActive)
                         
                     } label: {
                         HStack{
@@ -117,7 +117,9 @@ struct Step1Onboarding2View: View {
                     } //: HSTACK
 
                     NavigationLink {
-                        //                    PaySubView(shop: shop, rewards: rewards, rootIsActive: $rootIsActive, noteText: noteText)
+
+                        Step1Onboarding3View(trust: false, isActive: $isViewActive)
+
                     } label: {
                         HStack{
 

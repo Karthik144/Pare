@@ -1,26 +1,25 @@
 //
-//  Step1Onboarding4View.swift
+//  Step2Onboarding1.2View.swift
 //  Pare
 //
-//  Created by Karthik  Ramu on 4/14/23.
+//  Created by Karthik  Ramu on 4/16/23.
 //
 
 import SwiftUI
 
-struct Step1Onboarding4View: View {
+struct Step2Onboarding1_2View: View {
 
     // MARK: - PROPERTIES
     @Binding var isActive: Bool
-    let trust: Bool 
 
     // MARK: - BODY
     var body: some View {
 
-        VStack{
+        ScrollView{
 
             HStack{
 
-                Text("Select 'Create a New Wallet'")
+                Text("Add Polygon network")
                     .font(.title2)
                     .fontWeight(.semibold)
                     .padding(.leading)
@@ -31,28 +30,23 @@ struct Step1Onboarding4View: View {
 
             } //: HSTACK
 
+            HStack{
+
+                Text("Select the 'Add' button next to Polygon")
+                    .padding(.leading)
+                    .padding(.trailing)
+                Spacer()
+            } //: HSTACK
+
 
             Spacer()
 
-            if trust == true {
-
-                Image("TrustCreateWallet")
-                    .resizable()
-                    .frame(width: UIScreen.main.bounds.width - 50, height: 315)
-                    .scaledToFit()
-                    .cornerRadius(10)
-                    .padding()
-
-            } else {
-
-                Image("MetaCreateWallet")
-                    .resizable()
-                    .frame(width: UIScreen.main.bounds.width - 50, height: 315)
-                    .scaledToFit()
-                    .cornerRadius(10)
-                    .padding()
-
-            }
+            Image("MetaAddPolygonNetwork")
+                .resizable()
+                .frame(width: UIScreen.main.bounds.width - 50, height: 400)
+                .scaledToFit()
+                .cornerRadius(10)
+                .padding()
 
 
             Spacer()
@@ -60,7 +54,7 @@ struct Step1Onboarding4View: View {
             NavigationLink {
 
                 // Navigate to next view
-                Step1Onboarding5View(isActive: $isActive, trust: trust)
+                Step2Onboarding1_3View(isActive: $isActive)
 
             } label: {
 
@@ -85,20 +79,22 @@ struct Step1Onboarding4View: View {
 
                 } //: VSTACK
 
-            }
-            .padding() 
+            } //: NAV LINK
+            .padding()
 
             Spacer()
 
 
-        } //: VSTACK
+
+
+        } //: SCROLL VIEW
     }
 }
 
 
-// MARK: - PREVIEW 
-//struct Step1Onboarding4View_Previews: PreviewProvider {
+// MARK: - PROPERTIES
+//struct Step2Onboarding1_2View_Previews: PreviewProvider {
 //    static var previews: some View {
-//        Step1Onboarding4View()
+//        Step2Onboarding1_2View()
 //    }
 //}

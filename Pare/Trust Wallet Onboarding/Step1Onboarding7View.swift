@@ -10,7 +10,10 @@ import SwiftUI
 struct Step1Onboarding7View: View {
 
     // MARK: - PROPERTIES
-    @Binding var isActive: Bool 
+    @Binding var isActive: Bool
+    let trust: Bool
+
+    
     // MARK: - BODY
     var body: some View {
 
@@ -47,20 +50,32 @@ struct Step1Onboarding7View: View {
 
 
             Spacer()
-            
-            Image("TrustVerifyPhrase")
-                .resizable()
-                .frame(width: UIScreen.main.bounds.width - 50, height: 360)
-                .scaledToFit()
-                .cornerRadius(10)
-                .padding()
+
+            if trust == true{
+
+                Image("TrustVerifyPhrase")
+                    .resizable()
+                    .frame(width: UIScreen.main.bounds.width - 50, height: 360)
+                    .scaledToFit()
+                    .cornerRadius(10)
+                    .padding()
+            } else {
+
+                Image("MetaVerifyPhrase")
+                    .resizable()
+                    .frame(width: UIScreen.main.bounds.width - 50, height: 360)
+                    .scaledToFit()
+                    .cornerRadius(10)
+                    .padding()
+            }
+
 
             Spacer()
 
             NavigationLink {
 
                 // Navigate to next view
-                Step1CompleteView(isActive: $isActive)
+                Step1CompleteView(isActive: $isActive, trust: trust)
 
             } label: {
 
@@ -85,7 +100,8 @@ struct Step1Onboarding7View: View {
 
                 } //: VSTACK
 
-            } //: NAV LINK 
+            } //: NAV LINK
+            .padding() 
 
             Spacer()
 

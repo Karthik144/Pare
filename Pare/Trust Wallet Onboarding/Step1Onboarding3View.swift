@@ -10,6 +10,7 @@ import SwiftUI
 struct Step1Onboarding3View: View {
 
     // MARK: - PROPERTIES
+    let trust: Bool
     @Binding var isActive: Bool 
 
     // MARK: - BODY
@@ -18,12 +19,25 @@ struct Step1Onboarding3View: View {
 
             HStack{
 
-                Text("Install TrustWallet")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .padding(.leading)
-                    .padding(.trailing)
-                    .padding(.top)
+                if trust == true{
+
+                    Text("Install TrustWallet")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .padding(.leading)
+                        .padding(.trailing)
+                        .padding(.top)
+
+                } else {
+
+                    Text("Install MetaMask")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .padding(.leading)
+                        .padding(.trailing)
+                        .padding(.top)
+                }
+
 
                 Spacer()
 
@@ -31,21 +45,44 @@ struct Step1Onboarding3View: View {
 
             HStack{
 
-                Text("Search TrustWallet on the AppStore & install")
-                    .padding(.leading)
-                    .padding(.trailing)
+                if trust == true {
+
+                    Text("Search TrustWallet on the AppStore & install")
+                        .padding(.leading)
+                        .padding(.trailing)
+                } else {
+
+                    Text("Search MetaMask on the AppStore & install")
+                        .padding(.leading)
+                        .padding(.trailing)
+
+                }
+
                 Spacer()
             } //: HSTACK
 //            .padding(.bottom, 70)
 
             Spacer()
 
-            Image("Trust")
-                .resizable()
-                .frame(width: UIScreen.main.bounds.width - 50, height: 240)
-                .scaledToFit()
-                .cornerRadius(10)
-                .padding()
+            if trust == true {
+
+                Image("Trust")
+                    .resizable()
+                    .frame(width: UIScreen.main.bounds.width - 50, height: 240)
+                    .scaledToFit()
+                    .cornerRadius(10)
+                    .padding()
+
+            } else {
+
+                Image("MetaMask")
+                    .resizable()
+                    .frame(width: UIScreen.main.bounds.width - 50, height: 240)
+                    .scaledToFit()
+                    .cornerRadius(10)
+                    .padding()
+            }
+
 
             Spacer() 
 
@@ -53,7 +90,7 @@ struct Step1Onboarding3View: View {
             NavigationLink {
 
                 // Navigate to next view
-                Step1Onboarding4View(isActive: $isActive)
+                Step1Onboarding4View(isActive: $isActive, trust: trust)
 
             } label: {
 
@@ -81,6 +118,7 @@ struct Step1Onboarding3View: View {
                 } //: VSTACK
 
             }
+            .padding() 
 
             Spacer()
 

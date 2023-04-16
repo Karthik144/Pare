@@ -10,7 +10,8 @@ import SwiftUI
 struct Step1Onboarding5View: View {
 
     // MARK: - PROPERTIES
-    @Binding var isActive: Bool 
+    @Binding var isActive: Bool
+    let trust: Bool 
 
     // MARK: - BODY
     var body: some View {
@@ -19,23 +20,49 @@ struct Step1Onboarding5View: View {
 
             HStack{
 
-                Text("Select 'Back up manually'")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .padding(.leading)
-                    .padding(.trailing)
-                    .padding(.top)
+                if trust == true{
+
+                    Text("Select 'Back up manually'")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .padding(.leading)
+                        .padding(.trailing)
+                        .padding(.top)
+                } else {
+
+                    Text("Hit 'Start' to secure your wallet")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .padding(.leading)
+                        .padding(.trailing)
+                        .padding(.top)
+
+                }
+
 
                 Spacer()
 
             } //: HSTACK
             HStack{
 
-                Text("We've found this to be the safest way. But you're open to backup to iCloud.")
-                    .lineLimit(3)
-                    .padding(.leading)
-                    .padding(.trailing)
-                    .padding(.top)
+
+                if trust == true {
+
+                    Text("We've found this to be the safest way. But you're open to backup to iCloud.")
+                        .lineLimit(3)
+                        .padding(.leading)
+                        .padding(.trailing)
+                        .padding(.top)
+
+                } else {
+
+                    Text("This increases the security of your wallet.")
+                        .lineLimit(3)
+                        .padding(.leading)
+                        .padding(.trailing)
+                        .padding(.top)
+                }
+
 
                 Spacer()
 
@@ -44,20 +71,37 @@ struct Step1Onboarding5View: View {
 
             Spacer()
 
-            // Insert image here
-            Image("TrustBackUp")
-                .resizable()
-                .frame(width: UIScreen.main.bounds.width - 50, height: 360)
-                .scaledToFit()
-                .cornerRadius(10)
-                .padding()
+
+            if trust == true {
+
+                // Insert image here
+                Image("TrustBackUp")
+                    .resizable()
+                    .frame(width: UIScreen.main.bounds.width - 50, height: 360)
+                    .scaledToFit()
+                    .cornerRadius(10)
+                    .padding()
+
+            } else {
+
+                // Insert image here
+                Image("MetaBackUp")
+                    .resizable()
+                    .frame(width: UIScreen.main.bounds.width - 50, height: 360)
+                    .scaledToFit()
+                    .cornerRadius(10)
+                    .padding()
+
+            }
+
+
 
             Spacer()
 
             NavigationLink {
 
                 // Navigate to next view
-                Step1Onboarding6View(isActive: $isActive)
+                Step1Onboarding6View(isActive: $isActive, trust: trust)
 
             } label: {
 

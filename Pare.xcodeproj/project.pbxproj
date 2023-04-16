@@ -57,6 +57,10 @@
 		7C97788529BAA88500F0C6C5 /* RequiredItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C97788429BAA88500F0C6C5 /* RequiredItemCell.swift */; };
 		7C97788729BAA97C00F0C6C5 /* Modification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C97788629BAA97C00F0C6C5 /* Modification.swift */; };
 		7C97788929BAAA3A00F0C6C5 /* ModificationItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C97788829BAAA3A00F0C6C5 /* ModificationItemCell.swift */; };
+		7C9DDD5329EC7EBB001EE8AD /* Step2Onboarding1.0View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9DDD5229EC7EBB001EE8AD /* Step2Onboarding1.0View.swift */; };
+		7C9DDD5529EC8158001EE8AD /* Step2Onboarding1.1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9DDD5429EC8158001EE8AD /* Step2Onboarding1.1View.swift */; };
+		7C9DDD5729EC823D001EE8AD /* Step2Onboarding1.2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9DDD5629EC823D001EE8AD /* Step2Onboarding1.2View.swift */; };
+		7C9DDD5929EC82E6001EE8AD /* Step2Onboarding1.3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9DDD5829EC82E6001EE8AD /* Step2Onboarding1.3View.swift */; };
 		7CA83B4B29BA578900E4C4CD /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA83B4A29BA578900E4C4CD /* MenuItem.swift */; };
 		7CA914BF299DB9790006ED5B /* UserCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA914BE299DB9790006ED5B /* UserCheck.swift */; };
 		7CB5F3DF29DCE6C600A13A2B /* PaySubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB5F3DE29DCE6C600A13A2B /* PaySubView.swift */; };
@@ -146,6 +150,10 @@
 		7C97788429BAA88500F0C6C5 /* RequiredItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredItemCell.swift; sourceTree = "<group>"; };
 		7C97788629BAA97C00F0C6C5 /* Modification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modification.swift; sourceTree = "<group>"; };
 		7C97788829BAAA3A00F0C6C5 /* ModificationItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModificationItemCell.swift; sourceTree = "<group>"; };
+		7C9DDD5229EC7EBB001EE8AD /* Step2Onboarding1.0View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step2Onboarding1.0View.swift; sourceTree = "<group>"; };
+		7C9DDD5429EC8158001EE8AD /* Step2Onboarding1.1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step2Onboarding1.1View.swift; sourceTree = "<group>"; };
+		7C9DDD5629EC823D001EE8AD /* Step2Onboarding1.2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step2Onboarding1.2View.swift; sourceTree = "<group>"; };
+		7C9DDD5829EC82E6001EE8AD /* Step2Onboarding1.3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step2Onboarding1.3View.swift; sourceTree = "<group>"; };
 		7CA83B4A29BA578900E4C4CD /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		7CA914BE299DB9790006ED5B /* UserCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCheck.swift; sourceTree = "<group>"; };
 		7CB5F3DE29DCE6C600A13A2B /* PaySubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaySubView.swift; sourceTree = "<group>"; };
@@ -308,6 +316,10 @@
 				7C494B0A29EADD4B009D0015 /* Step2Onboarding3View.swift */,
 				7C494B0C29EADEFC009D0015 /* Step2Onboarding4View.swift */,
 				7CEAA1AA29EB0D7F0004A06D /* Step2CompleteView.swift */,
+				7C9DDD5229EC7EBB001EE8AD /* Step2Onboarding1.0View.swift */,
+				7C9DDD5429EC8158001EE8AD /* Step2Onboarding1.1View.swift */,
+				7C9DDD5629EC823D001EE8AD /* Step2Onboarding1.2View.swift */,
+				7C9DDD5829EC82E6001EE8AD /* Step2Onboarding1.3View.swift */,
 			);
 			path = "Trust Wallet Onboarding";
 			sourceTree = "<group>";
@@ -488,17 +500,20 @@
 				7C86263129B818E400919213 /* CheckoutView.swift in Sources */,
 				7C0439DF29B90E130037EE72 /* ProfileItemCell.swift in Sources */,
 				E9A3DA6529D8F07A00F5A1D0 /* Wallet.swift in Sources */,
+				7C9DDD5929EC82E6001EE8AD /* Step2Onboarding1.3View.swift in Sources */,
 				7C840AF829C2253F001F067E /* PastOrderCell.swift in Sources */,
 				7C45EC44299B2D5200F3B439 /* SignUpViewOne.swift in Sources */,
 				7C429A7329EA269F00C3E2D3 /* Step1Onboarding5View.swift in Sources */,
 				7C86263329B8195B00919213 /* OrderItemCell.swift in Sources */,
 				E9FC0B2129EB64F3000F1D13 /* Location.swift in Sources */,
-				7C494B0B29EADD4B009D0015 /* Step3Onboarding3View.swift in Sources */,
+				7C494B0B29EADD4B009D0015 /* Step2Onboarding3View.swift in Sources */,
 				7C494B0B29EADD4B009D0015 /* Step2Onboarding3View.swift in Sources */,
 				7C45EC3E299B2CF700F3B439 /* WelcomeView.swift in Sources */,
 				7C97788729BAA97C00F0C6C5 /* Modification.swift in Sources */,
+				7C9DDD5529EC8158001EE8AD /* Step2Onboarding1.1View.swift in Sources */,
 				7C86262929B7F0F000919213 /* ShopItemView.swift in Sources */,
 				7CF74DC9299C638F002B2BB9 /* EmailView.swift in Sources */,
+				7C9DDD5329EC7EBB001EE8AD /* Step2Onboarding1.0View.swift in Sources */,
 				E9DD9CD029C0F1D80001106E /* Order.swift in Sources */,
 				7CC418A329C1958F004CE58B /* PastOrderView.swift in Sources */,
 				7CEDCD1429BBB4B700C70EF5 /* PersonalView.swift in Sources */,
@@ -519,6 +534,7 @@
 				E9A3DA6C29DD96FF00F5A1D0 /* WalletConnect.swift in Sources */,
 				7C45BE0A29E4876A000DA45E /* VideoView.swift in Sources */,
 				7C429A6F29EA22DC00C3E2D3 /* Step1Onboarding6View.swift in Sources */,
+				7C9DDD5729EC823D001EE8AD /* Step2Onboarding1.2View.swift in Sources */,
 				7CCCEFC029B7CCCA00E27BAA /* ShopsView.swift in Sources */,
 				7C0439E429B939170037EE72 /* ShopViewModel.swift in Sources */,
 				7C97788129BA9E8500F0C6C5 /* Add.swift in Sources */,

@@ -11,6 +11,7 @@ struct Step1CompleteView: View {
 
     // MARK: - PROPERTIES
     @Binding var isActive: Bool
+    let trust: Bool
 
     
     // MARK: - BODY
@@ -39,8 +40,15 @@ struct Step1CompleteView: View {
 
                 NavigationLink {
 
-                    // Navigate to next view
-                    Step2Onboarding1View(isActive: $isActive)
+                    if trust == true{
+                        // Navigate to next view
+                        Step2Onboarding1View(isActive: $isActive, trust: trust)
+                    } else {
+
+                        // Navigate to next view
+                        Step2Onboarding1_0View(isActive: $isActive)
+                    }
+
                     
                 } label: {
 
@@ -55,6 +63,7 @@ struct Step1CompleteView: View {
                         )
 
                 } //: NAV LINK
+                .padding() 
 
                 Spacer()
 

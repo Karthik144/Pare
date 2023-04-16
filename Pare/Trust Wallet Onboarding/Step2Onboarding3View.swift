@@ -10,7 +10,8 @@ import SwiftUI
 struct Step2Onboarding3View: View {
 
     // MARK: - PROPERTIES
-    @Binding var isActive: Bool 
+    @Binding var isActive: Bool
+    let trust: Bool 
 
     // MARK: - BODY
     var body: some View {
@@ -48,19 +49,31 @@ struct Step2Onboarding3View: View {
             } //: HSTACK
 
 
-            Image("TrustPurchaseAmount")
-                .resizable()
-                .frame(width: UIScreen.main.bounds.width - 50, height: 360)
-                .scaledToFit()
-                .cornerRadius(10)
-                .padding()
+            if trust == true {
+
+                Image("TrustPurchaseAmount")
+                    .resizable()
+                    .frame(width: UIScreen.main.bounds.width - 50, height: 360)
+                    .scaledToFit()
+                    .cornerRadius(10)
+                    .padding()
+            } else {
+
+                Image("MetaPurchaseAmount")
+                    .resizable()
+                    .frame(width: UIScreen.main.bounds.width - 50, height: 360)
+                    .scaledToFit()
+                    .cornerRadius(10)
+                    .padding()
+            }
+
 
             Spacer()
 
             NavigationLink {
 
                 // Navigate to next view
-                Step2Onboarding4View(isActive: $isActive)
+                Step2Onboarding4View(isActive: $isActive, trust: trust)
 
             } label: {
 
@@ -86,6 +99,7 @@ struct Step2Onboarding3View: View {
                 } //: VSTACK
 
             } //: NAV LINK
+            .padding() 
 
             Spacer()
 

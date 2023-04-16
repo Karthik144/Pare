@@ -11,6 +11,7 @@ struct Step1Onboarding6View: View {
 
     // MARK: - PROPERTIES
     @Binding var isActive: Bool
+    let trust: Bool
     
     // MARK: - BODY
     var body: some View {
@@ -49,19 +50,32 @@ struct Step1Onboarding6View: View {
             Spacer()
 
 
-            Image("TrustRecoveryPhrase")
-                .resizable()
-                .frame(width: UIScreen.main.bounds.width - 50, height: 350)
-                .scaledToFit()
-                .cornerRadius(10)
-                .padding()
+            if trust == true {
+
+                Image("TrustRecoveryPhrase")
+                    .resizable()
+                    .frame(width: UIScreen.main.bounds.width - 50, height: 350)
+                    .scaledToFit()
+                    .cornerRadius(10)
+                    .padding()
+
+            } else {
+
+                Image("MetaRecoveryPhrase")
+                    .resizable()
+                    .frame(width: UIScreen.main.bounds.width - 50, height: 350)
+                    .scaledToFit()
+                    .cornerRadius(10)
+                    .padding()
+            }
+
 
             Spacer()
 
             NavigationLink {
 
                 // Navigate to next view
-                Step1Onboarding7View(isActive: $isActive)
+                Step1Onboarding7View(isActive: $isActive, trust: trust)
 
             } label: {
 

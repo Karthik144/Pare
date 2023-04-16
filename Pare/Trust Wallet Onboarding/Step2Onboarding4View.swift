@@ -10,7 +10,8 @@ import SwiftUI
 struct Step2Onboarding4View: View {
 
     // MARK: - PROPERTIES
-    @Binding var isActive: Bool 
+    @Binding var isActive: Bool
+    let trust: Bool
 
     // MARK: - BODY
     var body: some View {
@@ -33,9 +34,18 @@ struct Step2Onboarding4View: View {
 
             HStack{
 
-                Text("Select if you'd like to pay with Apple Pay, Credit Card, or an ACH Transfer")
-                    .padding()
-                    .font(.title3)
+                if trust == true {
+
+                    Text("Select if you'd like to pay with Apple Pay, Credit Card, or an ACH Transfer")
+                        .padding()
+                        .font(.title3)
+
+                } else {
+
+                    Text("Select whichever provider offers the highest rate (MoonPay or Banxa)")
+                        .padding()
+                        .font(.title3)
+                }
 
                 Spacer()
             } //: HSTACK

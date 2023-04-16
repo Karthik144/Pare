@@ -10,7 +10,8 @@ import SwiftUI
 struct Step2Onboarding1View: View {
 
     // MARK: - PROPERTIES
-    @Binding var isActive: Bool 
+    @Binding var isActive: Bool
+    let trust: Bool
 
     // MARK: - BODY
     var body: some View {
@@ -61,7 +62,7 @@ struct Step2Onboarding1View: View {
             NavigationLink {
 
                 // Navigate to next view
-                Step2Onboarding2View(isActive: $isActive)
+                Step2Onboarding2View(isActive: $isActive, trust: trust)
 
             } label: {
 
@@ -87,6 +88,7 @@ struct Step2Onboarding1View: View {
                 } //: VSTACK
 
             } //: NAV LINK
+            .padding() 
 
             Spacer()
 
