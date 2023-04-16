@@ -31,6 +31,7 @@ struct ContentView: View {
                 Text("Order")
             })
             .tag(2)
+            /*
             WalletView().tabItem({
                 Image(systemName: "wallet.pass.fill")
                 Text("Wallet")
@@ -39,7 +40,7 @@ struct ContentView: View {
             .environmentObject(walletViewModel)
             .onAppear{
                 walletViewModel.initWalletConnect()
-            }
+            }*/
         }
 
     }

@@ -24,6 +24,11 @@ struct ShopItemView: View {
     @State private var isAppExpanded = false
     @State private var isVegExpanded = false
     @State private var isEntreeExpanded = false
+    let currentDate = Date()
+    let calendar = Calendar.current
+    @State var dayOfWeek: Int?
+
+
 
 
 
@@ -76,10 +81,14 @@ struct ShopItemView: View {
                             } //: HStack
 
                         }//: HStack
-
-                        Text("Open Now")
-                            .foregroundColor(Color.green)
-
+                        if ((dayOfWeek ?? 0) == 7){
+                            Text("Closed")
+                                .foregroundColor(Color.red)
+                        }
+                        else{
+                            Text("Open Now")
+                                .foregroundColor(Color.green)
+                        }
 
                     } //: VSTACK
                     .padding(.leading, 5)
@@ -250,7 +259,7 @@ struct ShopItemView: View {
             } //: VSTACK
             .toolbar(.hidden, for: .tabBar)
             .onAppear(){
-
+                dayOfWeek = calendar.component(.weekday, from: currentDate)
                 if appearTotal<1{
 
                     viewModel.fetchShopMenu(withUID: shop.id ?? "") { menuItems in
@@ -500,7 +509,6 @@ struct ShopItemView: View {
 
             } //: VSTACK
             .onAppear(){
-
                 if appearTotal<1{
 
                     viewModel.fetchShopMenu(withUID: shop.id ?? "") { menuItems in

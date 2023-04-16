@@ -90,6 +90,7 @@
 		E9A3DA6E29DD992A00F5A1D0 /* web3ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A3DA6D29DD992A00F5A1D0 /* web3ViewModel.swift */; };
 		E9B38F9729CBE2EB0053C2FE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E9B38F9629CBE2EB0053C2FE /* Kingfisher */; };
 		E9DD9CD029C0F1D80001106E /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DD9CCF29C0F1D80001106E /* Order.swift */; };
+		E9FC0B2129EB64F3000F1D13 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FC0B2029EB64F3000F1D13 /* Location.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -172,6 +173,7 @@
 		E9A3DA6B29DD96FF00F5A1D0 /* WalletConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnect.swift; sourceTree = "<group>"; };
 		E9A3DA6D29DD992A00F5A1D0 /* web3ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = web3ViewModel.swift; sourceTree = "<group>"; };
 		E9DD9CCF29C0F1D80001106E /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		E9FC0B2029EB64F3000F1D13 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +275,7 @@
 				7C0439E529B939620037EE72 /* ShopService.swift */,
 				7C37106329E1F30B00EC4E07 /* SheetManager.swift */,
 				7C45BE0929E4876A000DA45E /* VideoView.swift */,
+				E9FC0B2029EB64F3000F1D13 /* Location.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				7C45EC44299B2D5200F3B439 /* SignUpViewOne.swift in Sources */,
 				7C429A7329EA269F00C3E2D3 /* Step1Onboarding5View.swift in Sources */,
 				7C86263329B8195B00919213 /* OrderItemCell.swift in Sources */,
+				E9FC0B2129EB64F3000F1D13 /* Location.swift in Sources */,
 				7C494B0B29EADD4B009D0015 /* Step3Onboarding3View.swift in Sources */,
 				7C45EC3E299B2CF700F3B439 /* WelcomeView.swift in Sources */,
 				7C97788729BAA97C00F0C6C5 /* Modification.swift in Sources */,
@@ -688,6 +692,8 @@
 				INFOPLIST_FILE = Pare/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Pare;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Pare uses your location to provide you the distance between you and resteraunts.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -723,6 +729,8 @@
 				INFOPLIST_FILE = Pare/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Pare;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Pare uses your location to provide you the distance between you and resteraunts.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

@@ -11,7 +11,17 @@ import Kingfisher
 struct ShopCell: View {
 
     // MARK: - PROPERTIES
+    let locationManager = LocationManager()
     let shop: Shop
+    let calendar = Calendar.current
+    let dateFormatter = DateFormatter()
+    @State var date: String?
+    @State var dayOfWeek: Int?
+    var closingTime = "22:00"
+    var openingTime = "11:00"
+    var sundayOpen = "12:00"
+    
+    @State var distanceFuck: Double?
 //    let timeOpen: String
 //    let distance: String
 
@@ -55,14 +65,28 @@ struct ShopCell: View {
 
 
             HStack{
-                Text("Open Now")
-                    .foregroundColor(Color.gray)
+                
+                //General Closed Conditions
+                
+                if((dayOfWeek ?? 0) == 7 || (date ?? "" > closingTime) || (date ?? "" < openingTime) ){
+                    Text("Closed")
+                        .foregroundColor(Color.red)
+                }
+                else if((dayOfWeek ?? 0) == 1 && (date ?? "" > closingTime) && (date ?? "" < sundayOpen) ){
+                    Text("Closed")
+                        .foregroundColor(Color.red)
+                }
+                else{
+                    Text("Open Now")
+                        .foregroundColor(Color.gray)
+                }
+                
 
                 Circle()
                     .frame(width: 2, height: 2)
                     .foregroundColor(Color.gray)
 
-                Text("<1 mi")
+                Text(String(round((distanceFuck ?? 0.0) * 100) / 100.0) + " miles")
                     .foregroundColor(Color.gray)
 
                 Spacer()
@@ -70,6 +94,23 @@ struct ShopCell: View {
             .padding(.leading, 20)
 
         } //: VSTACK
+        .onAppear(){
+            dateFormatter.dateFormat = "HH:mm"
+            date = dateFormatter.string(from: Date())
+            dayOfWeek = calendar.component(.weekday, from: Date())
+            locationManager.updateLocation()
+            locationManager.getDistance { distance in
+                if let distance = distance {
+                    print("Distance: \(distance) miles")
+                    distanceFuck = distance
+                    // Use the distance value here
+                } else {
+                    print("Distance is nil")
+                    // Handle nil case here
+                }
+            }
+
+        }
     }
 }
 
