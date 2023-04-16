@@ -24,9 +24,14 @@ struct ShopItemView: View {
     @State private var isAppExpanded = false
     @State private var isVegExpanded = false
     @State private var isEntreeExpanded = false
-    let currentDate = Date()
+    
     let calendar = Calendar.current
+    let dateFormatter = DateFormatter()
+    @State var date: String?
     @State var dayOfWeek: Int?
+    var closingTime = "22:00"
+    var openingTime = "11:00"
+    var sundayOpen = "12:00"
 
 
 
@@ -259,7 +264,9 @@ struct ShopItemView: View {
             } //: VSTACK
             .toolbar(.hidden, for: .tabBar)
             .onAppear(){
-                dayOfWeek = calendar.component(.weekday, from: currentDate)
+                dateFormatter.dateFormat = "HH:mm"
+                date = dateFormatter.string(from: Date())
+                dayOfWeek = calendar.component(.weekday, from: Date())
                 if appearTotal<1{
 
                     viewModel.fetchShopMenu(withUID: shop.id ?? "") { menuItems in
@@ -339,6 +346,20 @@ struct ShopItemView: View {
                             } //: HStack
 
                         }//: HStack
+                        
+                        if((dayOfWeek ?? 0) == 7 || (date ?? "" > closingTime) || (date ?? "" < openingTime) ){
+                            Text("Closed")
+                                .foregroundColor(Color.red)
+                        }
+                        else if((dayOfWeek ?? 0) == 1 && (date ?? "" > closingTime) && (date ?? "" < sundayOpen) ){
+                            Text("Closed")
+                                .foregroundColor(Color.red)
+                        }
+                        else{
+                            Text("Open Now")
+                                .foregroundColor(Color.gray)
+                        }
+                        
 
                         Text("Open Now")
                             .foregroundColor(Color.green)
@@ -509,6 +530,7 @@ struct ShopItemView: View {
 
             } //: VSTACK
             .onAppear(){
+                
                 if appearTotal<1{
 
                     viewModel.fetchShopMenu(withUID: shop.id ?? "") { menuItems in
