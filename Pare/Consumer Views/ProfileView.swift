@@ -13,6 +13,7 @@ struct ProfileView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     @State private var showingAlert = false
     @State private var isViewActive: Bool = false
+    @State var isActive: Bool = false
 
     let imageList = ["person", "calendar.badge.clock", "questionmark.circle"]
     let textList = ["Personal", "Past Orders", "Help"]
@@ -60,9 +61,20 @@ struct ProfileView: View {
                 //                Spacer()
 
 
-                NavigationLink(destination: Step1Onboarding1View()) {
+                Button {
+
+                    self.isActive = true
+
+                } label: {
                     FinishSetupBox()
+
                 }
+                .background(
+
+                    NavigationLink(destination: Step1Onboarding1View(isActive: $isActive),
+                                    isActive: $isActive) {EmptyView()}
+                )
+
 
                 NavigationLink(destination: PersonalView(viewActive: $isViewActive, email: $email, firstName: $firstName, lastName: $lastName), isActive: $isViewActive){
 

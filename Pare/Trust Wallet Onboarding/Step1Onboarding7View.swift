@@ -10,7 +10,7 @@ import SwiftUI
 struct Step1Onboarding7View: View {
 
     // MARK: - PROPERTIES
-
+    @Binding var isActive: Bool 
     // MARK: - BODY
     var body: some View {
         VStack{
@@ -58,7 +58,7 @@ struct Step1Onboarding7View: View {
             NavigationLink {
 
                 // Navigate to next view
-                Step1CompleteView()
+                Step1CompleteView(isActive: $isActive)
 
             } label: {
 
@@ -95,8 +95,8 @@ struct Step1Onboarding7View: View {
 }
 
 // MARK: - PREVIEW 
-struct Step1Onboarding7View_Previews: PreviewProvider {
-    static var previews: some View {
-        Step1Onboarding7View()
-    }
-}
+//struct Step1Onboarding7View_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Step1Onboarding7View()
+//    }
+//}

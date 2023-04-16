@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct Step1Onboarding2View: View {
+
+    // MARK: - PROPERTIES
+    @Binding var isViewActive: Bool
+
+    // MARK: - BODY
     var body: some View {
 
         VStack {
@@ -59,7 +64,7 @@ struct Step1Onboarding2View: View {
 
                     NavigationLink {
 
-                        Step1Onboarding3View()
+                        Step1Onboarding3View(isActive: $isViewActive)
                         
                     } label: {
                         HStack{
@@ -148,8 +153,10 @@ struct Step1Onboarding2View: View {
     }
 }
 
-struct Step1Onboarding2View_Previews: PreviewProvider {
-    static var previews: some View {
-        Step1Onboarding2View()
-    }
-}
+
+// MARK: - PREVIEW
+//struct Step1Onboarding2View_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Step1Onboarding2View()
+//    }
+//}

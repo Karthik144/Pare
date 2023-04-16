@@ -10,6 +10,7 @@ import SwiftUI
 struct Step1Onboarding4View: View {
 
     // MARK: - PROPERTIES
+    @Binding var isActive: Bool
 
     // MARK: - BODY
     var body: some View {
@@ -42,7 +43,7 @@ struct Step1Onboarding4View: View {
             NavigationLink {
 
                 // Navigate to next view
-                Step1Onboarding5View()
+                Step1Onboarding5View(isActive: $isActive)
 
             } label: {
 
@@ -81,8 +82,8 @@ struct Step1Onboarding4View: View {
 
 
 // MARK: - PREVIEW 
-struct Step1Onboarding4View_Previews: PreviewProvider {
-    static var previews: some View {
-        Step1Onboarding4View()
-    }
-}
+//struct Step1Onboarding4View_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Step1Onboarding4View()
+//    }
+//}
