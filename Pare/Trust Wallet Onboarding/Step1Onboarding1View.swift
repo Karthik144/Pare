@@ -89,6 +89,7 @@ struct Step1Onboarding1View: View {
                             .frame(width: 300, height: 50)
                     )
             }
+            .padding() 
 
             Spacer()
 

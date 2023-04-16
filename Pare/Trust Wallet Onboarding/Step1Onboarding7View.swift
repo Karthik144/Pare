@@ -13,7 +13,8 @@ struct Step1Onboarding7View: View {
     @Binding var isActive: Bool 
     // MARK: - BODY
     var body: some View {
-        VStack{
+
+        ScrollView{
 
             HStack{
 
@@ -40,12 +41,13 @@ struct Step1Onboarding7View: View {
 
                 Text("Think of this as confirming your password.")
                     .padding()
-                    .font(.title3)
 
                 Spacer()
             } //: HSTACK
 
 
+            Spacer()
+            
             Image("TrustVerifyPhrase")
                 .resizable()
                 .frame(width: UIScreen.main.bounds.width - 50, height: 360)
@@ -62,13 +64,13 @@ struct Step1Onboarding7View: View {
 
             } label: {
 
-
-
-                VStack{
+                VStack(spacing: 5){
 
                     Text("Select Next only if you finished this step.")
                         .foregroundColor(Color.black)
-                        .padding()
+                        .padding(.leading)
+                        .padding(.trailing)
+                        .padding(.top)
                         .font(.callout)
 
                     Text("Next")
@@ -90,7 +92,7 @@ struct Step1Onboarding7View: View {
 
 
 
-        } //: VSTACK
+        } //: SCROLL VIEW 
     }
 }
 

@@ -32,7 +32,7 @@ struct Step1Onboarding2View: View {
                 HStack{
 
                     Text("Choose a wallet to use with Pare.")
-                        .padding(.leading)
+                        .padding()
 
                     Spacer()
                 } //: HSTACK

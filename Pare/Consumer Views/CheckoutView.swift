@@ -21,6 +21,8 @@ struct CheckoutView: View {
     @EnvironmentObject var sheetManager: SheetManager
 
     @State private var showingAlert = false
+    @State private var showingWalletAlert = false
+
     @State var noteText = ""
     @State var rewards = false
     @Binding var rootActive: Bool
@@ -194,16 +196,37 @@ struct CheckoutView: View {
 
             VStack(spacing: 30){
 
-                NavigationLink(destination: PaySubView(shop: shop, rewards: rewards, rootIsActive: $rootActive, noteText: noteText)){
+                if authViewModel.currentUser?.wallet == false {
 
-                    Text("Pay")
-                        .foregroundColor(Color.white)
-                        .background(
-                            RoundedRectangle(cornerRadius: 8,  style: .continuous)
-                                .fill(Color.accentColor)
-                                .frame(width: 300, height: 50)
-                        )
-                }
+                    Button {
+                        showingWalletAlert = true
+                    } label: {
+                        Text("Pay")
+                            .foregroundColor(Color.white)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8,  style: .continuous)
+                                    .fill(Color.accentColor)
+                                    .frame(width: 300, height: 50)
+                            )
+                    }
+                    .alert("You haven't set up your wallet yet. Go to your Profile to finish setup.", isPresented: $showingWalletAlert) {
+                        Button("Ok", role: .cancel) { }
+                    }
+
+                } else {
+
+                    NavigationLink(destination: PaySubView(shop: shop, rewards: rewards, rootIsActive: $rootActive, noteText: noteText)){
+
+                        Text("Pay")
+                            .foregroundColor(Color.white)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8,  style: .continuous)
+                                    .fill(Color.accentColor)
+                                    .frame(width: 300, height: 50)
+                            )
+                    }
+
+                } //: ELSE
 
 
                 if rewards == false {

@@ -42,11 +42,18 @@ struct Step2Onboarding1View: View {
 
                 Text("Think of this as loading in money into your account.")
                     .padding()
-                    .font(.title3)
 
                 Spacer()
             } //: HSTACK
 
+            Spacer()
+
+            Image("TrustBuy")
+                .resizable()
+                .frame(width: UIScreen.main.bounds.width - 50, height: 100)
+                .scaledToFit()
+                .cornerRadius(10)
+                .padding()
 
 
             Spacer()
@@ -58,13 +65,13 @@ struct Step2Onboarding1View: View {
 
             } label: {
 
-
-
-                VStack{
+                VStack(spacing: 5){
 
                     Text("Select Next only if you finished this step.")
                         .foregroundColor(Color.black)
-                        .padding()
+                        .padding(.leading)
+                        .padding(.trailing)
+                        .padding(.top)
                         .font(.callout)
 
                     Text("Next")

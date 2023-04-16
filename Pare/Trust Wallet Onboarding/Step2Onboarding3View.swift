@@ -15,7 +15,7 @@ struct Step2Onboarding3View: View {
     // MARK: - BODY
     var body: some View {
 
-        VStack{
+        ScrollView{
 
             HStack{
 
@@ -43,7 +43,6 @@ struct Step2Onboarding3View: View {
 
                 Text("The amount you purchase will be slightly less since there's a purchasing fee. This should decrease over time.")
                     .padding()
-                    .font(.title3)
 
                 Spacer()
             } //: HSTACK
@@ -65,13 +64,13 @@ struct Step2Onboarding3View: View {
 
             } label: {
 
-
-
-                VStack{
+                VStack(spacing: 5){
 
                     Text("Select Next only if you finished this step.")
                         .foregroundColor(Color.black)
-                        .padding()
+                        .padding(.leading)
+                        .padding(.trailing)
+                        .padding(.top)
                         .font(.callout)
 
                     Text("Next")
@@ -93,7 +92,7 @@ struct Step2Onboarding3View: View {
 
 
 
-        } //: VSTACK
+        } //: SCROLL VIEW
     }
 }
 

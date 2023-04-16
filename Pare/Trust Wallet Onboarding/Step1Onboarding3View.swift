@@ -36,14 +36,18 @@ struct Step1Onboarding3View: View {
                     .padding(.trailing)
                 Spacer()
             } //: HSTACK
-            .padding(.bottom, 70)
+//            .padding(.bottom, 70)
+
+            Spacer()
 
             Image("Trust")
                 .resizable()
-                .frame(width: UIScreen.main.bounds.width - 50, height: 200)
+                .frame(width: UIScreen.main.bounds.width - 50, height: 240)
                 .scaledToFit()
                 .cornerRadius(10)
                 .padding()
+
+            Spacer() 
 
 
             NavigationLink {
@@ -55,11 +59,13 @@ struct Step1Onboarding3View: View {
 
 
 
-                VStack{
+                VStack(spacing: 5){
 
                     Text("Select Next only if you finished this step.")
                         .foregroundColor(Color.black)
-                        .padding()
+                        .padding(.leading)
+                        .padding(.trailing)
+                        .padding(.top)
                         .font(.callout)
 
                     Text("Next")

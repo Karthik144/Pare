@@ -14,7 +14,8 @@ struct Step1Onboarding5View: View {
 
     // MARK: - BODY
     var body: some View {
-        VStack{
+
+        ScrollView{
 
             HStack{
 
@@ -30,7 +31,8 @@ struct Step1Onboarding5View: View {
             } //: HSTACK
             HStack{
 
-                Text("We've found this to be the fastest and safest way. But you're open to backup to iCloud.")
+                Text("We've found this to be the safest way. But you're open to backup to iCloud.")
+                    .lineLimit(3)
                     .padding(.leading)
                     .padding(.trailing)
                     .padding(.top)
@@ -38,8 +40,9 @@ struct Step1Onboarding5View: View {
                 Spacer()
 
             } //: HSTACK
-            .padding()
 
+
+            Spacer()
 
             // Insert image here
             Image("TrustBackUp")
@@ -58,13 +61,13 @@ struct Step1Onboarding5View: View {
 
             } label: {
 
-
-
-                VStack{
+                VStack(spacing: 5){
 
                     Text("Select Next only if you finished this step.")
                         .foregroundColor(Color.black)
-                        .padding()
+                        .padding(.leading)
+                        .padding(.trailing)
+                        .padding(.top)
                         .font(.callout)
 
                     Text("Next")
@@ -79,14 +82,14 @@ struct Step1Onboarding5View: View {
 
                 } //: VSTACK
 
+
             }
+            .padding() 
 
             Spacer()
 
 
-
-
-        } //: VSTACK
+        } //: SCROLL VIEW
     }
 }
 

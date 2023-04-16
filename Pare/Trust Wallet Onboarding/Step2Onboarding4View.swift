@@ -50,8 +50,6 @@ struct Step2Onboarding4View: View {
             } //: HSTACK
 
 
-            // Insert image here
-
             Spacer()
 
             NavigationLink {
@@ -61,13 +59,13 @@ struct Step2Onboarding4View: View {
                 
             } label: {
 
-
-
-                VStack{
+                VStack(spacing: 5){
 
                     Text("Select Next only if you finished this step.")
                         .foregroundColor(Color.black)
-                        .padding()
+                        .padding(.leading)
+                        .padding(.trailing)
+                        .padding(.top)
                         .font(.callout)
 
                     Text("Next")
@@ -83,8 +81,9 @@ struct Step2Onboarding4View: View {
                 } //: VSTACK
 
             } //: NAV LINK
+            .padding()
 
-            Spacer()
+            Spacer() 
 
         } //: VSTACK
     }

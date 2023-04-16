@@ -15,11 +15,11 @@ struct Step2Onboarding2View: View {
     // MARK: - BODY
     var body: some View {
 
-        VStack{
+        ScrollView{
 
             HStack{
 
-                Text("Search USD Coin (PoS)")
+                Text("Search USDC")
                     .font(.title2)
                     .fontWeight(.semibold)
                     .padding(.leading)
@@ -39,10 +39,29 @@ struct Step2Onboarding2View: View {
                 
             } //: HSTACK
 
+            HStack{
 
-            Image("TrustSelectUSDC")
+                Text("It's important that you select this exact version of USDC.")
+                    .padding()
+                
+                Spacer()
+
+            } //: HSTACK
+
+            HStack{
+
+                Text("It's what offers no transaction fees for you and the merchant.")
+                    .padding()
+                
+                Spacer()
+
+            }
+
+            Spacer()
+            
+            Image("usdcStep")
                 .resizable()
-                .frame(width: UIScreen.main.bounds.width - 50, height: 360)
+                .frame(width: UIScreen.main.bounds.width - 50, height: 100)
                 .scaledToFit()
                 .cornerRadius(10)
                 .padding()
@@ -56,13 +75,13 @@ struct Step2Onboarding2View: View {
 
             } label: {
 
-
-
-                VStack{
+                VStack(spacing: 5){
 
                     Text("Select Next only if you finished this step.")
                         .foregroundColor(Color.black)
-                        .padding()
+                        .padding(.leading)
+                        .padding(.trailing)
+                        .padding(.top)
                         .font(.callout)
 
                     Text("Next")
@@ -78,13 +97,11 @@ struct Step2Onboarding2View: View {
                 } //: VSTACK
 
             } //: NAV LINK
-
-            Spacer()
-
+            .padding()
 
 
 
-        } //: VSTACK
+        } //: SCROLL VIEW
     }
 }
 

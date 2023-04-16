@@ -14,7 +14,8 @@ struct Step1Onboarding6View: View {
     
     // MARK: - BODY
     var body: some View {
-        VStack{
+
+        ScrollView{
 
             HStack{
 
@@ -31,7 +32,7 @@ struct Step1Onboarding6View: View {
 
             HStack{
 
-                Text("Write it down or take a screenshot and store it safely")
+                Text("Write it down or take a screenshot and store it safely.")
                     .padding(.leading)
                     .padding(.trailing)
                 Spacer()
@@ -41,15 +42,16 @@ struct Step1Onboarding6View: View {
 
                 Text("Think of this as your password to your wallet.")
                     .padding()
-                    .font(.title3)
                 
                 Spacer()
             } //: HSTACK
 
+            Spacer()
+
 
             Image("TrustRecoveryPhrase")
                 .resizable()
-                .frame(width: UIScreen.main.bounds.width - 50, height: 360)
+                .frame(width: UIScreen.main.bounds.width - 50, height: 350)
                 .scaledToFit()
                 .cornerRadius(10)
                 .padding()
@@ -63,13 +65,13 @@ struct Step1Onboarding6View: View {
 
             } label: {
 
-
-
-                VStack{
+                VStack(spacing: 5){
 
                     Text("Select Next only if you finished this step.")
                         .foregroundColor(Color.black)
-                        .padding()
+                        .padding(.leading)
+                        .padding(.trailing)
+                        .padding(.top)
                         .font(.callout)
 
                     Text("Next")
@@ -85,13 +87,14 @@ struct Step1Onboarding6View: View {
                 } //: VSTACK
 
             }
+            .padding()
 
             Spacer()
 
 
 
 
-        } //: VSTACK
+        } //: SCROLL VIEW 
     }
 }
 
