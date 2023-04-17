@@ -71,8 +71,8 @@
 		7CCCEFC029B7CCCA00E27BAA /* ShopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCEFBF29B7CCCA00E27BAA /* ShopsView.swift */; };
 		7CCCEFC529B7CD2E00E27BAA /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCEFC429B7CD2E00E27BAA /* WalletView.swift */; };
 		7CD02CCE29E48E81001FBDB1 /* PayOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD02CCD29E48E81001FBDB1 /* PayOptionView.swift */; };
-		7CD02CD029E490CF001FBDB1 /* PayWithTrustWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD02CCF29E490CF001FBDB1 /* PayWithTrustWalletView.swift */; };
 		7CD78BF5299DE8C8002E01E1 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD78BF4299DE8C8002E01E1 /* PasswordView.swift */; };
+		7CD872CD29ECFDF900637AEE /* PayWithMetaMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD872CC29ECFDF900637AEE /* PayWithMetaMaskView.swift */; };
 		7CEAA1AB29EB0D7F0004A06D /* Step2CompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEAA1AA29EB0D7F0004A06D /* Step2CompleteView.swift */; };
 		7CEB24D729BE53CF00018FB2 /* PendingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEB24D629BE53CF00018FB2 /* PendingOrder.swift */; };
 		7CEDCD1429BBB4B700C70EF5 /* PersonalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEDCD1329BBB4B700C70EF5 /* PersonalView.swift */; };
@@ -164,8 +164,8 @@
 		7CCCEFBF29B7CCCA00E27BAA /* ShopsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsView.swift; sourceTree = "<group>"; };
 		7CCCEFC429B7CD2E00E27BAA /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
 		7CD02CCD29E48E81001FBDB1 /* PayOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayOptionView.swift; sourceTree = "<group>"; };
-		7CD02CCF29E490CF001FBDB1 /* PayWithTrustWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWithTrustWalletView.swift; sourceTree = "<group>"; };
 		7CD78BF4299DE8C8002E01E1 /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
+		7CD872CC29ECFDF900637AEE /* PayWithMetaMaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWithMetaMaskView.swift; sourceTree = "<group>"; };
 		7CEAA1AA29EB0D7F0004A06D /* Step2CompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step2CompleteView.swift; sourceTree = "<group>"; };
 		7CEB24D629BE53CF00018FB2 /* PendingOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOrder.swift; sourceTree = "<group>"; };
 		7CEDCD1329BBB4B700C70EF5 /* PersonalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalView.swift; sourceTree = "<group>"; };
@@ -340,7 +340,7 @@
 				7CB5F3DE29DCE6C600A13A2B /* PaySubView.swift */,
 				7C37106129E1EC7D00EC4E07 /* PopUpView.swift */,
 				7CD02CCD29E48E81001FBDB1 /* PayOptionView.swift */,
-				7CD02CCF29E490CF001FBDB1 /* PayWithTrustWalletView.swift */,
+				7CD872CC29ECFDF900637AEE /* PayWithMetaMaskView.swift */,
 			);
 			path = "Consumer Views";
 			sourceTree = "<group>";
@@ -548,7 +548,6 @@
 				7C86262F29B8114100919213 /* AddItemCell.swift in Sources */,
 				7C45EC5D299B32B200F3B439 /* UserService.swift in Sources */,
 				7C429A6529EA073D00C3E2D3 /* FinishSetupBox.swift in Sources */,
-				7CD02CD029E490CF001FBDB1 /* PayWithTrustWalletView.swift in Sources */,
 				7C86262B29B7F86000919213 /* ItemCell.swift in Sources */,
 				7C45EC46299B2D5F00F3B439 /* SignUpViewTwo.swift in Sources */,
 				7C45EC20299B26B300F3B439 /* PareApp.swift in Sources */,
@@ -574,6 +573,7 @@
 				7CF74DD1299C738D002B2BB9 /* SignUpViewFour.swift in Sources */,
 				7C86262429B7E88600919213 /* ShopCell.swift in Sources */,
 				7CA914BF299DB9790006ED5B /* UserCheck.swift in Sources */,
+				7CD872CD29ECFDF900637AEE /* PayWithMetaMaskView.swift in Sources */,
 				7CC4189E29C16F1A004CE58B /* OrderItem.swift in Sources */,
 				7C0439E229B938930037EE72 /* Shop.swift in Sources */,
 				7CEAA1AB29EB0D7F0004A06D /* Step2CompleteView.swift in Sources */,

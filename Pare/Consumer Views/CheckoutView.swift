@@ -215,7 +215,17 @@ struct CheckoutView: View {
 
                 } else {
 
-                    NavigationLink(destination: PaySubView(shop: shop, rewards: rewards, rootIsActive: $rootActive, noteText: noteText)){
+//                    NavigationLink(destination: PaySubView(shop: shop, rewards: rewards, rootIsActive: $rootActive, noteText: noteText)){
+//
+//                        Text("Pay")
+//                            .foregroundColor(Color.white)
+//                            .background(
+//                                RoundedRectangle(cornerRadius: 8,  style: .continuous)
+//                                    .fill(Color.accentColor)
+//                                    .frame(width: 300, height: 50)
+//                            )
+//                    }
+                    NavigationLink(destination: PayOptionView(shop: shop, rewards: rewards, rootIsActive: $rootActive, noteText: noteText)){
 
                         Text("Pay")
                             .foregroundColor(Color.white)

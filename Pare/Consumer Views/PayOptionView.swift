@@ -33,7 +33,9 @@ struct PayOptionView: View {
             VStack(spacing: 5){
 
                 NavigationLink {
-                    PayWithTrustWalletView()
+
+                    // Navigate to trust wallet view
+                    PaySubView(shop: shop, rewards: rewards, rootIsActive: $rootIsActive, noteText: noteText)
                 } label: {
                     HStack{
 
@@ -60,14 +62,17 @@ struct PayOptionView: View {
 
 
                 NavigationLink {
-                    PaySubView(shop: shop, rewards: rewards, rootIsActive: $rootIsActive, noteText: noteText)
+
+                    PayWithMetaMaskView(shop: shop, rewards: rewards, rootIsActive: $rootIsActive, noteText: noteText)
+
+//                    PaySubView(shop: shop, rewards: rewards, rootIsActive: $rootIsActive, noteText: noteText)
                 } label: {
                     HStack{
 
                         HStack {
                             Image(systemName: "bitcoinsign.circle.fill")
                                 .foregroundColor(Color.orange)
-                            Text("Other Wallet")
+                            Text("MetaMask")
                                 .foregroundColor(Color.black)
 
                         } //: HSTACK
