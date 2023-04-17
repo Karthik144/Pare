@@ -41,7 +41,7 @@ struct Step1Onboarding2View: View {
 
                     HStack{
 
-                        Text("Trust Wallet")
+                        Text("Trust Wallet (Preferred)")
                             .fontWeight(.bold)
                             .padding(.top)
                             .padding(.leading)
@@ -53,7 +53,7 @@ struct Step1Onboarding2View: View {
 
                     HStack{
 
-                        Text("Requires you to load a minimum of $30. But will integrate well with Pare in 3 days.")
+                        Text("Requires you to load a minimum of $30.")
                             .padding(.leading)
                             .padding(.trailing)
 

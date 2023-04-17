@@ -40,19 +40,19 @@ struct Step2Onboarding4View: View {
                         .padding()
                         .font(.title3)
 
-                } else {
+                } /*else {
 
                     Text("Select whichever provider offers the highest rate (MoonPay or Banxa)")
                         .padding()
                         .font(.title3)
-                }
+                }*/
 
                 Spacer()
             } //: HSTACK
 
             HStack{
 
-                Text("You'll then be prompted to enter personal info to verify your identity. So think of it as setting up a Venmo account.")
+                Text("You'll then be prompted to enter personal info to verify your identity.")
                     .padding()
                     .font(.title3)
 

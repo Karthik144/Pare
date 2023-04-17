@@ -51,6 +51,7 @@ struct Step2Onboarding2View: View {
             HStack{
 
                 Text("It's important that you select this exact version of USDC.")
+                    .bold()
                     .padding()
                 
                 Spacer()
