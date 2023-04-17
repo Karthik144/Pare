@@ -48,12 +48,6 @@ struct Step1Onboarding5View: View {
 
                 if trust == true {
 
-                    Text("We've found this to be the safest way. But you're open to backup to iCloud.")
-                        .lineLimit(3)
-                        .padding(.leading)
-                        .padding(.trailing)
-                        .padding(.top)
-
                 } else {
 
                     Text("This increases the security of your wallet.")

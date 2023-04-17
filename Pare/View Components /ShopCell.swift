@@ -101,7 +101,6 @@ struct ShopCell: View {
             locationManager.updateLocation()
             locationManager.getDistance { distance in
                 if let distance = distance {
-                    print("Distance: \(distance) miles")
                     distanceFuck = distance
                     // Use the distance value here
                 } else {

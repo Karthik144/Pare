@@ -32,8 +32,7 @@ struct Step1Onboarding1View: View {
                     } //: HSTACK
 
                     HStack{
-
-                        Text("Think of your wallet like Venmo. You can load money into it.")
+                        Text("Think of your wallet as the most secure way to hold digital cash")
                             .font(.title3)
                             .padding()
 
@@ -41,7 +40,7 @@ struct Step1Onboarding1View: View {
 
                     } //: HSTACK
 
-
+                    
                     HStack{
 
                         Text("When you load money into it, you're purchasing digital cash called USDC. Each USDC coin is equal to $1.")
@@ -53,20 +52,20 @@ struct Step1Onboarding1View: View {
 
                     } //: HSTACK
 
-//                    HStack{
-//
-//                        Text("It's like digital cash and it allows us to offer you the higest rewards and the lowest prices.")
-//                            .font(.title3)
-//                            .padding()
-//
-//                        Spacer()
-//
-//                    } //: HSTACK
 
+                    /*
                     HStack{
 
+                        Text("It's like digital cash and it allows us to offer you the higest rewards and the lowest prices.")
+                            .font(.title3)
+                            .padding()
 
-                        Text("Once you set up your wallet and load money into it, you can start spending on Pare and earning rewards.")
+                        Spacer()
+
+                    } //: HSTACK*/
+
+                    HStack{
+                        Text("You only need to set up your wallet once. After that you can easily spend with Pare.")
                             .font(.title3)
                             .padding()
 
