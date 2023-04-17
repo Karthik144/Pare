@@ -44,7 +44,7 @@ struct Step1Onboarding1View: View {
 
                     HStack{
 
-                        Text("When you load money into it, you're purchasing a stable coin called USDC. Each USDC coin is equal to $1.")
+                        Text("When you load money into it, you're purchasing digital cash called USDC. Each USDC coin is equal to $1.")
                             .font(.title3)
                             .padding()
 
@@ -53,17 +53,18 @@ struct Step1Onboarding1View: View {
 
                     } //: HSTACK
 
+//                    HStack{
+//
+//                        Text("It's like digital cash and it allows us to offer you the higest rewards and the lowest prices.")
+//                            .font(.title3)
+//                            .padding()
+//
+//                        Spacer()
+//
+//                    } //: HSTACK
+
                     HStack{
 
-                        Text("It's like digital cash and it allows us to offer you the higest rewards and the lowest prices.")
-                            .font(.title3)
-                            .padding()
-
-                        Spacer()
-
-                    } //: HSTACK
-
-                    HStack{
 
                         Text("Once you set up your wallet and load money into it, you can start spending on Pare and earning rewards.")
                             .font(.title3)
