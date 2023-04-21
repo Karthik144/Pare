@@ -361,14 +361,14 @@ struct ShopItemView: View {
                 dateFormatter.dateFormat = "HH:mm"
                 date = dateFormatter.string(from: Date())
                 dayOfWeek = calendar.component(.weekday, from: Date())
-                if appearTotal<1{
+                if appearTotal == 0 {
 
                     viewModel.fetchShopMenu(withUID: shop.id ?? "") { menuItems in
                         self.totalMenuItems = menuItems
-                        lunch = []
-                        vegetarian = []
-                        appetizers = []
-                        entrees = []
+//                        lunch = []
+//                        vegetarian = []
+//                        appetizers = []
+//                        entrees = []
                         for each in totalMenuItems{
 
                             if each.type.contains("Veg"){
