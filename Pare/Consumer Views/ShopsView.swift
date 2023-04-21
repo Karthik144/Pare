@@ -174,7 +174,9 @@ struct ShopsView: View {
 //                            }
 
                         } //: FOR EACH
-
+                        .onAppear{
+                            print(self.totalShops)
+                        }
                     } //: LAZYVSTACK
                     
 

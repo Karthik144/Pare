@@ -71,6 +71,8 @@ struct SignUpViewThree: View {
                             .font(.title3)
                             .fontWeight(.bold)
                             .modifier(NextButtonModifier())
+                            .frame(width:200)
+
                     }
 
 

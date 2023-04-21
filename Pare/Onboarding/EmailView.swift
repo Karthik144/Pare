@@ -49,6 +49,7 @@ struct EmailView: View {
                                     .font(.title3)
                                     .fontWeight(.bold)
                                     .modifier(NextButtonModifier())
+                                    .frame(width: 250)
                             })
 
                         } else {
@@ -61,6 +62,7 @@ struct EmailView: View {
                                     .font(.title3)
                                     .fontWeight(.bold)
                                     .modifier(NextButtonModifier())
+                                    .frame(width: 250)
                             })
                         }
 

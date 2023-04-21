@@ -56,8 +56,9 @@ struct PasswordView: View {
                             .font(.title3)
                             .fontWeight(.bold)
                             .modifier(NextButtonModifier())
+                            .frame(width: 250)
                     })
-
+                
 
                 } //: VSTACK
                 .padding()

@@ -32,7 +32,7 @@ struct Step1Onboarding1View: View {
                     } //: HSTACK
 
                     HStack{
-                        Text("Think of your wallet as the most secure way to hold digital cash")
+                        Text("Think of your wallet as the most secure way to hold digital assets")
                             .font(.title3)
                             .padding()
 
