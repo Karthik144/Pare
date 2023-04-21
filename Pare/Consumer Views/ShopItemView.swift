@@ -306,7 +306,7 @@ struct ShopItemView: View {
                                 .fontWeight(.medium)
                                 .font(.title3)
                                 .padding()
-                                //.disabled(true)
+                                .disabled(true)
                             }
                         }
                     }//:VStack
