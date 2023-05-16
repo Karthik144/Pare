@@ -35,9 +35,6 @@ struct ShopItemView: View {
     var sundayOpen = "12:00"
 
 
-
-
-
     @Binding var rootIsActive: Bool 
     
     let shop: Shop
@@ -87,6 +84,8 @@ struct ShopItemView: View {
                             } //: HStack
 
                         }//: HStack
+
+                        // Shop status - Closed or Open Now
                         VStack{
                             if((dayOfWeek ?? 0) == 7 || (date ?? "" > closingTime) || (date ?? "" < openingTime) ){
                                 Text("Closed")
@@ -113,6 +112,8 @@ struct ShopItemView: View {
 
                 ScrollView {
 
+
+                    // Appetizers drop down
                     if appetizers.count >= 1 {
 
                         DisclosureGroup {
@@ -144,10 +145,9 @@ struct ShopItemView: View {
                         .fontWeight(.medium)
                         .font(.title3)
                         .padding()
-
-
                     }
 
+                    // Vegetarian drop down
                     if vegetarian.count >= 1 {
 
                         DisclosureGroup {
@@ -185,6 +185,7 @@ struct ShopItemView: View {
 
                     }
 
+                    // Main entrees drop down
                     if entrees.count >= 1 {
 
                         DisclosureGroup {
@@ -222,94 +223,50 @@ struct ShopItemView: View {
                         .font(.title3)
                         .padding()
                     }
-                    
+
+                    //                        //Show Lunch Special for Sunday, 12-4pm OR Lunch Special for Mon-Fri, 11-4pm
+
+                    if checkIfLunchSpecialValid(){
+
+                        if lunch.count >= 1 {
+
+                            DisclosureGroup {
+
+                                VStack(alignment: .leading){
+                                    ForEach(lunch) { item in
+
+                                        NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+                                        ) {
+                                            ItemCell(item: item)
+                                        }
+
+                                    } //: FOR EACH
+                                } //: VSTACK
+
+                            } label: {
+
+                                HStack{
+
+                                    Image("GlowingStar")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 30, height: 30)
+
+                                    Text("Lunch Specials")
+
+                                }
+
+                            }
+                            .accentColor(Color.black)
+                            .fontWeight(.medium)
+                            .font(.title3)
+                            .padding()
+                        }
+
+                    } //: ONLY SHOW DROP DOWN IF LUNCH SPECIAL HOURS
+
                     Spacer()
-                    
-                    VStack{
-                        //Show Lunch Special for Sunday, 12-4pm OR Lunch Special for Mon-Fri, 11-4pm
-                        if ((dayOfWeek ?? 0 == 1) && (date ?? "" < "12:00") && (date ?? "" > "04:00") || (dayOfWeek ?? 0 > 1 && dayOfWeek ?? 0 < 7) && (date ?? "" < "11:00") && (date ?? "" > "04:00")){
-                            if lunch.count >= 1 {
 
-                                DisclosureGroup {
-
-                                    VStack(alignment: .leading){
-                                        ForEach(lunch) { item in
-
-                                            NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
-                                            ) {
-                                                ItemCell(item: item)
-        //                                            .padding(.leading, 15)
-        //                                            .padding(.trailing, 15)
-                                            }
-
-
-                                        } //: FOR EACH
-                                    } //: VSTACK
-
-                                } label: {
-
-                                    HStack{
-
-                                        Image("GlowingStar")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 30, height: 30)
-
-                                        Text("Lunch Special \n \n Comes with entree, eggroll, soda/water for just $10.05!")
-
-                                    }
-
-                                }
-                                .accentColor(Color.black)
-                                .fontWeight(.medium)
-                                .font(.title3)
-                                .padding()
-                            }
-                            
-                        }
-
-                        else{
-                            if lunch.count >= 1 {
-
-                                DisclosureGroup {
-
-                                    VStack(alignment: .leading){
-                                        ForEach(lunch) { item in
-
-                                            NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
-                                            ) {
-                                                ItemCell(item: item)
-        //                                            .padding(.leading, 15)
-        //                                            .padding(.trailing, 15)
-                                            }
-                                            
-
-
-                                        } //: FOR EACH
-                                    } //: VSTACK
-
-                                } label: {
-
-                                    HStack{
-
-                                        Image("GlowingStar")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 30, height: 30)
-
-                                        Text("Lunch Special(11am-4pm) \n \n Comes with entree, eggroll, soda/water for just $10.05!")
-
-                                    }
-
-                                }
-                                .accentColor(Color.black)
-                                .fontWeight(.medium)
-                                .font(.title3)
-                                .padding()
-                                .disabled(true)
-                            }
-                        }
-                    }//:VStack
 
                 } //: SCROLL VIEW
 
@@ -361,14 +318,19 @@ struct ShopItemView: View {
                 dateFormatter.dateFormat = "HH:mm"
                 date = dateFormatter.string(from: Date())
                 dayOfWeek = calendar.component(.weekday, from: Date())
+
                 if appearTotal == 0 {
+
+                    // Empty everything - for testing
+//                    totalMenuItems = []
+//                    vegetarian = []
+//                    appetizers = []
+//                    lunch = []
+//                    entrees = []
 
                     viewModel.fetchShopMenu(withUID: shop.id ?? "") { menuItems in
                         self.totalMenuItems = menuItems
-//                        lunch = []
-//                        vegetarian = []
-//                        appetizers = []
-//                        entrees = []
+
                         for each in totalMenuItems{
 
                             if each.type.contains("Veg"){
@@ -384,6 +346,7 @@ struct ShopItemView: View {
 
                                 lunch.append(each)
                             }
+
                             else{
                                 entrees.append(each)
                             }
@@ -396,7 +359,7 @@ struct ShopItemView: View {
 
                     appearTotal += 1
 
-                }
+                } //: IF APPEAR = 0
 
             } //: ON APPEAR 
 
@@ -445,7 +408,8 @@ struct ShopItemView: View {
                             } //: HStack
 
                         }//: HStack
-                        
+
+                        // Status of shop - Open Now or Closed
                         if((dayOfWeek ?? 0) == 7 || (date ?? "" > closingTime) || (date ?? "" < openingTime) ){
                             Text("Closed")
                                 .foregroundColor(Color.red)
@@ -471,6 +435,7 @@ struct ShopItemView: View {
 
                 ScrollView {
 
+                    // Appetizers drop down
                     if appetizers.count >= 1 {
 
                         DisclosureGroup {
@@ -501,10 +466,9 @@ struct ShopItemView: View {
                         .accentColor(Color.black)
                         .font(.title3)
                         .padding()
+                    } //: IF APPETIZERS
 
-
-                    }
-
+                    // Vegetarian dishes dropdown
                     if vegetarian.count >= 1 {
 
                         DisclosureGroup {
@@ -540,6 +504,7 @@ struct ShopItemView: View {
                         .padding()
 
                     }
+
 
                     if entrees.count >= 1 {
 
@@ -681,6 +646,34 @@ struct ShopItemView: View {
 
 
     } //: VIEW
+
+    func checkIfLunchSpecialValid() -> Bool{
+
+        guard let dayOfWeek = dayOfWeek else {
+            print("ERROR: dayOfWeek is nil")
+            return false
+        }
+
+        guard let date = date else {
+            print("ERROR: date is nil")
+            return false
+        }
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let currentTime = dateFormatter.string(from: Date())
+
+        // Check if it's Sunday between 12-4pm or Monday to Friday between 11-4pm
+        if (dayOfWeek == 1 && currentTime >= "12:00" && currentTime <= "16:00") ||
+            (dayOfWeek > 1 && dayOfWeek < 7 && currentTime >= "11:00" && currentTime <= "16:00") {
+            print("TRUE - LUNCH SPECIAL VALID")
+            return true
+        }
+
+        print("FALSE")
+        return false
+
+    } //: FUNC CHECK IF LUNCH SPECIAL VALID 
 
 }
 
