@@ -35,56 +35,67 @@ struct WelcomeView: View {
 extension WelcomeView {
     var mainWelcomeView: some View {
         NavigationView {
-            VStack(alignment: .center) {
 
-                Spacer()
+            TabView(){
 
-                VStack(spacing: 12){
+                Benefit1View()
 
-                    Text("Pare")
-                        .font(.largeTitle)
-                        .fontWeight(.heavy)
-                        .offset(y:-50)
-                    Text("Earn rewards every time you spend.")
-                        .font(.body)
-                        .offset(y:-50)
+                Text("Second")
+            }
+            .tabViewStyle(.page)
+            .indexViewStyle(.page(backgroundDisplayMode: .always))
 
-                    HStack{
 
-                        Spacer()
-
-                        // Log in button
-                        NavigationLink(destination: {
-                            EmailView(login: true)
-                        }, label: {
-                            Text("Login")
-                                .font(.title3)
-                                .fontWeight(.bold)
-                                .modifier(StartButtonModifier())
-                        })
-
-                        Spacer()
-
-                        // Sign up button 
-                        NavigationLink(destination: {
-                            EmailView(login: false)
-                        }, label: {
-                            Text("Sign Up")
-                                .font(.title3)
-                                .fontWeight(.bold)
-                                .modifier(StartButtonModifier())
-                        })
-
-                        Spacer()
-
-                    }
-                    
-                } //: VSTACK
-
-                Spacer()
-
-            } //: VSTACK
-            .tint(Color.white)
+//            VStack(alignment: .center) {
+//
+//                Spacer()
+//
+//                VStack(spacing: 12){
+//
+//                    Text("Pare")
+//                        .font(.largeTitle)
+//                        .fontWeight(.heavy)
+//                        .offset(y:-50)
+//                    Text("Earn rewards every time you spend.")
+//                        .font(.body)
+//                        .offset(y:-50)
+//
+//                    HStack{
+//
+//                        Spacer()
+//
+//                        // Log in button
+//                        NavigationLink(destination: {
+//                            EmailView(login: true)
+//                        }, label: {
+//                            Text("Login")
+//                                .font(.title3)
+//                                .fontWeight(.bold)
+//                                .modifier(StartButtonModifier())
+//                        })
+//
+//                        Spacer()
+//
+//                        // Sign up button
+//                        NavigationLink(destination: {
+//                            EmailView(login: false)
+//                        }, label: {
+//                            Text("Sign Up")
+//                                .font(.title3)
+//                                .fontWeight(.bold)
+//                                .modifier(StartButtonModifier())
+//                        })
+//
+//                        Spacer()
+//
+//                    }
+//
+//                } //: VSTACK
+//
+//                Spacer()
+//
+//            } //: VSTACK
+//            .tint(Color.white)
 
         } //: NAVVIEW
         .tint(Color.white)

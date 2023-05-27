@@ -76,6 +76,7 @@
 		7CEAA1AB29EB0D7F0004A06D /* Step2CompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEAA1AA29EB0D7F0004A06D /* Step2CompleteView.swift */; };
 		7CEB24D729BE53CF00018FB2 /* PendingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEB24D629BE53CF00018FB2 /* PendingOrder.swift */; };
 		7CEDCD1429BBB4B700C70EF5 /* PersonalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEDCD1329BBB4B700C70EF5 /* PersonalView.swift */; };
+		7CEEF6622A226D7C00C11C65 /* Benefit1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEEF6612A226D7C00C11C65 /* Benefit1View.swift */; };
 		7CF74DC7299C620C002B2BB9 /* GetStartedButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF74DC6299C620B002B2BB9 /* GetStartedButtonModifier.swift */; };
 		7CF74DC9299C638F002B2BB9 /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF74DC8299C638F002B2BB9 /* EmailView.swift */; };
 		7CF74DCD299C65A4002B2BB9 /* NextButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF74DCC299C65A4002B2BB9 /* NextButtonModifier.swift */; };
@@ -169,6 +170,7 @@
 		7CEAA1AA29EB0D7F0004A06D /* Step2CompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step2CompleteView.swift; sourceTree = "<group>"; };
 		7CEB24D629BE53CF00018FB2 /* PendingOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOrder.swift; sourceTree = "<group>"; };
 		7CEDCD1329BBB4B700C70EF5 /* PersonalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalView.swift; sourceTree = "<group>"; };
+		7CEEF6612A226D7C00C11C65 /* Benefit1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Benefit1View.swift; sourceTree = "<group>"; };
 		7CF74DC6299C620B002B2BB9 /* GetStartedButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedButtonModifier.swift; sourceTree = "<group>"; };
 		7CF74DC8299C638F002B2BB9 /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
 		7CF74DCC299C65A4002B2BB9 /* NextButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButtonModifier.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				7CF74DD0299C738D002B2BB9 /* SignUpViewFour.swift */,
 				7CCCEFBB29B7C1EC00E27BAA /* SignUpViewFive.swift */,
 				7CD78BF4299DE8C8002E01E1 /* PasswordView.swift */,
+				7CEEF6612A226D7C00C11C65 /* Benefit1View.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				7C97788329BAA68900F0C6C5 /* Required.swift in Sources */,
 				7C494B0529EAD8A5009D0015 /* Step1CompleteView.swift in Sources */,
 				7C494B0D29EADEFC009D0015 /* Step2Onboarding4View.swift in Sources */,
+				7CEEF6622A226D7C00C11C65 /* Benefit1View.swift in Sources */,
 				E9A3DA6C29DD96FF00F5A1D0 /* WalletConnect.swift in Sources */,
 				7C45BE0A29E4876A000DA45E /* VideoView.swift in Sources */,
 				7C429A6F29EA22DC00C3E2D3 /* Step1Onboarding6View.swift in Sources */,
