@@ -41,10 +41,10 @@ struct WalletView: View {
                     NavigationLink {
 
                         // Navigate to add funds view
+                        AddFundsView()
 
                     } label: {
-                        WalletOptionCell()
-
+                        WalletOptionCell(title: "Add funds", subTitle: "Buy more USDC")
                     }
                     .buttonStyle(PlainButtonStyle()) // Remove the accent highlight
 
@@ -53,9 +53,10 @@ struct WalletView: View {
                     NavigationLink {
                         
                         // Navigate to wallet info
+                        WalletInfoView()
 
                     } label: {
-                        WalletOptionCell()
+                        WalletOptionCell(title: "View wallet info", subTitle: "View your public address & more")
                     }
                     .buttonStyle(PlainButtonStyle()) // Remove the accent highlight
 
@@ -64,9 +65,10 @@ struct WalletView: View {
                     NavigationLink {
 
                         // Navigate to learn more
-
+                        LearnMoreView()
+                        
                     } label: {
-                        WalletOptionCell()
+                        WalletOptionCell(title: "Learn more", subTitle: "What is a Wallet? What USDC?")
                     }
                     .buttonStyle(PlainButtonStyle()) // Remove the accent highlight
 

@@ -49,7 +49,7 @@ struct CustomInputTextField: View {
                             .frame(width: 310, height: 65)
                     )
                     .frame(width: 310, height: 65, alignment: .center)
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color.black)
 
                 if strongPassword == false && confirmText == false {
                     Text(passwordStrength)
@@ -73,8 +73,8 @@ struct CustomInputTextField: View {
                             .frame(width: 310, height: 65)
                     )
                     .frame(width: 310, height: 65, alignment: .center)
-                    .foregroundColor(customColor)
-                
+                    .foregroundColor(Color.black)
+
             }
             
         }//: VSTACK

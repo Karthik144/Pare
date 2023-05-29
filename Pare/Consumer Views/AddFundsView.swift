@@ -67,6 +67,7 @@ struct AddFundsView: View {
             .padding(.bottom, 35)
 
         } //: VSTACK
+        .navigationBarTitle("")
     }
 }
 

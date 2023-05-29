@@ -10,6 +10,9 @@ import SwiftUI
 struct WalletOptionCell: View {
 
     // MARK: - PROPERTIES
+    let title: String
+    let subTitle: String
+//    let image: String
 
     // MARK: - BODY
     var body: some View {
@@ -26,11 +29,11 @@ struct WalletOptionCell: View {
             // Title + Description
             VStack(alignment: .leading){
 
-                Text("Add funds")
+                Text(title)
                     .font(.headline)
                     .fontWeight(.bold)
 
-                Text("Buy more USDC")
+                Text(subTitle)
                     .fontWeight(.light)
                     .font(.caption)
 
@@ -51,8 +54,8 @@ struct WalletOptionCell: View {
 
 
 // MARK: - PREVIEW
-struct WalletOptionCell_Previews: PreviewProvider {
-    static var previews: some View {
-        WalletOptionCell()
-    }
-}
+//struct WalletOptionCell_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WalletOptionCell()
+//    }
+//}

@@ -61,23 +61,23 @@ struct ProfileView: View {
                 //                Spacer()
 
 
-                if viewModel.currentUser?.wallet == false {
-
-                    Button {
-
-                        self.isActive = true
-
-                    } label: {
-                        FinishSetupBox()
-
-                    }
-                    .background(
-
-                        NavigationLink(destination: Step1Onboarding1View(isActive: $isActive),
-                                        isActive: $isActive) {EmptyView()}
-                    )
-
-                } //: IF STATEMENT 
+//                if viewModel.currentUser?.wallet == false {
+//
+//                    Button {
+//
+//                        self.isActive = true
+//
+//                    } label: {
+//                        FinishSetupBox()
+//
+//                    }
+//                    .background(
+//
+//                        NavigationLink(destination: Step1Onboarding1View(isActive: $isActive),
+//                                        isActive: $isActive) {EmptyView()}
+//                    )
+//
+//                } //: IF STATEMENT 
 
 
 

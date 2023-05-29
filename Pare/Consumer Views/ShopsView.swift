@@ -20,6 +20,7 @@ struct ShopsView: View {
     // MARK: - PROPERTIES
     @ObservedObject private var viewModel = ShopViewModel()
     @EnvironmentObject var appState: AppState
+    @EnvironmentObject var authViewModel: AuthViewModel
     @State var isViewActive: Bool = false
     @State private var orderScheduled = true
     @State private var showModal = false
@@ -124,7 +125,18 @@ struct ShopsView: View {
                         OrderStatusModalView(shop: "Yuanho Gao Chinese", address: "117 Maury Ave, Charlottesville, VA 22903", orderNumber: "#325", orderStatus: "In Progress", orderReady: $orderReady, showModal: $showModal)
                     }
 
-                }
+                } //: IF ORDER READY
+
+                if authViewModel.currentUser?.wallet == false {
+
+                    NavigationLink {
+                        AddFundsView()
+                    } label: {
+                        AddFundsCell()
+
+                    }
+
+                } //: IF WALLET NOT FULLY SETUP
 
 
                 HStack{

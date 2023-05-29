@@ -83,7 +83,7 @@ struct LearnMoreView: View {
 
         } //: VSTACK
         .padding()
-        .navigationTitle("Wallet Info")
+        .navigationTitle("Learn More")
         .navigationBarTitleDisplayMode(.inline)
 
 

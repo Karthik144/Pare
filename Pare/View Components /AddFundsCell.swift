@@ -59,7 +59,7 @@ struct AddFundsCell: View {
             } //: VSTACK
 
         } //: ZSTACK
-        .frame(width: 93, height: 340)
+        .frame(width: 340, height: 93)
     }
 }
 
