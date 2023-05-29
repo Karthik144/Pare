@@ -70,8 +70,10 @@ struct EmailView: View {
                                 .font(.title)
                                 .foregroundColor(customColor)
                                 .fontWeight(.heavy)
-                                .padding(.bottom, 10)
-
+                                .padding(.bottom)
+                                .padding(.top)
+                                .multilineTextAlignment(.center)
+                            
                             Spacer()
 
                         }
@@ -106,12 +108,14 @@ struct EmailView: View {
                                     .font(.title3)
                                     .fontWeight(.bold)
                                     .modifier(NextButtonModifier())
+                                    .frame(width: 230, height: 75)
                             } else {
 
                                 Text("Sign Up")
                                     .font(.title3)
                                     .fontWeight(.bold)
                                     .modifier(NextButtonModifier())
+                                    .frame(width: 230, height: 75)
                             }
 
                         })

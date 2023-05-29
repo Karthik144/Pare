@@ -75,6 +75,7 @@ extension WelcomeView {
                             .font(.title3)
                             .fontWeight(.bold)
                             .modifier(StartButtonModifier())
+                            .frame(width: 140)
                     })
                     .padding(.trailing, 20)
 
@@ -88,6 +89,7 @@ extension WelcomeView {
                             .font(.title3)
                             .fontWeight(.bold)
                             .modifier(StartButtonModifier())
+                            .frame(width: 140)
                     })
                     .padding(.leading, 20)
 

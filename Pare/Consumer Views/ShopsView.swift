@@ -210,6 +210,7 @@ struct ShopsView: View {
         .onAppear(){
 
             viewModel.fetchAllOrders{ orders in
+                print(orders)
                 for order in orders{
                     if (order.status == "ready" || order.status == "pending"){
                         self.pickUpTime = (orders[0].date_ordered).addingTimeInterval(20 * 60)

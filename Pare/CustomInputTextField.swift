@@ -43,12 +43,13 @@ struct CustomInputTextField: View {
                     self.strongPassword = passwordStrength.contains("Strong")
                     self.passwordMatchMessage = checkPasswordsMatch(text, confirmPassword)
                 })
+                .tint(customColor)
                     .background(
                         RoundedRectangle(cornerRadius: 25, style: .continuous)
                             .stroke(customColor, lineWidth: 1.5)
                             .frame(width: 310, height: 65)
                     )
-                    .frame(width: 310, height: 65, alignment: .center)
+                    .frame(width: 290, height: 65, alignment: .center)
                     .foregroundColor(Color.black)
 
                 if strongPassword == false && confirmText == false {
@@ -67,12 +68,13 @@ struct CustomInputTextField: View {
 
             } else {
                 TextField(placeholderText, text: $text)
+                    .tint(customColor)
                     .background(
                         RoundedRectangle(cornerRadius: 25, style: .continuous)
                             .stroke(customColor, lineWidth: 1.5)
                             .frame(width: 310, height: 65)
                     )
-                    .frame(width: 310, height: 65, alignment: .center)
+                    .frame(width: 290, height: 65, alignment: .center)
                     .foregroundColor(Color.black)
 
             }
