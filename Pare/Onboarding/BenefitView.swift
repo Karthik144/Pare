@@ -21,98 +21,217 @@ struct BenefitView: View {
     // MARK: - BODY
     var body: some View {
 
-        VStack(alignment: .leading, spacing: 5){
+        if #available(iOS 16.0, *) {
 
-            // Header
-            Text("Welcome to Pare")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.top)
+            VStack(alignment: .leading, spacing: 10){
+
+    //            // Header
+    //            Text("Welcome to Pare")
+    //                .font(.largeTitle)
+    //                .fontWeight(.bold)
+    //                .padding(.top)
+    //                .padding(.bottom)
+
+                // Benefit + Message
+                VStack(alignment: .leading){
+
+                    Text(benefitNumber)
+                        .padding(.top)
+                        .padding(.leading)
+                        .font(.title3)
+                        .foregroundColor(customColor)
+                        .fontWeight(.bold)
+
+
+                    Text(benefit)
+                        .lineLimit(2)
+                        .padding(.leading)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .font(.title)
+                        .fontWeight(.light)
+
+                    if subBenefit != "" {
+                        Text(subBenefit)
+                            .padding(.leading)
+                            .font(.callout)
+                            .fontWeight(.light)
+                    }
+
+
+                } //: VSTACK
                 .padding(.bottom)
 
-            // Benefit + Message
-            VStack(alignment: .leading){
 
-                Text(benefitNumber)
-                    .font(.title3)
-                    .foregroundColor(customColor)
-                    .fontWeight(.bold)
 
-                Text(benefit)
-                    .font(.title)
-                    .fontWeight(.light)
+                HStack{
 
-                if subBenefit != "" {
-                    Text(subBenefit)
-                        .font(.callout)
-                        .fontWeight(.light)
-                }
+                    Spacer()
 
+                    // Image
+                    Image(image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 280, height: 226, alignment: .center)
+
+                    Spacer()
+
+                } //: HSTACK
+                .padding()
+
+
+                HStack{
+
+                    Spacer()
+
+                    // Circle Indexes
+                    HStack(spacing: 8){
+
+                        Circle()
+                            .foregroundColor(Color.gray)
+                            .frame(width: 7, height: 7)
+
+                        Circle()
+                            .foregroundColor(Color.gray)
+                            .frame(width: 7, height: 7)
+                    } //: HSTACK
+
+                    Spacer()
+
+                } //: HSTACK
+                .padding()
+
+
+    //            // Buttons
+    //            HStack{
+    //
+    //                Spacer()
+    //
+    //                NavigationLink(destination: {
+    //                    EmailView(firstName: "", lastName: "", login: true)
+    //                }, label: {
+    //                    Text("Login")
+    //                        .font(.title3)
+    //                        .fontWeight(.bold)
+    //                        .modifier(StartButtonModifier())
+    //                })
+    //                .padding(.trailing, 20)
+    //
+    //                Spacer()
+    //
+    //                // Sign up button
+    //                NavigationLink(destination: {
+    //                    SignUpViewOne()
+    //                }, label: {
+    //                    Text("Sign Up")
+    //                        .font(.title3)
+    //                        .fontWeight(.bold)
+    //                        .modifier(StartButtonModifier())
+    //                })
+    //                .padding(.leading, 20)
+    //
+    //                Spacer()
+    //
+    //            } //: HSTACK
+    //            .padding()
+    //
+    //
+//                Spacer()
 
             } //: VSTACK
-            .padding(.top)
 
-            Spacer()
+        } else {
 
-            HStack{
+            VStack(alignment: .leading){
 
-                Spacer()
+    //            // Header
+    //            Text("Welcome to Pare")
+    //                .font(.largeTitle)
+    //                .fontWeight(.bold)
+    //                .padding(.top)
+    //                .padding(.bottom)
 
-                // Image
-                Image(image)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 260, height: 206, alignment: .center)
-                    .padding(.bottom)
-                    .padding(.leading)
-                    .padding(.trailing)
+                // Benefit + Message
+                VStack(alignment: .leading){
 
-                Spacer()
-
-            } //: HSTACK
-            .padding()
+                    Text(benefitNumber)
+                        .padding(.leading)
+                        .font(.title3.weight(.bold))
+                        .foregroundColor(customColor)
 
 
-            Spacer()
+                    Text(benefit)
+                        .padding(.leading)
+                        .font(.title.weight(.light))
 
-            // Buttons
-            HStack{
+                    if subBenefit != "" {
+                        Text(subBenefit)
+                            .padding(.leading)
+                            .font(.callout.weight(.light))
+                    }
 
-                Spacer()
 
-                NavigationLink(destination: {
-                    EmailView(firstName: "", lastName: "", login: true)
-                }, label: {
-                    Text("Login")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .modifier(StartButtonModifier())
-                })
-                .padding(.trailing, 20)
+                } //: VSTACK
 
                 Spacer()
 
-                // Sign up button
-                NavigationLink(destination: {
-                    SignUpViewOne()
-                }, label: {
-                    Text("Sign Up")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .modifier(StartButtonModifier())
-                })
-                .padding(.leading, 20)
+                HStack{
+
+                    Spacer()
+
+                    // Image
+                    Image(image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 260, height: 206, alignment: .center)
+
+                    Spacer()
+
+                } //: HSTACK
+
 
                 Spacer()
 
-            } //: HSTACK
-            .padding()
+    //            // Buttons
+    //            HStack{
+    //
+    //                Spacer()
+    //
+    //                NavigationLink(destination: {
+    //                    EmailView(firstName: "", lastName: "", login: true)
+    //                }, label: {
+    //                    Text("Login")
+    //                        .font(.title3)
+    //                        .fontWeight(.bold)
+    //                        .modifier(StartButtonModifier())
+    //                })
+    //                .padding(.trailing, 20)
+    //
+    //                Spacer()
+    //
+    //                // Sign up button
+    //                NavigationLink(destination: {
+    //                    SignUpViewOne()
+    //                }, label: {
+    //                    Text("Sign Up")
+    //                        .font(.title3)
+    //                        .fontWeight(.bold)
+    //                        .modifier(StartButtonModifier())
+    //                })
+    //                .padding(.leading, 20)
+    //
+    //                Spacer()
+    //
+    //            } //: HSTACK
+    //            .padding()
+    //
+    //
+    //            Spacer()
+
+            } //: VSTACK
 
 
-            Spacer()
+        }
 
-        } //: VSTACK
-        .padding()
 
 
     } //: VIEW

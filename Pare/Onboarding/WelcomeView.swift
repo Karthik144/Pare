@@ -36,18 +36,73 @@ extension WelcomeView {
     var mainWelcomeView: some View {
         NavigationView {
 
-            TabView(){
+            VStack(alignment: .leading){
 
-                // Benefit 1
-                BenefitView(benefitNumber: "BENEFIT #1", benefit: "Earn 10% cash back on each order", subBenefit: "", image: "benefit_1")
+                // Benefit slideshow
+                GeometryReader { proxy in
 
-                // Benefit 2
-                BenefitView(benefitNumber: "BENEFIT #2", benefit: "Lowest meal prices", subBenefit: "We don’t inflate menu prices like others...", image: "benefit_2")
+                    TabView(){
 
-            }
-            .tint(Color.white)
-            .tabViewStyle(.page)
-            .indexViewStyle(.page(backgroundDisplayMode: .always))
+                        // Benefit 1
+                        BenefitView(benefitNumber: "BENEFIT #1", benefit: "Earn 10% cash back on each order", subBenefit: "", image: "benefit_1")
+
+                        // Benefit 2
+                        BenefitView(benefitNumber: "BENEFIT #2", benefit: "Lowest meal prices", subBenefit: "We don’t inflate menu prices like others...", image: "benefit_2")
+
+                    }
+                    .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
+                    .tabViewStyle(PageTabViewStyle())
+//                    .tabViewStyle(PageTabViewStyle())
+                    .frame(width: proxy.size.width, height: (proxy.size.height) * 0.8)
+//                    .tabViewStyle(.page)
+//                    .indexViewStyle(.page(backgroundDisplayMode: .always))
+
+
+                } //: GEOMETRY READER
+
+                Spacer()
+
+                // Login + Signup Buttons
+                HStack{
+
+                    Spacer()
+
+                    NavigationLink(destination: {
+                        EmailView(firstName: "", lastName: "", login: true)
+                    }, label: {
+                        Text("Login")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .modifier(StartButtonModifier())
+                    })
+                    .padding(.trailing, 20)
+
+                    Spacer()
+
+                    // Sign up button
+                    NavigationLink(destination: {
+                        SignUpViewOne()
+                    }, label: {
+                        Text("Sign Up")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .modifier(StartButtonModifier())
+                    })
+                    .padding(.leading, 20)
+
+                    Spacer()
+
+                } //: HSTACK
+                .padding()
+
+
+                Spacer(minLength: 70)
+
+            } //: VSTACK
+            .navigationTitle("Welcome to Pare")
+            .navigationBarTitleDisplayMode(.large)
+
+
 
 
 //            VStack(alignment: .center) {
