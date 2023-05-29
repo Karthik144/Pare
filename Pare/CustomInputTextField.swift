@@ -18,6 +18,7 @@ struct CustomInputTextField: View {
     let title: String
     let bottomMessage: String
     let confirmText: Bool?
+    let customColor = Color(red: 215/255, green: 215/255, blue: 215/255)
     @Binding var text: String
     @Binding var confirmPassword: String
     @State var passwordStrength = ""
@@ -36,6 +37,7 @@ struct CustomInputTextField: View {
                     .foregroundColor(Color.white)
                     .font(.callout)
                     .bold()
+
                 SecureField(placeholderText, text: $text, onCommit: {
                     self.passwordStrength = checkPasswordStrength(password: text)
                     self.strongPassword = passwordStrength.contains("Strong")
@@ -43,7 +45,7 @@ struct CustomInputTextField: View {
                 })
                     .background(
                         RoundedRectangle(cornerRadius: 25, style: .continuous)
-                            .stroke(Color.white, lineWidth: 1.5)
+                            .stroke(customColor, lineWidth: 1.5)
                             .frame(width: 310, height: 65)
                     )
                     .frame(width: 310, height: 65, alignment: .center)
@@ -67,11 +69,11 @@ struct CustomInputTextField: View {
                 TextField(placeholderText, text: $text)
                     .background(
                         RoundedRectangle(cornerRadius: 25, style: .continuous)
-                            .stroke(Color.white, lineWidth: 1.5)
+                            .stroke(customColor, lineWidth: 1.5)
                             .frame(width: 310, height: 65)
                     )
                     .frame(width: 310, height: 65, alignment: .center)
-                    .foregroundColor(Color.white)
+                    .foregroundColor(customColor)
                 
             }
             

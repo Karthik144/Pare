@@ -13,17 +13,13 @@ struct SignUpViewOne: View {
     @State private var firstName = ""
     @ObservedObject var keyboardResponder = KeyboardResponder()
 
+    let customColor = Color(
+        red: Double(0x2B) / 255,
+        green: Double(0x4A) / 255,
+        blue: Double(0xEE) / 255,
+        opacity: 1.0
+    )
 
-    init() {
-        let appearance = UINavigationBarAppearance()
-
-        appearance.configureWithOpaqueBackground() // configure
-
-        let backItemAppearance = UIBarButtonItemAppearance()
-        backItemAppearance.normal.titleTextAttributes = [.foregroundColor : UIColor.white] // fix text color
-        appearance.backButtonAppearance = backItemAppearance
-        UINavigationBar.appearance().tintColor = .white
-    }
 
 
     // MARK: - BODY
@@ -31,7 +27,8 @@ struct SignUpViewOne: View {
 
         ZStack{
 
-            Color(red: 0.167, green: 0.29, blue: 0.933).ignoresSafeArea()
+//            Color(red: 0.167, green: 0.29, blue: 0.933).ignoresSafeArea()
+            Color(red: 1.0, green: 1.0, blue: 1.0).ignoresSafeArea()
 
             VStack{
 
@@ -42,7 +39,8 @@ struct SignUpViewOne: View {
                     // Progress View
                     Text("Step 1/3")
                         .font(.subheadline)
-                        .foregroundColor(Color.white)
+//                        .foregroundColor(Color.white)
+                        .foregroundColor(Color.gray)
 //                        .padding(.bottom, 15)
                         .padding()
 
@@ -53,8 +51,8 @@ struct SignUpViewOne: View {
                         Spacer()
 
                         Text("What's your first name?")
-                            .font(.largeTitle)
-                            .foregroundColor(Color.white)
+                            .font(.title)
+                            .foregroundColor(customColor)
                             .fontWeight(.heavy)
                             .padding(.bottom)
                             .padding(.top)
@@ -94,7 +92,7 @@ struct SignUpViewOne: View {
             .accentColor(Color.white)
             .offset(y: -keyboardResponder.currentHeight * 0.1)
         } //: ZSTACK
-        .tint(Color.white)
+//        .tint(Color.white)
 
     }
 }

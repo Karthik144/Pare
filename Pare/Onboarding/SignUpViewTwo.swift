@@ -17,12 +17,20 @@ struct SignUpViewTwo: View {
 
     let firstName: String
 
+    let customColor = Color(
+        red: Double(0x2B) / 255,
+        green: Double(0x4A) / 255,
+        blue: Double(0xEE) / 255,
+        opacity: 1.0
+    )
+
     // MARK: - BODY
     var body: some View {
 
         ZStack{
 
-            Color(red: 0.167, green: 0.29, blue: 0.933).ignoresSafeArea()
+//            Color(red: 0.167, green: 0.29, blue: 0.933).ignoresSafeArea()
+            Color(red: 1.0, green: 1.0, blue: 1.0).ignoresSafeArea()
 
             VStack{
 
@@ -33,7 +41,7 @@ struct SignUpViewTwo: View {
                     // Progress View
                     Text("Step 2/3")
                         .font(.subheadline)
-                        .foregroundColor(Color.white)
+                        .foregroundColor(Color.gray)
 //                        .padding(.bottom, 15)
                         .padding()
 
@@ -45,12 +53,11 @@ struct SignUpViewTwo: View {
                         Spacer()
 
                         Text("What's your last name?")
-                            .font(.largeTitle)
-                            .foregroundColor(Color.white)
+                            .font(.title)
+                            .foregroundColor(customColor)
                             .fontWeight(.heavy)
                             .padding(.bottom, 10)
                             .multilineTextAlignment(.center)
-
 
                         Spacer()
 

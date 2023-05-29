@@ -50,8 +50,9 @@ extension WelcomeView {
                         BenefitView(benefitNumber: "BENEFIT #2", benefit: "Lowest meal prices", subBenefit: "We don’t inflate menu prices like others...", image: "benefit_2")
 
                     }
-                    .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
-                    .tabViewStyle(PageTabViewStyle())
+                    .tabViewStyle(.page(indexDisplayMode: .never))  // <--- here
+//                    .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
+//                    .tabViewStyle(PageTabViewStyle())
 //                    .tabViewStyle(PageTabViewStyle())
                     .frame(width: proxy.size.width, height: (proxy.size.height) * 0.8)
 //                    .tabViewStyle(.page)
@@ -157,7 +158,7 @@ extension WelcomeView {
 //            .tint(Color.white)
 
         } //: NAVVIEW
-        .tint(Color.white)
+//        .tint(Color.white)
 
 
 

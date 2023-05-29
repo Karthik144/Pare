@@ -14,6 +14,13 @@ struct SignUpViewThree: View {
     let lastName: String
     let email: String
 
+    let customColor = Color(
+        red: Double(0x2B) / 255,
+        green: Double(0x4A) / 255,
+        blue: Double(0xEE) / 255,
+        opacity: 1.0
+    )
+
     @EnvironmentObject var viewModel: AuthViewModel
 
     @ObservedObject var keyboardResponder = KeyboardResponder()
@@ -28,7 +35,9 @@ struct SignUpViewThree: View {
 
         ZStack{
 
-            Color(red: 0.167, green: 0.29, blue: 0.933).ignoresSafeArea()
+//            Color(red: 0.167, green: 0.29, blue: 0.933).ignoresSafeArea()
+            Color(red: 1.0, green: 1.0, blue: 1.0).ignoresSafeArea()
+
 
             VStack{
 
@@ -40,7 +49,7 @@ struct SignUpViewThree: View {
                     HStack{
                         Text("Step 3/3")
                             .font(.subheadline)
-                            .foregroundColor(Color.white)
+                            .foregroundColor(Color.gray)
                             .padding(.bottom, 15)
                     }
                     .offset(y:-keyboardResponder.currentHeight)
@@ -51,7 +60,7 @@ struct SignUpViewThree: View {
 
                         Text("Create a password.")
                             .font(.largeTitle)
-                            .foregroundColor(Color.white)
+                            .foregroundColor(customColor)
                             .fontWeight(.heavy)
                             .padding(.bottom, 10)
                             .multilineTextAlignment(.center)
