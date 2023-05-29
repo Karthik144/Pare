@@ -20,6 +20,7 @@ struct ContentView: View {
     var body: some View {
 
         TabView(selection: $selection) {
+
             ProfileView().tabItem({
                 Image(systemName: "person.circle")
                 Text("Profile")
@@ -31,21 +32,18 @@ struct ContentView: View {
                 Text("Order")
             })
             .tag(2)
-            /*
+
             WalletView().tabItem({
                 Image(systemName: "wallet.pass.fill")
                 Text("Wallet")
             })
             .tag(3)
-            .environmentObject(walletViewModel)
-            .onAppear{
-                walletViewModel.initWalletConnect()
-            }*/
-        }
 
-    }
+        } //: TAB VIEW
 
-}
+    } //: BODY VIEW
+
+} //: CONTENT VIEW
 
 
 // MARK: - PREVIEW

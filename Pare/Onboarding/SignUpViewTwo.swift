@@ -16,7 +16,6 @@ struct SignUpViewTwo: View {
     @State private var lastName = ""
 
     let firstName: String
-    let email: String
 
     // MARK: - BODY
     var body: some View {
@@ -63,7 +62,7 @@ struct SignUpViewTwo: View {
 
                     // Next button
                     NavigationLink(destination: {
-                        SignUpViewThree(firstName: firstName, lastName: lastName, email: email)
+                        EmailView(firstName: firstName, lastName: lastName, login: false)
 
                     }, label: {
 

@@ -69,14 +69,19 @@
 		7CC418A529C19598004CE58B /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC418A429C19598004CE58B /* HelpView.swift */; };
 		7CCCEFBC29B7C1EC00E27BAA /* SignUpViewFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCEFBB29B7C1EC00E27BAA /* SignUpViewFive.swift */; };
 		7CCCEFC029B7CCCA00E27BAA /* ShopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCEFBF29B7CCCA00E27BAA /* ShopsView.swift */; };
-		7CCCEFC529B7CD2E00E27BAA /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCCEFC429B7CD2E00E27BAA /* WalletView.swift */; };
 		7CD02CCE29E48E81001FBDB1 /* PayOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD02CCD29E48E81001FBDB1 /* PayOptionView.swift */; };
 		7CD78BF5299DE8C8002E01E1 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD78BF4299DE8C8002E01E1 /* PasswordView.swift */; };
 		7CD872CD29ECFDF900637AEE /* PayWithMetaMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD872CC29ECFDF900637AEE /* PayWithMetaMaskView.swift */; };
 		7CEAA1AB29EB0D7F0004A06D /* Step2CompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEAA1AA29EB0D7F0004A06D /* Step2CompleteView.swift */; };
 		7CEB24D729BE53CF00018FB2 /* PendingOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEB24D629BE53CF00018FB2 /* PendingOrder.swift */; };
 		7CEDCD1429BBB4B700C70EF5 /* PersonalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEDCD1329BBB4B700C70EF5 /* PersonalView.swift */; };
-		7CEEF6622A226D7C00C11C65 /* Benefit1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEEF6612A226D7C00C11C65 /* Benefit1View.swift */; };
+		7CEEF6622A226D7C00C11C65 /* BenefitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEEF6612A226D7C00C11C65 /* BenefitView.swift */; };
+		7CEEF6642A240FDF00C11C65 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEEF6632A240FDF00C11C65 /* WalletView.swift */; };
+		7CEEF6662A2414D600C11C65 /* WalletOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEEF6652A2414D600C11C65 /* WalletOptionCell.swift */; };
+		7CEEF6682A24190C00C11C65 /* AddFundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEEF6672A24190C00C11C65 /* AddFundsView.swift */; };
+		7CEEF66A2A241C4900C11C65 /* WalletInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEEF6692A241C4900C11C65 /* WalletInfoView.swift */; };
+		7CEEF66C2A24208900C11C65 /* LearnMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEEF66B2A24208900C11C65 /* LearnMoreView.swift */; };
+		7CEEF66E2A24237100C11C65 /* AddFundsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEEF66D2A24237100C11C65 /* AddFundsCell.swift */; };
 		7CF74DC7299C620C002B2BB9 /* GetStartedButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF74DC6299C620B002B2BB9 /* GetStartedButtonModifier.swift */; };
 		7CF74DC9299C638F002B2BB9 /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF74DC8299C638F002B2BB9 /* EmailView.swift */; };
 		7CF74DCD299C65A4002B2BB9 /* NextButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF74DCC299C65A4002B2BB9 /* NextButtonModifier.swift */; };
@@ -163,14 +168,19 @@
 		7CC418A429C19598004CE58B /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		7CCCEFBB29B7C1EC00E27BAA /* SignUpViewFive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewFive.swift; sourceTree = "<group>"; };
 		7CCCEFBF29B7CCCA00E27BAA /* ShopsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsView.swift; sourceTree = "<group>"; };
-		7CCCEFC429B7CD2E00E27BAA /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
 		7CD02CCD29E48E81001FBDB1 /* PayOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayOptionView.swift; sourceTree = "<group>"; };
 		7CD78BF4299DE8C8002E01E1 /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
 		7CD872CC29ECFDF900637AEE /* PayWithMetaMaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWithMetaMaskView.swift; sourceTree = "<group>"; };
 		7CEAA1AA29EB0D7F0004A06D /* Step2CompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step2CompleteView.swift; sourceTree = "<group>"; };
 		7CEB24D629BE53CF00018FB2 /* PendingOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOrder.swift; sourceTree = "<group>"; };
 		7CEDCD1329BBB4B700C70EF5 /* PersonalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalView.swift; sourceTree = "<group>"; };
-		7CEEF6612A226D7C00C11C65 /* Benefit1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Benefit1View.swift; sourceTree = "<group>"; };
+		7CEEF6612A226D7C00C11C65 /* BenefitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitView.swift; sourceTree = "<group>"; };
+		7CEEF6632A240FDF00C11C65 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
+		7CEEF6652A2414D600C11C65 /* WalletOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletOptionCell.swift; sourceTree = "<group>"; };
+		7CEEF6672A24190C00C11C65 /* AddFundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFundsView.swift; sourceTree = "<group>"; };
+		7CEEF6692A241C4900C11C65 /* WalletInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletInfoView.swift; sourceTree = "<group>"; };
+		7CEEF66B2A24208900C11C65 /* LearnMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnMoreView.swift; sourceTree = "<group>"; };
+		7CEEF66D2A24237100C11C65 /* AddFundsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFundsCell.swift; sourceTree = "<group>"; };
 		7CF74DC6299C620B002B2BB9 /* GetStartedButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedButtonModifier.swift; sourceTree = "<group>"; };
 		7CF74DC8299C638F002B2BB9 /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
 		7CF74DCC299C65A4002B2BB9 /* NextButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButtonModifier.swift; sourceTree = "<group>"; };
@@ -262,7 +272,7 @@
 				7CF74DD0299C738D002B2BB9 /* SignUpViewFour.swift */,
 				7CCCEFBB29B7C1EC00E27BAA /* SignUpViewFive.swift */,
 				7CD78BF4299DE8C8002E01E1 /* PasswordView.swift */,
-				7CEEF6612A226D7C00C11C65 /* Benefit1View.swift */,
+				7CEEF6612A226D7C00C11C65 /* BenefitView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -332,7 +342,6 @@
 			children = (
 				7C86263029B818E400919213 /* CheckoutView.swift */,
 				7CCCEFBF29B7CCCA00E27BAA /* ShopsView.swift */,
-				7CCCEFC429B7CD2E00E27BAA /* WalletView.swift */,
 				7C86262829B7F0F000919213 /* ShopItemView.swift */,
 				7C86262C29B7FD1900919213 /* AddItemView.swift */,
 				7C86263629B839A300919213 /* OrderStatusModalView.swift */,
@@ -344,6 +353,9 @@
 				7C37106129E1EC7D00EC4E07 /* PopUpView.swift */,
 				7CD02CCD29E48E81001FBDB1 /* PayOptionView.swift */,
 				7CD872CC29ECFDF900637AEE /* PayWithMetaMaskView.swift */,
+				7CEEF6672A24190C00C11C65 /* AddFundsView.swift */,
+				7CEEF6692A241C4900C11C65 /* WalletInfoView.swift */,
+				7CEEF66B2A24208900C11C65 /* LearnMoreView.swift */,
 			);
 			path = "Consumer Views";
 			sourceTree = "<group>";
@@ -361,6 +373,8 @@
 				7C97788829BAAA3A00F0C6C5 /* ModificationItemCell.swift */,
 				7C840AF729C2253F001F067E /* PastOrderCell.swift */,
 				7C429A6429EA073D00C3E2D3 /* FinishSetupBox.swift */,
+				7CEEF6652A2414D600C11C65 /* WalletOptionCell.swift */,
+				7CEEF66D2A24237100C11C65 /* AddFundsCell.swift */,
 			);
 			path = "View Components ";
 			sourceTree = "<group>";
@@ -392,6 +406,7 @@
 				E9A3DA6429D8F07A00F5A1D0 /* Wallet.swift */,
 				E9A3DA6B29DD96FF00F5A1D0 /* WalletConnect.swift */,
 				E9A3DA6D29DD992A00F5A1D0 /* web3ViewModel.swift */,
+				7CEEF6632A240FDF00C11C65 /* WalletView.swift */,
 			);
 			path = Web3;
 			sourceTree = "<group>";
@@ -509,6 +524,7 @@
 				7C429A7329EA269F00C3E2D3 /* Step1Onboarding5View.swift in Sources */,
 				7C86263329B8195B00919213 /* OrderItemCell.swift in Sources */,
 				E9FC0B2129EB64F3000F1D13 /* Location.swift in Sources */,
+				7CEEF6642A240FDF00C11C65 /* WalletView.swift in Sources */,
 				7C494B0B29EADD4B009D0015 /* Step2Onboarding3View.swift in Sources */,
 				7C494B0B29EADD4B009D0015 /* Step2Onboarding3View.swift in Sources */,
 				7C45EC3E299B2CF700F3B439 /* WelcomeView.swift in Sources */,
@@ -525,7 +541,6 @@
 				7C45EC34299B298800F3B439 /* CustomInputTextField.swift in Sources */,
 				7C429A6B29EA1C0D00C3E2D3 /* Step1Onboarding3View.swift in Sources */,
 				7C45EC40299B2D0100F3B439 /* AuthViewModel.swift in Sources */,
-				7CCCEFC529B7CD2E00E27BAA /* WalletView.swift in Sources */,
 				7C429A6929EA126000C3E2D3 /* Step1Onboarding2View.swift in Sources */,
 				7C494B0729EADA29009D0015 /* Step2Onboarding1View.swift in Sources */,
 				7C45EC22299B26B300F3B439 /* ContentView.swift in Sources */,
@@ -533,8 +548,10 @@
 				7C97788929BAAA3A00F0C6C5 /* ModificationItemCell.swift in Sources */,
 				7C97788329BAA68900F0C6C5 /* Required.swift in Sources */,
 				7C494B0529EAD8A5009D0015 /* Step1CompleteView.swift in Sources */,
+				7CEEF6682A24190C00C11C65 /* AddFundsView.swift in Sources */,
 				7C494B0D29EADEFC009D0015 /* Step2Onboarding4View.swift in Sources */,
-				7CEEF6622A226D7C00C11C65 /* Benefit1View.swift in Sources */,
+				7CEEF6622A226D7C00C11C65 /* BenefitView.swift in Sources */,
+				7CEEF66A2A241C4900C11C65 /* WalletInfoView.swift in Sources */,
 				E9A3DA6C29DD96FF00F5A1D0 /* WalletConnect.swift in Sources */,
 				7C45BE0A29E4876A000DA45E /* VideoView.swift in Sources */,
 				7C429A6F29EA22DC00C3E2D3 /* Step1Onboarding6View.swift in Sources */,
@@ -548,6 +565,7 @@
 				7C429A6729EA0C0500C3E2D3 /* Step1Onboarding1View.swift in Sources */,
 				7CCCEFBC29B7C1EC00E27BAA /* SignUpViewFive.swift in Sources */,
 				7C429A6D29EA222500C3E2D3 /* Step1Onboarding4View.swift in Sources */,
+				7CEEF66E2A24237100C11C65 /* AddFundsCell.swift in Sources */,
 				7C86263729B839A300919213 /* OrderStatusModalView.swift in Sources */,
 				7C86262F29B8114100919213 /* AddItemCell.swift in Sources */,
 				7C45EC5D299B32B200F3B439 /* UserService.swift in Sources */,
@@ -558,6 +576,7 @@
 				7CEB24D729BE53CF00018FB2 /* PendingOrder.swift in Sources */,
 				E943114929A179B700E26EBE /* KeyboardResponder.swift in Sources */,
 				7C45EC38299B2AC700F3B439 /* ButtonModifier.swift in Sources */,
+				7CEEF66C2A24208900C11C65 /* LearnMoreView.swift in Sources */,
 				7CC418A529C19598004CE58B /* HelpView.swift in Sources */,
 				7C494B0929EADC64009D0015 /* Step2Onboarding2View.swift in Sources */,
 				7C86262729B7EC9500919213 /* SearchBar.swift in Sources */,
@@ -565,6 +584,7 @@
 				7C37106229E1EC7D00EC4E07 /* PopUpView.swift in Sources */,
 				7CD02CCE29E48E81001FBDB1 /* PayOptionView.swift in Sources */,
 				7CF74DCD299C65A4002B2BB9 /* NextButtonModifier.swift in Sources */,
+				7CEEF6662A2414D600C11C65 /* WalletOptionCell.swift in Sources */,
 				7CA83B4B29BA578900E4C4CD /* MenuItem.swift in Sources */,
 				7C0439E629B939620037EE72 /* ShopService.swift in Sources */,
 				7C0439DD29B90C7A0037EE72 /* ProfileView.swift in Sources */,

@@ -10,14 +10,16 @@ import SwiftUI
 struct EmailView: View {
 
     // MARK: - PROPERTIES
+    let firstName: String
+    let lastName: String
+    let login: Bool
+
     @EnvironmentObject var viewModel: AuthViewModel
     @State private var isExistingUser = false
     @State private var email = ""
     @State private var textFieldSubmitted = false
     
     @ObservedObject var keyboardResponder = KeyboardResponder()
-    let login: Bool
-
 
     // MARK: - BODY
     var body: some View {
@@ -40,31 +42,33 @@ struct EmailView: View {
                         CustomInputTextField(isSecureField: false, placeholderText: "", title: "", bottomMessage: "", confirmText: false, text: $email, confirmPassword: $email)
                             .padding(.bottom, 30)
 
-                        if login == true {
 
-                            NavigationLink(destination: {
-                                PasswordView(email: email)
-                            }, label: {
-                                Text("Next")
+                        // Submit button
+                        Button(action: {
+
+                            // Sign user in using Magic Auth
+//                            viewModel.register(firstName: firstName, lastName: lastName, withEmail: email, password: password, isMerchant: isMerchant)
+
+
+                        }, label: {
+
+                            if login {
+
+                                Text("Log In")
                                     .font(.title3)
                                     .fontWeight(.bold)
                                     .modifier(NextButtonModifier())
-                                    .frame(width: 250)
-                            })
+                            } else {
 
-                        } else {
-
-                            NavigationLink(destination: {
-                                SignUpViewOne(email: email)
-
-                            }, label: {
-                                Text("Next")
+                                Text("Sign Up")
                                     .font(.title3)
                                     .fontWeight(.bold)
                                     .modifier(NextButtonModifier())
-                                    .frame(width: 250)
-                            })
-                        }
+                            }
+
+                        })
+                        .padding(.top, 20)
+
 
                     } //: VSTACK
                     .padding()

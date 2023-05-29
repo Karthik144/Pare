@@ -10,17 +10,14 @@ import SwiftUI
 struct SignUpViewOne: View {
 
     // MARK: - PROPERTIES
-    let email: String
     @State private var firstName = ""
     @ObservedObject var keyboardResponder = KeyboardResponder()
 
 
-    init(email: String) {
-        self.email = email
+    init() {
         let appearance = UINavigationBarAppearance()
 
         appearance.configureWithOpaqueBackground() // configure
-
 
         let backItemAppearance = UIBarButtonItemAppearance()
         backItemAppearance.normal.titleTextAttributes = [.foregroundColor : UIColor.white] // fix text color
@@ -59,8 +56,8 @@ struct SignUpViewOne: View {
                             .font(.largeTitle)
                             .foregroundColor(Color.white)
                             .fontWeight(.heavy)
-                            .padding()
-//                            .padding(.bottom, 10)
+                            .padding(.bottom)
+                            .padding(.top)
                             .multilineTextAlignment(.center)
 
                         Spacer()
@@ -75,7 +72,7 @@ struct SignUpViewOne: View {
 
                     // Next button
                     NavigationLink(destination: {
-                        SignUpViewTwo(firstName: firstName, email: email)
+                        SignUpViewTwo(firstName: firstName)
 
                     }, label: {
 

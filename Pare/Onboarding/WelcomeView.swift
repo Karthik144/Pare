@@ -38,10 +38,14 @@ extension WelcomeView {
 
             TabView(){
 
-                Benefit1View()
+                // Benefit 1
+                BenefitView(benefitNumber: "BENEFIT #1", benefit: "Earn 10% cash back on each order", subBenefit: "", image: "benefit_1")
 
-                Text("Second")
+                // Benefit 2
+                BenefitView(benefitNumber: "BENEFIT #2", benefit: "Lowest meal prices", subBenefit: "We don’t inflate menu prices like others...", image: "benefit_2")
+
             }
+            .tint(Color.white)
             .tabViewStyle(.page)
             .indexViewStyle(.page(backgroundDisplayMode: .always))
 
