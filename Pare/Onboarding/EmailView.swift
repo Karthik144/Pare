@@ -6,6 +6,10 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseFunctions
+import MagicSDK
+
 
 struct EmailView: View {
 
@@ -14,6 +18,7 @@ struct EmailView: View {
     let lastName: String
     let login: Bool
 
+    @StateObject private var magicSingleton = MagicSingleton.shared
     @EnvironmentObject var viewModel: AuthViewModel
     @State private var isExistingUser = false
     @State private var email = ""
@@ -48,6 +53,16 @@ struct EmailView: View {
 
                             // Sign user in using Magic Auth
 //                            viewModel.register(firstName: firstName, lastName: lastName, withEmail: email, password: password, isMerchant: isMerchant)
+
+                            if login {
+
+                                print("Button pressed")
+                                viewModel.logIn(withEmail: email, password: "", magic: magicSingleton.magic)
+
+                            } else {
+
+                                viewModel.register(firstName: firstName, lastName: lastName, withEmail: email, password: "", magic: magicSingleton.magic)
+                            }
 
 
                         }, label: {

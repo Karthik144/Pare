@@ -17,6 +17,7 @@ struct SignUpViewThree: View {
     @EnvironmentObject var viewModel: AuthViewModel
 
     @ObservedObject var keyboardResponder = KeyboardResponder()
+    @StateObject private var magicSingleton = MagicSingleton.shared
 
     @State private var password = ""
     @State private var confirmPassword = ""
@@ -65,7 +66,7 @@ struct SignUpViewThree: View {
 
 
                     Button {
-                        viewModel.register(firstName: firstName, lastName: lastName, withEmail: email, password: password, isMerchant: false)
+                        viewModel.register(firstName: firstName, lastName: lastName, withEmail: email, password: password, magic: magicSingleton.magic)
                     } label: {
                         Text("Sign Up")
                             .font(.title3)

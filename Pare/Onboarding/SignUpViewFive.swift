@@ -116,7 +116,7 @@ struct SignUpViewFive: View {
                 Button(action: {
 
                     // Call sign up method from backend
-                    viewModel.register(firstName: firstName, lastName: lastName, withEmail: email, password: password, isMerchant: isMerchant)
+//                    viewModel.register(firstName: firstName, lastName: lastName, withEmail: email, password: password, isMerchant: isMerchant)
 
                 }, label: {
 

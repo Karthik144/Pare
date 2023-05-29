@@ -50,7 +50,7 @@ struct PasswordView: View {
 
                     // Next button
                     Button(action: {
-                        viewModel.logIn(withEmail: email, password: password)
+//                        viewModel.logIn(withEmail: email, password: password)
                     }, label: {
                         Text("Log In")
                             .font(.title3)

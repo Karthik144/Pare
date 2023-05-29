@@ -115,9 +115,13 @@ struct OrderItemCell: View {
             
             Spacer()
             
-            Text("\(String(itemPrice)) USDC")
+//            Text("\(String(itemPrice)) USDC")
+//                .padding()
+//                .lineLimit(1)
+            Text("\(String(describing: try? itemPrice)) USDC")
                 .padding()
                 .lineLimit(1)
+
             
             HStack{
                 Image("GlowingStar")

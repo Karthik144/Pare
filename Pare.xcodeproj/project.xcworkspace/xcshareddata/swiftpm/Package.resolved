@@ -1,21 +1,21 @@
 {
   "pins" : [
     {
-      "identity" : "abseil-cpp-swiftpm",
+      "identity" : "abseil-cpp-binary",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/firebase/abseil-cpp-SwiftPM.git",
+      "location" : "https://github.com/google/abseil-cpp-binary.git",
       "state" : {
-        "revision" : "583de9bd60f66b40e78d08599cc92036c2e7e4e1",
-        "version" : "0.20220203.2"
+        "revision" : "bfc0b6f81adc06ce5121eb23f628473638d67c5c",
+        "version" : "1.2022062300.0"
       }
     },
     {
-      "identity" : "boringssl-swiftpm",
+      "identity" : "bigint",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/firebase/boringssl-SwiftPM.git",
+      "location" : "https://github.com/attaswift/BigInt.git",
       "state" : {
-        "revision" : "dd3eda2b05a3f459fc3073695ad1b28659066eab",
-        "version" : "0.9.1"
+        "revision" : "0ed110f7555c34ff468e72e1686e59721f2b0da6",
+        "version" : "5.3.0"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk.git",
       "state" : {
-        "branch" : "master",
-        "revision" : "3e2dd2fb3f392ba57c34518e4f23d932e6f9ae0b"
+        "revision" : "5034479ca0c4f32f299677fb0ba1fe4d3e3e20b4",
+        "version" : "10.10.0"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleAppMeasurement.git",
       "state" : {
-        "revision" : "04351180d4c757c6c16127cb57b685fff9ef260b",
-        "version" : "10.6.0"
+        "revision" : "69f5b8425dd473d2f2475bba7f88f82cd9da0e36",
+        "version" : "10.10.0"
       }
     },
     {
@@ -64,12 +64,12 @@
       }
     },
     {
-      "identity" : "grpc-ios",
+      "identity" : "grpc-binary",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/grpc/grpc-ios.git",
+      "location" : "https://github.com/google/grpc-binary.git",
       "state" : {
-        "revision" : "8440b914756e0d26d4f4d054a1c1581daedfc5b6",
-        "version" : "1.44.3-grpc"
+        "revision" : "2b7656d8ee892cd39db460b1a0d849de618405e6",
+        "version" : "1.50.1"
       }
     },
     {
@@ -100,6 +100,24 @@
       }
     },
     {
+      "identity" : "magic-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/magiclabs/magic-ios.git",
+      "state" : {
+        "revision" : "c303c7a7a41b8f415e5b73c6b0ed7eb9772d7e3b",
+        "version" : "8.1.1"
+      }
+    },
+    {
+      "identity" : "magic-ios-ext",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/magiclabs/magic-ios-ext",
+      "state" : {
+        "revision" : "f5635797f6b8224bb212d21fef56b8b190a58ce1",
+        "version" : "2.0.1"
+      }
+    },
+    {
       "identity" : "nanopb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/nanopb.git",
@@ -109,12 +127,30 @@
       }
     },
     {
+      "identity" : "promisekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mxcl/PromiseKit.git",
+      "state" : {
+        "revision" : "8a98e31a47854d3180882c8068cc4d9381bf382d",
+        "version" : "6.22.1"
+      }
+    },
+    {
       "identity" : "promises",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/promises.git",
       "state" : {
         "revision" : "ec957ccddbcc710ccc64c9dcbd4c7006fcf8b73a",
         "version" : "2.2.0"
+      }
+    },
+    {
+      "identity" : "secp256k1.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Boilertalk/secp256k1.swift.git",
+      "state" : {
+        "revision" : "cd187c632fb812fd93711a9f7e644adb7e5f97f0",
+        "version" : "0.1.7"
       }
     },
     {
@@ -142,6 +178,15 @@
       "state" : {
         "revision" : "f4541c1aafd35edffc6ba402e17de2c15219e918",
         "version" : "1.6.3"
+      }
+    },
+    {
+      "identity" : "web3.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/magiclabs/Web3.swift.git",
+      "state" : {
+        "revision" : "6e99e72c53f2b47f2f01f991aad2504f0f55b433",
+        "version" : "1.1.0"
       }
     }
   ],

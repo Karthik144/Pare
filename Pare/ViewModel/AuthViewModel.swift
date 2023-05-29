@@ -7,6 +7,8 @@
 
 import Foundation
 import Firebase
+import FirebaseFunctions
+import MagicSDK
 
 
 class AuthViewModel: ObservableObject{
@@ -18,7 +20,7 @@ class AuthViewModel: ObservableObject{
     @Published var currentUser: User?
     @Published var User2: UserCheck?
     @Published var isExistingUser: Bool?
-//    @Published var cartItems = [MenuItem]()
+    //    @Published var cartItems = [MenuItem]()
     private let service = UserService()
 
     init(){
@@ -28,62 +30,93 @@ class AuthViewModel: ObservableObject{
     }
 
     // Register user
-    func register(firstName: String, lastName: String, withEmail email: String, password: String, isMerchant: Bool) {
+    func register(firstName: String, lastName: String, withEmail email: String, password: String, magic: Magic) {
 
-        if isMerchant == true {
+//        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+//
+//            // Check for error
+//            if let error = error {
+//                print("Could not create account with error \(error.localizedDescription).")
+//                return
+//            }
+//
+//
+//            // Saver user data to Firebase Firestore
+//            guard let user = result?.user else { return }
+//
+//            Firestore.firestore().collection("users")
+//                .document(user.uid)
+//                .setData(["first_name": firstName, "last_name": lastName, "email": email, "is_merchant": false, "cart_active": false, "rewards": 0, "wallet": false]){ _ in
+//                    print("User data successfully uploaded.")
+//                    self.didAuthenticateUser = true
+//                    self.fetchUser()
+//                }
+//
+//            self.userSession = user
+//
+//        }
 
-            Auth.auth().createUser(withEmail: email, password: password) { result, error in
+        // Generate DID token with Magic Auth
+        magic.auth.loginWithMagicLink(LoginWithMagicLinkConfiguration(showUI: false, email: email)).done({ result in
+            let DID = result
 
-                // Check for error
+            print("Result", result) // DIDToken
+
+            let functions = Functions.functions()
+            let auth = functions.httpsCallable("auth")
+
+            auth.call(["didToken": DID]) { (result, error) in
                 if let error = error {
-                    print("Could not create account with error \(error.localizedDescription).")
+
+                    // Handle the error
+                    print("Error: \(error.localizedDescription)")
                     return
                 }
 
+                if let data = result?.data as? [String: Any],
+                   let customToken = data["token"] as? String {
 
-                // Saver user data to Firebase Firestore
-                guard let user = result?.user else { return }
+                    // Handle the response data
+                    print("Response: \(data)")
 
-                Firestore.firestore().collection("users")
-                    .document(user.uid)
-                    .setData(["first_name": firstName, "last_name": lastName, "email": email, "is_merchant": isMerchant]){ _ in
-                        print("User data successfully uploaded.")
-                        self.didAuthenticateUser = true
-                        self.fetchUser()
+                    Auth.auth().signIn(withCustomToken: customToken) { (authResult, error) in
+                        if let error = error as NSError? {
+                            // Handle the error
+                            print("Error: \(error.localizedDescription)")
+                            return
+                        }
+
+                        // User successfully signed in
+                        print("User signed in with custom token")
+//                        isUserLoggedIn = true  // Set the login status
+
+                        // Saver user data to Firebase Firestore
+                        guard let user = authResult?.user else { return }
+
+                        Firestore.firestore().collection("users")
+                            .document(user.uid)
+                            .setData(["first_name": firstName, "last_name": lastName, "email": email, "is_merchant": false, "cart_active": false, "rewards": 0, "wallet": true]){ _ in
+
+                                print("User data successfully uploaded.")
+
+                                self.didAuthenticateUser = true
+                                self.fetchUser()
+                            }
+
+                        // Set userSession as current user 
+                        self.userSession = authResult?.user
+
                     }
-
-                self.userSession = user
-
-            }
-        } else {
-            Auth.auth().createUser(withEmail: email, password: password) { result, error in
-
-                // Check for error
-                if let error = error {
-                    print("Could not create account with error \(error.localizedDescription).")
-                    return
                 }
-
-
-                // Saver user data to Firebase Firestore
-                guard let user = result?.user else { return }
-
-                Firestore.firestore().collection("users")
-                    .document(user.uid)
-                    .setData(["first_name": firstName, "last_name": lastName, "email": email, "is_merchant": isMerchant, "cart_active": false, "rewards": 0, "wallet": false]){ _ in
-                        print("User data successfully uploaded.")
-                        self.didAuthenticateUser = true
-                        self.fetchUser()
-                    }
-
-                self.userSession = user
-
-            }
+            } //: AUTH CALL
+        }).catch { error in
+            print("Error:", error) // Handle error from loginWithMagicLink
         }
 
 
-
     } //: FUNC REGISTER
+
+
 
     //Get User
     func fetchUser(){
@@ -113,20 +146,68 @@ class AuthViewModel: ObservableObject{
 
 
     // Login user
-    func logIn(withEmail email: String, password: String) {
+    func logIn(withEmail email: String, password: String, magic: Magic) {
 
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
-            if let error = error {
-                print("Could not login with error \(error.localizedDescription).")
-                return
-            }
+//        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+//            if let error = error {
+//                print("Could not login with error \(error.localizedDescription).")
+//                return
+//            }
+//
+//            // Save user data to Firebase Firestore
+//            guard let user = result?.user else { return }
+//            self.userSession = user
+//            self.fetchUser()
+//
+//        }
 
-            // Save user data to Firebase Firestore
-            guard let user = result?.user else { return }
-            self.userSession = user
-            self.fetchUser()
+        // Generate DID token with Magic Auth
+        magic.auth.loginWithMagicLink(LoginWithMagicLinkConfiguration(showUI: false, email: email)).done({ result in
+            let DID = result
 
+            print("Result", result) // DIDToken
+
+            let functions = Functions.functions()
+            let auth = functions.httpsCallable("auth")
+
+            auth.call(["didToken": DID]) { (result, error) in
+                if let error = error {
+
+                    // Handle the error
+                    print("Error: \(error.localizedDescription)")
+                    return
+                }
+
+                if let data = result?.data as? [String: Any],
+                   let customToken = data["token"] as? String {
+
+                    // Handle the response data
+                    print("Response: \(data)")
+
+                    Auth.auth().signIn(withCustomToken: customToken) { (authResult, error) in
+                        if let error = error as NSError? {
+                            // Handle the error
+                            print("Error: \(error.localizedDescription)")
+                            return
+                        }
+
+                        // User successfully signed in
+                        print("User signed in with custom token")
+//                        isUserLoggedIn = true  // Set the login status
+
+
+                        // Set userSession as current user
+                        self.userSession = authResult?.user
+                        self.fetchUser()
+
+
+                    }
+                }
+            } //: AUTH CALL
+        }).catch { error in
+            print("Error:", error) // Handle error from loginWithMagicLink
         }
+        
     } //: FUNC LOGIN
 
     // Sign user out
