@@ -62,14 +62,14 @@ class AuthViewModel: ObservableObject{
 
         // Generate DID token with Magic Auth
         magic.auth.loginWithMagicLink(LoginWithMagicLinkConfiguration(showUI: false, email: email)).done({ result in
-            let DID = result
+            self.DIDToken = result
 
             print("Result", result) // DIDToken
 
             let functions = Functions.functions()
             let auth = functions.httpsCallable("auth")
 
-            auth.call(["didToken": DID]) { (result, error) in
+            auth.call(["didToken": self.DIDToken]) { (result, error) in
                 if let error = error {
 
                     // Handle the error
@@ -95,23 +95,32 @@ class AuthViewModel: ObservableObject{
 //                        isUserLoggedIn = true  // Set the login status
 
                         // Call getAccount to set public address
-                        self.getAccount(magic: magic)
+                        self.getAccount(magic: magic){ success in
+                            if success{
+                                // Saver user data to Firebase Firestore
+                                guard let user = authResult?.user else { return }
 
-                        // Saver user data to Firebase Firestore
-                        guard let user = authResult?.user else { return }
+                                Firestore.firestore().collection("users")
+                                    .document(user.uid)
+                                    .setData(["first_name": firstName, "last_name": lastName, "email": email, "public_address": self.publicAddress, "is_merchant": false, "cart_active": false, "rewards": 0, "wallet": true]){ _ in
 
-                        Firestore.firestore().collection("users")
-                            .document(user.uid)
-                            .setData(["first_name": firstName, "last_name": lastName, "email": email, "public_address": self.publicAddress, "is_merchant": false, "cart_active": false, "rewards": 0, "wallet": true]){ _ in
+                                        print("User data successfully uploaded.")
 
-                                print("User data successfully uploaded.")
+                                        self.didAuthenticateUser = true
+                                        self.checkIfExistingUser(userEmail: email)
+                                        self.fetchUser()
+                                    }
 
-                                self.didAuthenticateUser = true
-                                self.fetchUser()
+                                // Set userSession as current user
+                                self.userSession = user
                             }
+                            else{
+                                print("fuck")
+                            }
+                            
+                        }
 
-                        // Set userSession as current user 
-                        self.userSession = authResult?.user
+                        
 
                     }
                 }
@@ -135,12 +144,24 @@ class AuthViewModel: ObservableObject{
         }
 
     } // FETCH USER
+    
+    //Get User for archived users
+    func fetchUser(uid: String?){
+        guard let uid = self.userSession?.uid else { return }
+
+        service.fetchUser(withUid: uid) { user in
+            self.currentUser = user
+            self.fetchUser(uid: uid as String)
+        }
+
+    } // FETCH USER
 
     func checkIfExistingUser(userEmail: String){
 
         service.checkIfExistingUser(userEmail: userEmail) { User2 in
             if User2.email == userEmail{
                 self.isExistingUser = true
+                self.fetchUser(uid: User2.id)
 
             } else {
                 self.isExistingUser = false
@@ -204,10 +225,17 @@ class AuthViewModel: ObservableObject{
 //                        isUserLoggedIn = true  // Set the login status
 
                         // Call get account to set public address
-                        self.getAccount(magic: magic)
-                        // Set userSession as current user
-                        self.userSession = authResult?.user
-                        self.fetchUser()
+                        self.getAccount(magic: magic){ success in
+                            if success{
+                                // Set userSession as current user
+                                self.userSession = authResult?.user
+                                self.fetchUser()
+                            }
+                            else{
+                                print("fuck")
+                            }
+                        }
+
 
                     }
                 }
@@ -219,7 +247,7 @@ class AuthViewModel: ObservableObject{
     } //: FUNC LOGIN
 
     // Get user's public address
-    func getAccount(magic: Magic) {
+    func getAccount(magic: Magic, completion: @escaping (Bool) -> Void) {
 
         var web3 = Web3(provider: magic.rpcProvider)
 
@@ -231,12 +259,15 @@ class AuthViewModel: ObservableObject{
                 // Set to UILa
                 self.publicAddress = account.hex(eip55: false)
                 print("Public Address: \(self.publicAddress)")
+                completion(true)
 
             } else {
                 print("No Account Found")
+                completion(false)
             }
         }.catch { error in
             print("Error loading accounts and balance: \(error)")
+            completion(false)
         }
     } //: GET ACCOUNT
 
@@ -252,6 +283,8 @@ class AuthViewModel: ObservableObject{
     } //: FUNC SIGNOUT
 
     func deleteUser(){
+        let db = Firestore.firestore()
+        
         Auth.auth().currentUser?.delete { error in
             if let error = error {
                 print("error deleting user - \(error)")
@@ -259,6 +292,8 @@ class AuthViewModel: ObservableObject{
                 print("Account deleted")
             }
         }
+        
+        db.collection("users").document(currentUser?.id ?? "").delete()
 
         userSession = nil
 
