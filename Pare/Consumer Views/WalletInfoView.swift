@@ -10,6 +10,7 @@ import SwiftUI
 struct WalletInfoView: View {
 
     // MARK: - PROPERTIES
+    @EnvironmentObject var authViewModel: AuthViewModel
 
     // MARK: - BODY
     var body: some View {
@@ -27,7 +28,7 @@ struct WalletInfoView: View {
                             .fontWeight(.bold)
                             .font(.headline)
 
-                        Text("0x3ff4e98be04ba8c0d96a4b5e....")
+                        Text(authViewModel.currentUser?.public_address ?? "Error")
                             .lineLimit(1)
                             .padding(.trailing)
                             .fontWeight(.light)
@@ -37,7 +38,7 @@ struct WalletInfoView: View {
                     Spacer()
 
                     Button(action: {
-                        copyToClipboard(text: "textToCopy")
+                        copyToClipboard(text: authViewModel.currentUser?.public_address ?? "Error")
                     }) {
 
                         Image(systemName: "doc.on.doc")
@@ -75,7 +76,7 @@ struct WalletInfoView: View {
 
             } //: VSTACK
             .navigationTitle("Wallet Info")
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitleDisplayMode(.large)
 
 
         } else {
@@ -89,9 +90,10 @@ struct WalletInfoView: View {
 
                         Text("Public Key")
                             .fontWeight(.bold)
-                            .font(.headline)
+                            .font(.headline.weight(.bold))
 
                         Text("0x3ff4e98be04ba8c0d96a4b5e....")
+                            .font(.body.weight(.light))
                             .lineLimit(1)
                             .padding(.trailing)
 
@@ -125,9 +127,11 @@ struct WalletInfoView: View {
 
                     Text("What is a public key?")
                         .fontWeight(.bold)
-                        .font(.headline)
+                        .font(.headline.weight(.bold))
+
 
                     Text("Think of it as a username. Anyone can send you money if they have this.")
+                        .font(.body.weight(.light))
 
 
                 } //: VSTACK
@@ -136,7 +140,7 @@ struct WalletInfoView: View {
 
             } //: VSTACK
             .navigationTitle("Wallet Info")
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitleDisplayMode(.large)
 
         } //: ELSE
 

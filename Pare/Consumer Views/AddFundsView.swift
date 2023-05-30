@@ -10,24 +10,14 @@ import SwiftUI
 struct AddFundsView: View {
 
     // MARK: - PROPERTIES
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @State private var username = ""
+    @State private var domain = ""
 
     // MARK: - BODY
     var body: some View {
 
-        VStack(){
-
-            // Title
-            HStack{
-
-                Text("Add funds to your wallet")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .padding()
-
-                Spacer()
-
-            } //: HSTACK
-
+        VStack{
 
             // Preface
             VStack(alignment: .leading, spacing: 30){
@@ -49,9 +39,9 @@ struct AddFundsView: View {
 
             Spacer()
 
-            // Button
-            Button {
-
+            // Show Transak View
+            NavigationLink {
+                TransakController(publicAddress: authViewModel.currentUser?.public_address ?? "", firstName: authViewModel.currentUser?.first_name ?? "", lastName: authViewModel.currentUser?.last_name ?? "", emailUsername: self.username, emailDomain: self.domain)
             } label: {
 
                 Text("Add Funds")
@@ -67,8 +57,24 @@ struct AddFundsView: View {
             .padding(.bottom, 35)
 
         } //: VSTACK
-        .navigationBarTitle("")
-    }
+        .navigationTitle("Add funds")
+        .navigationBarTitleDisplayMode(.large)
+        .onAppear(){
+
+            // Split email into username and domain
+            let email = authViewModel.currentUser?.email ?? ""
+            let components = email.components(separatedBy: "@")
+
+            if components.count == 2 {
+                self.username = components[0]
+                self.domain = components[1]
+            } else {
+                print("Invalid email format")
+            }
+
+        } //: ON APPEAR
+
+    } //: VIEW
 }
 
 

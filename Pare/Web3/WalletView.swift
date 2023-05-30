@@ -6,11 +6,17 @@
 //
 
 import SwiftUI
+import MagicSDK
+import MagicSDK_Web3
 
-
-// MARK: - PROPERTIES
 
 struct WalletView: View {
+
+    // MARK: - PROPERTIES
+    @EnvironmentObject var walletViewModel: WalletViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @StateObject var magicSingleton = MagicSingleton.shared
+    @State private var tokenBalance: BigUInt = 0
 
     // MARK: - BODY
     var body: some View {
@@ -26,7 +32,8 @@ struct WalletView: View {
                         .font(.title2)
                         .fontWeight(.light)
 
-                    Text("45.00 USDC")
+
+                    Text("\(String(describing: tokenBalance)) USDC")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(Color.accentColor)
@@ -34,6 +41,18 @@ struct WalletView: View {
                 }
                 .padding()
                 .padding(.bottom, 20)
+                .onAppear(){
+
+                    walletViewModel.getBalance(magic: magicSingleton.magic, userPublicAddress: authViewModel.currentUser?.public_address ?? "") { balance in
+
+                        if let balance = balance {
+                            tokenBalance = balance
+
+                        } else {
+                            print("Error retrieving balance.")
+                        }
+                    }
+                }
 
                 LazyVStack{
 
@@ -44,7 +63,7 @@ struct WalletView: View {
                         AddFundsView()
 
                     } label: {
-                        WalletOptionCell(title: "Add funds", subTitle: "Buy more USDC")
+                        WalletOptionCell(title: "Add funds", subTitle: "Buy more USDC", image: "dollar_note")
                     }
                     .buttonStyle(PlainButtonStyle()) // Remove the accent highlight
 
@@ -56,7 +75,7 @@ struct WalletView: View {
                         WalletInfoView()
 
                     } label: {
-                        WalletOptionCell(title: "View wallet info", subTitle: "View your public address & more")
+                        WalletOptionCell(title: "View wallet info", subTitle: "View your public address & more", image: "money_bag")
                     }
                     .buttonStyle(PlainButtonStyle()) // Remove the accent highlight
 
@@ -68,7 +87,7 @@ struct WalletView: View {
                         LearnMoreView()
                         
                     } label: {
-                        WalletOptionCell(title: "Learn more", subTitle: "What is a Wallet? What USDC?")
+                        WalletOptionCell(title: "Learn more", subTitle: "What is a Wallet? What USDC?", image: "question_mark")
                     }
                     .buttonStyle(PlainButtonStyle()) // Remove the accent highlight
 

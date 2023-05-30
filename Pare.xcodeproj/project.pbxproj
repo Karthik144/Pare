@@ -14,6 +14,8 @@
 		7C0439E629B939620037EE72 /* ShopService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0439E529B939620037EE72 /* ShopService.swift */; };
 		7C37106229E1EC7D00EC4E07 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C37106129E1EC7D00EC4E07 /* PopUpView.swift */; };
 		7C37106429E1F30B00EC4E07 /* SheetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C37106329E1F30B00EC4E07 /* SheetManager.swift */; };
+		7C3920042A265428008C2081 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3920032A265428008C2081 /* WalletViewModel.swift */; };
+		7C3920082A26632F008C2081 /* TransakController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3920072A26632F008C2081 /* TransakController.swift */; };
 		7C429A6529EA073D00C3E2D3 /* FinishSetupBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C429A6429EA073D00C3E2D3 /* FinishSetupBox.swift */; };
 		7C429A6729EA0C0500C3E2D3 /* Step1Onboarding1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C429A6629EA0C0500C3E2D3 /* Step1Onboarding1View.swift */; };
 		7C429A6929EA126000C3E2D3 /* Step1Onboarding2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C429A6829EA126000C3E2D3 /* Step1Onboarding2View.swift */; };
@@ -119,6 +121,8 @@
 		7C0439E529B939620037EE72 /* ShopService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopService.swift; sourceTree = "<group>"; };
 		7C37106129E1EC7D00EC4E07 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		7C37106329E1F30B00EC4E07 /* SheetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetManager.swift; sourceTree = "<group>"; };
+		7C3920032A265428008C2081 /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
+		7C3920072A26632F008C2081 /* TransakController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransakController.swift; sourceTree = "<group>"; };
 		7C429A6429EA073D00C3E2D3 /* FinishSetupBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishSetupBox.swift; sourceTree = "<group>"; };
 		7C429A6629EA0C0500C3E2D3 /* Step1Onboarding1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step1Onboarding1View.swift; sourceTree = "<group>"; };
 		7C429A6829EA126000C3E2D3 /* Step1Onboarding2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step1Onboarding2View.swift; sourceTree = "<group>"; };
@@ -323,6 +327,7 @@
 				7C45EC61299B354A00F3B439 /* AppState.swift */,
 				7C45EC3F299B2D0100F3B439 /* AuthViewModel.swift */,
 				7C0439E329B939170037EE72 /* ShopViewModel.swift */,
+				7C3920032A265428008C2081 /* WalletViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -422,6 +427,7 @@
 				E9A3DA6D29DD992A00F5A1D0 /* web3ViewModel.swift */,
 				7CEEF6632A240FDF00C11C65 /* WalletView.swift */,
 				7C6D70FD2A244F08005D10F1 /* MagicSingleton.swift */,
+				7C3920072A26632F008C2081 /* TransakController.swift */,
 			);
 			path = Web3;
 			sourceTree = "<group>";
@@ -541,6 +547,7 @@
 				7C86263129B818E400919213 /* CheckoutView.swift in Sources */,
 				7C0439DF29B90E130037EE72 /* ProfileItemCell.swift in Sources */,
 				E9A3DA6529D8F07A00F5A1D0 /* Wallet.swift in Sources */,
+				7C3920042A265428008C2081 /* WalletViewModel.swift in Sources */,
 				7C9DDD5929EC82E6001EE8AD /* Step2Onboarding1.3View.swift in Sources */,
 				7C840AF829C2253F001F067E /* PastOrderCell.swift in Sources */,
 				7C45EC44299B2D5200F3B439 /* SignUpViewOne.swift in Sources */,
@@ -585,6 +592,7 @@
 				7C97788129BA9E8500F0C6C5 /* Add.swift in Sources */,
 				7CF74DC7299C620C002B2BB9 /* GetStartedButtonModifier.swift in Sources */,
 				E9A3DA6E29DD992A00F5A1D0 /* web3ViewModel.swift in Sources */,
+				7C3920082A26632F008C2081 /* TransakController.swift in Sources */,
 				7CF74DCF299C72DF002B2BB9 /* SignUpViewThree.swift in Sources */,
 				7C429A6729EA0C0500C3E2D3 /* Step1Onboarding1View.swift in Sources */,
 				7CCCEFBC29B7C1EC00E27BAA /* SignUpViewFive.swift in Sources */,

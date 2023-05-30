@@ -15,7 +15,7 @@ struct LearnMoreView: View {
     var body: some View {
 
 
-        VStack(alignment: .leading, spacing: 20){
+        VStack(alignment: .leading, spacing: 30){
 
             // Title & Body #1
             VStack(alignment: .leading, spacing: 5){
@@ -84,7 +84,7 @@ struct LearnMoreView: View {
         } //: VSTACK
         .padding()
         .navigationTitle("Learn More")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.large)
 
 
     } //: BODY

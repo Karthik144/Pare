@@ -25,7 +25,7 @@ struct EmailView: View {
         opacity: 1.0
     )
 
-    @StateObject private var magicSingleton = MagicSingleton.shared
+    @StateObject var magicSingleton = MagicSingleton.shared
     @EnvironmentObject var viewModel: AuthViewModel
     @State private var isExistingUser = false
     @State private var email = ""
@@ -92,6 +92,7 @@ struct EmailView: View {
                             if login {
 
                                 print("Button pressed")
+
                                 viewModel.logIn(withEmail: email, password: "", magic: magicSingleton.magic)
 
                             } else {

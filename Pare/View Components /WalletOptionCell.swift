@@ -12,7 +12,7 @@ struct WalletOptionCell: View {
     // MARK: - PROPERTIES
     let title: String
     let subTitle: String
-//    let image: String
+    let image: String
 
     // MARK: - BODY
     var body: some View {
@@ -20,7 +20,7 @@ struct WalletOptionCell: View {
         HStack{
 
             // Image
-            Image("dollar_note")
+            Image(image)
                 .resizable()
                 .frame(width: 28, height: 28)
                 .scaledToFit()

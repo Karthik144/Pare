@@ -9,6 +9,9 @@ import Foundation
 import Firebase
 import FirebaseFunctions
 import MagicSDK
+import MagicSDK_Web3
+import PromiseKit
+import Web3PromiseKit
 
 
 class AuthViewModel: ObservableObject{
@@ -18,8 +21,9 @@ class AuthViewModel: ObservableObject{
     @Published var userSession = Auth.auth().currentUser
     @Published var didAuthenticateUser = false
     @Published var currentUser: User?
-    @Published var User2: UserCheck?
     @Published var isExistingUser: Bool?
+    @Published var DIDToken = ""
+    @Published var publicAddress = ""
     //    @Published var cartItems = [MenuItem]()
     private let service = UserService()
 
@@ -90,12 +94,15 @@ class AuthViewModel: ObservableObject{
                         print("User signed in with custom token")
 //                        isUserLoggedIn = true  // Set the login status
 
+                        // Call getAccount to set public address
+                        self.getAccount(magic: magic)
+
                         // Saver user data to Firebase Firestore
                         guard let user = authResult?.user else { return }
 
                         Firestore.firestore().collection("users")
                             .document(user.uid)
-                            .setData(["first_name": firstName, "last_name": lastName, "email": email, "is_merchant": false, "cart_active": false, "rewards": 0, "wallet": true]){ _ in
+                            .setData(["first_name": firstName, "last_name": lastName, "email": email, "public_address": self.publicAddress, "is_merchant": false, "cart_active": false, "rewards": 0, "wallet": true]){ _ in
 
                                 print("User data successfully uploaded.")
 
@@ -163,14 +170,15 @@ class AuthViewModel: ObservableObject{
 
         // Generate DID token with Magic Auth
         magic.auth.loginWithMagicLink(LoginWithMagicLinkConfiguration(showUI: false, email: email)).done({ result in
-            let DID = result
+
+            self.DIDToken = result
 
             print("Result", result) // DIDToken
 
             let functions = Functions.functions()
             let auth = functions.httpsCallable("auth")
 
-            auth.call(["didToken": DID]) { (result, error) in
+            auth.call(["didToken": self.DIDToken]) { (result, error) in
                 if let error = error {
 
                     // Handle the error
@@ -195,11 +203,11 @@ class AuthViewModel: ObservableObject{
                         print("User signed in with custom token")
 //                        isUserLoggedIn = true  // Set the login status
 
-
+                        // Call get account to set public address
+                        self.getAccount(magic: magic)
                         // Set userSession as current user
                         self.userSession = authResult?.user
                         self.fetchUser()
-
 
                     }
                 }
@@ -209,6 +217,28 @@ class AuthViewModel: ObservableObject{
         }
         
     } //: FUNC LOGIN
+
+    // Get user's public address
+    func getAccount(magic: Magic) {
+
+        var web3 = Web3(provider: magic.rpcProvider)
+
+        firstly {
+            // Get user's Ethereum public address
+            web3.eth.accounts()
+        }.done { accounts -> Void in
+            if let account = accounts.first {
+                // Set to UILa
+                self.publicAddress = account.hex(eip55: false)
+                print("Public Address: \(self.publicAddress)")
+
+            } else {
+                print("No Account Found")
+            }
+        }.catch { error in
+            print("Error loading accounts and balance: \(error)")
+        }
+    } //: GET ACCOUNT
 
     // Sign user out
     func signOut() {

@@ -13,6 +13,7 @@ struct User: Identifiable, Decodable {
     @DocumentID var id: String?
     var email: String
     var first_name: String
+    var public_address: String
     var is_merchant: Bool
     var last_name: String
     var cart_active: Bool
