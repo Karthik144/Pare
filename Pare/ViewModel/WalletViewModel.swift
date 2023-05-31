@@ -16,8 +16,7 @@ import Web3ContractABI
 class WalletViewModel: ObservableObject{
 
     // MARK: - PROPERTIES
-    @Published var userTokenBalance = 0
-
+    @Published var userTokenBalance: BigUInt = 0
     
     
     // Get balance
@@ -56,6 +55,7 @@ class WalletViewModel: ObservableObject{
                         // Divide the balance by the conversion factor to get the balance in ETH
                         let balanceInEth = balanceInWei / conversionFactor
 
+                        self.userTokenBalance = balanceInEth
                         // Print the balance in ETH
                         print("Balance in ETH: \(balanceInEth)")
 

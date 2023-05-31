@@ -118,7 +118,7 @@ struct OrderItemCell: View {
 //            Text("\(String(itemPrice)) USDC")
 //                .padding()
 //                .lineLimit(1)
-            Text("\(String(describing: try? itemPrice)) USDC")
+            Text(itemPrice + " USDC")
                 .padding()
                 .lineLimit(1)
 

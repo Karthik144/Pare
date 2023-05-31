@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import MagicSDK
+import MagicSDK_Web3
 
 struct ShopsView: View {
     
@@ -21,13 +23,15 @@ struct ShopsView: View {
     @ObservedObject private var viewModel = ShopViewModel()
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var walletViewModel: WalletViewModel
+    @StateObject var magicSingleton = MagicSingleton.shared
     @State var isViewActive: Bool = false
     @State private var orderScheduled = true
     @State private var showModal = false
     @State private var totalShops = [Shop]()
     @State private var pendingOrders = [PendingOrder]()
     @State private var filteredPendingOrders = [PendingOrder]()
-    
+    @State private var tokenBalance: BigUInt = 0
     @State private var readyOrders = [PendingOrder]()
 
     
@@ -201,6 +205,15 @@ struct ShopsView: View {
                     self.totalShops = shops
                 }
 
+                walletViewModel.getBalance(magic: magicSingleton.magic, userPublicAddress: authViewModel.currentUser?.public_address ?? "") { balance in
+
+                    if let balance = balance {
+                        tokenBalance = balance
+
+                    } else {
+                        print("Error retrieving balance.")
+                    }
+                }
 
             } //: ON APPEAR
 

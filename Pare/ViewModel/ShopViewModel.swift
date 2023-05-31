@@ -131,6 +131,9 @@ class ShopViewModel: ObservableObject {
         // Gets the current users uid so we can reference it
         guard let userUID = Auth.auth().currentUser?.uid else {return}
 
+        print("USER UID IN SHOP VIEW MODEL")
+        print(userUID)
+
         Firestore.firestore().collection("users").document(userUID).collection("orders").addSnapshotListener { (querySnapshot, error) in
 
             guard let documents = querySnapshot?.documents else {

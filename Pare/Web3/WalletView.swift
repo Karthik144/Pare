@@ -33,7 +33,7 @@ struct WalletView: View {
                         .fontWeight(.light)
 
 
-                    Text("\(String(describing: tokenBalance)) USDC")
+                    Text("\(String(describing: walletViewModel.userTokenBalance)) USDC")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(Color.accentColor)
@@ -52,7 +52,7 @@ struct WalletView: View {
                             print("Error retrieving balance.")
                         }
                     }
-                }
+                } //: ON APPEAR
 
                 LazyVStack{
 
