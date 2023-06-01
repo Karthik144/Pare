@@ -650,12 +650,12 @@ struct ShopItemView: View {
     func checkIfLunchSpecialValid() -> Bool{
 
         guard let dayOfWeek = dayOfWeek else {
-            print("ERROR: dayOfWeek is nil")
+            print("ERROR: dayOfWeek is nil - checkIfLunchSpecialValid, ShopItemView")
             return false
         }
 
         guard let date = date else {
-            print("ERROR: date is nil")
+            print("ERROR: date is nil - checkIfLunchSpecialValid, ShopItemView")
             return false
         }
 
@@ -666,11 +666,10 @@ struct ShopItemView: View {
         // Check if it's Sunday between 12-4pm or Monday to Friday between 11-4pm
         if (dayOfWeek == 1 && currentTime >= "12:00" && currentTime <= "16:00") ||
             (dayOfWeek > 1 && dayOfWeek < 7 && currentTime >= "11:00" && currentTime <= "16:00") {
-            print("TRUE - LUNCH SPECIAL VALID")
+
             return true
         }
 
-        print("FALSE")
         return false
 
     } //: FUNC CHECK IF LUNCH SPECIAL VALID 

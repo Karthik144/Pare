@@ -55,8 +55,6 @@ struct PastOrderView: View {
 
                     if order.status == "complete"{
 
-                        print("Entered if statement in PastOrderView")
-
                         self.filteredPendingOrders.append(order)
                     }
                 }

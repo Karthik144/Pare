@@ -64,7 +64,7 @@ class AuthViewModel: ObservableObject{
         magic.auth.loginWithMagicLink(LoginWithMagicLinkConfiguration(showUI: false, email: email)).done({ result in
             self.DIDToken = result
 
-            print("Result", result) // DIDToken
+            print("Result - register, AuthViewModel", result) // DIDToken
 
             let functions = Functions.functions()
             let auth = functions.httpsCallable("auth")
@@ -73,7 +73,7 @@ class AuthViewModel: ObservableObject{
                 if let error = error {
 
                     // Handle the error
-                    print("Error: \(error.localizedDescription)")
+                    print("Error - register, AuthViewModel: \(error.localizedDescription)")
                     return
                 }
 
@@ -81,7 +81,7 @@ class AuthViewModel: ObservableObject{
                    let customToken = data["token"] as? String {
 
                     // Handle the response data
-                    print("Response: \(data)")
+                    print("Response - register, AuthViewModel: \(data)")
 
                     Auth.auth().signIn(withCustomToken: customToken) { (authResult, error) in
                         if let error = error as NSError? {
@@ -91,7 +91,7 @@ class AuthViewModel: ObservableObject{
                         }
 
                         // User successfully signed in
-                        print("User signed in with custom token")
+//                        print("User signed in with custom token")
 //                        isUserLoggedIn = true  // Set the login status
 
                         // Call getAccount to set public address
@@ -104,7 +104,7 @@ class AuthViewModel: ObservableObject{
                                     .document(user.uid)
                                     .setData(["first_name": firstName, "last_name": lastName, "email": email, "public_address": self.publicAddress, "is_merchant": false, "cart_active": false, "rewards": 0, "wallet": true]){ _ in
 
-                                        print("User data successfully uploaded.")
+//                                        print("User data successfully uploaded.")
 
                                         self.didAuthenticateUser = true
                                         self.checkIfExistingUser(userEmail: email)
@@ -114,9 +114,7 @@ class AuthViewModel: ObservableObject{
                                 // Set userSession as current user
                                 self.userSession = user
                             }
-                            else{
-                                print("fuck")
-                            }
+
                             
                         }
 
@@ -126,7 +124,7 @@ class AuthViewModel: ObservableObject{
                 }
             } //: AUTH CALL
         }).catch { error in
-            print("Error:", error) // Handle error from loginWithMagicLink
+            print("Error - register, AuthViewModel:", error) // Handle error from loginWithMagicLink
         }
 
 
@@ -194,7 +192,7 @@ class AuthViewModel: ObservableObject{
 
             self.DIDToken = result
 
-            print("Result", result) // DIDToken
+            print("Result - login, AuthViewModel", result) // DIDToken
 
             let functions = Functions.functions()
             let auth = functions.httpsCallable("auth")
@@ -203,7 +201,7 @@ class AuthViewModel: ObservableObject{
                 if let error = error {
 
                     // Handle the error
-                    print("Error: \(error.localizedDescription)")
+                    print("Error - login, AuthViewModel: \(error.localizedDescription)")
                     return
                 }
 
@@ -211,17 +209,16 @@ class AuthViewModel: ObservableObject{
                    let customToken = data["token"] as? String {
 
                     // Handle the response data
-                    print("Response: \(data)")
+//                    print("Response: \(data)")
 
                     Auth.auth().signIn(withCustomToken: customToken) { (authResult, error) in
                         if let error = error as NSError? {
                             // Handle the error
-                            print("Error: \(error.localizedDescription)")
+                            print("Error - login, AuthViewModel: \(error.localizedDescription)")
                             return
                         }
 
                         // User successfully signed in
-                        print("User signed in with custom token")
 //                        isUserLoggedIn = true  // Set the login status
 
                         // Call get account to set public address
@@ -231,9 +228,7 @@ class AuthViewModel: ObservableObject{
                                 self.userSession = authResult?.user
                                 self.fetchUser()
                             }
-                            else{
-                                print("fuck")
-                            }
+
                         }
 
 
@@ -241,7 +236,7 @@ class AuthViewModel: ObservableObject{
                 }
             } //: AUTH CALL
         }).catch { error in
-            print("Error:", error) // Handle error from loginWithMagicLink
+            print("Error - login, AuthViewModel:", error) // Handle error from loginWithMagicLink
         }
         
     } //: FUNC LOGIN
@@ -258,15 +253,15 @@ class AuthViewModel: ObservableObject{
             if let account = accounts.first {
                 // Set to UILa
                 self.publicAddress = account.hex(eip55: false)
-                print("Public Address: \(self.publicAddress)")
+//                print("Public Address: \(self.publicAddress)")
                 completion(true)
 
             } else {
-                print("No Account Found")
+//                print("No Account Found")
                 completion(false)
             }
         }.catch { error in
-            print("Error loading accounts and balance: \(error)")
+            print("Error loading accounts and balance - getAccount, AuthViewModel: \(error)")
             completion(false)
         }
     } //: GET ACCOUNT
@@ -287,9 +282,9 @@ class AuthViewModel: ObservableObject{
         
         Auth.auth().currentUser?.delete { error in
             if let error = error {
-                print("error deleting user - \(error)")
+                print("error deleting user, deleteUser, AuthViewModel - \(error)")
             } else {
-                print("Account deleted")
+                print("Account deleted - deleteUser, AuthViewModel")
             }
         }
         
@@ -309,19 +304,19 @@ class AuthViewModel: ObservableObject{
         // Takes us to the current user
         db.collection("users").document(currentUser?.id ?? "").updateData(["first_name": firstName]){ _ in
 
-            print("User data successfully uploaded.")
+            print("User data successfully uploaded. - updateUserData, AuthViewModel")
         }
 
         // Update last name
         db.collection("users").document(currentUser?.id ?? "").updateData(["last_name": lastName]){ _ in
 
-            print("User data successfully uploaded.")
+            print("User data successfully uploaded.  - updateUserData, AuthViewModel")
         }
 
         // Update email
         db.collection("users").document(currentUser?.id ?? "").updateData(["email": email]){ _ in
 
-            print("User data successfully uploaded.")
+            print("User data successfully uploaded.  - updateUserData, AuthViewModel")
         }
     }
 
@@ -335,10 +330,10 @@ class AuthViewModel: ObservableObject{
         // Updates wallet status
         db.collection("users").document(currentUser?.id ?? "").updateData(["wallet": true]){ _ in
 
-            print("User data successfully uploaded.")
+            print("User data successfully uploaded.  - updateUserData, AuthViewModel")
         }
 
-    }
+    } // UPDATE USER WALLET SETUP STATUS
 
 
 

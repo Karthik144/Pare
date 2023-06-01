@@ -261,7 +261,6 @@ struct OrderStatusModalView: View {
                     viewModel.fetchOrderItems(pendingOrderID: self.pendingOrders[0].id ?? "") { orderItems in
 
                         self.orderItems = orderItems
-                        print("Number of order items \(self.orderItems.count)")
 
                     }
 
@@ -272,7 +271,6 @@ struct OrderStatusModalView: View {
                     viewModel.fetchOrderItems(pendingOrderID: self.readyOrders[0].id ?? "") { orderItems in
 
                         self.orderItems = orderItems
-                        print("Number of order items \(self.orderItems.count)")
 
                     }
 

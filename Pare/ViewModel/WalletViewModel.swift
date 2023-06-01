@@ -41,7 +41,7 @@ class WalletViewModel: ObservableObject{
             // Balance is a SolidityReadInvocation type, we can apply call function on it
             balance.call{ result, error in
                 if let error = error{
-                    print("Error:", error)
+                    print("Error (getBalance, WalletViewModel):", error)
                     return
                 }
 
@@ -56,13 +56,11 @@ class WalletViewModel: ObservableObject{
                         let balanceInEth = balanceInWei / conversionFactor
 
                         self.userTokenBalance = balanceInEth
-                        // Print the balance in ETH
-                        print("Balance in ETH: \(balanceInEth)")
 
                         completion(balanceInEth)
 
                     } else {
-                        print("Invalid balance value or conversion failed")
+                        print("Invalid balance value or conversion failed - getBalance, WalletViewModel")
                         completion(nil)
                     }
 
@@ -73,7 +71,7 @@ class WalletViewModel: ObservableObject{
 
         } catch {
 
-            print("Error creating EthereumAddress: \(error)")
+            print("Error creating EthereumAddress: \(error) - getBalance, WalletViewModel")
             completion(nil)
 
         } //: CATCH
@@ -109,13 +107,17 @@ class WalletViewModel: ObservableObject{
                     gasPrice: EthereumQuantity(quantity: 21.gwei)
                 )
             }.done { txHash in
-                print(txHash)
+
+                // Success
+
             }.catch { error in
+                print("sendTransaction, WalletViewModel")
                 print(error)
             }
 
 
         } catch {
+            print("sendTransaction, WalletViewModel")
             print(error)
         }
 

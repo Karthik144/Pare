@@ -49,7 +49,7 @@ struct WalletView: View {
                             tokenBalance = balance
 
                         } else {
-                            print("Error retrieving balance.")
+                            print("Error retrieving balance. - WalletView")
                         }
                     }
                 } //: ON APPEAR

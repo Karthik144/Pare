@@ -69,7 +69,7 @@ struct AddFundsView: View {
                 self.username = components[0]
                 self.domain = components[1]
             } else {
-                print("Invalid email format")
+                print("Invalid email format - AddFundsView")
             }
 
         } //: ON APPEAR

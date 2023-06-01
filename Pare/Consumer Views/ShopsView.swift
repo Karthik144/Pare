@@ -174,25 +174,9 @@ struct ShopsView: View {
                                                 isActive: $isActive) {EmptyView()}
                             )
 
-//
-//                            NavigationLink(destination: ShopItemView(shop: shop)) {
-//                                ShopCell(shop: shop)
-//                                    .padding(.leading, 0)
-//                                    .padding()
-//                            }
-//                            .isDetailLink(false)
-//                            NavigationLink {
-//                                ShopItemView(shop: shop)
-//                            } label: {
-//                                ShopCell(shop: shop)
-//                                    .padding(.leading, 0)
-//                                    .padding()
-//                            }
 
                         } //: FOR EACH
-                        .onAppear{
-                            print(self.totalShops)
-                        }
+
                     } //: LAZYVSTACK
                     
 
@@ -211,7 +195,7 @@ struct ShopsView: View {
                         tokenBalance = balance
 
                     } else {
-                        print("Error retrieving balance.")
+                        print("Error retrieving balance. - ShopsView")
                     }
                 }
 
@@ -223,7 +207,7 @@ struct ShopsView: View {
         .onAppear(){
 
             viewModel.fetchAllOrders{ orders in
-                print(orders)
+
                 for order in orders{
                     if (order.status == "ready" || order.status == "pending"){
                         self.pickUpTime = (orders[0].date_ordered).addingTimeInterval(20 * 60)
@@ -239,28 +223,6 @@ struct ShopsView: View {
 
         } //: ON APPEAR
 
-//        .onReceive(self.appState.$moveToDashboard) { moveToDashboard in
-//            if moveToDashboard {
-//                self.isViewActive = false
-//                self.appState.moveToDashboard = false
-//            }
-//
-//
-//
-//            viewModel.fetchAllOrders{ orders in
-//                for order in orders{
-//                    if (order.status == "ready" || order.status == "pending"){
-//                        self.pickUpTime = (orders[0].date_ordered).addingTimeInterval(20 * 60)
-//                        orderReady = true
-//                        if (order.status == "ready"){
-//                            self.readyOrders.append(order)
-//                        }
-//                    }
-//
-//                }
-//            }
-//
-//        }
 
     } //: VIEW
 

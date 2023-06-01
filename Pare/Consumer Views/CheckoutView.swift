@@ -124,10 +124,7 @@ struct CheckoutView: View {
                         }
 
                 } //: FOR EACH
-                .onAppear(){
-                    print("Count of cart items")
-                    print(viewModel.cartItems.count)
-                }
+      
 
                 Divider()
 

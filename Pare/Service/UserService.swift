@@ -29,7 +29,7 @@ struct UserService {
         Firestore.firestore().collection("users").getDocuments { (snapshot, error) -> Void in
              guard let snapshot = snapshot, error == nil else {
                  // Handle error
-                 print ("An error occured while trying to verify your account.")
+                 print ("An error occured while trying to verify your account. - checkIfExistingUser, UserService")
                  return
             }
 

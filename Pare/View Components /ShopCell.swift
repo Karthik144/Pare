@@ -21,9 +21,8 @@ struct ShopCell: View {
     var openingTime = "11:00"
     var sundayOpen = "12:00"
     
-    @State var distanceFuck: Double?
-//    let timeOpen: String
-//    let distance: String
+    @State var actualDistance: Double?
+
 
     // MARK: - BODY
     var body: some View {
@@ -86,7 +85,7 @@ struct ShopCell: View {
                     .frame(width: 2, height: 2)
                     .foregroundColor(Color.gray)
 
-                Text(String(round((distanceFuck ?? 0.0) * 100) / 100.0) + " miles")
+                Text(String(round((actualDistance ?? 0.0) * 100) / 100.0) + " miles")
                     .foregroundColor(Color.gray)
 
                 Spacer()
@@ -101,7 +100,7 @@ struct ShopCell: View {
             locationManager.updateLocation()
             locationManager.getDistance { distance in
                 if let distance = distance {
-                    distanceFuck = distance
+                    actualDistance = distance
                     // Use the distance value here
                 } else {
                     print("Distance is nil")
@@ -109,8 +108,9 @@ struct ShopCell: View {
                 }
             }
 
-        }
-    }
+        } //: ON APPEAR
+
+    } //: VIEW
 }
 
 //struct ShopCell_Previews: PreviewProvider {

@@ -36,7 +36,7 @@ class ShopViewModel: ObservableObject {
         Firestore.firestore().collection("shops").addSnapshotListener { (querySnapshot, error) in
 
             guard let documents = querySnapshot?.documents else {
-                print("No documents in this collection.")
+                print("No documents in this collection. - fetchShops, ShopViewModel")
                 return
 
             }
@@ -55,7 +55,7 @@ class ShopViewModel: ObservableObject {
         Firestore.firestore().collection("shops").document(uid).collection("menu").addSnapshotListener { (querySnapshot, error) in
 
             guard let documents = querySnapshot?.documents else {
-                print("No documents in this collection.")
+                print("No documents in this collection. - fetchShopsMenu, ShopViewModel")
                 return
 
             }
@@ -75,7 +75,7 @@ class ShopViewModel: ObservableObject {
         Firestore.firestore().collection("shops").document(uid).collection("menu").document(itemUID).collection("add").addSnapshotListener { (querySnapshot, error) in
 
             guard let documents = querySnapshot?.documents else {
-                print("No documents in this collection.")
+                print("No documents in this collection. - fetchItemAddOptions, ShopViewModel")
                 return
 
             }
@@ -93,7 +93,7 @@ class ShopViewModel: ObservableObject {
         Firestore.firestore().collection("shops").document(uid).collection("menu").document(itemUID).collection("required").addSnapshotListener { (querySnapshot, error) in
 
             guard let documents = querySnapshot?.documents else {
-                print("No documents in this collection.")
+                print("No documents in this collection. - fetchItemRequiredOptions, ShopViewModel")
                 return
 
             }
@@ -112,7 +112,7 @@ class ShopViewModel: ObservableObject {
         Firestore.firestore().collection("shops").document(uid).collection("menu").document(itemUID).collection("modifications").addSnapshotListener { (querySnapshot, error) in
 
             guard let documents = querySnapshot?.documents else {
-                print("No documents in this collection.")
+                print("No documents in this collection. - fetchItemModification, ShopViewModel")
                 return
 
             }
@@ -131,13 +131,10 @@ class ShopViewModel: ObservableObject {
         // Gets the current users uid so we can reference it
         guard let userUID = Auth.auth().currentUser?.uid else {return}
 
-        print("USER UID IN SHOP VIEW MODEL")
-        print(userUID)
-
         Firestore.firestore().collection("users").document(userUID).collection("orders").addSnapshotListener { (querySnapshot, error) in
 
             guard let documents = querySnapshot?.documents else {
-                print("No documents in this collection.")
+                print("No documents in this collection. - fetchAllOrders, ShopViewModel")
                 return
 
             }
@@ -159,7 +156,7 @@ class ShopViewModel: ObservableObject {
         Firestore.firestore().collection("users").document(userUID).collection("orders").document(pendingOrderID).collection("order_items").addSnapshotListener { (querySnapshot, error) in
 
             guard let documents = querySnapshot?.documents else {
-                print("No documents in this collection.")
+                print("No documents in this collection. - fetchOrderItems, ShopViewModel")
                 return
 
             }
@@ -184,7 +181,7 @@ class ShopViewModel: ObservableObject {
         // Takes us to the current user
         db.collection("users").document(userUID).updateData(["cart_active": cartActive]){ _ in
 
-            print("User data successfully uploaded.")
+            print("User data successfully uploaded. - updateCartActiveStatus, ShopViewModel")
         }
 
 
@@ -201,7 +198,7 @@ class ShopViewModel: ObservableObject {
         // Takes us to the current user
         db.collection("users").document(userUID).updateData(["rewards": rewards]){ _ in
 
-            print("User data successfully uploaded.")
+            print("User data successfully uploaded. - updateRewards, ShopViewModel")
         }
 
 
@@ -219,7 +216,7 @@ class ShopViewModel: ObservableObject {
         // Takes us to the current user
         db.collection("users").document(userUID).collection("orders").document(pendingOrderID).updateData(["status": "complete"]){ _ in
 
-            print("User data successfully uploaded.")
+            print("User data successfully uploaded. - updatePendingToComplete, ShopViewModel")
         }
 
 
@@ -247,11 +244,10 @@ class ShopViewModel: ObservableObject {
             // Check for errors
             if error == nil {
                 // No errors
-                print("Success!")
 
             } else {
                 // Handle the error
-                print("Here's the error: \(String(describing: error?.localizedDescription))")
+                print("Here's the error: \(String(describing: error?.localizedDescription)) - postOrderData, ShopViewModel")
                 return
             }
         }
@@ -271,11 +267,10 @@ class ShopViewModel: ObservableObject {
                 // Check for errors
                 if error == nil {
                     // No errors
-//                    print("Success!")
 
                 } else {
                     // Handle the error
-                    print("Here's the error: \(String(describing: error?.localizedDescription))")
+                    print("Here's the error: \(String(describing: error?.localizedDescription)) - pastOrderData, ShopViewModel")
                     return
                 }
             }
@@ -288,11 +283,10 @@ class ShopViewModel: ObservableObject {
                     // Check for errors
                     if error == nil {
                         // No errors
-//                        print("Success!")
 
                     } else {
                         // Handle the error
-                        print("Here's the error: \(String(describing: error?.localizedDescription))")
+                        print("Here's the error: \(String(describing: error?.localizedDescription)) - pastOrderData, ShopViewModel")
                         return
                     }
                 }
@@ -307,11 +301,10 @@ class ShopViewModel: ObservableObject {
                     // Check for errors
                     if error == nil {
                         // No errors
-                        print("Success!")
 
                     } else {
                         // Handle the error
-                        print("Here's the error: \(String(describing: error?.localizedDescription))")
+                        print("Here's the error: \(String(describing: error?.localizedDescription)) - pastOrderData, ShopViewModel")
                         return
                     }
                 }
@@ -326,11 +319,10 @@ class ShopViewModel: ObservableObject {
                     // Check for errors
                     if error == nil {
                         // No errors
-                        print("Success!")
 
                     } else {
                         // Handle the error
-                        print("Here's the error: \(String(describing: error?.localizedDescription))")
+                        print("Here's the error: \(String(describing: error?.localizedDescription)) - pastOrderData, ShopViewModel")
                         return
                     }
                 }
@@ -363,11 +355,10 @@ class ShopViewModel: ObservableObject {
             // Check for errors
             if error == nil {
                 // No errors
-                print("Success!")
 
             } else {
                 // Handle the error
-                print("Here's the error: \(String(describing: error?.localizedDescription))")
+                print("Here's the error: \(String(describing: error?.localizedDescription)) - postOrderDataToMerchant, ShopViewModel")
                 return
             }
         }
@@ -437,14 +428,6 @@ class ShopViewModel: ObservableObject {
 
         cartItems[index].item.quantity = newQuantity
 
-        print("Index inside updateQuantity")
-        print(index)
-
-        print(cartItems[index].item.quantity)
     } //: FUNC UPDATE QUANTITY
 
-
-    func updateordersallOrders(){
-        print("Change pending status from true to false")
-    }
 }
