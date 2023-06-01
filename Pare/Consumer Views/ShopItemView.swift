@@ -20,7 +20,7 @@ struct ShopItemView: View {
     @State private var vegetarian = [MenuItem]()
     @State private var lunch = [MenuItem]()
     @State private var total = 0.0
-//    @Binding var total: Double
+    //    @Binding var total: Double
     @State private var totalRewards = 0.0
     @State private var appearTotal = 0
     @State private var isAppExpanded = false
@@ -36,14 +36,16 @@ struct ShopItemView: View {
     var sundayOpen = "12:00"
 
 
-    @Binding var rootIsActive: Bool 
+    @Binding var rootIsActive: Bool
     
     let shop: Shop
 
-    // MARK: - BODY 
+    // MARK: - BODY
     var body: some View {
-        
-        if #available(iOS 16.0, *) {
+
+
+        if #available(iOS 16.0, *){
+
             VStack{
 
                 HStack{
@@ -101,7 +103,7 @@ struct ShopItemView: View {
                                     .foregroundColor(Color.green)
                             }
                         }//:VStack
-                    
+
                     } //: VSTACK
                     .padding(.leading, 5)
 
@@ -143,10 +145,9 @@ struct ShopItemView: View {
                             }
                         }
                         .accentColor(Color.black)
-                        .fontWeight(.medium)
-                        .font(.title3)
+                        .font(.title3.weight(.medium))
                         .padding()
-                    }
+                    } //: APPETIZER DROP DOWN
 
                     // Vegetarian drop down
                     if vegetarian.count >= 1 {
@@ -180,11 +181,10 @@ struct ShopItemView: View {
 
                         }
                         .accentColor(Color.black)
-                        .fontWeight(.medium)
-                        .font(.title3)
+                        .font(.title3.weight(.medium))
                         .padding()
 
-                    }
+                    }//: VEG DROP DOWN
 
                     // Main entrees drop down
                     if entrees.count >= 1 {
@@ -197,8 +197,6 @@ struct ShopItemView: View {
                                     NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
                                     ) {
                                         ItemCell(item: item)
-//                                            .padding(.leading, 15)
-//                                            .padding(.trailing, 15)
                                     }
 
 
@@ -220,13 +218,11 @@ struct ShopItemView: View {
 
                         }
                         .accentColor(Color.black)
-                        .fontWeight(.medium)
-                        .font(.title3)
+                        .font(.title3.weight(.medium))
                         .padding()
-                    }
+                    } //: ENTREES DROP DOWN
 
-                    //                        //Show Lunch Special for Sunday, 12-4pm OR Lunch Special for Mon-Fri, 11-4pm
-
+                    // Show Lunch Special for Sunday, 12-4pm OR Lunch Special for Mon-Fri, 11-4pm
                     if checkIfLunchSpecialValid(){
 
                         if lunch.count >= 1 {
@@ -259,8 +255,7 @@ struct ShopItemView: View {
 
                             }
                             .accentColor(Color.black)
-                            .fontWeight(.medium)
-                            .font(.title3)
+                            .font(.title3.weight(.medium))
                             .padding()
                         }
 
@@ -274,7 +269,7 @@ struct ShopItemView: View {
 
                 if authViewModel.currentUser?.cart_active == true {
 
-                    
+
                     NavigationLink {
                         CheckoutView(shop: shop, rootActive: $rootIsActive)
                     } label: {
@@ -287,27 +282,25 @@ struct ShopItemView: View {
 
                             Spacer()
 
-
                             HStack{
 
-                                let displayTotal = roundToThreeDecimalPlaces(viewModel.total)
+                                let displayTotal = String(format: "%.3f", roundToThreeDecimalPlaces(viewModel.total))
                                 Text("\(displayTotal) USDC")
                                     .foregroundColor(Color.white)
 
-                                let displayRewardTotal = roundToThreeDecimalPlaces(viewModel.totalRewards)
-                                Text("+\(String(displayRewardTotal)) 🌟")
+                                let displayRewardTotal = String(format: "%.3f", roundToThreeDecimalPlaces(viewModel.totalRewards))
+                                Text("+\(displayRewardTotal) 🌟")
                                     .foregroundColor(Color.white)
 
                             }
-
                             .padding()
 
                         }
-                        .frame(width: 300, height: 50)
+                        .frame(width: 345, height: 50)
                         .background(
                             RoundedRectangle(cornerRadius: 8,  style: .continuous)
                                 .fill(Color.accentColor)
-                                .frame(width: 300, height: 50)
+                                .frame(width: 345, height: 50)
                         )
                     }
                     .padding()
@@ -324,8 +317,6 @@ struct ShopItemView: View {
                 dayOfWeek = calendar.component(.weekday, from: Date())
 
                 let displayTotal = roundToThreeDecimalPlaces(viewModel.total)
-
-                print("DISPLAY TOTAL IN SHOPITEMVIEW: \(displayTotal)")
 
                 if appearTotal == 0 {
 
@@ -362,11 +353,11 @@ struct ShopItemView: View {
 
                 } //: IF APPEAR = 0
 
-            } //: ON APPEAR 
+            } //: ON APPEAR
 
 
-        // Fallback on earlier versions
         } else {
+
 
             VStack{
 
@@ -410,20 +401,21 @@ struct ShopItemView: View {
 
                         }//: HStack
 
-                        // Status of shop - Open Now or Closed
-                        if((dayOfWeek ?? 0) == 7 || (date ?? "" > closingTime) || (date ?? "" < openingTime) ){
-                            Text("Closed")
-                                .foregroundColor(Color.red)
-                        }
-                        else if((dayOfWeek ?? 0) == 1 && (date ?? "" > closingTime) && (date ?? "" < sundayOpen) ){
-                            Text("Closed")
-                                .foregroundColor(Color.red)
-                        }
-                        else{
-                            Text("Open Now")
-                                .foregroundColor(Color.gray)
-                        }
-                    
+                        // Shop status - Closed or Open Now
+                        VStack{
+                            if((dayOfWeek ?? 0) == 7 || (date ?? "" > closingTime) || (date ?? "" < openingTime) ){
+                                Text("Closed")
+                                    .foregroundColor(Color.red)
+                            }
+                            else if((dayOfWeek ?? 0) == 1 && (date ?? "" > closingTime) && (date ?? "" < sundayOpen) ){
+                                Text("Closed")
+                                    .foregroundColor(Color.red)
+                            }
+                            else{
+                                Text("Open Now")
+                                    .foregroundColor(Color.green)
+                            }
+                        }//:VStack
 
                     } //: VSTACK
                     .padding(.leading, 5)
@@ -435,6 +427,7 @@ struct ShopItemView: View {
                 .padding()
 
                 ScrollView {
+
 
                     // Appetizers drop down
                     if appetizers.count >= 1 {
@@ -465,11 +458,11 @@ struct ShopItemView: View {
                             }
                         }
                         .accentColor(Color.black)
-                        .font(.title3)
+                        .font(.title3.weight(.medium))
                         .padding()
-                    } //: IF APPETIZERS
+                    } //: APPETIZER DROP DOWN
 
-                    // Vegetarian dishes dropdown
+                    // Vegetarian drop down
                     if vegetarian.count >= 1 {
 
                         DisclosureGroup {
@@ -501,12 +494,12 @@ struct ShopItemView: View {
 
                         }
                         .accentColor(Color.black)
-                        .font(.title3)
+                        .font(.title3.weight(.medium))
                         .padding()
 
-                    }
+                    }//: VEG DROP DOWN
 
-
+                    // Main entrees drop down
                     if entrees.count >= 1 {
 
                         DisclosureGroup {
@@ -517,8 +510,6 @@ struct ShopItemView: View {
                                     NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
                                     ) {
                                         ItemCell(item: item)
-//                                            .padding(.leading, 15)
-//                                            .padding(.trailing, 15)
                                     }
 
 
@@ -540,29 +531,54 @@ struct ShopItemView: View {
 
                         }
                         .accentColor(Color.black)
-                        .font(.title3)
+                        .font(.title3.weight(.medium))
                         .padding()
-                    }
-                    
-                    Spacer()
-                    
-                    VStack{
-                        //Show Lunch Special for Sunday, 12-4pm
-                        if ((dayOfWeek ?? 0 == 1) && (date ?? "" < "12:00") && (date ?? "" > "04:00")){
-                            Text("Show Lunch Special NAV Button")
-                        }
-                        //Show Lunch Special for Mon-Fri, 11-4pm
-                        else if ((dayOfWeek ?? 0 > 1 && dayOfWeek ?? 0 < 7) && (date ?? "" < "11:00") && (date ?? "" > "04:00")){
-                            Text("Show Lunch Special NAV Button")
-                        }
-                        else{
-                            Text("Show Lunch Special Hours closed, but check back in... View")
-                        }
-                    }//:VStack
+                    } //: ENTREES DROP DOWN
 
-                    
+                    // Show Lunch Special for Sunday, 12-4pm OR Lunch Special for Mon-Fri, 11-4pm
+                    if checkIfLunchSpecialValid(){
+
+                        if lunch.count >= 1 {
+
+                            DisclosureGroup {
+
+                                VStack(alignment: .leading){
+                                    ForEach(lunch) { item in
+
+                                        NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+                                        ) {
+                                            ItemCell(item: item)
+                                        }
+
+                                    } //: FOR EACH
+                                } //: VSTACK
+
+                            } label: {
+
+                                HStack{
+
+                                    Image("GlowingStar")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 30, height: 30)
+
+                                    Text("Lunch Specials")
+
+                                }
+
+                            }
+                            .accentColor(Color.black)
+                            .font(.title3.weight(.medium))
+                            .padding()
+                        }
+
+                    } //: ONLY SHOW DROP DOWN IF LUNCH SPECIAL HOURS
+
+                    Spacer()
+
+
                 } //: SCROLL VIEW
-      
+
 
                 if authViewModel.currentUser?.cart_active == true {
 
@@ -579,27 +595,25 @@ struct ShopItemView: View {
 
                             Spacer()
 
-
                             HStack{
 
-                                let displayTotal = roundToThreeDecimalPlaces(viewModel.total)
-
+                                let displayTotal = String(format: "%.3f", roundToThreeDecimalPlaces(viewModel.total))
                                 Text("\(displayTotal) USDC")
                                     .foregroundColor(Color.white)
 
-                                let displayRewards = roundToThreeDecimalPlaces(viewModel.totalRewards)
-                                Text("+\(displayRewards) 🌟")
+                                let displayRewardTotal = String(format: "%.3f", roundToThreeDecimalPlaces(viewModel.totalRewards))
+                                Text("+\(displayRewardTotal) 🌟")
                                     .foregroundColor(Color.white)
 
                             }
                             .padding()
 
                         }
-                        .frame(width: 300, height: 50)
+                        .frame(width: 345, height: 50)
                         .background(
                             RoundedRectangle(cornerRadius: 8,  style: .continuous)
                                 .fill(Color.accentColor)
-                                .frame(width: 300, height: 50)
+                                .frame(width: 345, height: 50)
                         )
                     }
                     .padding()
@@ -613,8 +627,10 @@ struct ShopItemView: View {
                 dateFormatter.dateFormat = "HH:mm"
                 date = dateFormatter.string(from: Date())
                 dayOfWeek = calendar.component(.weekday, from: Date())
-                
-                if appearTotal<1{
+
+                let displayTotal = roundToThreeDecimalPlaces(viewModel.total)
+
+                if appearTotal == 0 {
 
                     viewModel.fetchShopMenu(withUID: shop.id ?? "") { menuItems in
                         self.totalMenuItems = menuItems
@@ -630,28 +646,35 @@ struct ShopItemView: View {
                                 appetizers.append(each)
                             }
 
-                            else {
+                            else if each.type.contains("lunch"){
 
+                                lunch.append(each)
+                            }
+
+                            else{
                                 entrees.append(each)
                             }
                         }
                     }
 
-//                    total = viewModel.calcTotal()
-//
-//                    totalRewards = viewModel.calcTotalRewards()
+                    total = viewModel.calcTotal()
+
+                    totalRewards = viewModel.calcTotalRewards()
 
                     appearTotal += 1
 
-                } //: IF STATEMENT
-
-
+                } //: IF APPEAR = 0
 
             } //: ON APPEAR
-        }
+
+        } //: ELSE
+
+
+
 
 
     } //: VIEW
+
 
     func checkIfLunchSpecialValid() -> Bool{
 
@@ -686,7 +709,9 @@ struct ShopItemView: View {
         return round(number * multiplier) / multiplier
     }
 
+
 }
+
 
 //struct ShopItemView_Previews: PreviewProvider {
 //    static var previews: some View {
