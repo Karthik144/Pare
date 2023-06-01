@@ -164,7 +164,9 @@ struct CheckoutView: View {
 
                     Spacer()
 
-                    Text(String(viewModel.total) + " USDC")
+                    let displayTotal = roundToThreeDecimalPlaces(viewModel.total)
+
+                    Text(String(displayTotal) + " USDC")
 
                 } //: HSTACK
                 .padding(.top, 10)
@@ -179,7 +181,9 @@ struct CheckoutView: View {
 
                     Spacer()
 
-                    Text(String(viewModel.totalRewards) + " 🌟")
+                    let displayRewardsTotal = roundToThreeDecimalPlaces(viewModel.totalRewards)
+
+                    Text(String(displayRewardsTotal) + " 🌟")
 
                 } //: HSTACK
                 .padding(.top, 10)
@@ -324,6 +328,12 @@ struct CheckoutView: View {
 
 
     } //: VIEW
+
+    func roundToThreeDecimalPlaces(_ number: Double) -> Double {
+        let decimalPlaces = 3
+        let multiplier = pow(10.0, Double(decimalPlaces))
+        return round(number * multiplier) / multiplier
+    }
 
 }
 

@@ -89,6 +89,8 @@ struct OrderItemCell: View {
                                 itemQuantity = 0
 
                                 finalTotal = viewModel.calcTotal()
+                                print("FINAL TOTAL - ORDER_ITEM_CELL: \(finalTotal)")
+                                print("VIEW MODEL TOTAL VAR: \(viewModel.total)")
                                 viewModel.calcTotalRewards()
 
                             }, label: {

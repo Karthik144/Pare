@@ -20,6 +20,7 @@ struct ShopItemView: View {
     @State private var vegetarian = [MenuItem]()
     @State private var lunch = [MenuItem]()
     @State private var total = 0.0
+//    @Binding var total: Double
     @State private var totalRewards = 0.0
     @State private var appearTotal = 0
     @State private var isAppExpanded = false
@@ -289,13 +290,16 @@ struct ShopItemView: View {
 
                             HStack{
 
-                                Text(String(total) + " USDC")
+                                let displayTotal = roundToThreeDecimalPlaces(viewModel.total)
+                                Text("\(displayTotal) USDC")
                                     .foregroundColor(Color.white)
 
-                                Text("+\(String(viewModel.totalRewards)) 🌟")
+                                let displayRewardTotal = roundToThreeDecimalPlaces(viewModel.totalRewards)
+                                Text("+\(String(displayRewardTotal)) 🌟")
                                     .foregroundColor(Color.white)
 
                             }
+
                             .padding()
 
                         }
@@ -319,14 +323,11 @@ struct ShopItemView: View {
                 date = dateFormatter.string(from: Date())
                 dayOfWeek = calendar.component(.weekday, from: Date())
 
-                if appearTotal == 0 {
+                let displayTotal = roundToThreeDecimalPlaces(viewModel.total)
 
-                    // Empty everything - for testing
-//                    totalMenuItems = []
-//                    vegetarian = []
-//                    appetizers = []
-//                    lunch = []
-//                    entrees = []
+                print("DISPLAY TOTAL IN SHOPITEMVIEW: \(displayTotal)")
+
+                if appearTotal == 0 {
 
                     viewModel.fetchShopMenu(withUID: shop.id ?? "") { menuItems in
                         self.totalMenuItems = menuItems
@@ -581,10 +582,13 @@ struct ShopItemView: View {
 
                             HStack{
 
-                                Text(String(total) + " USDC")
+                                let displayTotal = roundToThreeDecimalPlaces(viewModel.total)
+
+                                Text("\(displayTotal) USDC")
                                     .foregroundColor(Color.white)
 
-                                Text("+\(String(viewModel.totalRewards)) 🌟")
+                                let displayRewards = roundToThreeDecimalPlaces(viewModel.totalRewards)
+                                Text("+\(displayRewards) 🌟")
                                     .foregroundColor(Color.white)
 
                             }
@@ -633,13 +637,15 @@ struct ShopItemView: View {
                         }
                     }
 
-                    total = viewModel.calcTotal()
-
-                    totalRewards = viewModel.calcTotalRewards()
+//                    total = viewModel.calcTotal()
+//
+//                    totalRewards = viewModel.calcTotalRewards()
 
                     appearTotal += 1
 
-                }
+                } //: IF STATEMENT
+
+
 
             } //: ON APPEAR
         }
@@ -672,7 +678,13 @@ struct ShopItemView: View {
 
         return false
 
-    } //: FUNC CHECK IF LUNCH SPECIAL VALID 
+    } //: FUNC CHECK IF LUNCH SPECIAL VALID
+
+    func roundToThreeDecimalPlaces(_ number: Double) -> Double {
+        let decimalPlaces = 3
+        let multiplier = pow(10.0, Double(decimalPlaces))
+        return round(number * multiplier) / multiplier
+    }
 
 }
 
