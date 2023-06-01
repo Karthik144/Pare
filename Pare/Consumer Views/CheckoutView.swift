@@ -101,15 +101,15 @@ struct CheckoutView: View {
 
                 }
 
-
                 ScrollView{
+
                     ForEach(viewModel.cartItems) { order in
-                        
-                        
+
+
                         let index = viewModel.cartItems.firstIndex(of: order)
                         let itemPrice = Double(order.item.price)! + Double(order.getAddOns())!
-                        
-                        
+
+
                         OrderItemCell(itemQuantity: order.item.quantity!, itemName: order.item.name, itemPrice: order.item.price, rewardPoints: order.item.rewards, index: index!, popup:false, finalTotal: total)
                             .padding(.leading, 25)
                             .padding(.trailing, 20)
@@ -119,31 +119,32 @@ struct CheckoutView: View {
                             .onAppear(){
                                 let index = viewModel.cartItems.firstIndex(of: order)
                             }
-                        
+
                     } //: FOR EACH
                     .onAppear(){
                         print("Count of cart items")
                         print(viewModel.cartItems.count)
                     }
-                    
-                } //: SCROLLVIEW
-                .frame(height: 150)
 
-                Divider()
+                    Divider()
 
-                HStack{
+                    HStack{
 
-                    Text("Subtotal")
+                        Text("Subtotal")
 
-                    Spacer()
+                        Spacer()
 
-                    Text(String(round(viewModel.subtotal * 100) / 100.0) + " USDC")
+                        Text(String(round(viewModel.subtotal * 100) / 100.0) + " USDC")
 
-                } //: HSTACK
-                .padding(.top, 10)
-                .padding(.leading, 20)
-                .padding(.trailing, 20)
-                .padding(.bottom, 10)
+                    } //: HSTACK
+                    .padding(.top, 10)
+                    .padding(.leading, 20)
+                    .padding(.trailing, 20)
+                    .padding(.bottom, 10)
+
+
+                } //: SCROLL VIEW
+
 
                 HStack{
 
@@ -191,6 +192,7 @@ struct CheckoutView: View {
 
             } //: VSTACK
 
+
             Spacer()
 
 
@@ -237,6 +239,20 @@ struct CheckoutView: View {
                     }
 
                 } //: ELSE
+
+
+//                ScrollView{
+
+                    
+//                } //: SCROLLVIEW
+//                .frame(height: 150)
+
+
+
+
+
+
+
 
 
                 if rewards == false {
@@ -333,8 +349,6 @@ struct CheckoutView: View {
 
         } //: VSTACK
         .onAppear(){
-
-            print("ON APPEAR INSIDE CHECKOUT VIEW")
             total = viewModel.calcTotal()
             viewModel.totalRewards = viewModel.calcTotalRewards()
         }
@@ -353,7 +367,7 @@ struct CheckoutView: View {
         .ignoresSafeArea()
 
 
-    }
+    } //: VIEW
 
 }
 
