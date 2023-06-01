@@ -17,6 +17,7 @@ struct EmailView: View {
     let firstName: String
     let lastName: String
     let login: Bool
+    @State private var isLoading: Bool = false
 
     let customColor = Color(
         red: Double(0x2B) / 255,
@@ -90,13 +91,15 @@ struct EmailView: View {
 //                            viewModel.register(firstName: firstName, lastName: lastName, withEmail: email, password: password, isMerchant: isMerchant)
 
                             if login {
-
-                                print("Button pressed")
-
-                                viewModel.logIn(withEmail: email, password: "", magic: magicSingleton.magic)
+                                
+                                isLoading = true
+                                DispatchQueue.global().async{
+                                    viewModel.logIn(withEmail: email, password: "", magic: magicSingleton.magic)
+                                }
+                            
 
                             } else {
-
+                                isLoading = true
                                 viewModel.register(firstName: firstName, lastName: lastName, withEmail: email, password: "", magic: magicSingleton.magic)
                             }
 
@@ -104,19 +107,33 @@ struct EmailView: View {
                         }, label: {
 
                             if login {
-
-                                Text("Log In")
-                                    .font(.title3)
-                                    .fontWeight(.bold)
-                                    .modifier(NextButtonModifier())
-                                    .frame(width: 230, height: 75)
+                                
+                                VStack{
+                                    if isLoading{
+                                        ProgressView("Loading...")
+                                            .progressViewStyle(CircularProgressViewStyle())
+                                            .padding()
+                                    }
+                                    
+                                    Text("Log In")
+                                        .font(.title3)
+                                        .fontWeight(.bold)
+                                        .modifier(NextButtonModifier())
+                                        .frame(width: 230, height: 75)
+                                }
                             } else {
-
-                                Text("Sign Up")
-                                    .font(.title3)
-                                    .fontWeight(.bold)
-                                    .modifier(NextButtonModifier())
-                                    .frame(width: 230, height: 75)
+                                VStack{
+                                    if isLoading{
+                                        ProgressView("Loading...")
+                                            .progressViewStyle(CircularProgressViewStyle())
+                                            .padding()
+                                    }
+                                    Text("Sign Up")
+                                        .font(.title3)
+                                        .fontWeight(.bold)
+                                        .modifier(NextButtonModifier())
+                                        .frame(width: 230, height: 75)
+                                }
                             }
 
                         })
@@ -132,6 +149,7 @@ struct EmailView: View {
             .offset(y: -keyboardResponder.currentHeight * 0.1)
 
         } //: ZSTACK
+
 //        .tint(Color.white)
 
     }
