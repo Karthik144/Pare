@@ -63,7 +63,7 @@ struct CheckoutView: View {
 
                 } //: HSTACK
                 .padding()
-                .padding(.top, 30)
+                .padding(.top, 50)
 
 
                 HStack{
@@ -100,51 +100,50 @@ struct CheckoutView: View {
 
 
                 }
-
-                ScrollView{
-
-                    ForEach(viewModel.cartItems) { order in
+            } //: VSTACK
+            .padding(.top, 40)
 
 
-                        let index = viewModel.cartItems.firstIndex(of: order)
-                        let itemPrice = Double(order.item.price)! + Double(order.getAddOns())!
+            ScrollView{
+
+                ForEach(viewModel.cartItems) { order in
 
 
-                        OrderItemCell(itemQuantity: order.item.quantity!, itemName: order.item.name, itemPrice: order.item.price, rewardPoints: order.item.rewards, index: index!, popup:false, finalTotal: total)
-                            .padding(.leading, 25)
-                            .padding(.trailing, 20)
-                            .onAppear{
-                                order.item.price = String(itemPrice)
-                            }
-                            .onAppear(){
-                                let index = viewModel.cartItems.firstIndex(of: order)
-                            }
-
-                    } //: FOR EACH
-                    .onAppear(){
-                        print("Count of cart items")
-                        print(viewModel.cartItems.count)
-                    }
-
-                    Divider()
-
-                    HStack{
-
-                        Text("Subtotal")
-
-                        Spacer()
-
-                        Text(String(round(viewModel.subtotal * 100) / 100.0) + " USDC")
-
-                    } //: HSTACK
-                    .padding(.top, 10)
-                    .padding(.leading, 20)
-                    .padding(.trailing, 20)
-                    .padding(.bottom, 10)
+                    let index = viewModel.cartItems.firstIndex(of: order)
+                    let itemPrice = Double(order.item.price)! + Double(order.getAddOns())!
 
 
-                } //: SCROLL VIEW
+                    OrderItemCell(itemQuantity: order.item.quantity!, itemName: order.item.name, itemPrice: order.item.price, rewardPoints: order.item.rewards, index: index!, popup:false, finalTotal: total)
+                        .padding(.leading, 25)
+                        .padding(.trailing, 20)
+                        .onAppear{
+                            order.item.price = String(itemPrice)
+                        }
+                        .onAppear(){
+                            let index = viewModel.cartItems.firstIndex(of: order)
+                        }
 
+                } //: FOR EACH
+                .onAppear(){
+                    print("Count of cart items")
+                    print(viewModel.cartItems.count)
+                }
+
+                Divider()
+
+                HStack{
+
+                    Text("Subtotal")
+
+                    Spacer()
+
+                    Text(String(round(viewModel.subtotal * 100) / 100.0) + " USDC")
+
+                } //: HSTACK
+                .padding(.top, 10)
+                .padding(.leading, 20)
+                .padding(.trailing, 20)
+                .padding(.bottom, 10)
 
                 HStack{
 
@@ -161,6 +160,7 @@ struct CheckoutView: View {
 
                 Divider()
 
+
                 HStack{
 
                     Text("Total")
@@ -174,6 +174,8 @@ struct CheckoutView: View {
                 .padding(.leading, 20)
                 .padding(.trailing, 20)
 
+
+
                 HStack{
 
                     Text("Rewards Earned")
@@ -184,168 +186,125 @@ struct CheckoutView: View {
 
                 } //: HSTACK
                 .padding(.top, 10)
+                .padding(.bottom, 20)
                 .padding(.leading, 20)
                 .padding(.trailing, 20)
 
 
+                Spacer()
 
 
-            } //: VSTACK
+                VStack(spacing: 30){
 
+                    if authViewModel.currentUser?.wallet == false {
 
-            Spacer()
-
-
-            VStack(spacing: 30){
-
-                if authViewModel.currentUser?.wallet == false {
-
-                    Button {
-                        showingWalletAlert = true
-                    } label: {
-                        Text("Pay")
-                            .foregroundColor(Color.white)
-                            .background(
-                                RoundedRectangle(cornerRadius: 8,  style: .continuous)
-                                    .fill(Color.accentColor)
-                                    .frame(width: 300, height: 50)
-                            )
-                    }
-                    .alert("You haven't set up your wallet yet. Go to your Profile to finish setup.", isPresented: $showingWalletAlert) {
-                        Button("Ok", role: .cancel) { }
-                    }
-
-                } else {
-
-//                    NavigationLink(destination: PaySubView(shop: shop, rewards: rewards, rootIsActive: $rootActive, noteText: noteText)){
-//
-//                        Text("Pay")
-//                            .foregroundColor(Color.white)
-//                            .background(
-//                                RoundedRectangle(cornerRadius: 8,  style: .continuous)
-//                                    .fill(Color.accentColor)
-//                                    .frame(width: 300, height: 50)
-//                            )
-//                    }
-                    NavigationLink(destination: PayOptionView(shop: shop, rewards: rewards, rootIsActive: $rootActive, noteText: noteText)){
-
-                        Text("Pay")
-                            .foregroundColor(Color.white)
-                            .background(
-                                RoundedRectangle(cornerRadius: 8,  style: .continuous)
-                                    .fill(Color.accentColor)
-                                    .frame(width: 300, height: 50)
-                            )
-                    }
-
-                } //: ELSE
-
-
-//                ScrollView{
-
-                    
-//                } //: SCROLLVIEW
-//                .frame(height: 150)
-
-
-
-
-
-
-
-
-
-                if rewards == false {
-
-                    Button {
-
-                        // Change cart active status
-                        viewModel.updateCartActiveStatus(cartActive: false)
-
-                        // Store users rewards
-                        var userRewards = Double(authViewModel.currentUser?.rewards ?? 0.0)
-
-
-                        if userRewards >= viewModel.total{
-
-                            // Subtract used rewards from new rewards and update it to total rewards
-                            let extraRewards = userRewards - viewModel.total
-
-                            let updatedRewards = (viewModel.totalRewards) + extraRewards
-
-                            // Update user's rewards with new rewards from purchase
-                            viewModel.updateRewards(rewards: Double(updatedRewards))
-
-                            // Upload order to Firebase (so shop can access it)
-                            viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!, rewards: true, notes: noteText)
-
-                            //Empty out cart
-                            viewModel.cartItems = []
-
-                            //Pop to Shop View
-                            rootActive = false
-
-                        } else {
-
-    //                        showingAlert = true
-
-                            // Subtract total from rewards to get new price
-                            // 5.67 - 1 = 4.67
-                            let newTotal = viewModel.total - userRewards
-                            let newSubTotal = viewModel.subtotal - userRewards
-
-                            // new total: 4.67
-                            viewModel.total = newTotal
-
-
-                            viewModel.totalRewards = (newSubTotal) * 0.10
-
-                            // 0.10 x 4.67 = 0.467
-    //                        let newRewards = viewModel.subtotal * 0.10
-
-                            // Update user's rewards with new rewards from purchase
-                            viewModel.updateRewards(rewards: Double(viewModel.totalRewards))
-
-                            rewards = true
-
+                        Button {
+                            showingWalletAlert = true
+                        } label: {
+                            Text("Pay")
+                                .foregroundColor(Color.white)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 8,  style: .continuous)
+                                        .fill(Color.accentColor)
+                                        .frame(width: 300, height: 50)
+                                )
+                        }
+                        .alert("You haven't set up your wallet yet. Go to your Profile to finish setup.", isPresented: $showingWalletAlert) {
+                            Button("Ok", role: .cancel) { }
                         }
 
-    //                    // Update user's rewards with new rewards from purchase
-    //                    viewModel.updateRewards(rewards: viewModel.rewards)
-    //
-    //
-    //                    // Upload order to Firebase (so shop can access it)
-    //                    viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!)
-    //
-    //                    //Empty out cart
-    //                    viewModel.cartItems = []
-    //
-    //                    //Pop to Shop View
-    ////                    self.appState.moveToDashboard = true
+                    } else {
 
-    //                    rootActive = false
+                        NavigationLink(destination: PayOptionView(shop: shop, rewards: rewards, rootIsActive: $rootActive, noteText: noteText)){
 
-                    } label: {
-                        Text("Pay with stars 🌟")
-                            .frame(width: 300, height: 50)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 8,  style: .continuous)
-                                    .stroke(Color.accentColor, lineWidth: 1)
-                            )
-                    }
-                    .alert("Not enough rewards!", isPresented: $showingAlert) {
-                        Button("Ok", role: .cancel) { }
-                    }
+                            Text("Pay")
+                                .foregroundColor(Color.white)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 8,  style: .continuous)
+                                        .fill(Color.accentColor)
+                                        .frame(width: 300, height: 50)
+                                )
+                        } //: NAV LINK
 
-                } //: IF STATEMENT 
+                    } //: ELSE
 
 
+                    if rewards == false {
 
-            } //: VSTACK
+                        Button {
+
+                            // Change cart active status
+                            viewModel.updateCartActiveStatus(cartActive: false)
+
+                            // Store users rewards
+                            var userRewards = Double(authViewModel.currentUser?.rewards ?? 0.0)
+
+
+                            if userRewards >= viewModel.total{
+
+                                // Subtract used rewards from new rewards and update it to total rewards
+                                let extraRewards = userRewards - viewModel.total
+
+                                let updatedRewards = (viewModel.totalRewards) + extraRewards
+
+                                // Update user's rewards with new rewards from purchase
+                                viewModel.updateRewards(rewards: Double(updatedRewards))
+
+                                // Upload order to Firebase (so shop can access it)
+                                viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!, rewards: true, notes: noteText)
+
+                                //Empty out cart
+                                viewModel.cartItems = []
+
+                                //Pop to Shop View
+                                rootActive = false
+
+                            } else {
+
+                                // Subtract total from rewards to get new price
+                                // 5.67 - 1 = 4.67
+                                let newTotal = viewModel.total - userRewards
+                                let newSubTotal = viewModel.subtotal - userRewards
+
+                                // new total: 4.67
+                                viewModel.total = newTotal
+
+
+                                viewModel.totalRewards = (newSubTotal) * 0.10
+
+                                // 0.10 x 4.67 = 0.467
+                                // Update user's rewards with new rewards from purchase
+                                viewModel.updateRewards(rewards: Double(viewModel.totalRewards))
+
+                                rewards = true
+
+                            }
+
+
+                        } label: {
+                            Text("Pay with stars 🌟")
+                                .frame(width: 300, height: 50)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 8,  style: .continuous)
+                                        .stroke(Color.accentColor, lineWidth: 1)
+                                )
+                        }
+                        .alert("Not enough rewards!", isPresented: $showingAlert) {
+                            Button("Ok", role: .cancel) { }
+                        }
+
+                    } //: IF STATEMENT
 
 
 
-            Spacer()
+                } //: VSTACK
+                .padding()
+
+                Spacer()
+
+
+            } //: SCROLL VIEW
+
 
         } //: VSTACK
         .onAppear(){
