@@ -17,37 +17,37 @@ struct FourStoryView: View {
     // MARK: - BODY
     var body: some View {
         VStack(alignment: .leading){
-
+            
             // Main message
             Group{
-
+                
                 Text("With Pare, you use digital cash called ")
                     .font(.title.weight(.bold))
-
+                
                 +
-
+                
                 Text("**USDC** ")
                     .foregroundColor(Color.accentColor)
                     .font(.title.weight(.bold))
-
+                
                 +
-
+                
                 Text(".")
                     .foregroundColor(Color.accentColor)
                     .font(.title.weight(.bold))
             }
             .padding()
             .padding(.bottom, 0)
-
+            
             // Main message
             Text("It’s secure without relying on middlemen.")
                 .font(.title.weight(.bold))
-            .padding()
-            .padding(.bottom, 0)
-
-
+                .padding()
+                .padding(.bottom, 0)
+            
+            
             Spacer()
-
+            
             HStack{
                 Spacer()
                 // Show Transak View
@@ -63,31 +63,32 @@ struct FourStoryView: View {
                                 .fill(Color.accentColor)
                                 .frame(width: 300, height: 50)
                         )
+                        .frame(width:300, height: 50)
                     
                 } //: BUTTON
                 .padding(.bottom, 35)
                 
                 Spacer()
             }
-
+            
         } //: VSTACK
         .onAppear(){
-
+            
             // Split email into username and domain
             let email = authViewModel.currentUser?.email ?? ""
             let components = email.components(separatedBy: "@")
-
+            
             if components.count == 2 {
                 self.username = components[0]
                 self.domain = components[1]
             } else {
                 print("Invalid email format - AddFundsView")
             }
-
+            
         } //: ON APPEAR
     }
+    
 }
-
 // MARK: - PREVIEW 
 struct FourStoryView_Previews: PreviewProvider {
     static var previews: some View {

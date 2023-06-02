@@ -81,6 +81,7 @@ struct ThirdStoryView: View {
                                 .fill(customColor)
                                 .frame(width: 300, height: 50)
                         )
+                        .frame(width:300,height:50)
 
                 } //: BUTTON
                 .padding(.bottom, 35)

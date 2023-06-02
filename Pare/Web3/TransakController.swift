@@ -28,6 +28,7 @@ struct TransakController: View {
             print("Error - TransakController:", error.description)
 
         })
+        .navigationBarHidden(true)
 
     } //: VIEW
 
