@@ -75,6 +75,10 @@
 		7C9DDD5929EC82E6001EE8AD /* Step2Onboarding1.3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9DDD5829EC82E6001EE8AD /* Step2Onboarding1.3View.swift */; };
 		7CA83B4B29BA578900E4C4CD /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA83B4A29BA578900E4C4CD /* MenuItem.swift */; };
 		7CA914BF299DB9790006ED5B /* UserCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA914BE299DB9790006ED5B /* UserCheck.swift */; };
+		7CAFC1212A2A533700DCEB0F /* FirstStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAFC1202A2A533700DCEB0F /* FirstStoryView.swift */; };
+		7CAFC1232A2A587800DCEB0F /* SecondStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAFC1222A2A587800DCEB0F /* SecondStoryView.swift */; };
+		7CAFC1252A2A5A7300DCEB0F /* ThirdStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAFC1242A2A5A7300DCEB0F /* ThirdStoryView.swift */; };
+		7CAFC1272A2A5C9F00DCEB0F /* FourStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAFC1262A2A5C9F00DCEB0F /* FourStoryView.swift */; };
 		7CB5F3DF29DCE6C600A13A2B /* PaySubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB5F3DE29DCE6C600A13A2B /* PaySubView.swift */; };
 		7CC4189E29C16F1A004CE58B /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC4189D29C16F1A004CE58B /* OrderItem.swift */; };
 		7CC418A329C1958F004CE58B /* PastOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC418A229C1958F004CE58B /* PastOrderView.swift */; };
@@ -174,6 +178,10 @@
 		7C9DDD5829EC82E6001EE8AD /* Step2Onboarding1.3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step2Onboarding1.3View.swift; sourceTree = "<group>"; };
 		7CA83B4A29BA578900E4C4CD /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		7CA914BE299DB9790006ED5B /* UserCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCheck.swift; sourceTree = "<group>"; };
+		7CAFC1202A2A533700DCEB0F /* FirstStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstStoryView.swift; sourceTree = "<group>"; };
+		7CAFC1222A2A587800DCEB0F /* SecondStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondStoryView.swift; sourceTree = "<group>"; };
+		7CAFC1242A2A5A7300DCEB0F /* ThirdStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdStoryView.swift; sourceTree = "<group>"; };
+		7CAFC1262A2A5C9F00DCEB0F /* FourStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourStoryView.swift; sourceTree = "<group>"; };
 		7CB5F3DE29DCE6C600A13A2B /* PaySubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaySubView.swift; sourceTree = "<group>"; };
 		7CC4189D29C16F1A004CE58B /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		7CC418A229C1958F004CE58B /* PastOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastOrderView.swift; sourceTree = "<group>"; };
@@ -359,6 +367,7 @@
 		7C86262229B7E80B00919213 /* Consumer Views */ = {
 			isa = PBXGroup;
 			children = (
+				7CAFC11F2A2A532400DCEB0F /* Story Views */,
 				7C86263029B818E400919213 /* CheckoutView.swift */,
 				7CCCEFBF29B7CCCA00E27BAA /* ShopsView.swift */,
 				7C86262829B7F0F000919213 /* ShopItemView.swift */,
@@ -396,6 +405,17 @@
 				7CEEF66D2A24237100C11C65 /* AddFundsCell.swift */,
 			);
 			path = "View Components ";
+			sourceTree = "<group>";
+		};
+		7CAFC11F2A2A532400DCEB0F /* Story Views */ = {
+			isa = PBXGroup;
+			children = (
+				7CAFC1202A2A533700DCEB0F /* FirstStoryView.swift */,
+				7CAFC1222A2A587800DCEB0F /* SecondStoryView.swift */,
+				7CAFC1242A2A5A7300DCEB0F /* ThirdStoryView.swift */,
+				7CAFC1262A2A5C9F00DCEB0F /* FourStoryView.swift */,
+			);
+			path = "Story Views";
 			sourceTree = "<group>";
 		};
 		7CC4189F29C16F27004CE58B /* Pending Order Models */ = {
@@ -567,6 +587,7 @@
 				7CC418A329C1958F004CE58B /* PastOrderView.swift in Sources */,
 				7CEDCD1429BBB4B700C70EF5 /* PersonalView.swift in Sources */,
 				E94ABC0A29A0438D004DEC26 /* Router.swift in Sources */,
+				7CAFC1212A2A533700DCEB0F /* FirstStoryView.swift in Sources */,
 				7C45EC62299B354A00F3B439 /* AppState.swift in Sources */,
 				7C45EC34299B298800F3B439 /* CustomInputTextField.swift in Sources */,
 				7C429A6B29EA1C0D00C3E2D3 /* Step1Onboarding3View.swift in Sources */,
@@ -579,6 +600,7 @@
 				7C97788329BAA68900F0C6C5 /* Required.swift in Sources */,
 				7C494B0529EAD8A5009D0015 /* Step1CompleteView.swift in Sources */,
 				7CEEF6682A24190C00C11C65 /* AddFundsView.swift in Sources */,
+				7CAFC1232A2A587800DCEB0F /* SecondStoryView.swift in Sources */,
 				7C494B0D29EADEFC009D0015 /* Step2Onboarding4View.swift in Sources */,
 				7C6D70FE2A244F08005D10F1 /* MagicSingleton.swift in Sources */,
 				7CEEF6622A226D7C00C11C65 /* BenefitView.swift in Sources */,
@@ -586,6 +608,7 @@
 				E9A3DA6C29DD96FF00F5A1D0 /* WalletConnect.swift in Sources */,
 				7C45BE0A29E4876A000DA45E /* VideoView.swift in Sources */,
 				7C429A6F29EA22DC00C3E2D3 /* Step1Onboarding6View.swift in Sources */,
+				7CAFC1252A2A5A7300DCEB0F /* ThirdStoryView.swift in Sources */,
 				7C9DDD5729EC823D001EE8AD /* Step2Onboarding1.2View.swift in Sources */,
 				7CCCEFC029B7CCCA00E27BAA /* ShopsView.swift in Sources */,
 				7C0439E429B939170037EE72 /* ShopViewModel.swift in Sources */,
@@ -605,6 +628,7 @@
 				7C86262B29B7F86000919213 /* ItemCell.swift in Sources */,
 				7C45EC46299B2D5F00F3B439 /* SignUpViewTwo.swift in Sources */,
 				7C45EC20299B26B300F3B439 /* PareApp.swift in Sources */,
+				7CAFC1272A2A5C9F00DCEB0F /* FourStoryView.swift in Sources */,
 				7CEB24D729BE53CF00018FB2 /* PendingOrder.swift in Sources */,
 				E943114929A179B700E26EBE /* KeyboardResponder.swift in Sources */,
 				7C45EC38299B2AC700F3B439 /* ButtonModifier.swift in Sources */,
