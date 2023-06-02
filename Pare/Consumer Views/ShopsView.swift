@@ -134,7 +134,7 @@ struct ShopsView: View {
                 if authViewModel.currentUser?.wallet == false {
 
                     NavigationLink {
-                        AddFundsView()
+                        FirstStoryView()
                     } label: {
                         AddFundsCell()
 
