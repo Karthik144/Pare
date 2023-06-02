@@ -48,22 +48,27 @@ struct FourStoryView: View {
 
             Spacer()
 
-            // Show Transak View
-            NavigationLink {
-                TransakController(publicAddress: authViewModel.currentUser?.public_address ?? "", firstName: authViewModel.currentUser?.first_name ?? "", lastName: authViewModel.currentUser?.last_name ?? "", emailUsername: self.username, emailDomain: self.domain)
-            } label: {
-
-                Text("Add Funds")
-                    .fontWeight(.semibold)
-                    .foregroundColor(Color.white)
-                    .background(
-                        RoundedRectangle(cornerRadius: 8,  style: .continuous)
-                            .fill(Color.accentColor)
-                            .frame(width: 300, height: 50)
-                    )
-
-            } //: BUTTON
-            .padding(.bottom, 35)
+            HStack{
+                Spacer()
+                // Show Transak View
+                NavigationLink {
+                    TransakController(publicAddress: authViewModel.currentUser?.public_address ?? "", firstName: authViewModel.currentUser?.first_name ?? "", lastName: authViewModel.currentUser?.last_name ?? "", emailUsername: self.username, emailDomain: self.domain)
+                } label: {
+                    
+                    Text("Add Funds")
+                        .fontWeight(.semibold)
+                        .foregroundColor(Color.white)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8,  style: .continuous)
+                                .fill(Color.accentColor)
+                                .frame(width: 300, height: 50)
+                        )
+                    
+                } //: BUTTON
+                .padding(.bottom, 35)
+                
+                Spacer()
+            }
 
         } //: VSTACK
         .onAppear(){

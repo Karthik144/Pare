@@ -66,7 +66,7 @@ struct ThirdStoryView: View {
             Spacer()
 
             HStack{
-
+                Spacer()
 
                 // Show FourthStoryView
                 NavigationLink {
@@ -84,6 +84,8 @@ struct ThirdStoryView: View {
 
                 } //: BUTTON
                 .padding(.bottom, 35)
+                
+                Spacer()
 
             } //: HSTACK
 

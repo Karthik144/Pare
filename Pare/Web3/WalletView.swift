@@ -60,7 +60,7 @@ struct WalletView: View {
                     NavigationLink {
 
                         // Navigate to add funds view
-                        AddFundsView()
+                        FirstStoryView()
 
                     } label: {
                         WalletOptionCell(title: "Add funds", subTitle: "Buy more USDC", image: "dollar_note")
