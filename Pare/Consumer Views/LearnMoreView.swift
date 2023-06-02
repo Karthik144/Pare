@@ -23,7 +23,7 @@ struct LearnMoreView: View {
                     .fontWeight(.bold)
                     .font(.title3)
 
-                Text("Think of it as a username. Anyone can send you money if they have this.")
+                Text("A replica of your physical wallet, but digital. Only you control spending & access, no 3rd-party banks involved")
                     .fontWeight(.light)
                 
             } //: VSTACK
@@ -34,7 +34,7 @@ struct LearnMoreView: View {
                     .fontWeight(.bold)
                     .font(.title3)
 
-                Text("Think of it as a username. Anyone can send you money if they have this. ")
+                Text("Digital Cash on the internet with no limitations on borders, speed, or access")
                     .fontWeight(.light)
 
             } //: VSTACK
@@ -53,6 +53,11 @@ struct LearnMoreView: View {
 
             Button(action: {
                 // Add link to calendly
+                guard let url = URL(string: "https://calendly.com/getparehelp/30min") else { return }
+                            
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
 
             }) {
 
