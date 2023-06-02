@@ -23,7 +23,7 @@ struct LearnMoreView: View {
                     .fontWeight(.bold)
                     .font(.title3)
 
-                Text("A replica of your physical wallet, but digital. Only you control spending & access, no 3rd-party banks involved")
+                Text("A replica of your physical wallet, but digital. Only you control spending & access, no 3rd-party banks involved.")
                     .fontWeight(.light)
                 
             } //: VSTACK
@@ -34,7 +34,7 @@ struct LearnMoreView: View {
                     .fontWeight(.bold)
                     .font(.title3)
 
-                Text("Digital Cash on the internet with no limitations on borders, speed, or access")
+                Text("Digital cash on the internet with no limitations on borders, speed, or access.")
                     .fontWeight(.light)
 
             } //: VSTACK
