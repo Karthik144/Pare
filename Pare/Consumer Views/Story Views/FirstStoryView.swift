@@ -89,7 +89,7 @@ struct FirstStoryView: View {
             Image("payment_flow")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 282, height: 290)
+                .frame(width: 232, height: 240)
                 .padding()
                 .padding(.leading, 0)
 
@@ -117,6 +117,8 @@ struct FirstStoryView: View {
                         .frame(width:300, height: 50)
 
                 } //: BUTTON
+                .frame(width: 300, height: 50)
+                .padding(.top)
                 .padding(.bottom, 35)
 
                 Spacer()
