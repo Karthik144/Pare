@@ -48,6 +48,23 @@ struct FourStoryView: View {
             
             Spacer()
             
+            var Link = Link("https://www.example.com", destination: URL(string: "https://www.example.com")!)
+                .foregroundColor(.blue)
+            
+            HStack{
+                let url = "https://www.electronicid.eu/en/blog/post/crypto-exchanges-compliance/en"
+                let link = "* the following steps may ask for your drivers license, ssn, and photo verification in order to comply with [U.S. Legal Regulations](\(url)) for digital cash 'Know Your Customer' procedures (KYC)."
+                Text(.init(link))
+                    .padding()
+                
+            }
+            
+ 
+
+            
+            
+            Spacer()
+            
             HStack{
                 Spacer()
                 // Show Transak View
