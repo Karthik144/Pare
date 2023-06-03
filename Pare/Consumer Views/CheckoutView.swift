@@ -24,6 +24,7 @@ struct CheckoutView: View {
     @StateObject var magicSingleton = MagicSingleton.shared
 
     @State private var showingAlert = false
+    @State private var showingBalanceAlert = false
     @State private var showingWalletAlert = false
 
     @State var noteText = ""
@@ -273,11 +274,23 @@ struct CheckoutView: View {
                             let publicAddress = authViewModel.currentUser?.public_address
                             let magic = magicSingleton.magic
 
-                            // Send ERC-20 token to restuarant
-                            walletViewModel.sendTransaction(magic: magic, userPublicAddress: publicAddress ?? "", amount: viewModel.total)
 
-                            // Send order to restaurant
-                            completeOrder()
+                            print("BALANCE IN CHECKOUT VIEW")
+                            print(walletViewModel.userTokenBalance)
+
+                            if Double(walletViewModel.userTokenBalance) >= viewModel.total{
+
+                                // Send ERC-20 token to restuarant
+                                walletViewModel.sendTransaction(magic: magic, userPublicAddress: publicAddress ?? "", amount: viewModel.total)
+
+                                // Send order to restaurant
+                                completeOrder()
+
+                            } else {
+
+                                showingBalanceAlert = true
+
+                            }
 
 
                         } label: {
@@ -290,6 +303,9 @@ struct CheckoutView: View {
                                 )
                         }
                         .frame(width: 300, height: 50)
+                        .alert("Not enough USDC in wallet!", isPresented: $showingBalanceAlert) {
+                            Button("Ok", role: .cancel) { }
+                        }
 
 
                     } //: ELSE

@@ -41,18 +41,7 @@ struct WalletView: View {
                 }
                 .padding()
                 .padding(.bottom, 20)
-                .onAppear(){
 
-                    walletViewModel.getBalance(magic: magicSingleton.magic, userPublicAddress: authViewModel.currentUser?.public_address ?? "") { balance in
-
-                        if let balance = balance {
-                            tokenBalance = balance
-
-                        } else {
-                            print("Error retrieving balance. - WalletView")
-                        }
-                    }
-                } //: ON APPEAR
 
                 LazyVStack{
 
@@ -99,6 +88,18 @@ struct WalletView: View {
             }
             .navigationTitle("Wallet")
             .navigationBarTitleDisplayMode(.large)
+            .onAppear(){
+
+                walletViewModel.getBalance(magic: magicSingleton.magic, userPublicAddress: authViewModel.currentUser?.public_address ?? "") { balance in
+
+                    if let balance = balance {
+                        tokenBalance = balance
+
+                    } else {
+                        print("Error retrieving balance. - WalletView")
+                    }
+                }
+            } //: ON APPEAR
 
         } //: NAV VIEW
 

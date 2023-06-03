@@ -14,6 +14,9 @@ struct ShopItemView: View {
     @EnvironmentObject var viewModel: ShopViewModel
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var walletViewModel: WalletViewModel
+    @StateObject var magicSingleton = MagicSingleton.shared
+
     @State private var totalMenuItems = [MenuItem]()
     @State private var appetizers = [MenuItem]()
     @State private var entrees = [MenuItem]()
@@ -55,13 +58,15 @@ struct ShopItemView: View {
                         .frame(width: 115, height: 115)
                         .scaledToFit()
                         .cornerRadius(7)
+//
+//                    Button {
+//                        print(walletViewModel.userTokenBalance)
+//                    } label: {
+//                        Text("Test")
+//                    }
+
 
                     VStack(alignment: .leading){
-
-
-                        Text(shop.name)
-                            .font(.title3)
-                            .fontWeight(.bold)
 
                         HStack{
 
@@ -353,7 +358,22 @@ struct ShopItemView: View {
 
                 } //: IF APPEAR = 0
 
+
+                walletViewModel.getBalance(magic: magicSingleton.magic, userPublicAddress: authViewModel.currentUser?.public_address ?? "") { balance in
+
+                    if let balance = balance {
+                        print("\(balance) - ShopItemView")
+
+                    } else {
+                        print("Error retrieving balance. - ShopsView")
+                    }
+                }
+
+                
+
             } //: ON APPEAR
+
+
 
 
         } else {

@@ -199,6 +199,8 @@ struct ShopsView: View {
                     }
                 }
 
+                
+
             } //: ON APPEAR
 
 
