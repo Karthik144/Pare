@@ -23,5 +23,6 @@ struct PendingOrder: Identifiable, Decodable {
     var subtotal: Double
     var total: Double
     var rewards: Bool?
+    var promo_used: Bool? 
 
 }

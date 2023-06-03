@@ -28,7 +28,9 @@ class WalletViewModel: ObservableObject{
         do {
 
             // Create a dummy erc-20 contract instance
-            let contractAddress = try EthereumAddress(hex: "0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1", eip55: false)
+//            let contractAddress = try EthereumAddress(hex: "0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1", eip55: false)
+            let contractAddress = try EthereumAddress(hex: "0xBC301D905Ccee51Dd9e7b60Bb807aCC69bD00913", eip55: false)
+
 
             let USDCcontract = web3.eth.Contract(type: GenericERC20Contract.self, address: contractAddress)
 
@@ -80,7 +82,7 @@ class WalletViewModel: ObservableObject{
     } //: FUNC GET BALANCE
 
     // Send transaction (ERC-20 token)
-    func sendTransaction(magic: Magic, userPublicAddress: String){
+    func sendTransaction(magic: Magic, userPublicAddress: String, amount: Double){
 
         do{
 
@@ -88,8 +90,13 @@ class WalletViewModel: ObservableObject{
             var web3 = Web3(provider: magic.rpcProvider)
 
             // Create a dummy erc-20 contract
-            let contractAddress = try EthereumAddress(hex: "0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1", eip55: false)
+
+            let contractAddress = try EthereumAddress(hex: "0xBC301D905Ccee51Dd9e7b60Bb807aCC69bD00913", eip55: false)
+
+//            let contractAddress = try EthereumAddress(hex: "0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1", eip55: false)
+
             let contract = web3.eth.Contract(type: GenericERC20Contract.self, address: contractAddress)
+            let sendAmount = amount * 1e18
 
             // Send some tokens to another address (signing will be done by the node)
             let myAddress = try EthereumAddress(hex: userPublicAddress, eip55: false)
@@ -99,9 +106,9 @@ class WalletViewModel: ObservableObject{
 
                 // Note: Need to change address to Yuan Ho
                 // Should we decrease gasPrice that we're willing to pay?
-                try contract.transfer(to: EthereumAddress(hex: "0x551Fa22d9722286dceA636516683B8B3b8a6aF0D", eip55: false), value: 400000).send(
+                try contract.transfer(to: EthereumAddress(hex: "0x551Fa22d9722286dceA636516683B8B3b8a6aF0D", eip55: false), value: BigUInt(sendAmount)).send(
                     nonce: nonce,
-                    from: EthereumAddress(hex: "0x3ff4e98be04ba8c0d96a4b5ee6bd8d7ee834cbec", eip55: false),
+                    from: EthereumAddress(hex: userPublicAddress, eip55: false),
                     value: 0,
                     gas: 150000,
                     gasPrice: EthereumQuantity(quantity: 21.gwei)

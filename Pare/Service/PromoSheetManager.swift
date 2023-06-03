@@ -1,13 +1,13 @@
 //
-//  SheetManager.swift
+//  PromoSheetManager.swift
 //  Pare
 //
-//  Created by Karthik  Ramu on 4/8/23.
+//  Created by Karthik  Ramu on 6/3/23.
 //
 
 import Foundation
 
-final class SheetManager: ObservableObject {
+final class PromoSheetManager: ObservableObject {
 
     enum Action {
 
@@ -29,7 +29,7 @@ final class SheetManager: ObservableObject {
     }
 }
 
-extension SheetManager.Action {
+extension PromoSheetManager.Action {
 
     var isPresented: Bool { self == .present }
 

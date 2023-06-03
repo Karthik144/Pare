@@ -264,7 +264,7 @@ struct PaySubView: View {
             }
             
             // Upload order to Firebase (so shop can access it)
-            viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!, rewards: rewards, notes: noteText)
+//            viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!, rewards: rewards, notes: noteText, promo_used: <#Bool#>)
             
             
             //Empty out cart

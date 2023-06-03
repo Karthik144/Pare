@@ -19,4 +19,5 @@ struct User: Identifiable, Decodable {
     var cart_active: Bool
     var rewards: Double
     var wallet: Bool?
+    var used_promo_code: Bool? 
 }

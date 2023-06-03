@@ -17,14 +17,20 @@ struct CheckoutView: View {
     @State var tax = 0.0
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var viewModel: ShopViewModel
+    @EnvironmentObject var walletViewModel: WalletViewModel
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var sheetManager: SheetManager
+    @EnvironmentObject var promoSheetManager: PromoSheetManager
+    @StateObject var magicSingleton = MagicSingleton.shared
 
     @State private var showingAlert = false
     @State private var showingWalletAlert = false
 
     @State var noteText = ""
+    @State var promoText = ""
     @State var rewards = false
+    @State var promoCodeIsValid = false
+    @State var promoUsed = false
     @Binding var rootActive: Bool
 
 
@@ -124,7 +130,36 @@ struct CheckoutView: View {
                         }
 
                 } //: FOR EACH
-      
+
+
+                HStack{
+
+                    Spacer()
+
+                    Button {
+
+                        // Show popup with promo code text field
+                        promoSheetManager.present()
+
+
+                    } label: {
+
+                        Text("Add Promo Code")
+                            .frame(width: 140, height: 25)
+                            .foregroundColor(Color.accentColor)
+                            .overlay(
+
+                                RoundedRectangle(cornerRadius: 5, style: .continuous)
+                                    .stroke(Color.accentColor, lineWidth: 1)
+                            )
+
+                    } //: BUTTON
+                    .frame(width: 140, height: 25)
+                    .padding()
+
+                } //: HSTACK
+
+
 
                 Divider()
 
@@ -134,7 +169,12 @@ struct CheckoutView: View {
 
                     Spacer()
 
-                    Text(String(round(viewModel.subtotal * 100) / 100.0) + " USDC")
+                    if self.promoCodeIsValid && viewModel.cartItems.count == 1 {
+                        Text(String("0 USDC"))
+                    } else {
+                        Text(String(round(viewModel.subtotal * 100) / 100.0) + " USDC")
+                    }
+
 
                 } //: HSTACK
                 .padding(.top, 10)
@@ -148,7 +188,11 @@ struct CheckoutView: View {
 
                     Spacer()
 
-                    Text(String(viewModel.tax) + " USDC")
+                    if self.promoCodeIsValid && viewModel.cartItems.count == 1 {
+                        Text(String("0 USDC"))
+                    } else {
+                        Text(String(viewModel.tax) + " USDC")
+                    }
 
                 } //: HSTACK
                 .padding(.leading, 20)
@@ -166,7 +210,14 @@ struct CheckoutView: View {
 
                     let displayTotal = roundToThreeDecimalPlaces(viewModel.total)
 
-                    Text(String(displayTotal) + " USDC")
+                    if self.promoCodeIsValid && viewModel.cartItems.count == 1 {
+
+                        Text(String("0 USDC"))
+
+                    } else {
+
+                        Text(String(displayTotal) + " USDC")
+                    }
 
                 } //: HSTACK
                 .padding(.top, 10)
@@ -216,8 +267,20 @@ struct CheckoutView: View {
 
                     } else {
 
-                        NavigationLink(destination: PayOptionView(shop: shop, rewards: rewards, rootIsActive: $rootActive, noteText: noteText)){
+                        Button {
 
+                            // User public address
+                            let publicAddress = authViewModel.currentUser?.public_address
+                            let magic = magicSingleton.magic
+
+                            // Send ERC-20 token to restuarant
+                            walletViewModel.sendTransaction(magic: magic, userPublicAddress: publicAddress ?? "", amount: viewModel.total)
+
+                            // Send order to restaurant
+                            completeOrder()
+
+
+                        } label: {
                             Text("Pay")
                                 .foregroundColor(Color.white)
                                 .background(
@@ -225,83 +288,84 @@ struct CheckoutView: View {
                                         .fill(Color.accentColor)
                                         .frame(width: 300, height: 50)
                                 )
-                        } //: NAV LINK
+                        }
+                        .frame(width: 300, height: 50)
+
 
                     } //: ELSE
 
 
-                    if rewards == false {
 
-                        Button {
+                    Button {
 
-                            // Change cart active status
-                            viewModel.updateCartActiveStatus(cartActive: false)
+                        // Change cart active status
+                        viewModel.updateCartActiveStatus(cartActive: false)
 
-                            // Store users rewards
-                            var userRewards = Double(authViewModel.currentUser?.rewards ?? 0.0)
-
-
-                            if userRewards >= viewModel.total{
-
-                                // Subtract used rewards from new rewards and update it to total rewards
-                                let extraRewards = userRewards - viewModel.total
-
-                                let updatedRewards = (viewModel.totalRewards) + extraRewards
-
-                                // Update user's rewards with new rewards from purchase
-                                viewModel.updateRewards(rewards: Double(updatedRewards))
-
-                                // Upload order to Firebase (so shop can access it)
-                                viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!, rewards: true, notes: noteText)
-
-                                //Empty out cart
-                                viewModel.cartItems = []
-
-                                //Pop to Shop View
-                                rootActive = false
-
-                            } else {
-
-                                // Subtract total from rewards to get new price
-                                // 5.67 - 1 = 4.67
-                                let newTotal = viewModel.total - userRewards
-                                let newSubTotal = viewModel.subtotal - userRewards
-
-                                // new total: 4.67
-                                viewModel.total = newTotal
+                        // Store users rewards
+                        var userRewards = Double(authViewModel.currentUser?.rewards ?? 0.0)
 
 
-                                viewModel.totalRewards = (newSubTotal) * 0.10
+                        if userRewards >= viewModel.total{
 
-                                // 0.10 x 4.67 = 0.467
-                                // Update user's rewards with new rewards from purchase
-                                viewModel.updateRewards(rewards: Double(viewModel.totalRewards))
+                            // Subtract used rewards from new rewards and update it to total rewards
+                            let extraRewards = userRewards - viewModel.total
 
-                                rewards = true
+                            let updatedRewards = (viewModel.totalRewards) + extraRewards
 
-                            }
+                            // Update user's rewards with new rewards from purchase
+                            viewModel.updateRewards(rewards: Double(updatedRewards))
+
+                            rewards = true
+
+                            // Upload order to Firebase (so shop can access it)
+                            viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!, rewards: rewards, notes: noteText, promo_used: self.promoUsed)
+
+                            //Empty out cart
+                            viewModel.cartItems = []
+
+                            //Pop to Shop View
+                            rootActive = false
+
+                        } else {
+
+                            // Subtract total from rewards to get new price
+                            // 5.67 - 1 = 4.67
+                            let newTotal = viewModel.total - userRewards
+                            let newSubTotal = viewModel.subtotal - userRewards
+
+                            // new total: 4.67
+                            viewModel.total = newTotal
 
 
-                        } label: {
-                            Text("Pay with stars 🌟")
-                                .frame(width: 300, height: 50)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 8,  style: .continuous)
-                                        .stroke(Color.accentColor, lineWidth: 1)
-                                )
-                        }
-                        .alert("Not enough rewards!", isPresented: $showingAlert) {
-                            Button("Ok", role: .cancel) { }
+                            viewModel.totalRewards = (newSubTotal) * 0.10
+
+                            // 0.10 x 4.67 = 0.467
+                            // Update user's rewards with new rewards from purchase
+                            viewModel.updateRewards(rewards: Double(viewModel.totalRewards))
+
+                            rewards = true
+
                         }
 
-                    } //: IF STATEMENT
+
+                    } label: {
+                        Text("Pay with stars 🌟")
+                            .frame(width: 300, height: 50)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8,  style: .continuous)
+                                    .stroke(Color.accentColor, lineWidth: 1)
+                            )
+                    }
+                    .alert("Not enough rewards!", isPresented: $showingAlert) {
+                        Button("Ok", role: .cancel) { }
+                    }
+
 
 
 
                 } //: VSTACK
                 .padding()
 
-                Spacer()
 
 
             } //: SCROLL VIEW
@@ -315,13 +379,31 @@ struct CheckoutView: View {
         .overlay(alignment: .bottom){
 
             if sheetManager.action.isPresented {
-                PopUpView(instructions: $noteText){
+                PopUpView(text: $noteText, title: "Add a note", subTitle: "Mention any dietary restrictions, additional modifications, or just say thanks!"){
 
                     withAnimation {
                         sheetManager.dismiss()
                     }
                 }
-            }
+            } //: IF SHEET MANAGER PRESENTED
+
+            if promoSheetManager.action.isPresented {
+
+                PopUpView(text: $promoText, title: "Add a promo code", subTitle: "Each promo code is valid only once") {
+                    withAnimation {
+                        promoSheetManager.dismiss()
+                    }
+
+                    self.promoCodeIsValid = self.verifyPromoCode(promoCode: promoText)
+
+                    if self.promoCodeIsValid{
+
+                        self.promoUsed = true
+                    }
+
+                }
+            } //: IF PROMO SHEET MANAGER PRESENTED
+
 
         }
         .ignoresSafeArea()
@@ -330,11 +412,54 @@ struct CheckoutView: View {
     } //: VIEW
 
     func roundToThreeDecimalPlaces(_ number: Double) -> Double {
+
         let decimalPlaces = 3
         let multiplier = pow(10.0, Double(decimalPlaces))
         return round(number * multiplier) / multiplier
-    }
 
+    } //: FUNC ROUND
+
+    func verifyPromoCode(promoCode: String) -> Bool {
+
+        // Requirements:
+        // 1. wallet needs to be set up with funds
+        // 2. promo code must be valid
+        // 3. promo code must not have already been used
+
+        if authViewModel.currentUser?.wallet == true && promoCode == "FREE" && authViewModel.currentUser?.used_promo_code == false {
+            return true
+        } else {
+            return false
+        }
+    } //: FUNC VERIFY PROMO CODE
+
+    func completeOrder(){
+
+        // Change cart active status
+        viewModel.updateCartActiveStatus(cartActive: false)
+
+        // Store users rewards
+        let userRewards = Double(authViewModel.currentUser?.rewards ?? 0.0)
+
+        if rewards != true {
+            // Find new total rewards from purchase
+            let totalFinalRewards = userRewards + viewModel.totalRewards
+
+            // Update rewarads in firebase
+            viewModel.updateRewards(rewards: totalFinalRewards)
+        }
+
+        // Upload order to Firebase (so shop can access it)
+        viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!, rewards: rewards, notes: noteText, promo_used: promoUsed)
+
+
+        //Empty out cart
+        viewModel.cartItems = []
+
+        //Pop to Shop View
+        rootActive = false
+
+    }
 }
 
 

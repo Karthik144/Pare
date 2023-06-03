@@ -24,7 +24,7 @@ struct PareApp: App{
     @StateObject var shopViewModel = ShopViewModel()
     @ObservedObject var appState = AppState()
     @StateObject var sheetManager = SheetManager()
-    
+    @StateObject var promoSheetManager = PromoSheetManager()
     
 
     var body: some Scene {
@@ -36,6 +36,8 @@ struct PareApp: App{
                 .environmentObject(shopViewModel)
                 .environmentObject(web3WalletViewModel)
                 .environmentObject(sheetManager)
+                .environmentObject(promoSheetManager)
+
         }
 
     }

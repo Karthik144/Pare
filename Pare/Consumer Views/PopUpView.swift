@@ -10,7 +10,9 @@ import SwiftUI
 struct PopUpView: View {
 
     // MARK: - PROPERTIES
-    @Binding var instructions: String
+    @Binding var text: String
+    let title: String
+    let subTitle: String
     @ObservedObject var keyboardResponder = KeyboardResponder()
     let didClose: () -> Void 
 
@@ -23,7 +25,7 @@ struct PopUpView: View {
 
                 HStack{
 
-                    Text("Add a note")
+                    Text(title)
                         .font(.title2)
                         .fontWeight(.bold)
                         .padding()
@@ -34,7 +36,7 @@ struct PopUpView: View {
 
                 HStack{
 
-                    Text("Mention any dietary restrictions, additional modifications, or just say thanks!")
+                    Text(subTitle)
                         .lineLimit(3)
                         .foregroundColor(Color.gray)
                         .padding(.leading)
@@ -46,12 +48,12 @@ struct PopUpView: View {
 
 
             if #available(iOS 16.0, *) {
-                TextField("Instructions", text: $instructions, axis: .vertical)
+                TextField("Instructions", text: $text, axis: .vertical)
                     .textFieldStyle(.roundedBorder)
                     .padding()
             } else {
                 // Fallback on earlier versions
-                TextField("Instructions", text: $instructions)
+                TextField("Instructions", text: $text)
                     .textFieldStyle(.roundedBorder)
                     .padding()
             }
@@ -97,7 +99,7 @@ private extension PopUpView {
 
         Button {
 
-            instructions = ""
+            text = ""
             // Close popup view
             didClose()
 
