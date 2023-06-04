@@ -77,7 +77,7 @@ class AuthViewModel: ObservableObject{
 
                                 Firestore.firestore().collection("users")
                                     .document(user.uid)
-                                    .setData(["first_name": firstName, "last_name": lastName, "email": email, "public_address": self.publicAddress, "is_merchant": false, "cart_active": false, "rewards": 0, "wallet": false]){ _ in
+                                    .setData(["first_name": firstName, "last_name": lastName, "email": email, "public_address": self.publicAddress, "is_merchant": false, "cart_active": false, "rewards": 0, "wallet": false, "used_promo_code": false]){ _ in
 
 //                                        print("User data successfully uploaded.")
 
