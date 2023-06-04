@@ -395,7 +395,7 @@ struct CheckoutView: View {
         .overlay(alignment: .bottom){
 
             if sheetManager.action.isPresented {
-                PopUpView(text: $noteText, title: "Add a note", subTitle: "Mention any dietary restrictions, additional modifications, or just say thanks!"){
+                PopUpView(text: $noteText, title: "Add a note", subTitle: "Mention any dietary restrictions, additional modifications, or just say thanks!", promoCodePopup: false){
 
                     withAnimation {
                         sheetManager.dismiss()
@@ -405,7 +405,7 @@ struct CheckoutView: View {
 
             if promoSheetManager.action.isPresented {
 
-                PopUpView(text: $promoText, title: "Add a promo code", subTitle: "Each promo code is valid only once") {
+                PopUpView(text: $promoText, title: "Add a promo code", subTitle: "Each promo code is valid only once", promoCodePopup: true) {
                     withAnimation {
                         promoSheetManager.dismiss()
                     }

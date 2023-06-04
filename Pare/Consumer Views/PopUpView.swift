@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MagicSDK_Web3
 
 struct PopUpView: View {
 
@@ -13,7 +14,10 @@ struct PopUpView: View {
     @Binding var text: String
     let title: String
     let subTitle: String
+    let promoCodePopup: Bool
     @ObservedObject var keyboardResponder = KeyboardResponder()
+    @EnvironmentObject var walletViewModel: WalletViewModel
+
     let didClose: () -> Void 
 
     // MARK: - BODY
@@ -57,6 +61,14 @@ struct PopUpView: View {
                     .textFieldStyle(.roundedBorder)
                     .padding()
             }
+
+            if promoCodePopup && walletViewModel.userTokenBalance == 0 {
+
+                Text("To use code, please add $30 to wallet. This won't be spent on this transaction.")
+                    .foregroundColor(Color.red)
+                    .padding()
+            }
+            
 
             Button {
                 didClose()

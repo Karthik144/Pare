@@ -59,9 +59,7 @@ struct FourStoryView: View {
                 
             }
             
- 
 
-            
             
             Spacer()
             

@@ -29,10 +29,6 @@ struct PersonalView: View {
 
                 }
 
-                Section(header: Text("Preferences")) {
-                    Toggle("Enable notifications", isOn: .constant(true))
-                }
-
                 HStack{
 
                     Spacer()
@@ -69,10 +65,6 @@ struct PersonalView: View {
                     TextField("Last Name", text: $lastName)
                     TextField("Email", text: $email)
 
-                }
-
-                Section(header: Text("Preferences")) {
-                    Toggle("Enable notifications", isOn: .constant(true))
                 }
 
                 Section {

@@ -58,15 +58,12 @@ struct ShopItemView: View {
                         .frame(width: 115, height: 115)
                         .scaledToFit()
                         .cornerRadius(7)
-//
-//                    Button {
-//                        print(walletViewModel.userTokenBalance)
-//                    } label: {
-//                        Text("Test")
-//                    }
 
 
                     VStack(alignment: .leading){
+
+                        Text(shop.name)
+                            .font(.title3.weight(.bold))
 
                         HStack{
 
@@ -289,11 +286,12 @@ struct ShopItemView: View {
 
                             HStack{
 
-                                let displayTotal = String(format: "%.3f", roundToThreeDecimalPlaces(viewModel.total))
+                                let displayTotal = String(format: "%.2f", roundToTwoDecimalPlaces(viewModel.total))
                                 Text("\(displayTotal) USDC")
                                     .foregroundColor(Color.white)
 
-                                let displayRewardTotal = String(format: "%.3f", roundToThreeDecimalPlaces(viewModel.totalRewards))
+                                let displayRewardTotal = String(format: "%.2f", roundToTwoDecimalPlaces(viewModel.totalRewards))
+
                                 Text("+\(displayRewardTotal) 🌟")
                                     .foregroundColor(Color.white)
 
@@ -321,7 +319,7 @@ struct ShopItemView: View {
                 date = dateFormatter.string(from: Date())
                 dayOfWeek = calendar.component(.weekday, from: Date())
 
-                let displayTotal = roundToThreeDecimalPlaces(viewModel.total)
+                let displayTotal = roundToTwoDecimalPlaces(viewModel.total)
 
                 if appearTotal == 0 {
 
@@ -617,11 +615,11 @@ struct ShopItemView: View {
 
                             HStack{
 
-                                let displayTotal = String(format: "%.3f", roundToThreeDecimalPlaces(viewModel.total))
+                                let displayTotal = String(format: "%.2f", roundToTwoDecimalPlaces(viewModel.total))
                                 Text("\(displayTotal) USDC")
                                     .foregroundColor(Color.white)
 
-                                let displayRewardTotal = String(format: "%.3f", roundToThreeDecimalPlaces(viewModel.totalRewards))
+                                let displayRewardTotal = String(format: "%.2f", roundToTwoDecimalPlaces(viewModel.totalRewards))
                                 Text("+\(displayRewardTotal) 🌟")
                                     .foregroundColor(Color.white)
 
@@ -648,7 +646,7 @@ struct ShopItemView: View {
                 date = dateFormatter.string(from: Date())
                 dayOfWeek = calendar.component(.weekday, from: Date())
 
-                let displayTotal = roundToThreeDecimalPlaces(viewModel.total)
+                let displayTotal = roundToTwoDecimalPlaces(viewModel.total)
 
                 if appearTotal == 0 {
 
@@ -723,8 +721,8 @@ struct ShopItemView: View {
 
     } //: FUNC CHECK IF LUNCH SPECIAL VALID
 
-    func roundToThreeDecimalPlaces(_ number: Double) -> Double {
-        let decimalPlaces = 3
+    func roundToTwoDecimalPlaces(_ number: Double) -> Double {
+        let decimalPlaces = 2
         let multiplier = pow(10.0, Double(decimalPlaces))
         return round(number * multiplier) / multiplier
     }
