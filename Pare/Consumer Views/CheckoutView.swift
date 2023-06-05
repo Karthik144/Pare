@@ -262,7 +262,7 @@ struct CheckoutView: View {
                                         .frame(width: 300, height: 50)
                                 )
                         }
-                        .alert("You haven't set up your wallet yet. Go to your Profile to finish setup.", isPresented: $showingWalletAlert) {
+                        .alert("You haven't set up your wallet yet. Go to the Wallet Tab to finish setup.", isPresented: $showingWalletAlert) {
                             Button("Ok", role: .cancel) { }
                         }
 

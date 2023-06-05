@@ -125,12 +125,11 @@ struct ShopItemView: View {
                             VStack(alignment: .leading){
                                 ForEach(appetizers) { item in
 
-                                    NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+                                    NavigationLink(destination: AddItemView(lunchSpecial: false, order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
                                     ) {
                                         ItemCell(item: item)
 
                                     }
-
 
                                 } //: FOR EACH
                             } //: VSTACK
@@ -159,7 +158,7 @@ struct ShopItemView: View {
                             VStack(alignment: .leading){
                                 ForEach(vegetarian) { item in
 
-                                    NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+                                    NavigationLink(destination: AddItemView(order: Order(item: item),shop: shop, rootIsStillActive: $rootIsActive)
                                     ) {
                                         ItemCell(item: item)
                                     }
@@ -200,7 +199,7 @@ struct ShopItemView: View {
                                     ) {
                                         ItemCell(item: item)
                                     }
-
+ 
 
                                 } //: FOR EACH
                             } //: VSTACK
@@ -234,7 +233,7 @@ struct ShopItemView: View {
                                 VStack(alignment: .leading){
                                     ForEach(lunch) { item in
 
-                                        NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+                                        NavigationLink(destination: AddItemView(lunchSpecial: true, order: Order(item: item),shop: shop, rootIsStillActive: $rootIsActive)
                                         ) {
                                             ItemCell(item: item)
                                         }
@@ -340,14 +339,20 @@ struct ShopItemView: View {
                                 appetizers.append(each)
                             }
 
-                            else if each.type.contains("lunch"){
+                            /*else if each.type.contains("lunch"){
 
                                 lunch.append(each)
-                            }
+                            }*/
 
                             else{
                                 entrees.append(each)
                             }
+                        }
+                    }
+                    
+                    viewModel.fetchLunchMenu(withUID: shop.id ?? ""){ lunchItems in
+                        for each in lunchItems{
+                            lunch.append(each)
                         }
                     }
 
@@ -670,14 +675,20 @@ struct ShopItemView: View {
                                 appetizers.append(each)
                             }
 
-                            else if each.type.contains("lunch"){
+                            /*else if each.type.contains("lunch"){
 
                                 lunch.append(each)
-                            }
+                            }*/
 
                             else{
                                 entrees.append(each)
                             }
+                        }
+                    }
+                    
+                    viewModel.fetchLunchMenu(withUID: shop.id ?? ""){ lunchItems in
+                        for each in lunchItems{
+                            lunch.append(each)
                         }
                     }
 

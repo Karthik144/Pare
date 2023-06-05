@@ -11,6 +11,7 @@ import Kingfisher
 struct AddItemView: View {
 
     // MARK: - PROPERTIES
+    var lunchSpecial:Bool?
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var viewModel: ShopViewModel
     @State private var didTap = false
@@ -18,10 +19,12 @@ struct AddItemView: View {
     @State private var goesToShopItemView = false
     @State private var addOptions = [Add]()
     @State private var requiredOptions = [Required]()
+    @State private var requiredDrink = [Required]()
     @State private var modificationOptions = [Modification]()
     //@State var item: MenuItem
     @StateObject var order: Order
     let shop: Shop
+    
 
     @Binding var rootIsStillActive : Bool 
 
@@ -78,9 +81,17 @@ struct AddItemView: View {
 
             } //: HSTACK
             .padding()
+            
+            if lunchSpecial ?? false{
+                Text("Get a free spring roll & drink!")
+                    .padding(.leading)
+                    .font(.body.weight(.light))
+            }
+            
+            
 
             ScrollView{
-
+                
                 LazyVStack(alignment: .leading){
 
                     if requiredOptions.count >= 1 {
@@ -111,6 +122,33 @@ struct AddItemView: View {
                         } //: VSTACK
                     }
 
+                    if requiredDrink.count >= 1 {
+                        Text("Required Drink")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .padding(.leading, 20)
+                        Text("Choose 1")
+                            .font(.subheadline)
+                            .fontWeight(.light)
+                            .padding(.leading, 20)
+
+                        VStack{
+
+                            ForEach(requiredDrink) { option in
+
+                                Button {
+                                    didTap.toggle()
+                                } label: {
+
+                                    RequiredItemCell(requiredItem: option, order: order)
+                                }
+                                .padding(.leading, 20)
+                                .padding(5)
+
+                            } //: FOR EACH
+
+                        } //: VSTACK
+                    }
 
 
                     if modificationOptions.count >= 1 {
@@ -282,7 +320,16 @@ struct AddItemView: View {
             viewModel.fetchItemAddOptions(withUID: shop.id ?? "", itemUID: order.item.id ?? "") { addOptions in
                 self.addOptions = addOptions
             }
+            
+            if lunchSpecial ?? false{
+                viewModel.fetchLunchRequired(withUID: shop.id ?? "", itemUID: order.item.id ?? "") { requiredDrinks in
+                    self.requiredDrink = requiredDrinks
+                    print("In",self.requiredDrink)
 
+                }
+            }
+
+            print("out", self.requiredDrink)
 
             viewModel.fetchItemRequiredOptions(withUID: shop.id ?? "", itemUID: order.item.id ?? "") { requiredOptions in
                 self.requiredOptions = requiredOptions

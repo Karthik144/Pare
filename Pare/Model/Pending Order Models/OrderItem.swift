@@ -17,6 +17,7 @@ struct OrderItem: Identifiable, Decodable {
     var price: String
     var rewards: String
     var quantity: Int
+    var type: String?
 
 
 }

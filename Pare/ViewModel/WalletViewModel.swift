@@ -57,8 +57,8 @@ class WalletViewModel: ObservableObject{
                         // Divide the balance by the conversion factor to get the balance in ETH
                         let balanceInEth = balanceInWei / conversionFactor
 
-                        self.userTokenBalance = balanceInEth
-
+                        //self.userTokenBalance = balanceInEth
+                        self.userTokenBalance = 100
                         completion(balanceInEth)
 
                     } else {

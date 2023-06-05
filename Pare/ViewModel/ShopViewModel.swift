@@ -49,6 +49,40 @@ class ShopViewModel: ObservableObject {
 
     } //: FUNC FETCH SHOPS
 
+    
+    func fetchLunchMenu(withUID uid: String, completion: @escaping([MenuItem]) -> Void){
+        Firestore.firestore().collection("shops").document(uid).collection("lunch_specials").addSnapshotListener { (querySnapshot, error) in
+
+            guard let documents = querySnapshot?.documents else {
+                print("No documents in this collection. - fetchShopsMenu, ShopViewModel")
+                return
+
+            }
+
+            let menuItems = documents.compactMap({ try? $0.data(as: MenuItem.self) })
+
+            completion(menuItems)
+
+        }
+    }
+    
+    func fetchLunchRequired(withUID uid: String, itemUID: String, completion: @escaping([Required]) -> Void){
+        
+        Firestore.firestore().collection("shops").document(uid).collection("lunch_specials").document(itemUID).collection("required_drink").addSnapshotListener { (querySnapshot, error) in
+
+            guard let documents = querySnapshot?.documents else {
+                print("No documents in this collection. - fetchItemRequiredOptions, ShopViewModel")
+                return
+
+            }
+
+            let requiredOptions = documents.compactMap({ try? $0.data(as: Required.self) })
+
+            completion(requiredOptions)
+
+        }
+
+    } //: FETCH LUNCH DRINK OPTIONS
 
     func fetchShopMenu(withUID uid: String, completion: @escaping([MenuItem]) -> Void){
 
@@ -146,6 +180,7 @@ class ShopViewModel: ObservableObject {
         }
 
     } //: FETCH PENDING ORDERS
+
 
     func fetchOrderItems(pendingOrderID: String, completion: @escaping([OrderItem]) -> Void){
 
@@ -262,7 +297,7 @@ class ShopViewModel: ObservableObject {
 //            var cartItem = cartItems[i]
 
             // Add a document to user's values collection
-            let itemDocRef = db.collection("users").document(userUID).collection("orders").document(ordersDocRef.documentID).collection("order_items").addDocument(data: ["name": cartItem.item.name, "price": cartItem.item.price, "quantity": cartItem.item.quantity ?? 0, "rewards": cartItem.item.rewards, "order_id": ordersDocRef.documentID]) { error in
+            let itemDocRef = db.collection("users").document(userUID).collection("orders").document(ordersDocRef.documentID).collection("order_items").addDocument(data: ["name": cartItem.item.name, "price": cartItem.item.price, "quantity": cartItem.item.quantity ?? 0, "rewards": cartItem.item.rewards, "order_id": ordersDocRef.documentID, "type": cartItem.item.type]) { error in
 
                 // Check for errors
                 if error == nil {
@@ -292,6 +327,8 @@ class ShopViewModel: ObservableObject {
                 }
 
             }
+            
+            
 
             for each in cartItem.addOns ?? [] {
 
@@ -348,6 +385,7 @@ class ShopViewModel: ObservableObject {
 
         let merchantID = shop.merchant_id ?? ""
 
+        
 
         // Add a document to user's values collection
         let ordersDocRef = db.collection("merchants").document(merchantID).collection("orders_dev").addDocument(data: ["order_id": orderID, "user_id": userID, "total": totalPrice, "consumer_name": user.first_name + " " + user.last_name, "date_ordered": Timestamp(date: Date()), "notes": notes, "total_items": String(totalItems)]) { error in

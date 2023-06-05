@@ -26,15 +26,21 @@ struct FourStoryView: View {
                 
                 +
                 
-                Text("**USDC** ")
+                Text("**USDC**")
                     .foregroundColor(Color.accentColor)
                     .font(.title.weight(.bold))
                 
                 +
                 
-                Text(".")
+                Text(".\n")
                     .foregroundColor(Color.accentColor)
                     .font(.title.weight(.bold))
+                
+                +
+                
+                Text("(1 USDC = 1 Dollar)")
+                    .foregroundColor(Color.gray)
+                
             }
             .padding()
             .padding(.bottom, 0)
@@ -46,14 +52,15 @@ struct FourStoryView: View {
                 .padding(.bottom, 0)
             
             
-            Spacer()
+            Spacer(minLength: 100)
             
             var Link = Link("https://www.example.com", destination: URL(string: "https://www.example.com")!)
                 .foregroundColor(.blue)
             
             HStack{
                 let url = "https://www.electronicid.eu/en/blog/post/crypto-exchanges-compliance/en"
-                let link = "* the following steps may ask for your drivers license, ssn, and photo verification in order to comply with [U.S. Legal Regulations](\(url)) for digital cash 'Know Your Customer' procedures (KYC)."
+                
+                let link = "* The following steps may ask for your drivers license, ssn, and photo verification in order to comply with [U.S. Legal Regulations](\(url)) for digital cash 'Know Your Customer' procedures (KYC). Transak processes all this information. Transak is registered as a Money Service Business(MSB) with the US Treasury Financial Crimes Enforcement Network"
                 Text(.init(link))
                     .padding()
                 
