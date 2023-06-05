@@ -46,6 +46,7 @@ struct WalletOptionCell: View {
                 .padding()
 
         } //: HSTACK
+        .contentShape(Rectangle())
         .padding(.leading)
         .padding(.trailing)
 

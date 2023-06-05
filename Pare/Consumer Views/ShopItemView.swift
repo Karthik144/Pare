@@ -297,6 +297,9 @@ struct ShopItemView: View {
 
                             }
                             .padding()
+                            .onAppear{
+                                print("TEST ROUND",roundToTwoDecimalPlaces(viewModel.total))
+                            }
 
                         }
                         .frame(width: 345, height: 50)
@@ -625,6 +628,9 @@ struct ShopItemView: View {
 
                             }
                             .padding()
+                            .onAppear{
+                                print("TEST ROUND",roundToTwoDecimalPlaces(viewModel.total))
+                            }
 
                         }
                         .frame(width: 345, height: 50)

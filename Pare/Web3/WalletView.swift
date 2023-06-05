@@ -53,6 +53,7 @@ struct WalletView: View {
 
                     } label: {
                         WalletOptionCell(title: "Add funds", subTitle: "Buy more USDC", image: "dollar_note")
+                        
                     }
                     .buttonStyle(PlainButtonStyle()) // Remove the accent highlight
 
