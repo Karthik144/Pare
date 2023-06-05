@@ -10,6 +10,7 @@ import SwiftUI
 struct ThirdStoryView: View {
 
     // MARK: - PROPERTIES
+    @EnvironmentObject var authViewModel: AuthViewModel
     let customColor = Color(red: 43/255, green: 74/255, blue: 238/255)
 
     // MARK: - BODY
@@ -85,6 +86,7 @@ struct ThirdStoryView: View {
 
                 } //: BUTTON
                 .padding(.bottom, 35)
+
                 
                 Spacer()
 

@@ -16,6 +16,8 @@ struct TransakController: View {
     let lastName: String
     let emailUsername: String
     let emailDomain: String
+
+    @EnvironmentObject var authViewModel: AuthViewModel
     
     @State var param:String?
 
@@ -31,6 +33,9 @@ struct TransakController: View {
                 print(error)
             
         })
+        .onDisappear(){
+            authViewModel.updateUserWalletSetupStatus()
+        }
         .onAppear{
             let jsonObject: [String:Any] = [
                 "firstName" : firstName,
@@ -47,6 +52,7 @@ struct TransakController: View {
 
 
         }
+
         
         /*
          WebView(url: URL(string: "https://global-stg.transak.com/?apiKey=d66d374c-d314-452e-ad13-3fbfc6e1319f&network=polygon&defaultCryptoCurrency=USDC&environment=STAGING&disableWalletAddressForm=true&cryptoCurrencyList=USDC&walletAddress=\(publicAddress)&fiatCurrency=USD&defaultFiatAmount=30&hideMenu=true&themeColor=2B4AEE&productsAvailed=BUY&exchangeScreenTitle=Add%20coins%20to%20your%20wallet.&userData=%7B%22firstName%22%3A%22\(firstName)%22%2C%22lastName%22%3A%22\(lastName)%22%2C%22email%22%3A%22\(emailUsername)%40\(emailDomain)"), onError: { error in

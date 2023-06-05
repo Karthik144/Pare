@@ -45,17 +45,39 @@ struct WalletView: View {
 
                 LazyVStack{
 
-                    // Option Cell #1
-                    NavigationLink {
+                    if authViewModel.currentUser?.wallet == false {
 
-                        // Navigate to add funds view
-                        FourStoryView()
 
-                    } label: {
-                        WalletOptionCell(title: "Add funds", subTitle: "Buy more USDC", image: "dollar_note")
-                        
-                    }
-                    .buttonStyle(PlainButtonStyle()) // Remove the accent highlight
+                        // Option Cell #1
+                        NavigationLink {
+
+                            // Navigate to first story view
+                            FirstStoryView()
+
+                        } label: {
+                            WalletOptionCell(title: "Add funds", subTitle: "Buy more USDC", image: "dollar_note")
+
+                        }
+                        .buttonStyle(PlainButtonStyle()) // Remove the accent highlight
+
+                    } else {
+
+
+                        // Option Cell #1
+                        NavigationLink {
+
+                            // Navigate to add funds view
+                            FourStoryView()
+
+                        } label: {
+                            WalletOptionCell(title: "Add funds", subTitle: "Buy more USDC", image: "dollar_note")
+
+                        }
+                        .buttonStyle(PlainButtonStyle()) // Remove the accent highlight
+
+
+                    } //: ELSE 
+
 
 
                     // Option cell #2

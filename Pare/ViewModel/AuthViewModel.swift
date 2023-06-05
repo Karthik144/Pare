@@ -302,11 +302,16 @@ class AuthViewModel: ObservableObject{
         // Create a reference to the database
         let db = Firestore.firestore()
 
-        // Updates wallet status
-        db.collection("users").document(currentUser?.id ?? "").updateData(["wallet": true]){ _ in
+        if currentUser?.wallet == false {
 
-            print("User data successfully uploaded.  - updateUserData, AuthViewModel")
+            // Updates wallet status
+            db.collection("users").document(currentUser?.id ?? "").updateData(["wallet": true]){ _ in
+
+                print("User data successfully uploaded.  - updateUserData, AuthViewModel")
+            }
+
         }
+
 
     } // UPDATE USER WALLET SETUP STATUS
 

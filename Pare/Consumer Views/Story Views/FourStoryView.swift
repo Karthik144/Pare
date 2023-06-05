@@ -92,6 +92,7 @@ struct FourStoryView: View {
                 
                 Spacer()
             }
+
             
         } //: VSTACK
         .onAppear(){
@@ -106,8 +107,9 @@ struct FourStoryView: View {
             } else {
                 print("Invalid email format - AddFundsView")
             }
-            
+
         } //: ON APPEAR
+
     }
     
 }
