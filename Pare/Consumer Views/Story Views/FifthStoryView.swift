@@ -154,6 +154,7 @@ struct FifthStoryView: View {
 
 
         } //: VSTACK
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear(){
 
             // Split email into username and domain

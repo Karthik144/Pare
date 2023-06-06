@@ -44,6 +44,7 @@ struct FourthStoryView: View {
             }
             .padding()
             .padding(.bottom, 0)
+            .padding(.top, 0)
 
             // Main message
             Text("1 USDC equals $1")
@@ -124,6 +125,8 @@ struct FourthStoryView: View {
             
         } //: VSTACK
         .navigationTitle("")
+        .navigationBarTitleDisplayMode(.inline)
+
 //        .onAppear(){
 //
 //            // Split email into username and domain
