@@ -41,7 +41,7 @@ struct AddFundsView: View {
 
             // Show Transak View
             NavigationLink {
-                TransakController(publicAddress: authViewModel.currentUser?.public_address ?? "", firstName: authViewModel.currentUser?.first_name ?? "", lastName: authViewModel.currentUser?.last_name ?? "", emailUsername: self.username, emailDomain: self.domain)
+                TransakController(publicAddress: authViewModel.currentUser?.public_address ?? "", firstName: authViewModel.currentUser?.first_name ?? "", lastName: authViewModel.currentUser?.last_name ?? "", email: authViewModel.currentUser?.email ?? "")
             } label: {
 
                 Text("Add Funds")

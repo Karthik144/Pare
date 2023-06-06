@@ -8,15 +8,22 @@
 import SwiftUI
 import WebKit
 
+struct userData: Codable{
+    let firstName: String
+    let lastName: String
+}
+
+
 struct TransakController: View {
 
     // MARK: - PROPERTIES
     let publicAddress: String
     let firstName: String
     let lastName: String
-    let emailUsername: String
-    let emailDomain: String
-
+    //let emailUsername: String
+    //let emailDomain: String
+    let email: String
+    @State private var encodedString = ""
     @EnvironmentObject var authViewModel: AuthViewModel
     
     @State var param:String?
@@ -29,6 +36,34 @@ struct TransakController: View {
 
         // Note: Can add userData object so they don't have to fill out First Name, Last Name, Mobile Number, Date of Birth -- need to edit user data below correctly so that we can input user details (this will bring us directly to the last step of KYC)
 
+        
+        //PRODUCTION
+        WebView(url: URL(string: "https://global.transak.com/?apiKey=e0b53fa9-2126-450f-8a91-8239a0e4ae6d&network=polygon&defaultCryptoCurrency=USDC&cryptoCurrencyList=USDC&fiatCurrency=USD&defaultFiatAmount=30&walletAddress=\(publicAddress)&disableWalletAddressForm=true&email=\(email)&userData=%7B%22firstName%22%3A%22Jane%22%2C%22lastName%22%3A%22Doe%22%7D"), onError: {error in
+                print("This is error: ", error)
+            
+        })
+        .onDisappear(){
+            authViewModel.updateUserWalletSetupStatus()
+        }
+        .onAppear{
+            
+            let userObject = userData(firstName: firstName, lastName: lastName)
+            
+            let jsonEncoder = JSONEncoder()
+            guard let jsonData = try? jsonEncoder.encode(userObject) else {
+                fatalError("Failed to encode object into JSON")
+            }
+            
+            let jsonString = String(data: jsonData, encoding: .utf8) ?? ""
+
+            encodedString = jsonString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+
+            print(encodedString)
+
+        }
+        
+        /*
+        //STAGING
         WebView(url: URL(string: "https://global-stg.transak.com/?apiKey=173117b1-85df-44a8-b66b-d7f2fa52822d&network=polygon&defaultCryptoCurrency=USDC&environment=STAGING&walletAddress=\(publicAddress)&disableWalletAddressForm=true&cryptoCurrencyList=USDC&fiatCurrency=USD&defaultFiatAmount=30&email=\(emailDomain)"), onError: {error in
                 print(error)
             
@@ -52,24 +87,7 @@ struct TransakController: View {
 
 
         }
-
-        
-        /*
-         WebView(url: URL(string: "https://global-stg.transak.com/?apiKey=d66d374c-d314-452e-ad13-3fbfc6e1319f&network=polygon&defaultCryptoCurrency=USDC&environment=STAGING&disableWalletAddressForm=true&cryptoCurrencyList=USDC&walletAddress=\(publicAddress)&fiatCurrency=USD&defaultFiatAmount=30&hideMenu=true&themeColor=2B4AEE&productsAvailed=BUY&exchangeScreenTitle=Add%20coins%20to%20your%20wallet.&userData=%7B%22firstName%22%3A%22\(firstName)%22%2C%22lastName%22%3A%22\(lastName)%22%2C%22email%22%3A%22\(emailUsername)%40\(emailDomain)"), onError: { error in
-         
-//             %22%2C%22mobileNumber%22%3A%22%2B15417543010%22%2C%22dob%22%3A%221994-08-26%22%2C%22address%22%3A%7B%22addressLine1%22%3A%22170%20Pine%20St%22%2C%22addressLine2%22%3A%22San%20Francisco%22%2C%22city%22%3A%22San%20Francisco%22%2C%22state%22%3A%22CA%22%2C%22postCode%22%3A%2294111%22%2C%22countryCode%22%3A%22US%22%7D%7D
-
-             print("Error - TransakController:", error.description)
-
-         })
-         .onAppear(){
-
-             print("https://global-stg.transak.com/?apiKey=d66d374c-d314-452e-ad13-3fbfc6e1319f&network=polygon&defaultCryptoCurrency=USDC&environment=STAGING&disableWalletAddressForm=true&cryptoCurrencyList=USDC&walletAddress=\(publicAddress)&fiatCurrency=USD&defaultFiatAmount=30&hideMenu=true&themeColor=2B4AEE&productsAvailed=BUY&exchangeScreenTitle=Add%20coins%20to%20your%20wallet.&userData=%7B%22firstName%22%3A%22\(firstName)%22%2C%22lastName%22%3A%22\(lastName)%22%2C%22email%22%3A%22\(emailUsername)%40\(emailDomain)%22%2C%22mobileNumber%22%3A%22%2B15417543010%22%2C%22dob%22%3A%221994-08-26%22%2C%22address%22%3A%7B%22addressLine1%22%3A%22170%20Pine%20St%22%2C%22addressLine2%22%3A%22San%20Francisco%22%2C%22city%22%3A%22San%20Francisco%22%2C%22state%22%3A%22CA%22%2C%22postCode%22%3A%2294111%22%2C%22countryCode%22%3A%22US%22%7D%7D")
-         }
          */
-        
-
-
     } //: VIEW
     
 
