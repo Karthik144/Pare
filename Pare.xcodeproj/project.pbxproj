@@ -43,6 +43,7 @@
 		7C494B0929EADC64009D0015 /* Step2Onboarding2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C494B0829EADC64009D0015 /* Step2Onboarding2View.swift */; };
 		7C494B0B29EADD4B009D0015 /* Step2Onboarding3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C494B0A29EADD4B009D0015 /* Step2Onboarding3View.swift */; };
 		7C494B0D29EADEFC009D0015 /* Step2Onboarding4View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C494B0C29EADEFC009D0015 /* Step2Onboarding4View.swift */; };
+		7C49CBD32A2EDDD600E699FC /* FifthStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C49CBD22A2EDDD600E699FC /* FifthStoryView.swift */; };
 		7C6D70EA2A244C4F005D10F1 /* MagicSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 7C6D70E92A244C4F005D10F1 /* MagicSDK */; };
 		7C6D70ED2A244CAE005D10F1 /* MagicExt-OAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7C6D70EC2A244CAE005D10F1 /* MagicExt-OAuth */; };
 		7C6D70EF2A244CAE005D10F1 /* MagicExt-OIDC in Frameworks */ = {isa = PBXBuildFile; productRef = 7C6D70EE2A244CAE005D10F1 /* MagicExt-OIDC */; };
@@ -79,7 +80,7 @@
 		7CAFC1212A2A533700DCEB0F /* FirstStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAFC1202A2A533700DCEB0F /* FirstStoryView.swift */; };
 		7CAFC1232A2A587800DCEB0F /* SecondStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAFC1222A2A587800DCEB0F /* SecondStoryView.swift */; };
 		7CAFC1252A2A5A7300DCEB0F /* ThirdStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAFC1242A2A5A7300DCEB0F /* ThirdStoryView.swift */; };
-		7CAFC1272A2A5C9F00DCEB0F /* FourStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAFC1262A2A5C9F00DCEB0F /* FourStoryView.swift */; };
+		7CAFC1272A2A5C9F00DCEB0F /* FourthStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAFC1262A2A5C9F00DCEB0F /* FourthStoryView.swift */; };
 		7CB5F3DF29DCE6C600A13A2B /* PaySubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB5F3DE29DCE6C600A13A2B /* PaySubView.swift */; };
 		7CC4189E29C16F1A004CE58B /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC4189D29C16F1A004CE58B /* OrderItem.swift */; };
 		7CC418A329C1958F004CE58B /* PastOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC418A229C1958F004CE58B /* PastOrderView.swift */; };
@@ -156,6 +157,7 @@
 		7C494B0829EADC64009D0015 /* Step2Onboarding2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step2Onboarding2View.swift; sourceTree = "<group>"; };
 		7C494B0A29EADD4B009D0015 /* Step2Onboarding3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step2Onboarding3View.swift; sourceTree = "<group>"; };
 		7C494B0C29EADEFC009D0015 /* Step2Onboarding4View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step2Onboarding4View.swift; sourceTree = "<group>"; };
+		7C49CBD22A2EDDD600E699FC /* FifthStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FifthStoryView.swift; sourceTree = "<group>"; };
 		7C6D70FD2A244F08005D10F1 /* MagicSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicSingleton.swift; sourceTree = "<group>"; };
 		7C7A9F512A2BCB9F00CAFDE9 /* PromoSheetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoSheetManager.swift; sourceTree = "<group>"; };
 		7C840AF729C2253F001F067E /* PastOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastOrderCell.swift; sourceTree = "<group>"; };
@@ -183,7 +185,7 @@
 		7CAFC1202A2A533700DCEB0F /* FirstStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstStoryView.swift; sourceTree = "<group>"; };
 		7CAFC1222A2A587800DCEB0F /* SecondStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondStoryView.swift; sourceTree = "<group>"; };
 		7CAFC1242A2A5A7300DCEB0F /* ThirdStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdStoryView.swift; sourceTree = "<group>"; };
-		7CAFC1262A2A5C9F00DCEB0F /* FourStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourStoryView.swift; sourceTree = "<group>"; };
+		7CAFC1262A2A5C9F00DCEB0F /* FourthStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthStoryView.swift; sourceTree = "<group>"; };
 		7CB5F3DE29DCE6C600A13A2B /* PaySubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaySubView.swift; sourceTree = "<group>"; };
 		7CC4189D29C16F1A004CE58B /* OrderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		7CC418A229C1958F004CE58B /* PastOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastOrderView.swift; sourceTree = "<group>"; };
@@ -416,7 +418,8 @@
 				7CAFC1202A2A533700DCEB0F /* FirstStoryView.swift */,
 				7CAFC1222A2A587800DCEB0F /* SecondStoryView.swift */,
 				7CAFC1242A2A5A7300DCEB0F /* ThirdStoryView.swift */,
-				7CAFC1262A2A5C9F00DCEB0F /* FourStoryView.swift */,
+				7CAFC1262A2A5C9F00DCEB0F /* FourthStoryView.swift */,
+				7C49CBD22A2EDDD600E699FC /* FifthStoryView.swift */,
 			);
 			path = "Story Views";
 			sourceTree = "<group>";
@@ -631,7 +634,7 @@
 				7C86262B29B7F86000919213 /* ItemCell.swift in Sources */,
 				7C45EC46299B2D5F00F3B439 /* SignUpViewTwo.swift in Sources */,
 				7C45EC20299B26B300F3B439 /* PareApp.swift in Sources */,
-				7CAFC1272A2A5C9F00DCEB0F /* FourStoryView.swift in Sources */,
+				7CAFC1272A2A5C9F00DCEB0F /* FourthStoryView.swift in Sources */,
 				7CEB24D729BE53CF00018FB2 /* PendingOrder.swift in Sources */,
 				E943114929A179B700E26EBE /* KeyboardResponder.swift in Sources */,
 				7C45EC38299B2AC700F3B439 /* ButtonModifier.swift in Sources */,
@@ -659,6 +662,7 @@
 				7CA914BF299DB9790006ED5B /* UserCheck.swift in Sources */,
 				7CD872CD29ECFDF900637AEE /* PayWithMetaMaskView.swift in Sources */,
 				7CC4189E29C16F1A004CE58B /* OrderItem.swift in Sources */,
+				7C49CBD32A2EDDD600E699FC /* FifthStoryView.swift in Sources */,
 				7C0439E229B938930037EE72 /* Shop.swift in Sources */,
 				7CEAA1AB29EB0D7F0004A06D /* Step2CompleteView.swift in Sources */,
 				7C97788529BAA88500F0C6C5 /* RequiredItemCell.swift in Sources */,

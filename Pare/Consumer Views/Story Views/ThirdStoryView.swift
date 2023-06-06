@@ -71,7 +71,7 @@ struct ThirdStoryView: View {
 
                 // Show FourthStoryView
                 NavigationLink {
-                    FourStoryView()
+                    FourthStoryView()
                 } label: {
 
                     Text("Next")
