@@ -28,7 +28,7 @@ class WalletViewModel: ObservableObject{
         do {
 
             // Create a dummy erc-20 contract instance
-            let contractAddress = try EthereumAddress(hex: "0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1", eip55: false)
+            let contractAddress = try EthereumAddress(hex: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174", eip55: false)
 //            let contractAddress = try EthereumAddress(hex: "0xBC301D905Ccee51Dd9e7b60Bb807aCC69bD00913", eip55: false)
 
 
@@ -93,7 +93,7 @@ class WalletViewModel: ObservableObject{
 
 //            let contractAddress = try EthereumAddress(hex: "0xBC301D905Ccee51Dd9e7b60Bb807aCC69bD00913", eip55: false)
 
-            let contractAddress = try EthereumAddress(hex: "0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1", eip55: false)
+            let contractAddress = try EthereumAddress(hex: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174", eip55: false)
 
             let contract = web3.eth.Contract(type: GenericERC20Contract.self, address: contractAddress)
             let sendAmount = amount * 1e18
