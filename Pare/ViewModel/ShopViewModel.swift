@@ -388,7 +388,7 @@ class ShopViewModel: ObservableObject {
         
 
         // Add a document to user's values collection
-        let ordersDocRef = db.collection("merchants").document(merchantID).collection("orders_dev").addDocument(data: ["order_id": orderID, "user_id": userID, "total": totalPrice, "consumer_name": user.first_name + " " + user.last_name, "date_ordered": Timestamp(date: Date()), "notes": notes, "total_items": String(totalItems)]) { error in
+        let ordersDocRef = db.collection("merchants").document(merchantID).collection("orders").addDocument(data: ["order_id": orderID, "user_id": userID, "total": totalPrice, "consumer_name": user.first_name + " " + user.last_name, "date_ordered": Timestamp(date: Date()), "notes": notes, "total_items": String(totalItems)]) { error in
 
             // Check for errors
             if error == nil {
