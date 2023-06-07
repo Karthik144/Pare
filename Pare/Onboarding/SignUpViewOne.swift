@@ -90,7 +90,7 @@ struct SignUpViewOne: View {
             .foregroundColor(.white)
             .navigationBarTitleDisplayMode(.inline)
             .accentColor(Color.white)
-            .offset(y: -keyboardResponder.currentHeight * 0.1)
+            .offset(y: -keyboardResponder.currentHeight)
         } //: ZSTACK
 //        .tint(Color.white)
 

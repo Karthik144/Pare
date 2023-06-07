@@ -59,7 +59,7 @@ struct EmailView: View {
         //                        .padding(.bottom, 15)
                                 .padding()
 
-                            Spacer()
+                            //Spacer()
 
                         }
 
@@ -142,11 +142,16 @@ struct EmailView: View {
 
                     } //: VSTACK
                     .padding()
-                    Spacer(minLength: 240)
+                    if (keyboardResponder.currentHeight != 0){
+                        Spacer(minLength: 240)
+                    }
+                    else{
+                        Spacer(minLength: 40)
+                    }
                 }
             } //: VSTACK
 //            .accentColor(Color.white)
-            .offset(y: -keyboardResponder.currentHeight * 0.1)
+            .offset(y: -keyboardResponder.currentHeight)
 
         } //: ZSTACK
 
