@@ -27,7 +27,7 @@ class WalletViewModel: ObservableObject{
 
         do {
 
-            // Create a dummy erc-20 contract instance
+            // Create USDC contract instance
             let contractAddress = try EthereumAddress(hex: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174", eip55: false)
 //            let contractAddress = try EthereumAddress(hex: "0xBC301D905Ccee51Dd9e7b60Bb807aCC69bD00913", eip55: false)
 

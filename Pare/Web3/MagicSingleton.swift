@@ -15,10 +15,10 @@ class MagicSingleton : ObservableObject {
     @Published var magic: Magic
 
     private init() {
-//        let config = CustomNodeConfiguration(rpcUrl: "https://polygon-rpc.com/", chainId: 137)
-
+        
         // Test network
-        let config = CustomNodeConfiguration(rpcUrl: "https://rpc-mumbai.maticvigil.com/", chainId: 80001)
+//        let config = CustomNodeConfiguration(rpcUrl: "https://rpc-mumbai.maticvigil.com/", chainId: 80001)
+        let config = CustomNodeConfiguration(rpcUrl: "https://polygon-rpc.com/", chainId: 137)
 
         self.magic = Magic(apiKey: "pk_live_477976071EF69C48", customNode: config)
 
