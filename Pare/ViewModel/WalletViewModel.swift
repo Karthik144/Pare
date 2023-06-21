@@ -12,6 +12,7 @@ import MagicSDK_Web3
 import PromiseKit
 import Web3PromiseKit
 import Web3ContractABI
+import BigInt
 
 class WalletViewModel: ObservableObject{
 
@@ -29,51 +30,42 @@ class WalletViewModel: ObservableObject{
 
             // Create USDC contract instance
             let contractAddress = try EthereumAddress(hex: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174", eip55: false)
-//            let contractAddress = try EthereumAddress(hex: "0xBC301D905Ccee51Dd9e7b60Bb807aCC69bD00913", eip55: false)
-
-
             let USDCcontract = web3.eth.Contract(type: GenericERC20Contract.self, address: contractAddress)
 
+            let userAddress = try EthereumAddress(hex: "0x3FF4e98BE04Ba8c0d96a4b5eE6BD8D7eE834CbeC", eip55: false)
             // Create user public ethereum address
-            let userAddress = try EthereumAddress(ethereumValue: userPublicAddress)
+//            let userAddress = try EthereumAddress(ethereumValue: userPublicAddress)
 
-            // Find user's balance of ERC-20 token
-            let balance = USDCcontract.balanceOf(address: userAddress)
+            // Get balance of some address
+            firstly {
+                try USDCcontract.balanceOf(address: EthereumAddress(hex: userPublicAddress, eip55: false)).call()
+            }.done { outputs in
+                print("NEW")
+                let balanceInWei = outputs["_balance"] as? BigUInt
 
-            // Balance is a SolidityReadInvocation type, we can apply call function on it
-            balance.call{ result, error in
-                if let error = error{
-                    print("Error (getBalance, WalletViewModel):", error)
-                    return
-                }
+                print(balanceInWei!)
 
-                if let result = result{
-
-                    // Wei-to-ether conversion factor (1 ether = 10^18 wei)
-                    let conversionFactor = BigUInt(10).power(18)
-
-                    // Perform the conversion
-                    if let balanceInWei = result["_balance"] as? BigUInt {
-                        // Divide the balance by the conversion factor to get the balance in ETH
-                        let balanceInEth = balanceInWei / conversionFactor
-
-                        self.userTokenBalance = balanceInEth
-                        //self.userTokenBalance = 100
-                        completion(balanceInEth)
-
-                    } else {
-                        print("Invalid balance value or conversion failed - getBalance, WalletViewModel")
-                        completion(nil)
-                    }
+                let conversionFactor = BigUInt(10).power(18)
 
 
-                } //: RESULT
+               // Divide the balance by the conversion factor to get the balance in ETH
+                let balanceInEth = balanceInWei! / conversionFactor
 
-            } //: BALANCE
+                print(balanceInEth)
+
+               self.userTokenBalance = balanceInEth
+
+
+               completion(balanceInEth)
+
+            }.catch { error in
+                print(error)
+            }
+
 
         } catch {
 
-            print("Error creating EthereumAddress: \(error) - getBalance, WalletViewModel")
+            print("Error: \(error) - getBalance, WalletViewModel")
             completion(nil)
 
         } //: CATCH
