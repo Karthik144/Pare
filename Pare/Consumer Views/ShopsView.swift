@@ -31,7 +31,7 @@ struct ShopsView: View {
     @State private var totalShops = [Shop]()
     @State private var pendingOrders = [PendingOrder]()
     @State private var filteredPendingOrders = [PendingOrder]()
-    @State private var tokenBalance: BigUInt = 0
+    @State private var tokenBalance: NSDecimalNumber = 0.0
     @State private var readyOrders = [PendingOrder]()
 
     

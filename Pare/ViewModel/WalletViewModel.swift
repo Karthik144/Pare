@@ -17,11 +17,11 @@ import BigInt
 class WalletViewModel: ObservableObject{
 
     // MARK: - PROPERTIES
-    @Published var userTokenBalance: BigUInt = 0
+    @Published var userTokenBalance: NSDecimalNumber = 0.0
     
     
     // Get balance
-    func getBalance(magic: Magic, userPublicAddress: String, completion: @escaping (BigUInt?) -> Void){
+    func getBalance(magic: Magic, userPublicAddress: String, completion: @escaping (NSDecimalNumber?) -> Void){
 
         // 2nd instance of web3 (1st instance in getAccount() - AuthViewModel)
         var web3 = Web3(provider: magic.rpcProvider)
@@ -32,29 +32,29 @@ class WalletViewModel: ObservableObject{
             let contractAddress = try EthereumAddress(hex: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174", eip55: false)
             let USDCcontract = web3.eth.Contract(type: GenericERC20Contract.self, address: contractAddress)
 
+            // User public address
             let userAddress = try EthereumAddress(hex: "0x3FF4e98BE04Ba8c0d96a4b5eE6BD8D7eE834CbeC", eip55: false)
             // Create user public ethereum address
-//            let userAddress = try EthereumAddress(ethereumValue: userPublicAddress)
 
             // Get balance of some address
             firstly {
                 try USDCcontract.balanceOf(address: EthereumAddress(hex: userPublicAddress, eip55: false)).call()
             }.done { outputs in
-                print("NEW")
+
                 let balanceInWei = outputs["_balance"] as? BigUInt
+//                print("Balance in Wei: \(balanceInWei!)")
 
-                print(balanceInWei!)
+                let conversionFactor = NSDecimalNumber(decimal: pow(10, 6))
+//                print("Conversion Factor: \(conversionFactor)")
 
-                let conversionFactor = BigUInt(10).power(18)
+                // Convert the balance to Decimal
+                let balanceInDecimal = NSDecimalNumber(string: balanceInWei?.description) ?? 0
 
+                // Divide the balance by the conversion factor to get the balance in ETH
+                let balanceInEth = balanceInDecimal.dividing(by: conversionFactor)
+//                print("Balance in ETH: \(balanceInEth)")
 
-               // Divide the balance by the conversion factor to get the balance in ETH
-                let balanceInEth = balanceInWei! / conversionFactor
-
-                print(balanceInEth)
-
-               self.userTokenBalance = balanceInEth
-
+                self.userTokenBalance = balanceInEth
 
                completion(balanceInEth)
 
@@ -81,13 +81,10 @@ class WalletViewModel: ObservableObject{
             // 3nd instance of web3
             var web3 = Web3(provider: magic.rpcProvider)
 
-            // Create a dummy erc-20 contract
-
-//            let contractAddress = try EthereumAddress(hex: "0xBC301D905Ccee51Dd9e7b60Bb807aCC69bD00913", eip55: false)
-
+            // Create usdc contract instance
             let contractAddress = try EthereumAddress(hex: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174", eip55: false)
-
             let contract = web3.eth.Contract(type: GenericERC20Contract.self, address: contractAddress)
+
             let sendAmount = amount * 1e18
 
             // Send some tokens to another address (signing will be done by the node)

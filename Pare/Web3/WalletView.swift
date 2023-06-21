@@ -16,7 +16,7 @@ struct WalletView: View {
     @EnvironmentObject var walletViewModel: WalletViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
     @StateObject var magicSingleton = MagicSingleton.shared
-    @State private var tokenBalance: BigUInt = 0
+    @State private var tokenBalance: NSDecimalNumber = 0
 
     // MARK: - BODY
     var body: some View {
