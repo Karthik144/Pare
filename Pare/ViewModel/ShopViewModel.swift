@@ -8,6 +8,7 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import MagicSDK_Web3
 
 @MainActor
 class ShopViewModel: ObservableObject {
@@ -448,6 +449,7 @@ class ShopViewModel: ObservableObject {
     func calcTotalRewards() -> Double {
 
         totalRewards = 0.0
+
         // Find items in cart
         for cartOrder in cartItems {
 

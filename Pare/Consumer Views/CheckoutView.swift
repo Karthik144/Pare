@@ -275,16 +275,19 @@ struct CheckoutView: View {
                             let magic = magicSingleton.magic
 
 
-                            print("BALANCE IN CHECKOUT VIEW")
-                            print(walletViewModel.userTokenBalance)
+//                            print("BALANCE IN CHECKOUT VIEW")
+//                            print(walletViewModel.userTokenBalance)
 
                             if Double(walletViewModel.userTokenBalance) >= viewModel.total{
 
                                 // Send ERC-20 token to restuarant
-                                walletViewModel.sendTransaction(magic: magic, userPublicAddress: publicAddress ?? "", amount: viewModel.total)
+//                                walletViewModel.sendTransaction(magic: magic, userPublicAddress: publicAddress ?? "", amount: viewModel.total)
+
+                                walletViewModel.sendTransaction(magic: magic, userPublicAddress: publicAddress ?? "", amount: 10.08)
+
 
                                 // Send order to restaurant
-                                completeOrder()
+//                                completeOrder()
 
                             } else {
 

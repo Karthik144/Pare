@@ -79,32 +79,41 @@ class WalletViewModel: ObservableObject{
         do{
 
             // 3nd instance of web3
-            var web3 = Web3(provider: magic.rpcProvider)
+            let web3 = Web3(provider: magic.rpcProvider)
 
             // Create usdc contract instance
             let contractAddress = try EthereumAddress(hex: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174", eip55: false)
             let contract = web3.eth.Contract(type: GenericERC20Contract.self, address: contractAddress)
 
-            let sendAmount = amount * 1e18
+            let exponent = 18
+            let ten = Decimal(10)
+            let result = NSDecimalNumber(decimal: pow(ten, exponent))
+
+            let amount = NSDecimalNumber(value: amount)
+            let amountInWei = result.multiplying(by: amount)
+            let convertedWeiType = BigUInt(amountInWei.stringValue) ?? 0
+
+//            print("Converted Wei Amount: \(convertedWeiType)")
 
             // Send some tokens to another address (signing will be done by the node)
             let myAddress = try EthereumAddress(hex: userPublicAddress, eip55: false)
+            let shopAddress = try EthereumAddress(hex: "0xA741b63997bbF5AaC72bd36380533aaE0f419b14", eip55: false)
+
             firstly {
                 web3.eth.getTransactionCount(address: myAddress, block: .latest)
             }.then { nonce in
 
-                // Note: Need to change address to Yuan Ho
-                // Should we decrease gasPrice that we're willing to pay?
-                try contract.transfer(to: EthereumAddress(hex: "0x551Fa22d9722286dceA636516683B8B3b8a6aF0D", eip55: false), value: BigUInt(sendAmount)).send(
+                try contract.transfer(to: shopAddress, value: BigUInt(convertedWeiType)).send(
                     nonce: nonce,
                     from: EthereumAddress(hex: userPublicAddress, eip55: false),
                     value: 0,
                     gas: 150000,
                     gasPrice: EthereumQuantity(quantity: 21.gwei)
                 )
-            }.done { txHash in
 
+            }.done { txHash in
                 // Success
+                print("Tnx Hash (WalletViewModel): \(txHash)")
 
             }.catch { error in
                 print("sendTransaction, WalletViewModel")
