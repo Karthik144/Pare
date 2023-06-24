@@ -20,6 +20,7 @@ class WalletViewModel: ObservableObject{
     @Published var userTokenBalance: NSDecimalNumber = 0.0
     
     
+    
     // Get balance
     func getBalance(magic: Magic, userPublicAddress: String, completion: @escaping (NSDecimalNumber?) -> Void){
 
@@ -74,7 +75,7 @@ class WalletViewModel: ObservableObject{
     } //: FUNC GET BALANCE
 
     // Send transaction (ERC-20 token)
-    func sendTransaction(magic: Magic, userPublicAddress: String, amount: Double){
+    func sendTransaction(magic: Magic, userPublicAddress: String, amount: BigUInt){
 
         do{
 
@@ -83,34 +84,65 @@ class WalletViewModel: ObservableObject{
 
             // Create usdc contract instance
             let contractAddress = try EthereumAddress(hex: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174", eip55: false)
-            let contract = web3.eth.Contract(type: GenericERC20Contract.self, address: contractAddress)
+            let USDCContract = web3.eth.Contract(type: GenericERC20Contract.self, address: contractAddress)
 
-            let exponent = 18
-            let ten = Decimal(10)
-            let result = NSDecimalNumber(decimal: pow(ten, exponent))
-
-            let amount = NSDecimalNumber(value: amount)
-            let amountInWei = result.multiplying(by: amount)
-            let convertedWeiType = BigUInt(amountInWei.stringValue) ?? 0
-
-//            print("Converted Wei Amount: \(convertedWeiType)")
+//
+//            let exponent = 18
+//            let ten = Decimal(10)
+//            let result = NSDecimalNumber(decimal: pow(ten, exponent))
+//
+//            let amount = NSDecimalNumber(value: amount)
+//            let amountInWei = result.multiplying(by: amount)
+//            let convertedWeiType = BigUInt(amountInWei.stringValue) ?? BigUInt(0)
 
             // Send some tokens to another address (signing will be done by the node)
             let myAddress = try EthereumAddress(hex: userPublicAddress, eip55: false)
             let shopAddress = try EthereumAddress(hex: "0xA741b63997bbF5AaC72bd36380533aaE0f419b14", eip55: false)
 
+            // Get balance of some address
+//            firstly {
+//                try USDCContract.balanceOf(address: EthereumAddress(hex: userPublicAddress, eip55: false)).call()
+//            }.done { outputs in
+//                let balanceInWei = outputs["_balance"] as? BigUInt
+//                print("Balance in Wei: \(balanceInWei!)")
+//            }.catch{ error in
+//                print(error)
+//            }
+
+
+//            var finalGasPrice = BigUInt(0)
+//
+//            web3.eth.gasPrice().done { gasPrice in
+//                // Gas price retrieved successfully
+//                finalGasPrice = gasPrice.quantity
+//                print("Gas Price: \(finalGasPrice)") // Assuming `quantity` is the property holding the gas price value
+//            }.catch { error in
+//                // Error occurred while retrieving gas price
+//                print("Error retrieving gas price: \(error)")
+//            }
+
+
+            // Estimated Gas: 53786
+//            USDCContract.transfer(to: shopAddress, value: 2000000).estimateGas(from: myAddress, value: 0).done { estimatedGas in
+//                // Estimated gas retrieved successfully
+//                print("Estimated Gas: \(estimatedGas.quantity)") // Assuming `quantity` is the property holding the gas value
+//            }.catch { error in
+//                // Error occurred while estimating gas
+//                print("Error estimating gas: \(error)")
+//            }
+
             firstly {
                 web3.eth.getTransactionCount(address: myAddress, block: .latest)
             }.then { nonce in
 
-                try contract.transfer(to: shopAddress, value: BigUInt(convertedWeiType)).send(
+                // Note: 8000000 = 8 ETH since ERC-20 tokens round to 6 decimal places
+                try USDCContract.transfer(to: shopAddress, value: amount).send(
                     nonce: nonce,
                     from: EthereumAddress(hex: userPublicAddress, eip55: false),
                     value: 0,
                     gas: 150000,
-                    gasPrice: EthereumQuantity(quantity: 21.gwei)
+                    gasPrice: EthereumQuantity(quantity: 200.gwei)
                 )
-
             }.done { txHash in
                 // Success
                 print("Tnx Hash (WalletViewModel): \(txHash)")

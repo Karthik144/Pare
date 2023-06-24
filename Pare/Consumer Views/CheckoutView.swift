@@ -6,7 +6,8 @@
 //
 
 import SwiftUI
-import Kingfisher 
+import Kingfisher
+import MagicSDK_Web3
 
 struct CheckoutView: View {
 
@@ -275,19 +276,16 @@ struct CheckoutView: View {
                             let magic = magicSingleton.magic
 
 
-//                            print("BALANCE IN CHECKOUT VIEW")
-//                            print(walletViewModel.userTokenBalance)
-
                             if Double(walletViewModel.userTokenBalance) >= viewModel.total{
 
-                                // Send ERC-20 token to restuarant
-//                                walletViewModel.sendTransaction(magic: magic, userPublicAddress: publicAddress ?? "", amount: viewModel.total)
+                                let conversionFactor = 1_000_000
+                                let convertedValue = BigUInt(viewModel.total * Double(conversionFactor))
 
-                                walletViewModel.sendTransaction(magic: magic, userPublicAddress: publicAddress ?? "", amount: 10.08)
-
+                                // Send USDC to restaurant
+                                walletViewModel.sendTransaction(magic: magic, userPublicAddress: publicAddress ?? "", amount: convertedValue)
 
                                 // Send order to restaurant
-//                                completeOrder()
+                                completeOrder()
 
                             } else {
 
@@ -394,6 +392,7 @@ struct CheckoutView: View {
         .onAppear(){
             total = viewModel.calcTotal()
             viewModel.totalRewards = viewModel.calcTotalRewards()
+            
         }
         .overlay(alignment: .bottom){
 
@@ -408,7 +407,7 @@ struct CheckoutView: View {
 
             if promoSheetManager.action.isPresented {
 
-                PopUpView(text: $promoText, title: "Add a promo code", subTitle: "Each promo code is valid only once", promoCodePopup: true) {
+                PopUpView(text: $promoText, title: "Add a promo code", subTitle: "Enter FREE for a meal on us! Please make sure you have only one item in the cart.", promoCodePopup: true) {
                     withAnimation {
                         promoSheetManager.dismiss()
                     }
