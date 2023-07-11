@@ -51,7 +51,7 @@ class CheckoutViewController: UIViewController {
                 ],
                 ]
             ]
-        ]
+        
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
