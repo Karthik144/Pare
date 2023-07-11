@@ -123,7 +123,6 @@
 		E9A3DA6829D8F0E200F5A1D0 /* WalletConnectSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E9A3DA6729D8F0E200F5A1D0 /* WalletConnectSwift */; };
 		E9A3DA6C29DD96FF00F5A1D0 /* WalletConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A3DA6B29DD96FF00F5A1D0 /* WalletConnect.swift */; };
 		E9A3DA6E29DD992A00F5A1D0 /* web3ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A3DA6D29DD992A00F5A1D0 /* web3ViewModel.swift */; };
-		E9AEE6E12A5E00F800A67738 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AEE6E02A5E00F800A67738 /* CheckoutViewController.swift */; };
 		E9B38F9729CBE2EB0053C2FE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E9B38F9629CBE2EB0053C2FE /* Kingfisher */; };
 		E9DD9CD029C0F1D80001106E /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DD9CCF29C0F1D80001106E /* Order.swift */; };
 		E9FC0B2129EB64F3000F1D13 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FC0B2029EB64F3000F1D13 /* Location.swift */; };
@@ -229,7 +228,6 @@
 		E9A3DA6429D8F07A00F5A1D0 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		E9A3DA6B29DD96FF00F5A1D0 /* WalletConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletConnect.swift; sourceTree = "<group>"; };
 		E9A3DA6D29DD992A00F5A1D0 /* web3ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = web3ViewModel.swift; sourceTree = "<group>"; };
-		E9AEE6E02A5E00F800A67738 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		E9DD9CCF29C0F1D80001106E /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		E9FC0B2029EB64F3000F1D13 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -410,7 +408,6 @@
 				7CEEF6692A241C4900C11C65 /* WalletInfoView.swift */,
 				7CEEF66B2A24208900C11C65 /* LearnMoreView.swift */,
 				7CD02E6C2A5DFBB00070028B /* StripePayView.swift */,
-				E9AEE6E02A5E00F800A67738 /* CheckoutViewController.swift */,
 			);
 			path = "Consumer Views";
 			sourceTree = "<group>";
@@ -607,7 +604,6 @@
 				7C3920042A265428008C2081 /* WalletViewModel.swift in Sources */,
 				7C9DDD5929EC82E6001EE8AD /* Step2Onboarding1.3View.swift in Sources */,
 				7C840AF829C2253F001F067E /* PastOrderCell.swift in Sources */,
-				E9AEE6E12A5E00F800A67738 /* CheckoutViewController.swift in Sources */,
 				7C45EC44299B2D5200F3B439 /* SignUpViewOne.swift in Sources */,
 				7C429A7329EA269F00C3E2D3 /* Step1Onboarding5View.swift in Sources */,
 				7C86263329B8195B00919213 /* OrderItemCell.swift in Sources */,
