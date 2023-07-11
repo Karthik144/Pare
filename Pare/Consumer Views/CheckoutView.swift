@@ -8,6 +8,7 @@
 import SwiftUI
 import Kingfisher
 import MagicSDK_Web3
+import StripePaymentSheet
 
 struct CheckoutView: View {
 
@@ -34,6 +35,11 @@ struct CheckoutView: View {
     @State var promoCodeIsValid = false
     @State var promoUsed = false
     @Binding var rootActive: Bool
+
+    private static let backendURL = URL(string: "http://127.0.0.1:4242")!
+
+    @State private var paymentIntentClientSecret: String?
+    @State private var showAlert = false
 
 
     // MARK: - BODY
@@ -478,6 +484,11 @@ struct CheckoutView: View {
         rootActive = false
 
     }
+
+    func showAlert(title: String, message: String? = nil) {
+        self.showAlert = true
+    }
+
 }
 
 
