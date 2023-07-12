@@ -10,9 +10,14 @@ import Stripe
 
 struct StripePayView: View {
 
+    @EnvironmentObject var viewModel: ShopViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
     @State var paymentMethodParams: STPPaymentMethodParams?
     @State private var message = ""
-    //    @Binding var isActive: Bool
+    @Binding var isActive: Bool
+    let noteText: String
+    let shop: Shop
+    let promoUsed: Bool
 
     let paymentGatewayController = PaymentGatewayController()
 
@@ -39,7 +44,7 @@ struct StripePayView: View {
 
             case .succeeded:
                 message="Success"
-
+                completeOrder()
             }
         }
 
@@ -57,12 +62,25 @@ struct StripePayView: View {
             STPPaymentCardTextField.Representable.init(paymentMethodParams: $paymentMethodParams)
                 .padding()
 
+            HStack{
+                Text(message)
+                    .font(.headline)
+                    .foregroundColor(Color.red)
+                    .padding()
+                    .padding(.trailing, 0)
+                    .padding(.top, 5)
+                Spacer()
+            }
+
+
             Spacer()
 
 
             // Pay button
             Button {
+
                 pay()
+
             } label: {
                 Text("Pay")
                     .foregroundColor(Color.white)
@@ -75,14 +93,38 @@ struct StripePayView: View {
             .padding()
             .frame(width: 300, height: 50)
 
-            Text(message)
-                .font(.headline)
 
         } //: VSTACK
         .navigationTitle("Add your card")
         .navigationBarTitleDisplayMode(.large)
 
     } //: BODY VIEW
+
+    func completeOrder(){
+
+        // Change cart active status
+        viewModel.updateCartActiveStatus(cartActive: false)
+
+        // Store users rewards
+        let userRewards = Double(authViewModel.currentUser?.rewards ?? 0.0)
+
+        // Find new total rewards from purchase
+        let totalFinalRewards = userRewards + viewModel.totalRewards
+
+        // Update rewarads in firebase
+        viewModel.updateRewards(rewards: totalFinalRewards)
+
+        // Upload order to Firebase (so shop can access it)
+        viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!, rewards: false, notes: noteText, promo_used: promoUsed)
+
+
+        //Empty out cart
+        viewModel.cartItems = []
+
+        //Pop to Shop View
+        isActive = false
+
+    }
 
 
 } //: VIEW

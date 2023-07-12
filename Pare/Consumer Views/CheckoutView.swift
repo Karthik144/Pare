@@ -398,77 +398,44 @@ struct CheckoutView: View {
 //                        }
 //                    }
 
-                    NavigationLink(destination: StripePayView(), isActive: $rootActive) {
-                        Button {
-                            startCheckout { clientSecret in
-                                PaymentConfig.shared.paymentIntentClientSecret = clientSecret
-                                print("Button pressed")
-                                print(clientSecret ?? "Error")
-                                DispatchQueue.main.async {
-                                    isActionComplete = true
-                                }
-                            }
-                        } label: {
-                            Text("Checkout")
-                                .foregroundColor(Color.accentColor)
-                        }
-                    }
-
-
-                    Button {
-                        startCheckout { clientSecret in
-
-                            PaymentConfig.shared.paymentIntentClientSecret = clientSecret
-
-                            print("Button pressed")
-
-                            print(clientSecret ?? "Error")
-
-                            DispatchQueue.main.async {
-                                isActionComplete = true
-                            }
-
-                        }
-                    } label: {
-                        Text("Checkout")
-                            .foregroundColor(Color.accentColor)
-                    }
-                    .background(){
-
-                        if isActionComplete {
-
-                            NavigationLink(isActive: $rootActive) {
-                                StripePayView()
-                            } label: {
-                                EmptyView()
-                            }
-
-                        }
-
-
-                    }
-
-//                    NavigationLink(isActive: $rootActive) {
-//                        StripePayView()
-//                    } label: {
-//
-//                        Button("Checkout"){
+//                    NavigationLink(destination: StripePayView(), isActive: $rootActive) {
+//                        Button {
 //                            startCheckout { clientSecret in
-//
 //                                PaymentConfig.shared.paymentIntentClientSecret = clientSecret
-//
 //                                print("Button pressed")
-//
 //                                print(clientSecret ?? "Error")
-//
-////                                DispatchQueue.main.async {
-////                                    rootActive = true
-////                                }
-//
+//                                DispatchQueue.main.async {
+//                                    isActionComplete = true
+//                                }
 //                            }
+//                        } label: {
+//                            Text("Checkout")
+//                                .foregroundColor(Color.accentColor)
 //                        }
-//
 //                    }
+
+
+                    NavigationLink(isActive: $rootIsActive) {
+                        StripePayView(isActive: $rootActive, noteText: noteText, shop: shop, promoUsed: promoUsed)
+                    } label: {
+
+                        Button("Checkout"){
+                            startCheckout { clientSecret in
+
+                                PaymentConfig.shared.paymentIntentClientSecret = clientSecret
+
+                                print("Button pressed")
+
+                                print(clientSecret ?? "Error")
+
+                                DispatchQueue.main.async {
+                                    rootIsActive = true
+                                }
+
+                            }
+                        }
+
+                    }
 
 
 
