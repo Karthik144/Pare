@@ -29,7 +29,6 @@ struct StripePayView: View {
 
         let paymentIntentParams = STPPaymentIntentParams(clientSecret: clientSecret)
 
-
         paymentIntentParams.paymentMethodParams = paymentMethodParams
 
         paymentGatewayController.submitPayment(intent: paymentIntentParams) { status, intent, error in
@@ -57,12 +56,23 @@ struct StripePayView: View {
 
         VStack{
 
-            
-            Spacer()
-            Text("$ \((round(viewModel.total * 100) / 100.0)) ")
-                .bold()
-                .font(.largeTitle)
-            Spacer()
+
+            HStack{
+
+                Spacer()
+
+                Text("$" + String(round(viewModel.total * 100) / 100.0))
+                    .bold()
+                    .font(.largeTitle)
+                    .padding()
+                    .foregroundColor(Color.accentColor)
+
+
+                Spacer()
+            }
+            .padding(.top)
+
+
             // Stripe payment text field
             STPPaymentCardTextField.Representable.init(paymentMethodParams: $paymentMethodParams)
                 .padding()
