@@ -36,6 +36,7 @@ struct CheckoutView: View {
     @State var promoUsed = false
     @Binding var rootActive: Bool
     @State var rootIsActive = false
+    @State private var isActionComplete = false
 
     //private static let backendURL = URL(string: "http://127.0.0.1:4242")!
     private static let backendURL = URL(string: "https://pareapp-stripe.glitch.me")!
@@ -397,8 +398,25 @@ struct CheckoutView: View {
 //                        }
 //                    }
 
+//                    NavigationLink(destination: StripePayView(), isActive: $rootActive) {
+//                        Button {
+//                            startCheckout { clientSecret in
+//                                PaymentConfig.shared.paymentIntentClientSecret = clientSecret
+//                                print("Button pressed")
+//                                print(clientSecret ?? "Error")
+//                                DispatchQueue.main.async {
+//                                    isActionComplete = true
+//                                }
+//                            }
+//                        } label: {
+//                            Text("Checkout")
+//                                .foregroundColor(Color.accentColor)
+//                        }
+//                    }
+
+
                     NavigationLink(isActive: $rootIsActive) {
-                        StripePayView()
+                        StripePayView(isActive: $rootActive, noteText: noteText, shop: shop, promoUsed: promoUsed)
                     } label: {
 
                         Button("Checkout"){
@@ -417,13 +435,6 @@ struct CheckoutView: View {
                             }
                         }
 
-
-//                        Text("Stripe")
-//                            .frame(width: 300, height: 50)
-//                            .overlay(
-//                                RoundedRectangle(cornerRadius: 8,  style: .continuous)
-//                                    .stroke(Color.accentColor, lineWidth: 1)
-//                        )
                     }
 
 
