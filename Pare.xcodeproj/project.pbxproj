@@ -46,6 +46,7 @@
 		7C49CBD32A2EDDD600E699FC /* FifthStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C49CBD22A2EDDD600E699FC /* FifthStoryView.swift */; };
 		7C4B69C92A5EEF5500D7DC5E /* CheckoutIntentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4B69C82A5EEF5500D7DC5E /* CheckoutIntentResponse.swift */; };
 		7C4B69CB2A5EF08F00D7DC5E /* PaymentConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4B69CA2A5EF08F00D7DC5E /* PaymentConfig.swift */; };
+		7C4B69CD2A5EFB5600D7DC5E /* PaymentGatewayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4B69CC2A5EFB5600D7DC5E /* PaymentGatewayController.swift */; };
 		7C6D70EA2A244C4F005D10F1 /* MagicSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 7C6D70E92A244C4F005D10F1 /* MagicSDK */; };
 		7C6D70ED2A244CAE005D10F1 /* MagicExt-OAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7C6D70EC2A244CAE005D10F1 /* MagicExt-OAuth */; };
 		7C6D70EF2A244CAE005D10F1 /* MagicExt-OIDC in Frameworks */ = {isa = PBXBuildFile; productRef = 7C6D70EE2A244CAE005D10F1 /* MagicExt-OIDC */; };
@@ -171,6 +172,7 @@
 		7C49CBD22A2EDDD600E699FC /* FifthStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FifthStoryView.swift; sourceTree = "<group>"; };
 		7C4B69C82A5EEF5500D7DC5E /* CheckoutIntentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutIntentResponse.swift; sourceTree = "<group>"; };
 		7C4B69CA2A5EF08F00D7DC5E /* PaymentConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentConfig.swift; sourceTree = "<group>"; };
+		7C4B69CC2A5EFB5600D7DC5E /* PaymentGatewayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentGatewayController.swift; sourceTree = "<group>"; };
 		7C6D70FD2A244F08005D10F1 /* MagicSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicSingleton.swift; sourceTree = "<group>"; };
 		7C7A9F512A2BCB9F00CAFDE9 /* PromoSheetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoSheetManager.swift; sourceTree = "<group>"; };
 		7C840AF729C2253F001F067E /* PastOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastOrderCell.swift; sourceTree = "<group>"; };
@@ -397,6 +399,7 @@
 			children = (
 				7C4B69C82A5EEF5500D7DC5E /* CheckoutIntentResponse.swift */,
 				7C4B69CA2A5EF08F00D7DC5E /* PaymentConfig.swift */,
+				7C4B69CC2A5EFB5600D7DC5E /* PaymentGatewayController.swift */,
 			);
 			path = Stripe;
 			sourceTree = "<group>";
@@ -685,6 +688,7 @@
 				7CEEF66C2A24208900C11C65 /* LearnMoreView.swift in Sources */,
 				7CC418A529C19598004CE58B /* HelpView.swift in Sources */,
 				7C494B0929EADC64009D0015 /* Step2Onboarding2View.swift in Sources */,
+				7C4B69CD2A5EFB5600D7DC5E /* PaymentGatewayController.swift in Sources */,
 				7C86262729B7EC9500919213 /* SearchBar.swift in Sources */,
 				7C8BBD0729A15AD300414DF0 /* StartButtonModifier.swift in Sources */,
 				7C37106229E1EC7D00EC4E07 /* PopUpView.swift in Sources */,
