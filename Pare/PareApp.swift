@@ -16,7 +16,10 @@ struct PareApp: App{
     //@UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     init(){
+        
         FirebaseApp.configure()
+
+        StripeAPI.defaultPublishableKey = "pk_test_51NGLJGLYY9K9hzsbArCeG7aiT6s7jGuoGynpbGN5obXCKI9BKOd4Y3vH9qvxKPXKMG46Cpo5xehIaBu5gzSlIQFX00zLqGG45z"
     }
 
     @StateObject var viewModel = AuthViewModel()
@@ -26,7 +29,6 @@ struct PareApp: App{
     @ObservedObject var appState = AppState()
     @StateObject var sheetManager = SheetManager()
     @StateObject var promoSheetManager = PromoSheetManager()
-//    StripeAPI.defaultPublishableKey = "pk_test_51NGLJGLYY9K9hzsbArCeG7aiT6s7jGuoGynpbGN5obXCKI9BKOd4Y3vH9qvxKPXKMG46Cpo5xehIaBu5gzSlIQFX00zLqGG45z"
 
     var body: some Scene {
         WindowGroup {

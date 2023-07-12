@@ -44,6 +44,8 @@
 		7C494B0B29EADD4B009D0015 /* Step2Onboarding3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C494B0A29EADD4B009D0015 /* Step2Onboarding3View.swift */; };
 		7C494B0D29EADEFC009D0015 /* Step2Onboarding4View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C494B0C29EADEFC009D0015 /* Step2Onboarding4View.swift */; };
 		7C49CBD32A2EDDD600E699FC /* FifthStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C49CBD22A2EDDD600E699FC /* FifthStoryView.swift */; };
+		7C4B69C92A5EEF5500D7DC5E /* CheckoutIntentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4B69C82A5EEF5500D7DC5E /* CheckoutIntentResponse.swift */; };
+		7C4B69CB2A5EF08F00D7DC5E /* PaymentConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4B69CA2A5EF08F00D7DC5E /* PaymentConfig.swift */; };
 		7C6D70EA2A244C4F005D10F1 /* MagicSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 7C6D70E92A244C4F005D10F1 /* MagicSDK */; };
 		7C6D70ED2A244CAE005D10F1 /* MagicExt-OAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7C6D70EC2A244CAE005D10F1 /* MagicExt-OAuth */; };
 		7C6D70EF2A244CAE005D10F1 /* MagicExt-OIDC in Frameworks */ = {isa = PBXBuildFile; productRef = 7C6D70EE2A244CAE005D10F1 /* MagicExt-OIDC */; };
@@ -167,6 +169,8 @@
 		7C494B0A29EADD4B009D0015 /* Step2Onboarding3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step2Onboarding3View.swift; sourceTree = "<group>"; };
 		7C494B0C29EADEFC009D0015 /* Step2Onboarding4View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step2Onboarding4View.swift; sourceTree = "<group>"; };
 		7C49CBD22A2EDDD600E699FC /* FifthStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FifthStoryView.swift; sourceTree = "<group>"; };
+		7C4B69C82A5EEF5500D7DC5E /* CheckoutIntentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutIntentResponse.swift; sourceTree = "<group>"; };
+		7C4B69CA2A5EF08F00D7DC5E /* PaymentConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentConfig.swift; sourceTree = "<group>"; };
 		7C6D70FD2A244F08005D10F1 /* MagicSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicSingleton.swift; sourceTree = "<group>"; };
 		7C7A9F512A2BCB9F00CAFDE9 /* PromoSheetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoSheetManager.swift; sourceTree = "<group>"; };
 		7C840AF729C2253F001F067E /* PastOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastOrderCell.swift; sourceTree = "<group>"; };
@@ -328,6 +332,7 @@
 		7C45EC42299B2D2100F3B439 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7C4B69C72A5EEF3A00D7DC5E /* Stripe */,
 				7CC4189F29C16F27004CE58B /* Pending Order Models */,
 				E9DD9CCF29C0F1D80001106E /* Order.swift */,
 				E9DD9CCE29C0F19F0001106E /* orderComponents */,
@@ -385,6 +390,15 @@
 				7C9DDD5829EC82E6001EE8AD /* Step2Onboarding1.3View.swift */,
 			);
 			path = "Wallet Onboarding";
+			sourceTree = "<group>";
+		};
+		7C4B69C72A5EEF3A00D7DC5E /* Stripe */ = {
+			isa = PBXGroup;
+			children = (
+				7C4B69C82A5EEF5500D7DC5E /* CheckoutIntentResponse.swift */,
+				7C4B69CA2A5EF08F00D7DC5E /* PaymentConfig.swift */,
+			);
+			path = Stripe;
 			sourceTree = "<group>";
 		};
 		7C86262229B7E80B00919213 /* Consumer Views */ = {
@@ -608,6 +622,7 @@
 				7C429A7329EA269F00C3E2D3 /* Step1Onboarding5View.swift in Sources */,
 				7C86263329B8195B00919213 /* OrderItemCell.swift in Sources */,
 				E9FC0B2129EB64F3000F1D13 /* Location.swift in Sources */,
+				7C4B69C92A5EEF5500D7DC5E /* CheckoutIntentResponse.swift in Sources */,
 				7CEEF6642A240FDF00C11C65 /* WalletView.swift in Sources */,
 				7C494B0B29EADD4B009D0015 /* Step2Onboarding3View.swift in Sources */,
 				7C494B0B29EADD4B009D0015 /* Step2Onboarding3View.swift in Sources */,
@@ -622,6 +637,7 @@
 				7CEDCD1429BBB4B700C70EF5 /* PersonalView.swift in Sources */,
 				E94ABC0A29A0438D004DEC26 /* Router.swift in Sources */,
 				7CAFC1212A2A533700DCEB0F /* FirstStoryView.swift in Sources */,
+				7C4B69CB2A5EF08F00D7DC5E /* PaymentConfig.swift in Sources */,
 				7C45EC62299B354A00F3B439 /* AppState.swift in Sources */,
 				7C45EC34299B298800F3B439 /* CustomInputTextField.swift in Sources */,
 				7C429A6B29EA1C0D00C3E2D3 /* Step1Onboarding3View.swift in Sources */,

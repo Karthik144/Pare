@@ -383,18 +383,41 @@ struct CheckoutView: View {
 //                        Button("Ok", role: .cancel) { }
 //                    }
 
-                    NavigationLink {
-                        StripeTestView()
-                    } label: {
-                        Text("Stripe")
-                            .frame(width: 300, height: 50)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 8,  style: .continuous)
-                                    .stroke(Color.accentColor, lineWidth: 1)
-                        )
+
+                    Button("Checkout"){
+                        startCheckout { clientSecret in
+
+                            PaymentConfig.shared.paymentIntentClientSecret = clientSecret
+
+
+                            print(clientSecret)
+
+                        }
                     }
 
-
+//                    NavigationLink {
+//                        StripePayView()
+//                    } label: {
+//
+//                        Button("Checkout"){
+//                            startCheckout { clientSecret in
+//
+//                                PaymentConfig.shared.paymentIntentClientSecret = clientSecret
+//
+//
+//                                print(clientSecret)
+//
+//                            }
+//                        }
+//
+//
+////                        Text("Stripe")
+////                            .frame(width: 300, height: 50)
+////                            .overlay(
+////                                RoundedRectangle(cornerRadius: 8,  style: .continuous)
+////                                    .stroke(Color.accentColor, lineWidth: 1)
+////                        )
+//                    }
 
 
 
@@ -495,6 +518,41 @@ struct CheckoutView: View {
         //Pop to Shop View
         rootActive = false
 
+    }
+
+    private func startCheckout(completion: @escaping (String?) -> Void){
+
+        let url = URL(string: "http://localhost:4242/create-payment-intent")!
+
+        let shoppingCartContent: [String: Any] = [
+            "items": [
+                ["id": "xl-shirt",
+                 "price": 30
+                ]
+            ]
+        ]
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: shoppingCartContent)
+
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+
+            guard let data = data, error == nil,
+                  (response as? HTTPURLResponse)?.statusCode == 200
+
+            else {
+                completion(nil)
+                return
+            }
+
+            let checkoutIntentResponse = try? JSONDecoder().decode(CheckoutIntentResponse.self, from: data)
+
+            completion(checkoutIntentResponse?.clientSecret)
+
+        }.resume()
     }
 
     func showAlert(title: String, message: String? = nil) {
