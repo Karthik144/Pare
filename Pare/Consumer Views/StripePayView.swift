@@ -57,7 +57,12 @@ struct StripePayView: View {
 
         VStack{
 
-
+            
+            Spacer()
+            Text("$ \((round(viewModel.total * 100) / 100.0)) ")
+                .bold()
+                .font(.largeTitle)
+            Spacer()
             // Stripe payment text field
             STPPaymentCardTextField.Representable.init(paymentMethodParams: $paymentMethodParams)
                 .padding()

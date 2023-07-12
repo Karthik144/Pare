@@ -277,114 +277,132 @@ struct CheckoutView: View {
                         }
 
                     } else {
-
-                        Button {
-
-                            // User public address
-                            let publicAddress = authViewModel.currentUser?.public_address
-                            let magic = magicSingleton.magic
-
-
-                            if Double(walletViewModel.userTokenBalance) >= viewModel.total{
-
-                                let conversionFactor = 1_000_000
-                                let convertedValue = BigUInt(viewModel.total * Double(conversionFactor))
-
-                                // Send USDC to restaurant
-                                walletViewModel.sendTransaction(magic: magic, userPublicAddress: publicAddress ?? "", amount: convertedValue)
-
-                                // Send order to restaurant
-                                completeOrder()
-
-                            } else {
-
-                                showingBalanceAlert = true
-
-                            }
-
-
+                        NavigationLink(isActive: $rootIsActive) {
+                            StripePayView(isActive: $rootActive, noteText: noteText, shop: shop, promoUsed: promoUsed)
                         } label: {
-                            Text("Pay")
-                                .foregroundColor(Color.white)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 8,  style: .continuous)
-                                        .fill(Color.accentColor)
-                                        .frame(width: 300, height: 50)
-                                )
-                        }
-                        .frame(width: 300, height: 50)
-                        .alert("Not enough USDC in wallet!", isPresented: $showingBalanceAlert) {
-                            Button("Ok", role: .cancel) { }
-                        }
+                            
+                            Button {
+                                startCheckout { clientSecret in
 
+                                    PaymentConfig.shared.paymentIntentClientSecret = clientSecret
+
+                                    print("Button pressed")
+
+                                    print(clientSecret ?? "Error")
+
+                                    DispatchQueue.main.async {
+                                        rootIsActive = true
+                                    }
+
+                                }
+                                /*
+                                 Web3 Shit
+                                // User public address
+                                let publicAddress = authViewModel.currentUser?.public_address
+                                let magic = magicSingleton.magic
+                                
+                                
+                                if Double(walletViewModel.userTokenBalance) >= viewModel.total{
+                                    
+                                    let conversionFactor = 1_000_000
+                                    let convertedValue = BigUInt(viewModel.total * Double(conversionFactor))
+                                    
+                                    // Send USDC to restaurant
+                                    walletViewModel.sendTransaction(magic: magic, userPublicAddress: publicAddress ?? "", amount: convertedValue)
+                                    
+                                    // Send order to restaurant
+                                    completeOrder()
+                                    
+                                } else {
+                                    
+                                    showingBalanceAlert = true
+                                    
+                                }
+                                 */
+                                
+                                
+                            } label: {
+                                Text("Pay")
+                                    .foregroundColor(Color.white)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 8,  style: .continuous)
+                                            .fill(Color.accentColor)
+                                            .frame(width: 300, height: 50)
+                                    )
+                            }
+                            .frame(width: 300, height: 50)
+                            .alert("Not enough USDC in wallet!", isPresented: $showingBalanceAlert) {
+                                Button("Ok", role: .cancel) { }
+                            }
+                        }
 
                     } //: ELSE
 
 
 
-//                    Button {
-//
-//                        // Change cart active status
-//                        viewModel.updateCartActiveStatus(cartActive: false)
-//
-//                        // Store users rewards
-//                        var userRewards = Double(authViewModel.currentUser?.rewards ?? 0.0)
-//
-//
-//                        if userRewards >= viewModel.total{
-//
-//                            // Subtract used rewards from new rewards and update it to total rewards
-//                            let extraRewards = userRewards - viewModel.total
-//
-//                            let updatedRewards = (viewModel.totalRewards) + extraRewards
-//
-//                            // Update user's rewards with new rewards from purchase
-//                            viewModel.updateRewards(rewards: Double(updatedRewards))
-//
-//                            rewards = true
-//
-//                            // Upload order to Firebase (so shop can access it)
-//                            viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!, rewards: rewards, notes: noteText, promo_used: self.promoUsed)
-//
-//                            //Empty out cart
-//                            viewModel.cartItems = []
-//
-//                            //Pop to Shop View
-//                            rootActive = false
-//
-//                        } else {
-//
-//                            // Subtract total from rewards to get new price
-//                            // 5.67 - 1 = 4.67
-//                            let newTotal = viewModel.total - userRewards
-//                            let newSubTotal = viewModel.subtotal - userRewards
-//
-//                            // new total: 4.67
-//                            viewModel.total = newTotal
-//
-//
-//                            viewModel.totalRewards = (newSubTotal) * 0.10
-//
-//                            // 0.10 x 4.67 = 0.467
-//                            // Update user's rewards with new rewards from purchase
-//                            viewModel.updateRewards(rewards: Double(viewModel.totalRewards))
-//
-//                            rewards = true
-//
-//                        }
-//
-//
-//                    } label: {
-//                        Text("Pay with stars 🌟")
-//                            .frame(width: 300, height: 50)
-//                            .overlay(
-//                                RoundedRectangle(cornerRadius: 8,  style: .continuous)
-//                                    .stroke(Color.accentColor, lineWidth: 1)
-//                            )
-//                    }
-//                    .alert("Not enough rewards!", isPresented: $showingAlert) {
-//                        Button("Ok", role: .cancel) { }
-//                    }
+                    Button {
+
+                        // Change cart active status
+                        viewModel.updateCartActiveStatus(cartActive: false)
+
+                        // Store users rewards
+                        var userRewards = Double(authViewModel.currentUser?.rewards ?? 0.0)
+
+
+                        if userRewards >= viewModel.total{
+
+                            // Subtract used rewards from new rewards and update it to total rewards
+                            let extraRewards = userRewards - viewModel.total
+
+                            let updatedRewards = (viewModel.totalRewards) + extraRewards
+
+                            // Update user's rewards with new rewards from purchase
+                            viewModel.updateRewards(rewards: Double(updatedRewards))
+
+                            rewards = true
+
+                            // Upload order to Firebase (so shop can access it)
+                            viewModel.postOrderData(shop: shop, cartTotalItems: String(viewModel.cartItems.count), cart: viewModel.cartItems, orderStatus: "pending", subtotal: viewModel.subtotal, total: viewModel.total, user: authViewModel.currentUser!, rewards: rewards, notes: noteText, promo_used: self.promoUsed)
+
+                            //Empty out cart
+                            viewModel.cartItems = []
+
+                            //Pop to Shop View
+                            rootActive = false
+
+                        } else {
+                            showingAlert = true
+                            /*
+                            // Subtract total from rewards to get new price
+                            // 5.67 - 1 = 4.67
+                            let newTotal = viewModel.total - userRewards
+                            let newSubTotal = viewModel.subtotal - userRewards
+
+                            // new total: 4.67
+                            viewModel.total = newTotal
+
+
+                            viewModel.totalRewards = (newSubTotal) * 0.10
+
+                            // 0.10 x 4.67 = 0.467
+                            // Update user's rewards with new rewards from purchase
+                            viewModel.updateRewards(rewards: Double(viewModel.totalRewards))
+
+                            rewards = true
+                             */
+                        }
+                      
+                    } label: {
+                        Text("Pay with stars 🌟")
+                            .frame(width: 300, height: 50)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8,  style: .continuous)
+                                    .stroke(Color.accentColor, lineWidth: 1)
+                            )
+                    }
+                    .alert("Not enough rewards!", isPresented: $showingAlert) {
+                        Button("Ok", role: .cancel) { }
+                    }
 
 
 //                    Button("Checkout"){
@@ -414,6 +432,7 @@ struct CheckoutView: View {
 //                        }
 //                    }
 
+                    /*
 
                     NavigationLink(isActive: $rootIsActive) {
                         StripePayView(isActive: $rootActive, noteText: noteText, shop: shop, promoUsed: promoUsed)
@@ -436,7 +455,7 @@ struct CheckoutView: View {
                         }
 
                     }
-
+                     */
 
 
                 } //: VSTACK

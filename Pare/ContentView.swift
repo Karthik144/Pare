@@ -33,11 +33,13 @@ struct ContentView: View {
             })
             .tag(2)
 
+            /*
             WalletView().tabItem({
                 Image(systemName: "wallet.pass.fill")
                 Text("Wallet")
             })
             .tag(3)
+             */
 
         } //: TAB VIEW
 
