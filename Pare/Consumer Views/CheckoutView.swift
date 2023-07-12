@@ -36,7 +36,8 @@ struct CheckoutView: View {
     @State var promoUsed = false
     @Binding var rootActive: Bool
 
-    private static let backendURL = URL(string: "http://127.0.0.1:4242")!
+    //private static let backendURL = URL(string: "http://127.0.0.1:4242")!
+    private static let backendURL = URL(string: "https://pareapp-stripe.glitch.me")!
 
     @State private var paymentIntentClientSecret: String?
     @State private var showAlert = false
@@ -522,12 +523,13 @@ struct CheckoutView: View {
 
     private func startCheckout(completion: @escaping (String?) -> Void){
 
-        let url = URL(string: "http://localhost:4242/create-payment-intent")!
+        //let url = URL(string: "http://localhost:4242/create-payment-intent")!
+        let url = URL(string: "https://pareapp-stripe.glitch.me/create-payment-intent")!
 
         let shoppingCartContent: [String: Any] = [
             "items": [
                 ["id": "xl-shirt",
-                 "price": 30
+                 "price": 400
                 ]
             ]
         ]
