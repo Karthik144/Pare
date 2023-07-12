@@ -12,6 +12,8 @@ struct StripePayView: View {
 
     @State var paymentMethodParams: STPPaymentMethodParams?
     @State private var message = ""
+//    @Binding var isActive: Bool
+
     let paymentGatewayController = PaymentGatewayController()
 
     private func pay() {
@@ -29,14 +31,14 @@ struct StripePayView: View {
 
             switch status {
 
-            case .failed:
-                message = "failed"
+                case .failed:
+                    message = "failed"
 
-            case .canceled:
-                message = "cancelled"
+                case .canceled:
+                    message = "cancelled"
 
-            case .succeeded:
-                message="Success"
+                case .succeeded:
+                    message="Success"
 
             }
         }
@@ -68,9 +70,9 @@ struct StripePayView: View {
         }
     }
 }
-
-struct StripePayView_Previews: PreviewProvider {
-    static var previews: some View {
-        StripePayView()
-    }
-}
+//
+//struct StripePayView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        StripePayView()
+//    }
+//}

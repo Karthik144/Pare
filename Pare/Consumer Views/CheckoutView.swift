@@ -35,6 +35,7 @@ struct CheckoutView: View {
     @State var promoCodeIsValid = false
     @State var promoUsed = false
     @Binding var rootActive: Bool
+    @State var rootIsActive = false
 
     //private static let backendURL = URL(string: "http://127.0.0.1:4242")!
     private static let backendURL = URL(string: "https://pareapp-stripe.glitch.me")!
@@ -385,40 +386,45 @@ struct CheckoutView: View {
 //                    }
 
 
-                    Button("Checkout"){
-                        startCheckout { clientSecret in
-
-                            PaymentConfig.shared.paymentIntentClientSecret = clientSecret
-
-
-                            print(clientSecret)
-
-                        }
-                    }
-
-//                    NavigationLink {
-//                        StripePayView()
-//                    } label: {
+//                    Button("Checkout"){
+//                        startCheckout { clientSecret in
 //
-//                        Button("Checkout"){
-//                            startCheckout { clientSecret in
-//
-//                                PaymentConfig.shared.paymentIntentClientSecret = clientSecret
+//                            PaymentConfig.shared.paymentIntentClientSecret = clientSecret
 //
 //
-//                                print(clientSecret)
+//                            print(clientSecret)
 //
-//                            }
 //                        }
-//
-//
-////                        Text("Stripe")
-////                            .frame(width: 300, height: 50)
-////                            .overlay(
-////                                RoundedRectangle(cornerRadius: 8,  style: .continuous)
-////                                    .stroke(Color.accentColor, lineWidth: 1)
-////                        )
 //                    }
+
+                    NavigationLink(isActive: $rootIsActive) {
+                        StripePayView()
+                    } label: {
+
+                        Button("Checkout"){
+                            startCheckout { clientSecret in
+
+                                PaymentConfig.shared.paymentIntentClientSecret = clientSecret
+
+                                print("Button pressed")
+
+                                print(clientSecret ?? "Error")
+
+                                DispatchQueue.main.async {
+                                    rootIsActive = true
+                                }
+
+                            }
+                        }
+
+
+//                        Text("Stripe")
+//                            .frame(width: 300, height: 50)
+//                            .overlay(
+//                                RoundedRectangle(cornerRadius: 8,  style: .continuous)
+//                                    .stroke(Color.accentColor, lineWidth: 1)
+//                        )
+                    }
 
 
 
