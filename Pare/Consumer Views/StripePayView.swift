@@ -12,7 +12,7 @@ struct StripePayView: View {
 
     @State var paymentMethodParams: STPPaymentMethodParams?
     @State private var message = ""
-//    @Binding var isActive: Bool
+    //    @Binding var isActive: Bool
 
     let paymentGatewayController = PaymentGatewayController()
 
@@ -31,14 +31,14 @@ struct StripePayView: View {
 
             switch status {
 
-                case .failed:
-                    message = "failed"
+            case .failed:
+                message = "Payment failed. Please try again. If the issue persists, try using another card."
 
-                case .canceled:
-                    message = "cancelled"
+            case .canceled:
+                message = "Payment cancelled. Please try again. If the issue persists, try using another card."
 
-                case .succeeded:
-                    message="Success"
+            case .succeeded:
+                message="Success"
 
             }
         }
@@ -52,24 +52,41 @@ struct StripePayView: View {
 
         VStack{
 
-            STPPaymentCardTextField.Representable.init(paymentMethodParams: $paymentMethodParams)
 
+            // Stripe payment text field
+            STPPaymentCardTextField.Representable.init(paymentMethodParams: $paymentMethodParams)
+                .padding()
+
+            Spacer()
+
+
+            // Pay button
             Button {
                 pay()
             } label: {
                 Text("Pay")
+                    .foregroundColor(Color.white)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8,  style: .continuous)
+                            .fill(Color.accentColor)
+                            .frame(width: 300, height: 50)
+                    )
             }
-
+            .padding()
+            .frame(width: 300, height: 50)
 
             Text(message)
                 .font(.headline)
 
         } //: VSTACK
-        .onAppear(){
+        .navigationTitle("Add your card")
+        .navigationBarTitleDisplayMode(.large)
 
-        }
-    }
-}
+    } //: BODY VIEW
+
+
+} //: VIEW
+
 //
 //struct StripePayView_Previews: PreviewProvider {
 //    static var previews: some View {
