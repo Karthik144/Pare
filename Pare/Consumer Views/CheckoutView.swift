@@ -526,13 +526,18 @@ struct CheckoutView: View {
         //let url = URL(string: "http://localhost:4242/create-payment-intent")!
         let url = URL(string: "https://pareapp-stripe.glitch.me/create-payment-intent")!
 
-        let shoppingCartContent: [String: Any] = [
-            "items": [
-                ["id": "xl-shirt",
-                 "price": 400
-                ]
-            ]
+        
+        var shoppingCartContent: [String: Any] = [
+            "items": []
         ]
+        
+        for order in viewModel.cartItems {
+            if var items = shoppingCartContent["items"] as? [[String: Any]] {
+                var priceCents = (Double(order.item.price) ?? 0.0) * 100
+                items.append(["id": order.item.id, "price": Int(priceCents)])
+                shoppingCartContent["items"] = items
+            }
+        }
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
