@@ -179,7 +179,7 @@ struct PayWithMetaMaskView: View {
                             .padding(.trailing, 10)
 
 
-                            Text("Click on DropDown & select USDC")
+                            Text("Click on DropDown & select USD")
                                 .font(.title2)
                                 .fontWeight(.medium)
 

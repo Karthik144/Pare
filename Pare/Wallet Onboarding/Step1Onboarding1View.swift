@@ -43,7 +43,7 @@ struct Step1Onboarding1View: View {
                     
                     HStack{
 
-                        Text("When you load money into it, you're purchasing digital cash called USDC. Each USDC coin is equal to $1.")
+                        Text("When you load money into it, you're purchasing digital cash called USD. Each USD coin is equal to $1.")
                             .font(.title3)
                             .padding()
 
@@ -128,7 +128,7 @@ struct Step1Onboarding1View: View {
 
                     HStack{
 
-                        Text("When you load money into it, you're purchasing a stable coin called USDC. Each USDC coin is equal to $1.")
+                        Text("When you load money into it, you're purchasing a stable coin called USD. Each USD coin is equal to $1.")
                             .font(.title3)
                             .padding()
 

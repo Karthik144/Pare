@@ -21,7 +21,7 @@ struct FifthStoryView: View {
 
 
             // Title
-            Text("Before you add USDC to your wallet...")
+            Text("Before you add USD to your wallet...")
                 .font(.title.weight(.bold))
                 .padding()
                 .padding(.bottom, 0)
@@ -49,7 +49,7 @@ struct FifthStoryView: View {
                         .padding(.top)
                         .padding(.trailing)
 
-                    Text("It’s government regulations for purchasing USDC, so blame them not us.")
+                    Text("It’s government regulations for purchasing USD, so blame them not us.")
                         .font(.callout)
                         .padding(.top, 5)
                         .padding(.trailing)
@@ -81,7 +81,7 @@ struct FifthStoryView: View {
 
                 VStack(alignment: .leading){
 
-                    Text("To process this sensitive info and purchase USDC, we use Transak.")
+                    Text("To process this sensitive info and purchase USD, we use Transak.")
                         .font(.callout)
                         .padding(.top)
                         .padding(.trailing)
@@ -128,7 +128,7 @@ struct FifthStoryView: View {
 
                 Spacer()
 
-                // Add USDC button (nav to Transak)
+                // Add USD button (nav to Transak)
                 NavigationLink {
                     TransakController(publicAddress: authViewModel.currentUser?.public_address ?? "", firstName: authViewModel.currentUser?.first_name ?? "", lastName: authViewModel.currentUser?.last_name ?? "", email: authViewModel.currentUser?.email ?? "")
                 } label: {

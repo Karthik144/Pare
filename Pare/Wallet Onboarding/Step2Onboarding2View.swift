@@ -20,7 +20,7 @@ struct Step2Onboarding2View: View {
 
             HStack{
 
-                Text("Search USDC")
+                Text("Search USD")
                     .font(.title2)
                     .fontWeight(.semibold)
                     .padding(.leading)
@@ -50,7 +50,7 @@ struct Step2Onboarding2View: View {
 
             HStack{
 
-                Text("It's important that you select this exact version of USDC.")
+                Text("It's important that you select this exact version of USD.")
                     .bold()
                     .padding()
                 
@@ -69,7 +69,7 @@ struct Step2Onboarding2View: View {
 
             Spacer()
             
-            Image("usdcStep")
+            Image("USDStep")
                 .resizable()
                 .frame(width: UIScreen.main.bounds.width - 50, height: 100)
                 .scaledToFit()

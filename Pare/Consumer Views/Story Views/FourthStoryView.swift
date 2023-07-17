@@ -26,7 +26,7 @@ struct FourthStoryView: View {
                 
                 +
                 
-                Text("**USDC**")
+                Text("**USD**")
                     .foregroundColor(Color.accentColor)
                     .font(.title.weight(.bold))
                 
@@ -38,7 +38,7 @@ struct FourthStoryView: View {
 //
 //                +
 //
-//                Text("(1 USDC = 1 Dollar)")
+//                Text("(1 USD = 1 Dollar)")
 //                    .foregroundColor(Color.gray)
                 
             }
@@ -47,7 +47,7 @@ struct FourthStoryView: View {
             .padding(.top, 0)
 
             // Main message
-            Text("1 USDC equals $1")
+            Text("1 USD equals $1")
                 .font(.title.weight(.bold))
                 .padding()
                 .padding(.bottom, 0)

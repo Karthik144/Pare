@@ -38,7 +38,7 @@ struct TransakController: View {
 
         
         //PRODUCTION
-        WebView(url: URL(string: "https://global.transak.com/?apiKey=e0b53fa9-2126-450f-8a91-8239a0e4ae6d&network=polygon&defaultCryptoCurrency=USDC&cryptoCurrencyList=USDC&fiatCurrency=USD&defaultFiatAmount=30&walletAddress=\(publicAddress)&disableWalletAddressForm=true&email=\(email)&userData=%7B%22firstName%22%3A%22\(firstName)%22%2C%22lastName%22%3A%22\(lastName)%22%7D"), onError: {error in
+        WebView(url: URL(string: "https://global.transak.com/?apiKey=e0b53fa9-2126-450f-8a91-8239a0e4ae6d&network=polygon&defaultCryptoCurrency=USD&cryptoCurrencyList=USD&fiatCurrency=USD&defaultFiatAmount=30&walletAddress=\(publicAddress)&disableWalletAddressForm=true&email=\(email)&userData=%7B%22firstName%22%3A%22\(firstName)%22%2C%22lastName%22%3A%22\(lastName)%22%7D"), onError: {error in
                 print("This is error: ", error)
             
         })
@@ -64,7 +64,7 @@ struct TransakController: View {
         
         /*
         //STAGING
-        WebView(url: URL(string: "https://global-stg.transak.com/?apiKey=173117b1-85df-44a8-b66b-d7f2fa52822d&network=polygon&defaultCryptoCurrency=USDC&environment=STAGING&walletAddress=\(publicAddress)&disableWalletAddressForm=true&cryptoCurrencyList=USDC&fiatCurrency=USD&defaultFiatAmount=30&email=\(emailDomain)"), onError: {error in
+        WebView(url: URL(string: "https://global-stg.transak.com/?apiKey=173117b1-85df-44a8-b66b-d7f2fa52822d&network=polygon&defaultCryptoCurrency=USD&environment=STAGING&walletAddress=\(publicAddress)&disableWalletAddressForm=true&cryptoCurrencyList=USD&fiatCurrency=USD&defaultFiatAmount=30&email=\(emailDomain)"), onError: {error in
                 print(error)
             
         })

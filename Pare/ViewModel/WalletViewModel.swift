@@ -29,9 +29,9 @@ class WalletViewModel: ObservableObject{
 
         do {
 
-            // Create USDC contract instance
+            // Create USD contract instance
             let contractAddress = try EthereumAddress(hex: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174", eip55: false)
-            let USDCcontract = web3.eth.Contract(type: GenericERC20Contract.self, address: contractAddress)
+            let USDcontract = web3.eth.Contract(type: GenericERC20Contract.self, address: contractAddress)
 
             // User public address
             let userAddress = try EthereumAddress(hex: "0x3FF4e98BE04Ba8c0d96a4b5eE6BD8D7eE834CbeC", eip55: false)
@@ -39,7 +39,7 @@ class WalletViewModel: ObservableObject{
 
             // Get balance of some address
             firstly {
-                try USDCcontract.balanceOf(address: EthereumAddress(hex: userPublicAddress, eip55: false)).call()
+                try USDcontract.balanceOf(address: EthereumAddress(hex: userPublicAddress, eip55: false)).call()
             }.done { outputs in
 
                 let balanceInWei = outputs["_balance"] as? BigUInt
@@ -82,9 +82,9 @@ class WalletViewModel: ObservableObject{
             // 3nd instance of web3
             let web3 = Web3(provider: magic.rpcProvider)
 
-            // Create usdc contract instance
+            // Create USD contract instance
             let contractAddress = try EthereumAddress(hex: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174", eip55: false)
-            let USDCContract = web3.eth.Contract(type: GenericERC20Contract.self, address: contractAddress)
+            let USDContract = web3.eth.Contract(type: GenericERC20Contract.self, address: contractAddress)
 
             // Send some tokens to another address (signing will be done by the node)
             let myAddress = try EthereumAddress(hex: userPublicAddress, eip55: false)
@@ -95,7 +95,7 @@ class WalletViewModel: ObservableObject{
             }.then { nonce in
 
                 // Note: 8000000 = 8 ETH since ERC-20 tokens round to 6 decimal places
-                try USDCContract.transfer(to: shopAddress, value: amount).send(
+                try USDContract.transfer(to: shopAddress, value: amount).send(
                     nonce: nonce,
                     from: EthereumAddress(hex: userPublicAddress, eip55: false),
                     value: 0,

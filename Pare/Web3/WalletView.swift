@@ -33,7 +33,7 @@ struct WalletView: View {
                         .fontWeight(.light)
 
 
-                    Text("\(String(describing: walletViewModel.userTokenBalance)) USDC")
+                    Text("\(String(describing: walletViewModel.userTokenBalance)) USD")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(Color.accentColor)
@@ -55,7 +55,7 @@ struct WalletView: View {
                             FirstStoryView()
 
                         } label: {
-                            WalletOptionCell(title: "Add funds", subTitle: "Buy more USDC", image: "dollar_note")
+                            WalletOptionCell(title: "Add funds", subTitle: "Buy more USD", image: "dollar_note")
 
                         }
                         .buttonStyle(PlainButtonStyle()) // Remove the accent highlight
@@ -70,7 +70,7 @@ struct WalletView: View {
                             FourthStoryView()
 
                         } label: {
-                            WalletOptionCell(title: "Add funds", subTitle: "Buy more USDC", image: "dollar_note")
+                            WalletOptionCell(title: "Add funds", subTitle: "Buy more USD", image: "dollar_note")
 
                         }
                         .buttonStyle(PlainButtonStyle()) // Remove the accent highlight
@@ -99,7 +99,7 @@ struct WalletView: View {
                         LearnMoreView()
                         
                     } label: {
-                        WalletOptionCell(title: "Learn more", subTitle: "What is a Wallet? What USDC?", image: "question_mark")
+                        WalletOptionCell(title: "Learn more", subTitle: "What is a Wallet? What USD?", image: "question_mark")
                     }
                     .buttonStyle(PlainButtonStyle()) // Remove the accent highlight
 
