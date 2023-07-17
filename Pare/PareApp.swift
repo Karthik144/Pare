@@ -19,7 +19,7 @@ struct PareApp: App{
         
         FirebaseApp.configure()
 
-        StripeAPI.defaultPublishableKey = "pk_test_51NGLJGLYY9K9hzsbArCeG7aiT6s7jGuoGynpbGN5obXCKI9BKOd4Y3vH9qvxKPXKMG46Cpo5xehIaBu5gzSlIQFX00zLqGG45z"
+        StripeAPI.defaultPublishableKey = "pk_live_51NGLJGLYY9K9hzsbz0Gr7SjsrOymNL1p3M7mPwZTwFSE5OTfVRk4puKCq8kk83MCazwma7FNcdIKfkmFf9WmvmkK00cEMqGieQ"
     }
 
     @StateObject var viewModel = AuthViewModel()

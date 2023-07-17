@@ -258,7 +258,7 @@ struct CheckoutView: View {
 
 
                 VStack(spacing: 30){
-
+                    /*
                     if authViewModel.currentUser?.wallet == false {
 
                         Button {
@@ -276,7 +276,7 @@ struct CheckoutView: View {
                             Button("Ok", role: .cancel) { }
                         }
 
-                    } else {
+                    } else { */
                         NavigationLink(isActive: $rootIsActive) {
                             StripePayView(isActive: $rootActive, noteText: noteText, shop: shop, promoUsed: promoUsed)
                         } label: {
@@ -336,7 +336,7 @@ struct CheckoutView: View {
                             }
                         }
 
-                    } //: ELSE
+                    //} //: ELSE
 
 
 

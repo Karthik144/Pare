@@ -842,7 +842,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"Pare/Preview Content\"";
 				DEVELOPMENT_TEAM = U28DY7SUR7;
 				ENABLE_PREVIEWS = YES;
@@ -850,6 +850,7 @@
 				INFOPLIST_FILE = Pare/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Pare;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Pare uses Stripe to process card payments, enabling your camera may allow you to scan your card for convinience";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Pare uses your location to provide you the distance between you and resteraunts.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -878,7 +879,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"Pare/Preview Content\"";
 				DEVELOPMENT_TEAM = U28DY7SUR7;
 				ENABLE_PREVIEWS = YES;
@@ -886,6 +887,7 @@
 				INFOPLIST_FILE = Pare/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Pare;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Pare uses Stripe to process card payments, enabling your camera may allow you to scan your card for convinience";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Pare uses your location to provide you the distance between you and resteraunts.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
