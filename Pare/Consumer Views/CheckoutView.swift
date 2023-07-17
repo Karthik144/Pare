@@ -38,7 +38,6 @@ struct CheckoutView: View {
     @State var rootIsActive = false
     @State private var isActionComplete = false
 
-    //private static let backendURL = URL(string: "http://127.0.0.1:4242")!
     private static let backendURL = URL(string: "https://pareapp-stripe.glitch.me")!
 
     @State private var paymentIntentClientSecret: String?
