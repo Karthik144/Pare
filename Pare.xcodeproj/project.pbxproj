@@ -850,6 +850,7 @@
 				INFOPLIST_FILE = Pare/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Pare;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Pare uses Stripe to process card payments, enabling your camera may allow you to scan your card for convinience";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Pare uses your location to provide you the distance between you and resteraunts.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -886,6 +887,7 @@
 				INFOPLIST_FILE = Pare/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Pare;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Pare uses Stripe to process card payments, enabling your camera may allow you to scan your card for convinience";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Pare uses your location to provide you the distance between you and resteraunts.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

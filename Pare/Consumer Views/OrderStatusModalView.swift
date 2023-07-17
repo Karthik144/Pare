@@ -147,13 +147,13 @@ struct OrderStatusModalView: View {
 
                     Spacer()
 
-//                    Text(String(round(filteredPendingOrders[0].subtotal * 100) / 100.0) + " USDC")
+//                    Text(String(round(filteredPendingOrders[0].subtotal * 100) / 100.0) + " USD")
 
                     if let firstOrder = readyOrders.first {
-                        Text(String(round(firstOrder.subtotal * 100) / 100.0) + " USDC")
+                        Text(String(round(firstOrder.subtotal * 100) / 100.0) + " USD")
                     } else {
                         if let firstOrder = pendingOrders.first {
-                            Text(String(round(firstOrder.subtotal * 100) / 100.0) + " USDC")
+                            Text(String(round(firstOrder.subtotal * 100) / 100.0) + " USD")
                         }
                     }
 
@@ -169,14 +169,14 @@ struct OrderStatusModalView: View {
 
                     Spacer()
 
-//                    Text(String((round(filteredPendingOrders[0].subtotal * 100) / 100.0) * 0.06) + " USDC")
+//                    Text(String((round(filteredPendingOrders[0].subtotal * 100) / 100.0) * 0.06) + " USD")
 
 
                     if let firstOrder = readyOrders.first {
-                        Text(String((round((firstOrder.total * 0.06) * 100) / 100.0)) + " USDC")
+                        Text(String((round((firstOrder.total * 0.06) * 100) / 100.0)) + " USD")
                     } else {
                         if let firstOrder = pendingOrders.first {
-                            Text(String((round((firstOrder.total * 0.06) * 100) / 100.0)) + " USDC")
+                            Text(String((round((firstOrder.total * 0.06) * 100) / 100.0)) + " USD")
                         }
                     }
 
@@ -193,13 +193,13 @@ struct OrderStatusModalView: View {
 
                     Spacer()
 
-//                    Text(String(filteredPendingOrders[0].total) + " USDC")
+//                    Text(String(filteredPendingOrders[0].total) + " USD")
 
                     if let firstOrder = readyOrders.first {
-                        Text(String(firstOrder.total) + " USDC")
+                        Text(String(firstOrder.total) + " USD")
                     } else {
                         if let firstOrder = pendingOrders.first {
-                            Text(String(round(firstOrder.total * 100) / 100.0) + " USDC")
+                            Text(String(round(firstOrder.total * 100) / 100.0) + " USD")
                         }
                     }
 

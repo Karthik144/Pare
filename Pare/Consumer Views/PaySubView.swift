@@ -107,7 +107,7 @@ struct PaySubView: View {
                             .padding(.trailing, 10)
                             
                             
-                            Text("Select USDC Polygon")
+                            Text("Select USD Polygon")
                                 .font(.title2)
                                 .fontWeight(.medium)
                             
@@ -119,7 +119,7 @@ struct PaySubView: View {
                     
                     HStack{
                         
-                        Image("usdcStep")
+                        Image("USDStep")
                             .resizable()
                             .frame(width: 335, height: 90)
                             .scaledToFit()

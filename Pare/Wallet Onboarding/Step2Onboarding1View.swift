@@ -20,7 +20,7 @@ struct Step2Onboarding1View: View {
 
             HStack{
 
-                Text("Purchase USDC")
+                Text("Purchase USD")
                     .font(.title2)
                     .fontWeight(.semibold)
                     .padding(.leading)

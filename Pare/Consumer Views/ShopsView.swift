@@ -131,6 +131,8 @@ struct ShopsView: View {
 
                 } //: IF ORDER READY
 
+                
+                /*
                 if authViewModel.currentUser?.wallet == false {
 
                     NavigationLink {
@@ -141,8 +143,8 @@ struct ShopsView: View {
                     }
 
                 } //: IF WALLET NOT FULLY SETUP
-
-
+                 */
+                 
                 HStack{
                     Text("Near You")
                         .font(.title2)

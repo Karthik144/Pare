@@ -30,7 +30,7 @@ struct LearnMoreView: View {
 
             // Title & Body #2
             VStack(alignment: .leading, spacing: 5){
-                Text("What’s USDC?")
+                Text("What’s USD?")
                     .fontWeight(.bold)
                     .font(.title3)
 

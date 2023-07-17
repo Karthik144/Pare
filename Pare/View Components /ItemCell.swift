@@ -48,11 +48,11 @@ struct ItemCell: View {
 
                 HStack{
 
-//                    Text(String(item.price) + " USDC")
+//                    Text(String(item.price) + " USD")
 //                        .font(.callout)
 //                        .foregroundColor(Color.black)
 
-                    Text(item.price + " USDC")
+                    Text(item.price + " USD")
                         .font(.callout)
                         .foregroundColor(Color.black)
 

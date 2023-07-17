@@ -286,7 +286,7 @@ struct ShopItemView: View {
                             HStack{
 
                                 let displayTotal = String(format: "%.2f", roundToTwoDecimalPlaces(viewModel.total))
-                                Text("\(displayTotal) USDC")
+                                Text("\(displayTotal) USD")
                                     .foregroundColor(Color.white)
 
                                 let displayRewardTotal = String(format: "%.2f", roundToTwoDecimalPlaces(viewModel.totalRewards))
@@ -624,7 +624,7 @@ struct ShopItemView: View {
                             HStack{
 
                                 let displayTotal = String(format: "%.2f", roundToTwoDecimalPlaces(viewModel.total))
-                                Text("\(displayTotal) USDC")
+                                Text("\(displayTotal) USD")
                                     .foregroundColor(Color.white)
 
                                 let displayRewardTotal = String(format: "%.2f", roundToTwoDecimalPlaces(viewModel.totalRewards))

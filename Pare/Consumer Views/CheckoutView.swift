@@ -180,9 +180,9 @@ struct CheckoutView: View {
                     Spacer()
 
                     if self.promoCodeIsValid && viewModel.cartItems.count == 1 {
-                        Text(String("0 USDC"))
+                        Text(String("0 USD"))
                     } else {
-                        Text(String(round(viewModel.subtotal * 100) / 100.0) + " USDC")
+                        Text(String(round(viewModel.subtotal * 100) / 100.0) + " USD")
                     }
 
 
@@ -199,9 +199,9 @@ struct CheckoutView: View {
                     Spacer()
 
                     if self.promoCodeIsValid && viewModel.cartItems.count == 1 {
-                        Text(String("0 USDC"))
+                        Text(String("0 USD"))
                     } else {
-                        Text(String(viewModel.tax) + " USDC")
+                        Text(String(viewModel.tax) + " USD")
                     }
 
                 } //: HSTACK
@@ -222,11 +222,11 @@ struct CheckoutView: View {
 
                     if self.promoCodeIsValid && viewModel.cartItems.count == 1 {
 
-                        Text(String("0 USDC"))
+                        Text(String("0 USD"))
 
                     } else {
 
-                        Text(String(displayTotal) + " USDC")
+                        Text(String(displayTotal) + " USD")
                     }
 
                 } //: HSTACK
@@ -257,7 +257,7 @@ struct CheckoutView: View {
 
 
                 VStack(spacing: 30){
-
+                    /*
                     if authViewModel.currentUser?.wallet == false {
 
                         Button {
@@ -275,7 +275,7 @@ struct CheckoutView: View {
                             Button("Ok", role: .cancel) { }
                         }
 
-                    } else {
+                    } else { */
                         NavigationLink(isActive: $rootIsActive) {
                             StripePayView(isActive: $rootActive, noteText: noteText, shop: shop, promoUsed: promoUsed)
                         } label: {
@@ -306,7 +306,7 @@ struct CheckoutView: View {
                                     let conversionFactor = 1_000_000
                                     let convertedValue = BigUInt(viewModel.total * Double(conversionFactor))
                                     
-                                    // Send USDC to restaurant
+                                    // Send USD to restaurant
                                     walletViewModel.sendTransaction(magic: magic, userPublicAddress: publicAddress ?? "", amount: convertedValue)
                                     
                                     // Send order to restaurant
@@ -330,12 +330,12 @@ struct CheckoutView: View {
                                     )
                             }
                             .frame(width: 300, height: 50)
-                            .alert("Not enough USDC in wallet!", isPresented: $showingBalanceAlert) {
+                            .alert("Not enough USD in wallet!", isPresented: $showingBalanceAlert) {
                                 Button("Ok", role: .cancel) { }
                             }
                         }
 
-                    } //: ELSE
+                    //} //: ELSE
 
 
 

@@ -44,7 +44,7 @@ struct AddItemCell: View {
 
             Spacer()
 
-            Text("+\(addItem.price) USDC")
+            Text("+\(addItem.price) USD")
                 .foregroundColor(Color.black)
                 .padding(.trailing, 15)
         } //: HSTACK

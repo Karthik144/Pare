@@ -33,7 +33,7 @@ struct Step2Onboarding3View: View {
 
             HStack{
 
-                Text("Each USDC coin equals one dollar")
+                Text("Each USD coin equals one dollar")
                     .padding(.leading)
                     .padding(.trailing)
                 Spacer()
