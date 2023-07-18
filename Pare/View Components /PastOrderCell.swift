@@ -41,7 +41,7 @@ struct PastOrderCell: View {
 
                     HStack{
 
-                        Text(String(order.total) + " USD")
+                        Text("$" + String(order.total))
                             .foregroundColor(Color.gray)
 
 

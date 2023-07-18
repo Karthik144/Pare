@@ -286,7 +286,7 @@ struct ShopItemView: View {
                             HStack{
 
                                 let displayTotal = String(format: "%.2f", roundToTwoDecimalPlaces(viewModel.total))
-                                Text("\(displayTotal) USD")
+                                Text("$\(displayTotal)")
                                     .foregroundColor(Color.white)
 
                                 let displayRewardTotal = String(format: "%.2f", roundToTwoDecimalPlaces(viewModel.totalRewards))
@@ -296,9 +296,6 @@ struct ShopItemView: View {
 
                             }
                             .padding()
-                            .onAppear{
-                                print("TEST ROUND",roundToTwoDecimalPlaces(viewModel.total))
-                            }
 
                         }
                         .frame(width: 345, height: 50)
@@ -624,7 +621,7 @@ struct ShopItemView: View {
                             HStack{
 
                                 let displayTotal = String(format: "%.2f", roundToTwoDecimalPlaces(viewModel.total))
-                                Text("\(displayTotal) USD")
+                                Text("$\(displayTotal)")
                                     .foregroundColor(Color.white)
 
                                 let displayRewardTotal = String(format: "%.2f", roundToTwoDecimalPlaces(viewModel.totalRewards))
@@ -633,9 +630,7 @@ struct ShopItemView: View {
 
                             }
                             .padding()
-                            .onAppear{
-                                print("TEST ROUND",roundToTwoDecimalPlaces(viewModel.total))
-                            }
+
 
                         }
                         .frame(width: 345, height: 50)

@@ -52,7 +52,7 @@ struct ItemCell: View {
 //                        .font(.callout)
 //                        .foregroundColor(Color.black)
 
-                    Text(item.price + " USD")
+                    Text("$" + item.price)
                         .font(.callout)
                         .foregroundColor(Color.black)
 
