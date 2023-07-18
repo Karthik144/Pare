@@ -282,6 +282,8 @@ struct AddItemView: View {
                     isActive: $goesToDetail) {
                     Button(action: {
                         let orderHash = order.hashValue
+                        
+                        showingAlert = true
 
 
                         if (viewModel.cartItems.isEmpty){
