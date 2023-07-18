@@ -128,7 +128,7 @@ struct OrderItemCell: View {
 
             HStack{
 
-                Text(itemPrice + " USD")
+                Text("$" + itemPrice)
                     .padding()
                     .lineLimit(1)
 

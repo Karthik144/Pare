@@ -150,10 +150,11 @@ struct OrderStatusModalView: View {
 //                    Text(String(round(filteredPendingOrders[0].subtotal * 100) / 100.0) + " USD")
 
                     if let firstOrder = readyOrders.first {
-                        Text(String(round(firstOrder.subtotal * 100) / 100.0) + " USD")
+                        Text("$" + String(round(firstOrder.subtotal * 100) / 100.0))
                     } else {
                         if let firstOrder = pendingOrders.first {
-                            Text(String(round(firstOrder.subtotal * 100) / 100.0) + " USD")
+
+                            Text("$" + String(round(firstOrder.subtotal * 100) / 100.0))
                         }
                     }
 
@@ -173,10 +174,10 @@ struct OrderStatusModalView: View {
 
 
                     if let firstOrder = readyOrders.first {
-                        Text(String((round((firstOrder.total * 0.06) * 100) / 100.0)) + " USD")
+                        Text("$" + String((round((firstOrder.total * 0.06) * 100) / 100.0)))
                     } else {
                         if let firstOrder = pendingOrders.first {
-                            Text(String((round((firstOrder.total * 0.06) * 100) / 100.0)) + " USD")
+                            Text("$" + String((round((firstOrder.total * 0.06) * 100) / 100.0)))
                         }
                     }
 
@@ -196,10 +197,10 @@ struct OrderStatusModalView: View {
 //                    Text(String(filteredPendingOrders[0].total) + " USD")
 
                     if let firstOrder = readyOrders.first {
-                        Text(String(firstOrder.total) + " USD")
+                        Text("$" + String(firstOrder.total))
                     } else {
                         if let firstOrder = pendingOrders.first {
-                            Text(String(round(firstOrder.total * 100) / 100.0) + " USD")
+                            Text("$" + String(round(firstOrder.total * 100) / 100.0))
                         }
                     }
 

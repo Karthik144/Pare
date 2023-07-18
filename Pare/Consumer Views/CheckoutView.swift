@@ -180,9 +180,9 @@ struct CheckoutView: View {
                     Spacer()
 
                     if self.promoCodeIsValid && viewModel.cartItems.count == 1 {
-                        Text(String("0 USD"))
+                        Text(String("$0"))
                     } else {
-                        Text(String(round(viewModel.subtotal * 100) / 100.0) + " USD")
+                        Text("$" + String(round(viewModel.subtotal * 100) / 100.0))
                     }
 
 
@@ -199,9 +199,9 @@ struct CheckoutView: View {
                     Spacer()
 
                     if self.promoCodeIsValid && viewModel.cartItems.count == 1 {
-                        Text(String("0 USD"))
+                        Text(String("$0"))
                     } else {
-                        Text(String(viewModel.tax) + " USD")
+                        Text("$" + String(viewModel.tax))
                     }
 
                 } //: HSTACK
@@ -222,11 +222,11 @@ struct CheckoutView: View {
 
                     if self.promoCodeIsValid && viewModel.cartItems.count == 1 {
 
-                        Text(String("0 USD"))
+                        Text(String("$0"))
 
                     } else {
 
-                        Text(String(displayTotal) + " USD")
+                        Text("$" + String(displayTotal))
                     }
 
                 } //: HSTACK
