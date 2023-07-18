@@ -12,8 +12,10 @@ struct AddItemView: View {
 
     // MARK: - PROPERTIES
     var lunchSpecial:Bool?
+    @EnvironmentObject var AuthViewModel : AuthViewModel
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var viewModel: ShopViewModel
+    @State private var showingAlert = false
     @State private var didTap = false
     @State private var goesToDetail = false
     @State private var goesToShopItemView = false
@@ -225,10 +227,13 @@ struct AddItemView: View {
                 NavigationLink(
                     destination: ShopItemView(rootIsActive: $rootIsStillActive, shop: shop),
                     isActive: $goesToShopItemView) {
-                    Button(action: {
+                    Button {
                         let orderHash = order.hashValue
                         //viewModel.hashList.append(itemHash)
                         //item.hash = itemHash
+                        if (AuthViewModel.userSession == nil){
+                            showingAlert = true
+                        }
 
 
                         if (viewModel.cartItems.isEmpty){
@@ -252,7 +257,7 @@ struct AddItemView: View {
 
                         goesToShopItemView = true
 
-                    }) {
+                    } label: {
                         Text("Add to Cart")
                             .frame(width: 110, height: 40)
                             .overlay(
@@ -261,7 +266,13 @@ struct AddItemView: View {
                                     .stroke(Color.accentColor, lineWidth: 1)
                             )
                     }
-                }
+                    .alert("Please head home to set up your account first!", isPresented: $showingAlert) {
+                        Button("Go to setup!") {
+                            showingAlert = false
+                        }
+                    }
+            }
+
 
                 Spacer()
 
@@ -302,6 +313,11 @@ struct AddItemView: View {
                                     .frame(width: 110, height: 40)
                             )
                     } //: END OF BUTTON
+                    .alert("Please head home to set up your account first!", isPresented: $showingAlert) {
+                        Button("Go to setup!") {
+                            showingAlert = false
+                        }
+                    }
                 }
 
 
@@ -316,7 +332,6 @@ struct AddItemView: View {
 
         } //: VSTACK
         .onAppear(){
-
             viewModel.fetchItemAddOptions(withUID: shop.id ?? "", itemUID: order.item.id ?? "") { addOptions in
                 self.addOptions = addOptions
             }
