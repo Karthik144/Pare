@@ -98,6 +98,22 @@ extension WelcomeView {
                 } //: HSTACK
                 .padding()
 
+                HStack{
+
+                    Spacer()
+      
+                    // Preview for shops and menu
+                    NavigationLink {
+                        ShopsView()
+                    } label: {
+                        Text("View shops & menu")
+                            .foregroundColor(Color.accentColor)
+                    }
+
+                    Spacer()
+                }
+                .padding(.top, 17)
+
 
                 Spacer(minLength: 70)
 
@@ -105,62 +121,7 @@ extension WelcomeView {
             .navigationTitle("Welcome to Pare")
             .navigationBarTitleDisplayMode(.large)
 
-
-
-
-//            VStack(alignment: .center) {
-//
-//                Spacer()
-//
-//                VStack(spacing: 12){
-//
-//                    Text("Pare")
-//                        .font(.largeTitle)
-//                        .fontWeight(.heavy)
-//                        .offset(y:-50)
-//                    Text("Earn rewards every time you spend.")
-//                        .font(.body)
-//                        .offset(y:-50)
-//
-//                    HStack{
-//
-//                        Spacer()
-//
-//                        // Log in button
-//                        NavigationLink(destination: {
-//                            EmailView(login: true)
-//                        }, label: {
-//                            Text("Login")
-//                                .font(.title3)
-//                                .fontWeight(.bold)
-//                                .modifier(StartButtonModifier())
-//                        })
-//
-//                        Spacer()
-//
-//                        // Sign up button
-//                        NavigationLink(destination: {
-//                            EmailView(login: false)
-//                        }, label: {
-//                            Text("Sign Up")
-//                                .font(.title3)
-//                                .fontWeight(.bold)
-//                                .modifier(StartButtonModifier())
-//                        })
-//
-//                        Spacer()
-//
-//                    }
-//
-//                } //: VSTACK
-//
-//                Spacer()
-//
-//            } //: VSTACK
-//            .tint(Color.white)
-
         } //: NAVVIEW
-//        .tint(Color.white)
 
 
 
@@ -174,12 +135,3 @@ extension View {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
-/*
-struct WelcomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        WelcomeView()
-            .environmentObject(AuthViewModel())
-    }
-}
-
-*/
