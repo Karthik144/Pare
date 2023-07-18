@@ -35,9 +35,8 @@ struct WelcomeView: View {
 extension WelcomeView {
     var mainWelcomeView: some View {
         NavigationView {
-
+            
             VStack(alignment: .leading){
-
                 // Benefit slideshow
                 GeometryReader { proxy in
 
@@ -58,10 +57,7 @@ extension WelcomeView {
 //                    .tabViewStyle(.page)
 //                    .indexViewStyle(.page(backgroundDisplayMode: .always))
 
-
                 } //: GEOMETRY READER
-
-                Spacer()
 
                 // Login + Signup Buttons
                 HStack{
@@ -108,14 +104,15 @@ extension WelcomeView {
                     } label: {
                         Text("View shops & menu")
                             .foregroundColor(Color.accentColor)
+                            .padding(.top, 17)
                     }
 
                     Spacer()
                 }
-                .padding(.top, 17)
+                //.padding(.top, 17)
+                .padding()
 
-
-                Spacer(minLength: 70)
+                //Spacer(minLength: 70)
 
             } //: VSTACK
             .navigationTitle("Welcome to Pare")
