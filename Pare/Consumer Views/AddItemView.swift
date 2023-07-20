@@ -283,8 +283,9 @@ struct AddItemView: View {
                     Button(action: {
                         let orderHash = order.hashValue
                         
-                        showingAlert = true
-
+                        if (AuthViewModel.userSession == nil){
+                            showingAlert = true
+                        }
 
                         if (viewModel.cartItems.isEmpty){
                             order.item.quantity = 1
