@@ -85,6 +85,7 @@ struct ShopCell: View {
                     .frame(width: 2, height: 2)
                     .foregroundColor(Color.gray)
 
+            
                 Text(String(round((actualDistance ?? 0.0) * 100) / 100.0) + " miles")
                     .foregroundColor(Color.gray)
 
