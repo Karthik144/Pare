@@ -234,28 +234,29 @@ struct AddItemView: View {
                         if (AuthViewModel.userSession == nil){
                             showingAlert = true
                         }
-
-
-                        if (viewModel.cartItems.isEmpty){
-                            order.item.quantity = 1
-
-                            viewModel.cartItems.append(order)
-
-                        }
                         else{
-                            if let cartOrder = viewModel.cartItems.first(where: { $0 == order}){
-                                cartOrder.item.quantity! += 1
+                            
+                            if (viewModel.cartItems.isEmpty){
+                                order.item.quantity = 1
+                                
+                                viewModel.cartItems.append(order)
+                                
                             }
                             else{
-                                order.item.quantity = 1
-                                viewModel.cartItems.append(order)
+                                if let cartOrder = viewModel.cartItems.first(where: { $0 == order}){
+                                    cartOrder.item.quantity! += 1
+                                }
+                                else{
+                                    order.item.quantity = 1
+                                    viewModel.cartItems.append(order)
+                                }
                             }
+                            
+                            viewModel.updateCartActiveStatus(cartActive: true)
+                            
+                            
+                            goesToShopItemView = true
                         }
-
-                        viewModel.updateCartActiveStatus(cartActive: true)
-
-
-                        goesToShopItemView = true
 
                     } label: {
                         Text("Add to Cart")
@@ -283,28 +284,32 @@ struct AddItemView: View {
                     Button(action: {
                         let orderHash = order.hashValue
                         
-                        showingAlert = true
-
-
-                        if (viewModel.cartItems.isEmpty){
-                            order.item.quantity = 1
-
-                            viewModel.cartItems.append(order)
-
-                        }
-                        else{
-                            if let cartOrder = viewModel.cartItems.first(where: { $0 == order}){
-                                cartOrder.item.quantity! += 1
-                            }
-                            else{
-                                order.item.quantity = 1
-                                viewModel.cartItems.append(order)
-                            }
+                        if (AuthViewModel.userSession == nil){
+                            showingAlert = true
                         }
                         
-                        viewModel.updateCartActiveStatus(cartActive: true)
-
-                        goesToDetail = true
+                        else{
+                            
+                            if (viewModel.cartItems.isEmpty){
+                                order.item.quantity = 1
+                                
+                                viewModel.cartItems.append(order)
+                                
+                            }
+                            else{
+                                if let cartOrder = viewModel.cartItems.first(where: { $0 == order}){
+                                    cartOrder.item.quantity! += 1
+                                }
+                                else{
+                                    order.item.quantity = 1
+                                    viewModel.cartItems.append(order)
+                                }
+                            }
+                            
+                            viewModel.updateCartActiveStatus(cartActive: true)
+                            
+                            goesToDetail = true
+                        }
 
                     }) {
                         Text("Order")
