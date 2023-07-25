@@ -260,8 +260,8 @@ extension ShopsView {
 
             VStack{
 
-                SearchBar()
-                    .padding(.top, 10)
+                /*SearchBar()
+                    .padding(.top, 10)*/
 
                 //Show ModalView Conditional Block
                 if orderReady == true{
