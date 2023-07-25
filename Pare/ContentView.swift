@@ -14,6 +14,8 @@ struct ContentView: View {
     @StateObject var walletViewModel : web3ViewModel
 //    @EnvironmentObject var router: Router
     @State private var selection = 2
+    
+    @State var setupActive : Bool = true
 
     
     // MARK: - BODY
@@ -27,7 +29,7 @@ struct ContentView: View {
             })
             .tag(1)
 
-            ShopsView().tabItem({
+            ShopsView(setupActive: $setupActive).tabItem({
                 Image(systemName: "cart.circle")
                 Text("Order")
             })

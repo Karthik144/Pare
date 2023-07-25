@@ -290,8 +290,10 @@ struct OrderStatusModalView: View {
 
 
 // MARK: - PREVIEW
+/*
 struct OrderStatusModalView_Previews: PreviewProvider {
     static var previews: some View {
         ShopsView()
     }
 }
+*/

@@ -41,6 +41,8 @@ struct ShopItemView: View {
 
     @Binding var rootIsActive: Bool
     
+    @Binding var setupActive: Bool
+    
     let shop: Shop
 
     // MARK: - BODY
@@ -125,7 +127,7 @@ struct ShopItemView: View {
                             VStack(alignment: .leading){
                                 ForEach(appetizers) { item in
 
-                                    NavigationLink(destination: AddItemView(lunchSpecial: false, order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+                                    NavigationLink(destination: AddItemView(lunchSpecial: false, order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive, setupActive: $setupActive)
                                     ) {
                                         ItemCell(item: item)
 
@@ -158,7 +160,7 @@ struct ShopItemView: View {
                             VStack(alignment: .leading){
                                 ForEach(vegetarian) { item in
 
-                                    NavigationLink(destination: AddItemView(order: Order(item: item),shop: shop, rootIsStillActive: $rootIsActive)
+                                    NavigationLink(destination: AddItemView(order: Order(item: item),shop: shop, rootIsStillActive: $rootIsActive, setupActive: $setupActive)
                                     ) {
                                         ItemCell(item: item)
                                     }
@@ -195,7 +197,7 @@ struct ShopItemView: View {
                             VStack(alignment: .leading){
                                 ForEach(entrees) { item in
 
-                                    NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+                                    NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive, setupActive: $setupActive)
                                     ) {
                                         ItemCell(item: item)
                                     }
@@ -233,7 +235,7 @@ struct ShopItemView: View {
                                 VStack(alignment: .leading){
                                     ForEach(lunch) { item in
 
-                                        NavigationLink(destination: AddItemView(lunchSpecial: true, order: Order(item: item),shop: shop, rootIsStillActive: $rootIsActive)
+                                        NavigationLink(destination: AddItemView(lunchSpecial: true, order: Order(item: item),shop: shop, rootIsStillActive: $rootIsActive, setupActive: $setupActive)
                                         ) {
                                             ItemCell(item: item)
                                         }
@@ -459,7 +461,7 @@ struct ShopItemView: View {
                             VStack(alignment: .leading){
                                 ForEach(appetizers) { item in
 
-                                    NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+                                    NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive, setupActive: $setupActive)
                                     ) {
                                         ItemCell(item: item)
 
@@ -493,7 +495,7 @@ struct ShopItemView: View {
                             VStack(alignment: .leading){
                                 ForEach(vegetarian) { item in
 
-                                    NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+                                    NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive, setupActive: $setupActive)
                                     ) {
                                         ItemCell(item: item)
                                     }
@@ -530,7 +532,7 @@ struct ShopItemView: View {
                             VStack(alignment: .leading){
                                 ForEach(entrees) { item in
 
-                                    NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+                                    NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive, setupActive: $setupActive)
                                     ) {
                                         ItemCell(item: item)
                                     }
@@ -568,7 +570,7 @@ struct ShopItemView: View {
                                 VStack(alignment: .leading){
                                     ForEach(lunch) { item in
 
-                                        NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive)
+                                        NavigationLink(destination: AddItemView(order: Order(item: item), shop: shop, rootIsStillActive: $rootIsActive, setupActive: $setupActive)
                                         ) {
                                             ItemCell(item: item)
                                         }

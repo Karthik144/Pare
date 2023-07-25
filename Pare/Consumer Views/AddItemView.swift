@@ -28,7 +28,9 @@ struct AddItemView: View {
     let shop: Shop
     
 
-    @Binding var rootIsStillActive : Bool 
+    @Binding var rootIsStillActive : Bool
+    
+    @Binding var setupActive : Bool
 
     
 
@@ -225,7 +227,7 @@ struct AddItemView: View {
 
 
                 NavigationLink(
-                    destination: ShopItemView(rootIsActive: $rootIsStillActive, shop: shop),
+                    destination: ShopItemView(rootIsActive: $rootIsStillActive, setupActive: $setupActive, shop: shop),
                     isActive: $goesToShopItemView) {
                     Button {
                         let orderHash = order.hashValue
@@ -270,6 +272,8 @@ struct AddItemView: View {
                     .alert("Please head home to set up your account first!", isPresented: $showingAlert) {
                         Button("Go to setup!") {
                             showingAlert = false
+                            rootIsStillActive = false
+                            setupActive = false
                         }
                     }
             }
@@ -323,6 +327,8 @@ struct AddItemView: View {
                     .alert("Please head home to set up your account first!", isPresented: $showingAlert) {
                         Button("Go to setup!") {
                             showingAlert = false
+                            rootIsStillActive = false
+                            setupActive = false
                         }
                     }
                 }
@@ -339,6 +345,7 @@ struct AddItemView: View {
 
         } //: VSTACK
         .onAppear(){
+            print("FUCK", setupActive)
             viewModel.fetchItemAddOptions(withUID: shop.id ?? "", itemUID: order.item.id ?? "") { addOptions in
                 self.addOptions = addOptions
             }

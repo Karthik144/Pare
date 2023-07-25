@@ -10,6 +10,7 @@ import SwiftUI
 struct WelcomeView: View {
 
     // MARK: - PROPERTEIS
+    @State var setupActive : Bool = false
     @EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject var appState: AppState
     @StateObject var walletViewModel: web3ViewModel
@@ -99,14 +100,30 @@ extension WelcomeView {
                     Spacer()
       
                     // Preview for shops and menu
+                    
+                    Button {
+                        self.setupActive = true
+
+                    } label: {
+                        Text("View shops & menu")
+                        .foregroundColor(Color.accentColor)
+                        .padding(.top, 17)
+                    }
+                    .background(
+                        NavigationLink(destination: ShopsView(setupActive: $setupActive), isActive: $setupActive) {EmptyView()}
+                    )
+
+                    
+                    
+                    /*
                     NavigationLink {
-                        ShopsView()
+                        ShopsView(setupActive: $setupActive)
                     } label: {
                         Text("View shops & menu")
                             .foregroundColor(Color.accentColor)
                             .padding(.top, 17)
                     }
-
+                     */
                     Spacer()
                 }
                 //.padding(.top, 17)

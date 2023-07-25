@@ -41,6 +41,8 @@ struct ShopsView: View {
     @State var pickUpTime: Date?
 
     @State var isActive : Bool = false
+    
+    @Binding var setupActive : Bool
 
     // MARK: - BODY
     var body: some View {
@@ -193,11 +195,11 @@ extension ShopsView {
                             }
                             .background(
 
-                                NavigationLink(destination: ShopItemView(rootIsActive: $isActive, shop: shop),
+                                NavigationLink(destination: ShopItemView(rootIsActive: $isActive, setupActive: $setupActive, shop: shop),
                                                 isActive: $isActive) {EmptyView()}
                             )
 
-
+   
                         } //: FOR EACH
 
                     } //: LAZYVSTACK
@@ -381,7 +383,7 @@ extension ShopsView {
                             }
                             .background(
 
-                                NavigationLink(destination: ShopItemView(rootIsActive: $isActive, shop: shop),
+                                NavigationLink(destination: ShopItemView(rootIsActive: $isActive, setupActive: $setupActive, shop: shop),
                                                 isActive: $isActive) {EmptyView()}
                             )
 
