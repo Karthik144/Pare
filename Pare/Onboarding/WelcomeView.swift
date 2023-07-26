@@ -39,26 +39,39 @@ extension WelcomeView {
             
             VStack(alignment: .leading){
                 // Benefit slideshow
-                GeometryReader { proxy in
 
-                    TabView(){
+                TabView {
 
-                        // Benefit 1
-                        BenefitView(benefitNumber: "BENEFIT #1", benefit: "Earn 10% cash back on each order", subBenefit: "", image: "benefit_1")
+                    // Benefit 1
+                    BenefitView(benefitNumber: "BENEFIT #1", benefit: "Earn 10% cash back on each order", subBenefit: "", image: "benefit_1")
 
-                        // Benefit 2
-                        BenefitView(benefitNumber: "BENEFIT #2", benefit: "Lowest meal prices", subBenefit: "We don’t inflate menu prices like others...", image: "benefit_2")
+                    // Benefit 2
+                    BenefitView(benefitNumber: "BENEFIT #2", benefit: "Lowest meal prices", subBenefit: "We don’t inflate menu prices like others...", image: "benefit_2")
 
-                    }
-                    .tabViewStyle(.page(indexDisplayMode: .never))  // <--- here
-//                    .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
-//                    .tabViewStyle(PageTabViewStyle())
-//                    .tabViewStyle(PageTabViewStyle())
-                    .frame(width: proxy.size.width, height: (proxy.size.height) * 0.8)
-//                    .tabViewStyle(.page)
-//                    .indexViewStyle(.page(backgroundDisplayMode: .always))
 
-                } //: GEOMETRY READER
+                } //: TAB VIEW
+                .tabViewStyle(PageTabViewStyle())
+                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+//                GeometryReader { proxy in
+//
+//                    TabView(){
+//
+//                        // Benefit 1
+//                        BenefitView(benefitNumber: "BENEFIT #1", benefit: "Earn 10% cash back on each order", subBenefit: "", image: "benefit_1")
+//
+//                        // Benefit 2
+//                        BenefitView(benefitNumber: "BENEFIT #2", benefit: "Lowest meal prices", subBenefit: "We don’t inflate menu prices like others...", image: "benefit_2")
+//
+//                    }
+//                    .tabViewStyle(.page(indexDisplayMode: .never))  // <--- here
+////                    .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
+////                    .tabViewStyle(PageTabViewStyle())
+////                    .tabViewStyle(PageTabViewStyle())
+//                    .frame(width: proxy.size.width, height: (proxy.size.height) * 0.8)
+////                    .tabViewStyle(.page)
+////                    .indexViewStyle(.page(backgroundDisplayMode: .always))
+//
+//                } //: GEOMETRY READER
 
                 // Login + Signup Buttons
                 HStack{

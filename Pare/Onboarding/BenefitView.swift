@@ -78,48 +78,50 @@ struct BenefitView: View {
                 } //: HSTACK
                 .padding()
 
+                Spacer()
 
-                HStack{
-
-                    Spacer()
-
-
-
-                    if benefitNumber.contains("1"){
-
-                        // Circle Indexes
-                        HStack(spacing: 8){
-
-                            Circle()
-                                .foregroundColor(Color.gray)
-                                .frame(width: 7, height: 7)
-
-                            Circle()
-                                .fill(Color.gray.opacity(0.5))
-                                .frame(width: 7, height: 7)
-                        } //: HSTACK
-
-                    } else {
-
-                        // Circle Indexes
-                        HStack(spacing: 8){
-
-                            Circle()
-                                .fill(Color.gray.opacity(0.5))
-                                .frame(width: 7, height: 7)
-
-                            Circle()
-                                .foregroundColor(Color.gray)
-                                .frame(width: 7, height: 7)
-                        } //: HSTACK
-
-                    }
-
-
-                    Spacer()
-
-                } //: HSTACK
-                .padding()
+//
+//                HStack{
+//
+//                    Spacer()
+//
+//
+//
+//                    if benefitNumber.contains("1"){
+//
+//                        // Circle Indexes
+//                        HStack(spacing: 8){
+//
+//                            Circle()
+//                                .foregroundColor(Color.gray)
+//                                .frame(width: 7, height: 7)
+//
+//                            Circle()
+//                                .fill(Color.gray.opacity(0.5))
+//                                .frame(width: 7, height: 7)
+//                        } //: HSTACK
+//
+//                    } else {
+//
+//                        // Circle Indexes
+//                        HStack(spacing: 8){
+//
+//                            Circle()
+//                                .fill(Color.gray.opacity(0.5))
+//                                .frame(width: 7, height: 7)
+//
+//                            Circle()
+//                                .foregroundColor(Color.gray)
+//                                .frame(width: 7, height: 7)
+//                        } //: HSTACK
+//
+//                    }
+//
+//
+//                    Spacer()
+//
+//                } //: HSTACK
+//                .padding()
 
 
     //            // Buttons
